@@ -1,0 +1,44 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+em,
+strong,
+blockquote,
+cite,
+code,
+pre,
+sub,
+sup,
+input,
+button,
+li {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.btn:focus,
+.btn:active,
+.btn:hover,
+.btn:visited:focus,
+.form-control:focus,
+.form-control:active,
+.form-control:hover {
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control,
+.form-control:focus,
+.form-control:active,
+.form-control:hover {
+  background: none;
+}

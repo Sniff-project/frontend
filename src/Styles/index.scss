@@ -1,0 +1,10 @@
+$primary: #48a0d1;
+
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+.btn-primary {
+	box-shadow: 0px 0px 36px rgba(72, 160, 209, 0.5);
+	border-radius: 15px;
+	transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
