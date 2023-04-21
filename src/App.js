@@ -1,14 +1,11 @@
-import logo from "./logo.svg";
+import React, { useState } from "react";
+import AppRouter from "./Routes";
 import "./Styles/App.scss";
 
-import { SignInPopup } from "@components/smart";
-
 function App() {
-  return (
-    <div className="App">
-      <SignInPopup />
-    </div>
-  );
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  return <AppRouter isAuthenticated={isAuthenticated} />;
 }
 
 export default App;

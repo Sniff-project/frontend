@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { signIn } from "@core/Services";
+import { login } from "@core/Services";
 import "./SignInForm.scss";
 
 const SignInForm = () => {
@@ -13,6 +14,7 @@ const SignInForm = () => {
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
+  const history = useNavigate();
 
   const handleInputChange = (event) => {
     setFormData({
@@ -22,7 +24,10 @@ const SignInForm = () => {
   };
 
   const onSubmitHandler = (data) => {
-    dispatch(signIn(data));
+    dispatch(login(data)).then((token) => {
+      sessionStorage.setItem("jwtToken", token);
+      history("/profile");
+    });
   };
 
   return (
