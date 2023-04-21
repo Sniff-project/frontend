@@ -1,4 +1,3 @@
-// not used yet
 import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({ auth: { isAuthenticated }, children }) => {

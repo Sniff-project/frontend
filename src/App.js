@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import AppRouter from "./Routes";
+import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProvider } from "@contexts";
+import AppRoutes from "./Routes";
 import "./Styles/App.scss";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  return <AppRouter isAuthenticated={isAuthenticated} />;
+  return (
+    <Router>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </Router>
+  );
 }
 
 export default App;
