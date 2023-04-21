@@ -9,7 +9,11 @@
 		border-left: 0;
 		border-radius: 0;
 		padding: 5px 10px;
-		margin-bottom: 40px;
+		margin-top: 40px;
+
+		&[name="email"] {
+			margin-top: 0;
+		}
 
 		&:hover,
 		&:focus,
@@ -28,7 +32,7 @@
 		font-size: 24px;
 		line-height: 29px;
 		color: #fff;
-		margin-top: 10px;
+		margin-top: 50px;
 		padding: 10px 89px 11px 89px;
 	}
 }
