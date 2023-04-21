@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
-import { ErrorMessage, WarningMessage } from "@components/simple";
+import { ErrorMessage, WarningMessage, Spinner } from "@components/simple";
 import "./SignInForm.scss";
 
 const SignInForm = () => {
@@ -17,8 +17,6 @@ const SignInForm = () => {
   const { login } = useContext(AuthContext);
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-
-  console.log(authState);
 
   const handleInputChange = (event) => {
     setFormData({
@@ -35,6 +33,7 @@ const SignInForm = () => {
 
   return (
     <>
+      {authState.isLoading && <Spinner size={100} />}
       {authState.error && <ErrorMessage message={authState.error} />}
       <form id="LoginForm" onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="form-group">
@@ -63,7 +62,7 @@ const SignInForm = () => {
             className="form-control"
             id="InputPassword"
             placeholder="Пароль"
-            {...register("password", { required: true, minLength: 8 })}
+            {...register("password", { required: true, minLength: 6 })}
             value={formData.password}
             onChange={handleInputChange}
           />
@@ -71,7 +70,7 @@ const SignInForm = () => {
             <WarningMessage message="Password is required" />
           )}
           {errors.password && errors.password.type === "minLength" && (
-            <WarningMessage message="Password must be at least 8 characters long" />
+            <WarningMessage message="Password must be at least 6 characters long" />
           )}
         </div>
         <div className="d-flex justify-content-center w-100">
