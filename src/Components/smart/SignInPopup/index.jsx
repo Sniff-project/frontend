@@ -1,11 +1,8 @@
+import React from "react";
 import SignInForm from "./SignInForm";
 import "./styles.scss";
 
 const SignInPopup = () => {
-  const handleSubmit = (data) => {
-    console.log(data);
-  };
-
   return (
     <div
       className="sign-in-popup modal d-block"
@@ -20,7 +17,7 @@ const SignInPopup = () => {
             <h3 className="modal-title">Вхід</h3>
           </div>
           <div className="modal-body p-0">
-            <SignInForm onSubmit={handleSubmit} />
+            <SignInForm />
             <div className="content-after-form d-flex justify-content-center flex-wrap">
               <p className="mb-2 mb-sm-0">Ще не з нами?</p>
               <a

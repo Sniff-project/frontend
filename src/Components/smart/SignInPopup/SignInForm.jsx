@@ -1,8 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { signIn } from "@core/Services";
 import "./SignInForm.scss";
 
-const SignInForm = ({ onSubmit }) => {
+const SignInForm = () => {
   const {
     register,
     handleSubmit,
@@ -10,6 +12,7 @@ const SignInForm = ({ onSubmit }) => {
   } = useForm();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
     setFormData({
@@ -19,7 +22,7 @@ const SignInForm = ({ onSubmit }) => {
   };
 
   const onSubmitHandler = (data) => {
-    onSubmit(data);
+    dispatch(signIn(data));
   };
 
   return (
