@@ -1,0 +1,34 @@
+#LoginForm {
+	width: 100%;
+	max-width: 500px;
+
+	input {
+		border: 1px solid rgba(0, 0, 0, 0.25);
+		border-top: 0;
+		border-right: 0;
+		border-left: 0;
+		border-radius: 0;
+		padding: 5px 10px;
+		margin-bottom: 40px;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: #000;
+			border-color: #000;
+		}
+
+		&::placeholder {
+			color: #000;
+		}
+	}
+
+	button[type="submit"] {
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 29px;
+		color: #fff;
+		margin-top: 10px;
+		padding: 10px 89px 11px 89px;
+	}
+}
