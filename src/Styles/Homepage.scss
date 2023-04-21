@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.main-page {
+    background-color: #E8EBF2;
+}
+
+.btn-blue {
+    background-color: #48A0D1;
+    color: white;
+    box-shadow: 0px 0px 25px rgba(72, 160, 209, 0.5);
+    border-radius: 15px;
+    display: inline-block;
+    padding: 16px 23px;
+    font-size: 24px;
+}
+
+
+/* ----------  Navbar  ----------*/
+
+
+.nav-holder {
+    position: relative;
+}
+
+
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    height: 8vh;
+
+    div {
+        position: relative;
+
+        &::after {
+            content: "";
+            width: 1px;
+            height: 50%;
+            background-color: black;
+            display: inline-block;
+            position: absolute;
+            left: 100%;
+        }
+    }
+}
+
+
+.logo {
+    font-size: 36px;
+    text-transform: uppercase;
+    width: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.nav-row__center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+
+.nav-menu-list {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 12vw;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    padding: 8px;
+}
+
+.nav-menu__link {
+    padding: 8px 12px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.nav-row_singUp {
+    padding: 28px;
+}
+
+.nav-list__addPet {
+    padding: 28px;
+}
+
+.nav-row__btn {
+    border: 0;
+    background: none;
+    font-size: 20px;
+    margin-left: 20px;
+    padding: 28px 0;
+    cursor: pointer;
+
+    img {
+        margin-left: 5px;
+    }
+}
+
+
+/* ----------  About  ----------*/
+
+.about-bg {
+    background-image: url(../Assets/Images/cat-bg.jpg);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 92vh;
+    display: flex;
+    align-items: center;
+}
+
+.about-block {
+    font-size: 24px;
+    font-weight: 300;
+    color: #2E2C34;
+    max-width: 50vw;
+    padding-left: 56px;
+    line-height: 38.4px;
+
+    p {
+        margin-bottom: 24px;
+    }
+}
+
+
+/* ----------  Our Animals  ----------*/
+.animals {
+    padding-top: 90px;
+    padding-bottom: 54px;
+}
+
+.animals-title {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.cardsAnimals {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cardAnimal {
+    width: 260px;
+    height: 390px;
+    background: #48A0D1;
+    box-shadow: 0px 0px 30px #48A0D1;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    img {
+        height: 100%;
+    }
+    .animalName {
+        position: absolute;
+        bottom: 0;
+        height: 15%;
+        width: 100%;
+        background-color: #48A0D1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: white;
+        border-radius: 50% 50% 0 0;
+    }
+}
