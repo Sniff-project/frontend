@@ -1,13 +1,10 @@
-import React, { useState, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "@contexts";
-import { login as loginUser } from "@core/Services";
 import { Button1, Input1 } from "@components/ui";
-import { ErrorMessage, WarningMessage, Spinner } from "@components/simple";
+import { WarningMessage } from "@components/simple";
 import "./styles.scss";
 
-const SignInForm = () => {
+const SignInForm = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -15,9 +12,6 @@ const SignInForm = () => {
   } = useForm();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const { login } = useContext(AuthContext);
-  const dispatch = useDispatch();
-  const authState = useSelector((state) => state.auth);
 
   const handleInputChange = (event) => {
     setFormData({
@@ -27,15 +21,11 @@ const SignInForm = () => {
   };
 
   const onSubmitHandler = (data) => {
-    dispatch(loginUser(data)).then((token) => {
-      login(token);
-    });
+    onSubmit(data);
   };
 
   return (
     <form id="LoginForm" onSubmit={handleSubmit(onSubmitHandler)}>
-      {authState.isLoading && <Spinner size={100} />}
-      {authState.error && <ErrorMessage message={authState.error} />}
       <div className="form-group">
         <Input1
           type="email"
