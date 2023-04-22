@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "route": "/*.{css,js}",
+      "statusCode": 200
+    },
+    {
+      "route": "/*",
+      "rewrite": "/index.html",
+      "statusCode": 200
+    }
+  ]
+}
