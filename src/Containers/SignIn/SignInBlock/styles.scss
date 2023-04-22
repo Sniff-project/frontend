@@ -1,0 +1,21 @@
+#SignInBlock {
+	padding: 60px 0;
+	max-width: 600px;
+	width: 100%;
+	.block {
+		&__content {
+			background: rgba(151, 194, 245, 0.2);
+			border-radius: 15px;
+			padding: 55px 50px 79px 50px;
+		}
+		&__title {
+			font-weight: 400;
+			font-size: 32px;
+			line-height: 39px;
+		}
+
+		&__content-after-form {
+			gap: 5px 20px;
+		}
+	}
+}

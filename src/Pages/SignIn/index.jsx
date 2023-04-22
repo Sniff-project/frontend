@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "@contexts";
-import { SignInPopup } from "@components/smart";
+import { SignInBlock } from "@containers/SignIn";
 
 const Login = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -10,7 +10,13 @@ const Login = () => {
     return <Navigate to="/profile" />;
   }
 
-  return <SignInPopup />;
+  return (
+    <div className="container p-0">
+      <div className="d-flex justify-content-center">
+        <SignInBlock />
+      </div>
+    </div>
+  );
 };
 
 export default Login;
