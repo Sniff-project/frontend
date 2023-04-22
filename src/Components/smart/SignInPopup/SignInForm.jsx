@@ -1,8 +1,12 @@
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "@contexts";
+import { login as loginUser } from "@core/Services";
+import { ErrorMessage, WarningMessage, Spinner } from "@components/simple";
 import "./SignInForm.scss";
 
-const SignInForm = ({ onSubmit }) => {
+const SignInForm = () => {
   const {
     register,
     handleSubmit,
@@ -10,6 +14,9 @@ const SignInForm = ({ onSubmit }) => {
   } = useForm();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const { login } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
 
   const handleInputChange = (event) => {
     setFormData({
@@ -19,48 +26,60 @@ const SignInForm = ({ onSubmit }) => {
   };
 
   const onSubmitHandler = (data) => {
-    onSubmit(data);
+    dispatch(loginUser(data)).then((token) => {
+      login(token);
+    });
   };
 
   return (
-    <form id="LoginForm" onSubmit={handleSubmit(onSubmitHandler)}>
-      <div className="form-group">
-        <input
-          type="email"
-          name="email"
-          className="form-control"
-          id="InputEmail"
-          placeholder="Пошта або Номер телефону"
-          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        {errors.email && <p>Please enter a valid email address</p>}
-      </div>
-      <div className="form-group">
-        <input
-          type="password"
-          name="password"
-          className="form-control"
-          id="InputPassword"
-          placeholder="Пароль"
-          {...register("password", { required: true, minLength: 8 })}
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        {errors.password && errors.password.type === "required" && (
-          <p>Password is required</p>
-        )}
-        {errors.password && errors.password.type === "minLength" && (
-          <p>Password must be at least 8 characters long</p>
-        )}
-      </div>
-      <div className="d-flex justify-content-center w-100">
-        <button type="submit" className="btn btn-primary">
-          Вхід
-        </button>
-      </div>
-    </form>
+    <>
+      {authState.isLoading && <Spinner size={100} />}
+      {authState.error && <ErrorMessage message={authState.error} />}
+      <form id="LoginForm" onSubmit={handleSubmit(onSubmitHandler)}>
+        <div className="form-group">
+          <input
+            type="email"
+            name="email"
+            className="form-control"
+            id="InputEmail"
+            placeholder="Пошта або Номер телефону"
+            {...register("email", {
+              required: true,
+              pattern:
+                /^[a-z0-9]+@[a-z0-9]{4,}\.[a-z]{2,3}(\.[a-z]{2,3}){0,1}$/i,
+            })}
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+          {errors.email && (
+            <WarningMessage message="Please enter a valid email address" />
+          )}
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            id="InputPassword"
+            placeholder="Пароль"
+            {...register("password", { required: true, minLength: 6 })}
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+          {errors.password && errors.password.type === "required" && (
+            <WarningMessage message="Password is required" />
+          )}
+          {errors.password && errors.password.type === "minLength" && (
+            <WarningMessage message="Password must be at least 6 characters long" />
+          )}
+        </div>
+        <div className="d-flex justify-content-center w-100">
+          <button type="submit" className="btn btn-primary">
+            Вхід
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 
