@@ -1,8 +1,7 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
+
 
 ul {
     margin: 0;
@@ -97,7 +96,7 @@ a {
 
 .nav-menu__link {
     padding: 8px 12px;
-    font-weight: 300;
+    font-family: Montserrat-300;
     cursor: pointer;
 }
 
@@ -182,6 +181,7 @@ a {
     img {
         height: 100%;
     }
+
     .animalName {
         position: absolute;
         bottom: 0;
@@ -195,4 +195,163 @@ a {
         color: white;
         border-radius: 50% 50% 0 0;
     }
+}
+
+
+/* ----------  About Animals  ----------*/
+
+.aboutAnimals {
+    padding-top: 31px;
+    padding-bottom: 125px;
+    width: 90%;
+    margin: 0 auto;
+
+    .aboutAnimals-title {
+        font-size: 25px;
+        text-align: center;
+        margin-bottom: 180px;
+    }
+
+    .animalArticle-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 180px 70px;
+
+        .animalArticle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .animalArticle-circle {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                background: rgba(72, 209, 168, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 20px;
+            }
+
+            .animalArticle-info {
+                max-width: 510px;
+
+                .animalArticle-text {
+                    margin: 0;
+                    font-family: Montserrat-300;
+                    line-height: 28px;
+                    font-size: 20px;
+                }
+
+                .animalArticle-title {
+                    margin: 0 0 10px 0;
+                    font-family: Montserrat-500;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+}
+
+/* ----------  Footer  ----------*/
+
+.footer {
+    margin-top: 240px;
+    background-color: #587081;
+    padding-right: 154px;
+    color: white;
+    display: flex;
+
+
+    .footer-container {
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+
+        .footer-logo {
+            text-transform: uppercase;
+            font-size: 48px;
+            display: flex;
+            align-items: center;
+            padding-left: 60px;
+        }
+
+        .footer-tabs {
+            padding-top: 50px;
+
+            h3 {
+                margin-bottom: 20px;
+                font-size: 15px;
+            }
+
+            ul {
+                li {
+                    font-size: 15px;
+                    a {
+                        color: white;
+                    }
+                    &:not(:first-child) {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+
+        .footer-contacts {
+            display: flex;
+            flex-direction: column;
+            padding-top: 50px;
+            padding-bottom: 72px;
+
+            h3 {
+                font-size: 15px;
+            }
+
+            >a {
+                &:not(:first-child) {
+                    margin-top: 10px;
+                }
+                font-size: 15px;
+                color: white;
+            }
+
+            .socials {
+                margin-top: 20px;
+
+                a {
+
+                    &:not(:first-child) {
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-unknown {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        ul {
+            list-style: none;
+
+            li {
+                font-size: 20px;
+
+                &:not(:first-child) {
+                    margin-top: 17px;
+                }
+            }
+        }
+    }
+
+
+
+
 }

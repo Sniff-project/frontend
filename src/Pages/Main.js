@@ -3,6 +3,8 @@ import React from 'react'
 import Navbar from '../Containers/Navbar'
 import AboutUs from '../Containers/AboutUs'
 import OurAnimals from '../Containers/OurAnimals'
+import AboutAnimals from '../Containers/AboutAnimals'
+import Footer from '../Containers/Footer'
 
 
 export default function Main() {
@@ -11,6 +13,8 @@ export default function Main() {
       <Navbar />
       <AboutUs />
       <OurAnimals />
+      <AboutAnimals />
+      <Footer />
     </div>
   )
 }
