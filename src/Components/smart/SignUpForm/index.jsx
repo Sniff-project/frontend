@@ -4,7 +4,6 @@ import "./SignUpForm.scss";
 
 
 const SignUpForm = () => {
-
     return (
         <section className="registration">
             <h2 className="registration__title">Реєстрація</h2>
