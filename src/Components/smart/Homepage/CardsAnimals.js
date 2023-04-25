@@ -1,5 +1,5 @@
 import React from 'react'
-import CardAnimal from '../ordinary/CardAnimal';
+import CardAnimal from '../../ordinary/HomeCardAnimal/CardAnimal';
 
 export default function CardsAnimals() {
 

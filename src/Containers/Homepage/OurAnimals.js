@@ -1,5 +1,5 @@
-import React from 'react'
-import CardsAnimals from '../Components/smart/CardsAnimals'
+import React from 'react';
+import CardsAnimals from '../../Components/smart/Homepage/CardsAnimals';
 
 export default function OurAnimals() {
     return (

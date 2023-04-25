@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import facebookImg from '../Assets/Icons/footer/facebook.png';
-import instagramImg from '../Assets/Icons/footer/instagram.png';
+import facebookImg from '../../Assets/Icons/footer/facebook.png';
+import instagramImg from '../../Assets/Icons/footer/instagram.png';
 
 export default function Footer() {
     return (

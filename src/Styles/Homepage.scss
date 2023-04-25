@@ -2,6 +2,25 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Montserrat-200;
+    src: url(./../Assets/Fonts/Montserrat-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-300;
+    src: url(./../Assets/Fonts/Montserrat-Light.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-400;
+    src: url(./../Assets/Fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-500;
+    src: url(./../Assets/Fonts/Montserrat-Medium.ttf);
+}
 
 ul {
     margin: 0;
@@ -125,7 +144,7 @@ a {
 /* ----------  About  ----------*/
 
 .about-bg {
-    background-image: url(../Assets/Images/cat-bg.jpg);
+    background-image: url(../Assets/Images/Homepage/cat-bg.jpg);
     background-size: contain;
     background-position: right;
     background-repeat: no-repeat;
@@ -291,9 +310,11 @@ a {
             ul {
                 li {
                     font-size: 15px;
+
                     a {
                         color: white;
                     }
+
                     &:not(:first-child) {
                         margin-top: 10px;
                     }
@@ -315,6 +336,7 @@ a {
                 &:not(:first-child) {
                     margin-top: 10px;
                 }
+
                 font-size: 15px;
                 color: white;
             }

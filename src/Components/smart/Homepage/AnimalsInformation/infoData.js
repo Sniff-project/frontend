@@ -1,7 +1,8 @@
-import img1 from '../../../Assets/Icons/AnimalsInformation/1.svg';
-import img2 from '../../../Assets/Icons/AnimalsInformation/2.svg';
-import img3 from '../../../Assets/Icons/AnimalsInformation/3.svg';
-import img4 from '../../../Assets/Icons/AnimalsInformation/4.svg';
+import img1 from '../../../../Assets/Icons/AnimalsInformation/1.svg';
+import img2 from '../../../../Assets/Icons/AnimalsInformation/2.svg';
+import img3 from '../../../../Assets/Icons/AnimalsInformation/3.svg';
+import img4 from '../../../../Assets/Icons/AnimalsInformation/4.svg';
+
 
 export const infoArray = [
     {

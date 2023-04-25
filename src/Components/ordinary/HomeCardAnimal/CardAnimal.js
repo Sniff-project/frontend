@@ -1,5 +1,5 @@
 import React from 'react';
-import dog from '../../Assets/Images/dog.jpg'
+import dog from '../../../Assets/Images/Homepage/dog.jpg'
 
 export default function CardAnimal({name}) {
   return (

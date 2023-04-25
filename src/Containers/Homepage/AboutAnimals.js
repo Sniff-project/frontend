@@ -1,5 +1,5 @@
 import React from 'react';
-import AnimalsInformation from '../Components/smart/AnimalsInformation/AnimalsInformation';
+import AnimalsInformation from '../../Components/smart/Homepage/AnimalsInformation/AnimalsInformation';
 
 export default function AboutAnimals() {
     return (

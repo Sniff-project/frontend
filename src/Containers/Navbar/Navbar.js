@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import imgArrow from '../Assets/Icons/nav/Arrow.svg';
+import imgArrow from '../../Assets/Icons/nav/Arrow.svg';
 import { NavLink } from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Transition } from 'react-transition-group';
@@ -25,15 +25,15 @@ export default function Navbar() {
 
                             <ul className='nav-list'>
                                 <li className='nav-list__item'>
-                                    <NavLink className='nav-list__addPet' to='/addPet'>Я знайшов тваринку</NavLink>
+                                    <NavLink className='nav-list__addPet' to='/addpet'>Я знайшов тваринку</NavLink>
                                 </li>
                                 <li className='nav-list__item'>
-                                    <NavLink className='nav-list__addPet' to='/addPet'>Я загубив тваринку</NavLink>
+                                    <NavLink className='nav-list__addPet' to='/addpet'>Я загубив тваринку</NavLink>
                                 </li>
                             </ul>
                         </div>
 
-                        <NavLink className='nav-row_singUp' to='/singUp'>Зареєструватись</NavLink>
+                        <NavLink className='nav-row_singUp' to='/signup'>Зареєструватись</NavLink>
 
                     </div>
 
