@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
+import Anchor from "@components/ui/Anchor";
 import facebookImg from '../../../Assets/Icons/footer/facebook.png';
 import instagramImg from '../../../Assets/Icons/footer/instagram.png';
 import './style.scss';
@@ -17,13 +17,13 @@ export default function Footer() {
                         <h3>Закладки</h3>
                         <ul>
                             <li>
-                                <NavLink to='/'>Головна сторінка</NavLink>
+                                <a href='/'>Головна сторінка</a>
                             </li>
                             <li>
-                                <AnchorLink href='#ourAnimals'>Наші тваринки</AnchorLink>
+                                <Anchor text='Наші тваринки' href='#ourAnimals'/>
                             </li>
                             <li>
-                                <AnchorLink href='#aboutAnimals'>Інформація про наших тваринок</AnchorLink>
+                                <Anchor text='Інформація про наших тваринок' href='#aboutAnimals'/>
                             </li>
                             <li>
                                 <NavLink to='/profile'>Профіль</NavLink>

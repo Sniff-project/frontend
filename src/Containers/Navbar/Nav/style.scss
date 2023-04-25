@@ -10,7 +10,7 @@
     background: rgba(0, 0, 0, 0.1);
     height: 8vh;
 
-    div {
+    >div {
         position: relative;
 
         &::after {
@@ -26,13 +26,37 @@
 }
 
 .logo {
-    font-size: 36px;
-    text-transform: uppercase;
+    height: 100%;
     width: 12vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+
+    .logo-holder {
+        font-size: 36px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        .logo-cat {
+            height: 32px;
+            padding-top: 6px;
+            padding-left: 6px;
+
+            &::after {
+                content: "";
+                display: block;
+                width: 105%;
+                height: .3px;
+                background-color: black;
+                position: absolute;
+                bottom: 3px;
+                left: 0;
+            }
+        }
+    }
 }
 
 .nav-row__center {
@@ -57,13 +81,12 @@
     background: rgba(0, 0, 0, 0.1);
     display: flex;
     padding: 8px;
+
+    a {
+        padding: 8px 12px;
+    }
 }
 
-.nav-menu__link {
-    padding: 8px 12px;
-    font-family: Montserrat-300;
-    cursor: pointer;
-}
 
 .nav-row_singUp {
     padding: 28px;
