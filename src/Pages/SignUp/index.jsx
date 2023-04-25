@@ -1,6 +1,11 @@
-import React from "react";
+import React from 'react';
+import SignUpForm from '../../Components/smart/SignUpForm';
+
+
 const SignUp = () => {
-  return <div className="container p-0">Sign Up</div>;
+    return (
+        <SignUpForm/>
+    );
 };
 
 export default SignUp;
