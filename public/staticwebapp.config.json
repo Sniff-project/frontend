@@ -1,0 +1,11 @@
+{
+  "routes": [
+    {
+      "route": "/*.{css,js}"
+    },
+    {
+      "route": "/*",
+      "rewrite": "/index.html"
+    }
+  ]
+}
