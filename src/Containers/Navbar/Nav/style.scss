@@ -3,11 +3,12 @@
 }
 
 .nav-row {
+    --bg-color1: rgba(0, 0, 0, 0.1);
+    --bg-color2: rgba(151, 194, 245, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 20px;
-    background: rgba(0, 0, 0, 0.1);
     height: 8vh;
 
     >div {

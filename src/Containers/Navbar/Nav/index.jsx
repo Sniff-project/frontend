@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
 import Anchor from "@components/ui/Anchor";
@@ -10,11 +10,10 @@ import "./style.scss";
 
 export default function Nav() {
   const isAuth = useContext(AuthContext);
-
-  console.log(isAuth.login)
-  
   const [navMenu, setNavMenu] = useState(false);
   const [title, setTitle] = useState("");
+  const bgElem = useRef(null);
+
   const titlePages = [
     {
       title: "Головна сторінка",
@@ -38,6 +37,14 @@ export default function Nav() {
     });
   }, [pathname]);
 
+  useEffect(() => {
+    if (isAuth.isAuthenticated) {
+      bgElem.current.setAttribute("style", "background-color: var(--bg-color1)");
+    } else {
+      bgElem.current.setAttribute("style", "background-color: var(--bg-color2)");
+    }
+  });
+
   const showMenu = () => {
     if (pathname === titlePages[0].link) {
       setNavMenu((prev) => !prev);
@@ -48,7 +55,7 @@ export default function Nav() {
     <header>
       <nav>
         <div className="nav-holder">
-          <div className="nav-row">
+          <div ref={bgElem} className="nav-row">
             <div id={"ttt"} className="logo">
               <div className="logo-holder">
                 sniff
