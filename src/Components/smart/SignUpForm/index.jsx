@@ -1,4 +1,5 @@
 import React from 'react';
+import InputMask from 'react-input-mask';
 import "./SignUpForm.scss";
 
 
@@ -25,9 +26,8 @@ const SignUpForm = () => {
                         placeholder="Електронна пошта"/>
                 </div>
                 <div className="registration__form-inputbox">
-                    <input 
-                        type="number"
-                        placeholder="Номер телефону"/>
+                    
+                    <InputMask mask="+38 (999) 999-99-99" placeholder="Номер телефону" />
                 </div>
                 <div className="registration__form-inputbox">
                     <input 
