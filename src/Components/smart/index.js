@@ -1,1 +1,1 @@
-export { default as SignInPopup } from "./SignInPopup";
+export { default as SignInForm } from "./SignInForm";

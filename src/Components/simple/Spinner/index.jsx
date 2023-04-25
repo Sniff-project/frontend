@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const Spinner = ({ size = 200 }) => {
   return (
-    <div className="spinner__container position-absolute w-100 h-100 z-index-offcanvas d-flex align-items-center justify-content-center py-5">
+    <div className="spinner__container position-absolute w-100 h-100 d-flex align-items-center justify-content-center py-5">
       <svg viewBox="0 0 100 100" width={size} height={size}>
         <defs>
           <filter id="shadow">
@@ -11,7 +11,7 @@ const Spinner = ({ size = 200 }) => {
               dx="0"
               dy="0"
               stdDeviation="1.5"
-              flood-color="#fc6767"
+              floodColor="#fc6767"
             />
           </filter>
         </defs>
