@@ -1,5 +1,6 @@
 import React from 'react'
-import CardAnimal from '../../ordinary/HomeCardAnimal/CardAnimal';
+import CardAnimal from "@components/ordinary/Homepage/CardAnimal";
+
 
 export default function CardsAnimals() {
 

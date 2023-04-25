@@ -1,8 +1,8 @@
 import React from 'react';
 import { infoArray } from './infoData';
-import AnimalArticle from './AnimalArticle';
+import AnimalArticle from "@components/ordinary/Homepage/AnimalArticle";
 
-export default function AnimalsInformation() {
+export default function AnimalsInfo() {
 
     const informations = infoArray;
 

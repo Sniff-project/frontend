@@ -1,10 +1,7 @@
 import React from "react";
-import '../../Styles/Homepage.scss';
-import Navbar from '../../Containers/Navbar/Navbar';
-import AboutUs from '../../Containers/Homepage/AboutUs';
-import OurAnimals from '../../Containers/Homepage/OurAnimals';
-import AboutAnimals from '../../Containers/Homepage/AboutAnimals';
-import Footer from '../../Containers/Homepage/Footer';
+import { AboutUs, OurAnimals, AboutAnimals, Footer} from "@containers/Homepage";
+import { Navbar } from "@containers/Navbar";
+import './style.scss';
 
 const Home = () => {
   return (

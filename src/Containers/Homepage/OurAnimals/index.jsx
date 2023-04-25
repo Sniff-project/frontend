@@ -1,5 +1,6 @@
 import React from 'react';
-import CardsAnimals from '../../Components/smart/Homepage/CardsAnimals';
+import CardsAnimals from "@components/smart/Homepage/CardsAnimals";
+import './style.scss';
 
 export default function OurAnimals() {
     return (

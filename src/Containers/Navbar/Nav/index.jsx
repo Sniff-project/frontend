@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import imgArrow from '../../Assets/Icons/nav/Arrow.svg';
+import imgArrow from '../../../Assets/Icons/nav/Arrow.svg';
 import { NavLink } from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Transition } from 'react-transition-group';
+import './style.scss';
 
-export default function Navbar() {
+export default function Nav() {
 
     const [navMenu, setNavMenu] = useState(false);
 
     return (
         <header>
-            <nav >
+            <nav>
                 <div className='nav-holder'>
                     <div className='nav-row'>
                         <div id={'ttt'} className="logo">

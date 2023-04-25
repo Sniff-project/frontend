@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import facebookImg from '../../Assets/Icons/footer/facebook.png';
-import instagramImg from '../../Assets/Icons/footer/instagram.png';
+import facebookImg from '../../../Assets/Icons/footer/facebook.png';
+import instagramImg from '../../../Assets/Icons/footer/instagram.png';
+import './style.scss';
 
 export default function Footer() {
     return (
@@ -16,7 +17,7 @@ export default function Footer() {
                         <h3>Закладки</h3>
                         <ul>
                             <li>
-                                <a href='/'>Головна сторінка</a>
+                                <NavLink to='/'>Головна сторінка</NavLink>
                             </li>
                             <li>
                                 <AnchorLink href='#ourAnimals'>Наші тваринки</AnchorLink>
