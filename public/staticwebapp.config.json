@@ -4,6 +4,9 @@
       "route": "/*.{css,js}"
     },
     {
+      "route": "/*.{png,svg,webp,jpg,gif}"
+    },
+    {
       "route": "/*",
       "rewrite": "/index.html"
     }
