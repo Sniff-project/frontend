@@ -32,7 +32,7 @@
                     font-size: 15px;
 
                     a {
-                        color: white;
+                        color: white !important;
                     }
 
                     &:not(:first-child) {
@@ -58,7 +58,7 @@
                 }
 
                 font-size: 15px;
-                color: white;
+                color: white !important;
             }
 
             .socials {

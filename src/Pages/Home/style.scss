@@ -18,17 +18,19 @@
     src: url(../../Assets/Fonts/Montserrat-Medium.ttf);
 }
 
-ul {
-    margin: 0;
-}
 
-a {
-    text-decoration: none;
-    color: black;
-}
 
 .main-page {
     background-color: #E8EBF2;
+
+    ul {
+        margin: 0!important;
+    }
+    
+    a {
+        text-decoration: none!important;
+        color: black!important;
+    }
 }
 
 .btn-blue {

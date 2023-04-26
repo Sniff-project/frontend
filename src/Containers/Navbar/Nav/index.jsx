@@ -27,11 +27,11 @@ export default function Nav() {
     },
     {
       title: "Вхід",
-      link: "/signin",
+      link: "/login",
     },
     {
       title: "Реєстрація",
-      link: "/signup",
+      link: "/registration",
     },
   ];
 
@@ -141,7 +141,7 @@ export default function Nav() {
                 </div>
               </div>
             ) : (
-              <NavLink className="nav-row_singUp" to="/signup">
+              <NavLink className="nav-row_singUp" to="/registration">
                 Зареєструватись
               </NavLink>
             )}
