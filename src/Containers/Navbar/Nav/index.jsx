@@ -4,6 +4,7 @@ import { Transition } from "react-transition-group";
 import jwt_decode from "jwt-decode";
 import Anchor from "@components/ui/Anchor";
 import { AuthContext } from "@contexts";
+import { pageTitles } from "./pageTitles";
 import imgArrow from "../../../Assets/Icons/nav/Arrow.svg";
 import logoCat from "../../../Assets/Icons/nav/LogoCat.svg";
 import userIcon from "../../../Assets/Icons/nav/User.svg";
@@ -20,26 +21,11 @@ export default function Nav() {
   const bgElem = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
 
-  const titlePages = [
-    {
-      title: "Головна сторінка",
-      link: "/",
-    },
-    {
-      title: "Вхід",
-      link: "/login",
-    },
-    {
-      title: "Реєстрація",
-      link: "/registration",
-    },
-  ];
-
   const { pathname } = useLocation();
 
   useEffect(() => {
     setTitle(() => {
-      return titlePages.filter((elem) => elem.link === pathname)[0].title;
+      return pageTitles.filter((elem) => elem.link === pathname)[0].title;
     });
   }, [pathname]);
 
@@ -60,13 +46,13 @@ export default function Nav() {
   }, [isAuth]);
 
   const showMenu = () => {
-    if (pathname === titlePages[0].link) {
-      setNavMenu(prev => !prev);
+    if (pathname === pageTitles[0].link) {
+      setNavMenu((prev) => !prev);
     }
   };
 
   const showUserMenu = () => {
-    setUserMenu(prev => !prev);
+    setUserMenu((prev) => !prev);
   };
 
   const logOut = () => {
@@ -78,20 +64,22 @@ export default function Nav() {
       <nav>
         <div ref={bgElem} className="nav-holder">
           <div className="nav-row">
-            <div id={"ttt"} className="logo">
-              <div className="logo-holder">
-                sniff
-                {isAuth.isAuthenticated && (
-                  <div className="logo-cat">
-                    <img src={logoCat} />
-                  </div>
-                )}
-              </div>
+            <div className="logo">
+              <NavLink to='/'>
+                <div className="logo-holder">
+                  sniff
+                  {isAuth.isAuthenticated && (
+                    <div className="logo-cat">
+                      <img alt="#" src={logoCat} />
+                    </div>
+                  )}
+                </div>
+              </NavLink>
             </div>
             <div className="nav-row__center">
               <button className="nav-row__btn" onClick={showMenu}>
                 <span>{title}</span>
-                <img src={imgArrow} />
+                <img alt="#" src={imgArrow} />
               </button>
 
               <ul className="nav-list">
@@ -111,9 +99,9 @@ export default function Nav() {
             {userName && isAuth.isAuthenticated ? (
               <div>
                 <button onClick={showUserMenu} className="nav-row__btn">
-                  <img src={userIcon} />
+                  <img alt="#" src={userIcon} />
                   <span>{userName}</span>
-                  <img alt="" src={imgArrow} />
+                  <img alt="#" src={imgArrow} />
                 </button>
 
                 <div className="wrap">
@@ -126,13 +114,13 @@ export default function Nav() {
                     <ul className="nav-userMenu-list">
                       <li className="nav-userMenu-list__item">
                         <NavLink to="/profile">
-                          <img src={i_icon} />
+                          <img alt="#" src={i_icon} />
                           профіль
                         </NavLink>
                       </li>
                       <li className="nav-userMenu-list__item">
                         <button onClick={logOut}>
-                          <img src={logout_icon} />
+                          <img alt="#" src={logout_icon} />
                           вихід
                         </button>
                       </li>
