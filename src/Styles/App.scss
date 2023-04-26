@@ -1,3 +1,35 @@
+@font-face {
+  font-family: "Montserrat-200";
+  font-style: normal;
+  font-weight: 200;
+  src: url(../Assets/Fonts/Montserrat-ExtraLight.ttf);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat-300";
+  font-style: normal;
+  font-weight: 300;
+  src: url(../Assets/Fonts/Montserrat-Light.ttf);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat-400";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../Assets/Fonts/Montserrat-Regular.ttf);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat-500";
+  font-style: normal;
+  font-weight: 500;
+  src: url(../Assets/Fonts/Montserrat-Medium.ttf);
+  font-display: swap;
+}
+
 h1,
 h2,
 h3,
@@ -19,7 +51,7 @@ input,
 button,
 div,
 li {
-  font-family: "Montserrat";
+  font-family: "Montserrat-400";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -42,4 +74,3 @@ li {
 .form-control:hover {
   background: none;
 }
-

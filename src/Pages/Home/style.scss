@@ -1,40 +1,18 @@
-@font-face {
-    font-family: Montserrat-200;
-    src: url(../../Assets/Fonts/Montserrat-ExtraLight.ttf);
-}
-
-@font-face {
-    font-family: Montserrat-300;
-    src: url(../../Assets/Fonts/Montserrat-Light.ttf);
-}
-
-@font-face {
-    font-family: Montserrat-400;
-    src: url(../../Assets/Fonts/Montserrat-Regular.ttf);
-}
-
-@font-face {
-    font-family: Montserrat-500;
-    src: url(../../Assets/Fonts/Montserrat-Medium.ttf);
-}
-
-
-
 .main-page {
-    background-color: #E8EBF2;
+    background-color: #e8ebf2;
 
     ul {
-        margin: 0!important;
+        margin: 0 !important;
     }
-    
+
     a {
-        text-decoration: none!important;
-        color: black!important;
+        text-decoration: none !important;
+        color: black !important;
     }
 }
 
 .btn-blue {
-    background-color: #48A0D1;
+    background-color: #48a0d1;
     color: white;
     box-shadow: 0px 0px 25px rgba(72, 160, 209, 0.5);
     border-radius: 15px;
@@ -42,7 +20,3 @@
     padding: 16px 23px;
     font-size: 24px;
 }
-
-
-
-
