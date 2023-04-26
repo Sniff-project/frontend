@@ -1,4 +1,4 @@
-import { AboutUs, Home, SignIn, SignUp, NotFound, Profile } from "@pages";
+import { AboutUs, Home, SignIn, NotFound, Profile, SignUp} from "@pages";
 
 const routes = [
   {
@@ -14,13 +14,13 @@ const routes = [
     isPrivate: false,
   },
   {
-    path: "/signin",
+    path: "/login",
     component: SignIn,
     exact: true,
     isPrivate: false,
   },
   {
-    path: "/signup",
+    path: "/registration",
     component: SignUp,
     exact: true,
     isPrivate: false,

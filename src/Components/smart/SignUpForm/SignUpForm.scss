@@ -1,0 +1,94 @@
+@import './../../../Styles/index.scss';
+
+.registration{
+    margin: 0 auto;
+    padding: 50px;
+    margin-top: 140px;
+    width: 1000px;
+    min-height: 616px;
+    background: rgba(151, 194, 245, 0.2);
+    border-radius: 15px;
+    &__title{
+        font-size: 32px;
+        color: #000000;
+    }
+    &__text{
+        grid-column: 1/3;    
+        color: #000000;
+        a{
+          transition: .2s;
+          color: #000000;
+          &:hover{
+            text-decoration: none;
+            color: #48a0d1;
+          }  
+        }
+    }
+    &__button{
+        grid-column: 1/3;
+
+        width: 307px;
+        height: 54px;
+        background: $primary;
+        box-shadow: 0px 0px 36px rgba(72, 160, 209, 0.5);
+        border-radius: 15px;
+        border: none;
+        transition: .5s ease-in-out;
+        
+        font-weight: 300;
+        font-size: 24px;
+        color: #FFFFFF;
+
+        &:hover{
+            background: #0d5176;
+        }
+    }
+
+    &__form{
+        width: 800px;
+        margin: 0 auto;
+        margin-top: 60px;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        column-gap: 125px;
+        
+        &-inputbox{
+            width: 300px;
+            position: relative;
+           
+            input{
+                width: 100%;
+                height: 50px;
+                padding: 0 35px 0 5px;
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background-color: transparent;
+                border-top: 0;
+                border-right: 0;
+                border-left: 0;
+                border-radius: 0;
+                outline: none;
+                transition: .3s ease-in-out;
+                &::placeholder{
+                    position: absolute;
+                    font-weight: 200;                                     
+                    color: rgba(0, 0, 0, 0.5);
+                    top: 50%;
+                    left: 7px;
+
+                    transform: translateY(-50%);
+                    pointer-events: none;
+                    transition: .5s;
+                }
+                
+                &:focus,
+                &:active {
+                    color: #000;
+                    border-color: #000;
+                }
+            }
+        }
+    }
+}
