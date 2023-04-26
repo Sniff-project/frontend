@@ -1,7 +1,7 @@
 import React from "react";
 import { Link1, Anchor } from "@components/ui";
-import facebookImg from "../../../Assets/Icons/footer/facebook.png";
-import instagramImg from "../../../Assets/Icons/footer/instagram.png";
+import facebookImg from "@assets/Icons/footer/facebook.png";
+import instagramImg from "@assets/Icons/footer/instagram.png";
 import "./style.scss";
 
 export default function Footer() {
@@ -21,13 +21,13 @@ export default function Footer() {
                             <li>
                                 <Anchor
                                     text="Наші тваринки"
-                                    href="#ourAnimals"
+                                    href="/#ourAnimals"
                                 />
                             </li>
                             <li>
                                 <Anchor
                                     text="Інформація про наших тваринок"
-                                    href="#aboutAnimals"
+                                    href="/#aboutAnimals"
                                 />
                             </li>
                             <li>

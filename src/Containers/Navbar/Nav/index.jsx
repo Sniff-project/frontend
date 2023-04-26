@@ -25,7 +25,8 @@ export default function Nav() {
 
   useEffect(() => {
     setTitle(() => {
-      return pageTitles.filter((elem) => elem.link === pathname)[0].title;
+      const pageTitle = pageTitles.filter((elem) => elem.link === pathname)[0];
+      return pageTitle ? pageTitle.title : "404";
     });
   }, [pathname]);
 
