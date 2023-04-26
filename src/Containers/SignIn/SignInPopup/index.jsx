@@ -38,7 +38,7 @@ const SignInPopup = () => {
             <div className="content-after-form d-flex justify-content-center flex-wrap">
               <p className="mb-2 mb-sm-0">Ще не з нами?</p>
               <Link
-                to="/signup"
+                to="/registration"
                 className="color-black text-decoration-underline mb-0"
               >
                 Зареєструватись

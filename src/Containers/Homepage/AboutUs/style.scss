@@ -1,0 +1,22 @@
+.about-bg {
+    background-image: url(../../../Assets//Images/Homepage/cat-bg.jpg);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 92vh;
+    display: flex;
+    align-items: center;
+
+    .about-block {
+        max-width: 55vw;
+        padding-left: 56px;
+    
+        p {
+            margin-bottom: 24px;
+            font-size: 24px;
+            line-height: 38.4px;
+            font-family: Montserrat-300;
+            color: #2E2C34;
+        }
+    }
+}
