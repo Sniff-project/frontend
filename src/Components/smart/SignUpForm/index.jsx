@@ -6,10 +6,11 @@ import "./SignUpForm.scss";
 
 
 const SignUpForm = () => {
+    
     const { register, 
             handleSubmit,
-            watch,
             reset,
+            setValue,
             getValues, 
             formState: { errors, isValid } 
     } = useForm({
@@ -19,8 +20,9 @@ const SignUpForm = () => {
     const onSubmit = data => {
         console.log(JSON.stringify(data, null, 2));
         reset();
+        setValue("phone", "");
     };
-    
+
     const password = getValues("password");
     
     
@@ -28,9 +30,10 @@ const SignUpForm = () => {
     return (
         <section className="registration">
             <h2 className="registration__title">Реєстрація</h2>
-            <form className="registration__form" onSubmit={handleSubmit(onSubmit)}>
+            <form className="registration__form" onSubmit={handleSubmit(onSubmit, { excludeFieldArray: ["repPassword"] })}>
 
-                <div className="registration__form-inputbox" >
+                <div className="registration__form-inputbox">
+                
                     <input 
                         {...register('firstName', 
                         {required: "Поле обов'язкове до заповнення!",
@@ -40,7 +43,8 @@ const SignUpForm = () => {
                          }
                         })}
                         type="text"
-                        placeholder="Ім'я"/>
+                        placeholder="Ім'я"
+                        id={errors.firstName ? 'errored' : ''}/>
                     {errors.firstName ? <div className='error'>{errors.firstName.message}</div> : null}
                 </div>
 
@@ -54,7 +58,8 @@ const SignUpForm = () => {
                          }
                         })}
                         type="text"
-                        placeholder="Прізвище"/>
+                        placeholder="Прізвище"
+                        id={errors.lastName ? 'errored' : ''}/>
                     {errors.lastName ? <div className='error'>{errors.lastName.message}</div> : null}
                 </div>
 
@@ -68,7 +73,8 @@ const SignUpForm = () => {
                          }
                         })}
                         type="email"
-                        placeholder="Електронна пошта"/>
+                        placeholder="Електронна пошта"
+                        id={errors.email ? 'errored' : ''}/>
                     {errors.email ? <div className='error'>{errors.email.message}</div> : null}
                 </div>
 
@@ -83,7 +89,8 @@ const SignUpForm = () => {
                          }
                         })} 
                         mask="+38 (999) 999-99-99" 
-                        placeholder="Номер телефону" />
+                        placeholder="Номер телефону" 
+                        id={errors.phone ? 'errored' : ''}/>
                     {errors.phone ? <div className='error'>{errors.phone.message}</div> : null}
                 </div>
 
@@ -97,7 +104,8 @@ const SignUpForm = () => {
                         }
                         })}
                         type="text"
-                        placeholder="Пароль"/>
+                        placeholder="Пароль"
+                        id={errors.password ? 'errored' : ''}/>
                     {errors.password ? <div className='error'>{errors.password.message}</div> : null}
                     
                 </div>
@@ -110,7 +118,8 @@ const SignUpForm = () => {
                             value === password || "Паролі не співпадають!",
                         })}
                         type="repPassword"
-                        placeholder="Підтвердити пароль"/>
+                        placeholder="Підтвердити пароль"
+                        id={errors.repPassword ? 'errored' : ''}/>
                     {errors.repPassword ? <div className='error'>{errors.repPassword.message}</div> : null}
                 </div>
                 
