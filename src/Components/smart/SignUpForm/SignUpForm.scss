@@ -1,9 +1,17 @@
 @import './../../../Styles/index.scss';
 
+.error{
+    color: red;
+    margin-top: 5px;
+}
 .registration{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     margin: 0 auto;
     padding: 50px;
-    margin-top: 140px;
     width: 1000px;
     min-height: 616px;
     background: rgba(151, 194, 245, 0.2);
@@ -41,6 +49,13 @@
 
         &:hover{
             background: #0d5176;
+        }
+        &:disabled{
+            opacity: 0.4;
+            cursor: not-allowed;
+            &:hover{
+                background: $primary;
+            }
         }
     }
 
