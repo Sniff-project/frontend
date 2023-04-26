@@ -65,7 +65,7 @@ export default function Nav() {
         <div ref={bgElem} className="nav-holder">
           <div className="nav-row">
             <div className="logo">
-              <NavLink to='/'>
+              <NavLink to="/">
                 <div className="logo-holder">
                   sniff
                   {isAuth.isAuthenticated && (
@@ -129,7 +129,7 @@ export default function Nav() {
                 </div>
               </div>
             ) : (
-              <NavLink className="nav-row_singUp" to="/registration">
+              <NavLink className="nav-row_singUp" to="/signup">
                 Зареєструватись
               </NavLink>
             )}
