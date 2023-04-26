@@ -39,11 +39,11 @@ export default function Footer() {
                         <a href='tel:'>+380 99 123 45 67</a>
                         <a href='mailto:qwerty1234@gmail.com'>qwerty1234@gmail.com</a>
                         <div className='socials'>
-                            <a href='https://www.facebook.com' target='_blank'>
-                                <img src={facebookImg} />
+                            <a href='https://www.facebook.com' target='_blank' rel="noreferrer">
+                                <img alt='#' src={facebookImg} />
                             </a>
-                            <a href='https://www.instagram.com' target='_blank'>
-                                <img src={instagramImg} />
+                            <a href='https://www.instagram.com' target='_blank' rel="noreferrer">
+                                <img alt='#' src={instagramImg} />
                             </a>
                         </div>
                     </div>
