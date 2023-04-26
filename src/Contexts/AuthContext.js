@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setIsAuthenticated(false);
+    sessionStorage.removeItem("jwtToken");
   };
 
   const value = {

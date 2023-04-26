@@ -1,20 +1,22 @@
 .nav-holder {
     position: relative;
+    // overflow: hidden;
 }
 
 .nav-row {
-    --bg-color1: rgba(0, 0, 0, 0.1);
-    --bg-color2: rgba(151, 194, 245, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 20px;
     height: 8vh;
+    background-color: var(--bg-color);
 
     >div {
         position: relative;
+        height: 100%;
 
-        &::after {
+
+        &:not(:last-child)::after {
             content: "";
             width: 1px;
             height: 50%;
@@ -27,7 +29,6 @@
 }
 
 .logo {
-    height: 100%;
     width: 12vw;
     display: flex;
     align-items: center;
@@ -65,7 +66,6 @@
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
-    height: 100%;
 }
 
 .nav-list {
@@ -79,33 +79,67 @@
     position: absolute;
     top: 100%;
     left: 12vw;
-    background: rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-color);
     display: flex;
     padding: 8px;
 
     a {
         padding: 8px 12px;
+        font-size: 20px;
+        font-family: Montserrat-300;
+    }
+
+}
+
+.nav-userMenu-list {
+    padding: 10%;
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px 0;
+
+    .nav-userMenu-list__item {
+        img {
+            margin-right: 8px;
+        }
+        button {
+            padding: 0;
+            border: 0;
+            background-color: inherit;
+        }
     }
 }
 
-
 .nav-row_singUp {
     padding: 28px;
+    font-size: 20px;
 }
 
 .nav-list__addPet {
-    padding: 28px;
+    padding: 0 28px;
+    font-size: 20px;
 }
 
 .nav-row__btn {
     border: 0;
     background: none;
-    font-size: 20px;
-    margin-left: 20px;
-    padding: 28px 0;
+    padding: 0 20px;
+    height: 100%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    
+    span {
+        font-size: 20px;
+    }
 
     img {
         margin-left: 5px;
+        margin-right: 5px;
     }
 }
