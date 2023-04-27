@@ -3,11 +3,12 @@ import "./styles.scss";
 const Button = ({
 	type = "button",
 	className = "",
+	color = "primary",
 	onClick,
 	children,
 	...rest
 }) => {
-	const buttonClassName = `btn btn-primary button1 ${className}`.trim();
+	const buttonClassName = `btn btn-${color} button1 ${className}`.trim();
 
 	return (
 		<button

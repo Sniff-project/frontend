@@ -1,20 +1,15 @@
 import React from "react";
-import { AboutUs, OurAnimals, AboutAnimals, Footer} from "@containers/Homepage";
-import { Navbar } from "@containers/Navbar";
-import './style.scss';
+import { AboutUs, OurAnimals, AboutAnimals } from "@containers/Homepage";
+import "./style.scss";
 
 const Home = () => {
   return (
-    <div className='main-page'>
-      <Navbar />
+    <div className="main-page">
       <AboutUs />
       <OurAnimals />
       <AboutAnimals />
-      <Footer />
     </div>
-  )
+  );
 };
 
 export default Home;
-
-

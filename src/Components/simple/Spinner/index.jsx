@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
 
-const Spinner = ({ size = 200 }) => {
+const Spinner = ({ size = 100 }) => {
   return (
     <div className="spinner__container position-absolute w-100 h-100 d-flex align-items-center justify-content-center py-5">
       <svg viewBox="0 0 100 100" width={size} height={size}>

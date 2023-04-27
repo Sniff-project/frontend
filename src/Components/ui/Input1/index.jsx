@@ -1,4 +1,5 @@
 import React from "react";
+import InputMask from "react-input-mask";
 import "./styles.scss";
 
 const Input = ({
@@ -6,24 +7,32 @@ const Input = ({
   name,
   className = "",
   validation = {},
-  formData,
-  register,
+  formData = null,
+  register = null,
   value = "",
+  mask = null,
   ...rest
 }) => {
   const inputId = id || `Input${name.charAt(0).toUpperCase()}${name.slice(1)}`;
   const inputClassName = `form-control input1 ${className}`.trim();
 
-  return (
-    <input
-      id={inputId}
-      name={name}
-      className={inputClassName}
-      {...(formData ? register(name, validation) : {})}
-      value={formData ? formData[name] : value}
-      {...rest}
-    />
-  );
+  const validate = formData ? register(name, validation) : {};
+  const val = formData ? formData[name] : value;
+
+  const inputProps = {
+    id: inputId,
+    name,
+    className: inputClassName,
+    ...validate,
+    value: val,
+    ...rest,
+  };
+
+  if (mask) {
+    return <InputMask {...inputProps} mask={mask} />;
+  }
+
+  return <input {...inputProps} />;
 };
 
 export default Input;

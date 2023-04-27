@@ -5,10 +5,10 @@ export const pageTitles = [
     },
     {
         title: "Вхід",
-        link: "/login",
+        link: "/signin",
     },
     {
         title: "Реєстрація",
-        link: "/registration",
+        link: "/signup",
     },
 ];

@@ -24,8 +24,10 @@ export default function Nav() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    setNavMenu(false);
     setTitle(() => {
-      return pageTitles.filter((elem) => elem.link === pathname)[0].title;
+      const pageTitle = pageTitles.filter((elem) => elem.link === pathname)[0];
+      return pageTitle ? pageTitle.title : "404";
     });
   }, [pathname]);
 
@@ -65,7 +67,7 @@ export default function Nav() {
         <div ref={bgElem} className="nav-holder">
           <div className="nav-row">
             <div className="logo">
-              <NavLink to='/'>
+              <NavLink to="/">
                 <div className="logo-holder">
                   sniff
                   {isAuth.isAuthenticated && (
@@ -129,7 +131,7 @@ export default function Nav() {
                 </div>
               </div>
             ) : (
-              <NavLink className="nav-row_singUp" to="/registration">
+              <NavLink className="nav-row_singUp" to="/signup">
                 Зареєструватись
               </NavLink>
             )}
