@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { HashLink as Link } from "react-router-hash-link";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+// import { HashLink as Link } from "react-router-hash-link";
 
 export default function Anchor({ href, text, className, color = "white" }) {
   const { pathname } = useLocation();
@@ -9,12 +9,13 @@ export default function Anchor({ href, text, className, color = "white" }) {
   const anchorClassName = `text-${color} ${className}`;
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.length > 0) {
-      const targetElement = document.getElementById(hash.slice(1));
+    const targetId = window.localStorage.getItem("targetId");
+    if (targetId) {
+      const targetElement = document.getElementById(targetId);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: "smooth" });
       }
+      window.localStorage.removeItem("targetId");
     }
   }, [pathname]);
 
@@ -25,7 +26,9 @@ export default function Anchor({ href, text, className, color = "white" }) {
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate(href);
+      window.localStorage.setItem("targetId", targetId);
+      const baseUrl = href.substring(0, href.indexOf("#"));
+      navigate(baseUrl);
     }
   };
 

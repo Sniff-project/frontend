@@ -1,7 +1,7 @@
 import React from "react";
 import { Link1, Anchor } from "@components/ui";
-import facebookImg from "@assets/Icons/footer/facebook.png";
-import instagramImg from "@assets/Icons/footer/instagram.png";
+import facebookImg from "@assets/Icons/footer/facebook.webp";
+import instagramImg from "@assets/Icons/footer/instagram.webp";
 import "./style.scss";
 
 export default function Footer() {
@@ -44,27 +44,23 @@ export default function Footer() {
                     </div>
                     <div className="footer-contacts">
                         <h3>Контакти та соціальні мережі</h3>
-                        <Link1 to="tel:3809912345678" color="white">
-                            +380 99 123 45 67
-                        </Link1>
-                        <Link1 to="tel:380991234567" color="white">
-                            +380 99 123 45 67
-                        </Link1>
-                        <Link1 to="mailto:qwerty1234@gmail.com" color="white">
+                        <a href="tel:380991234567">+380 99 123 45 67</a>
+                        <a href="tel:380991234567">+380 99 123 45 67</a>
+                        <a href="mailto:qwerty1234@gmail.com">
                             qwerty1234@gmail.com
-                        </Link1>
+                        </a>
                         <div className="socials">
                             <a
                                 href="https://www.facebook.com"
                                 target="_blank"
-                                rel="noreferrer"
+                                rel="noreferrer noindex nofollow"
                             >
                                 <img alt="#" src={facebookImg} />
                             </a>
                             <a
                                 href="https://www.instagram.com"
                                 target="_blank"
-                                rel="noreferrer"
+                                rel="noreferrer noindex nofollow"
                             >
                                 <img alt="#" src={instagramImg} />
                             </a>
