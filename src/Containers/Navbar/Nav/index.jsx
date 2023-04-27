@@ -24,6 +24,7 @@ export default function Nav() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    setNavMenu(false);
     setTitle(() => {
       const pageTitle = pageTitles.filter((elem) => elem.link === pathname)[0];
       return pageTitle ? pageTitle.title : "404";
