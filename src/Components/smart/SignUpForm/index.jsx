@@ -42,6 +42,7 @@ const SignUpForm = () => {
                             message: "Ім'я повинно містити не менше 2 символів!"
                          }
                         })}
+                        tabIndex={1}
                         type="text"
                         placeholder="Ім'я"
                         className={errors.firstName ? 'errored' : ''}/>
@@ -57,6 +58,7 @@ const SignUpForm = () => {
                             message: "Прізвище повинно містити не менше 2 символів!"
                          }
                         })}
+                        tabIndex={4}
                         type="text"
                         placeholder="Прізвище"
                         className={errors.lastName ? 'errored' : ''}/>
@@ -72,6 +74,7 @@ const SignUpForm = () => {
                             message: "Неправильно введено email адресу!"
                          }
                         })}
+                        tabIndex={2}
                         type="email"
                         placeholder="Електронна пошта"
                         className={errors.email ? 'errored' : ''}/>
@@ -87,7 +90,8 @@ const SignUpForm = () => {
                             value: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12,14}(\s*)?$/,
                             message: "Телефон не заповнено повністю!"
                          }
-                        })} 
+                        })}
+                        tabIndex={5} 
                         mask="+38 (999) 999-99-99" 
                         placeholder="Номер телефону" 
                         className={errors.phone ? 'errored' : ''}/>
@@ -98,11 +102,16 @@ const SignUpForm = () => {
                     <input 
                         {...register('password', 
                         {required: "Поле обов'язкове до заповнення!",
+                         minLength: {
+                            value: 8,
+                            message: "Дуже короткий пароль!" 
+                        },
                          pattern: {
-                            value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-={[}\]:;\"'<>,.?\/|]).*$/,
+                            value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-={[}\]:;"'<>,.?/|]).*$/,
                             message: "Пароль повинен містити: A-z, 0-9, ! @ # $ % ^ & *() ?."
                         }
                         })}
+                        tabIndex={3}
                         type="password"
                         placeholder="Пароль"
                         className={errors.password ? 'errored' : ''}/>
@@ -117,6 +126,7 @@ const SignUpForm = () => {
                             validate: (value) =>
                             value === password || "Паролі не співпадають!",
                         })}
+                        tabIndex={6}
                         type="password"
                         placeholder="Підтвердити пароль"
                         className={errors.repPassword ? 'errored' : ''}/>
