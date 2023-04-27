@@ -4,11 +4,11 @@ import "./style.scss";
 
 const Home = () => {
   return (
-    <>
+    <div className="main-page">
       <AboutUs />
       <OurAnimals />
       <AboutAnimals />
-    </>
+    </div>
   );
 };
 
