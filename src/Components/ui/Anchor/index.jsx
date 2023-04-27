@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-// import { HashLink as Link } from "react-router-hash-link";
 
 export default function Anchor({ href, text, className, color = "white" }) {
   const { pathname } = useLocation();
