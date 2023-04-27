@@ -38,13 +38,13 @@ const SignUpForm = () => {
                         {...register('firstName', 
                         {required: "Поле обов'язкове до заповнення!",
                          minLength: {
-                            value: 5,
-                            message: "Ім'я повинно містити не менше ніж 5 символів!"
+                            value: 2,
+                            message: "Ім'я повинно містити не менше 2 символів!"
                          }
                         })}
                         type="text"
                         placeholder="Ім'я"
-                        id={errors.firstName ? 'errored' : ''}/>
+                        className={errors.firstName ? 'errored' : ''}/>
                     {errors.firstName ? <div className='error'>{errors.firstName.message}</div> : null}
                 </div>
 
@@ -53,13 +53,13 @@ const SignUpForm = () => {
                         {...register('lastName', 
                         {required: "Поле обов'язкове до заповнення!",
                          minLength: {
-                            value: 5,
-                            message: "Прізвище повинно містити не менше ніж 5 символів!"
+                            value: 2,
+                            message: "Прізвище повинно містити не менше 2 символів!"
                          }
                         })}
                         type="text"
                         placeholder="Прізвище"
-                        id={errors.lastName ? 'errored' : ''}/>
+                        className={errors.lastName ? 'errored' : ''}/>
                     {errors.lastName ? <div className='error'>{errors.lastName.message}</div> : null}
                 </div>
 
@@ -74,7 +74,7 @@ const SignUpForm = () => {
                         })}
                         type="email"
                         placeholder="Електронна пошта"
-                        id={errors.email ? 'errored' : ''}/>
+                        className={errors.email ? 'errored' : ''}/>
                     {errors.email ? <div className='error'>{errors.email.message}</div> : null}
                 </div>
 
@@ -90,7 +90,7 @@ const SignUpForm = () => {
                         })} 
                         mask="+38 (999) 999-99-99" 
                         placeholder="Номер телефону" 
-                        id={errors.phone ? 'errored' : ''}/>
+                        className={errors.phone ? 'errored' : ''}/>
                     {errors.phone ? <div className='error'>{errors.phone.message}</div> : null}
                 </div>
 
@@ -103,9 +103,9 @@ const SignUpForm = () => {
                             message: "Пароль повинен містити: A-z, 0-9, ! @ # $ % ^ & *() ?."
                         }
                         })}
-                        type="text"
+                        type="password"
                         placeholder="Пароль"
-                        id={errors.password ? 'errored' : ''}/>
+                        className={errors.password ? 'errored' : ''}/>
                     {errors.password ? <div className='error'>{errors.password.message}</div> : null}
                     
                 </div>
@@ -117,9 +117,9 @@ const SignUpForm = () => {
                             validate: (value) =>
                             value === password || "Паролі не співпадають!",
                         })}
-                        type="repPassword"
+                        type="password"
                         placeholder="Підтвердити пароль"
-                        id={errors.repPassword ? 'errored' : ''}/>
+                        className={errors.repPassword ? 'errored' : ''}/>
                     {errors.repPassword ? <div className='error'>{errors.repPassword.message}</div> : null}
                 </div>
                 

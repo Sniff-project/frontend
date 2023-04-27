@@ -6,9 +6,6 @@
     margin-top: 3px;
     font-size: 15px;
 }
-#errored{
-    border-bottom: 1px solid red;
-}
 
 .registration{
     position: absolute;
@@ -107,6 +104,9 @@
                 &:active {
                     color: #000;
                     border-color: #000;
+                }
+                &.errored {
+                    border-color: red;
                 }
             }
         }
