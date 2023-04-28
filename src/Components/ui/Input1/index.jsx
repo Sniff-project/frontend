@@ -9,7 +9,7 @@ const Input = ({ name, className = "", validation = {}, mask, ...rest }) => {
     formState: { errors },
     control,
   } = useFormContext();
-  const { required, pattern, maxLength, minLength } = validation;
+  const { required, pattern, maxLength, minLength, validate } = validation;
 
   const inputClassName = `form-control input1 ${className} ${
     errors[name] ? "errored" : ""
@@ -29,6 +29,7 @@ const Input = ({ name, className = "", validation = {}, mask, ...rest }) => {
       value: minLength.value || minLength,
       message: minLength.message || `Поле ${name} занадто коротке`,
     },
+    validate: validate || false,
   };
 
   return (
@@ -37,13 +38,20 @@ const Input = ({ name, className = "", validation = {}, mask, ...rest }) => {
         <Controller
           name={name}
           control={control}
+          defaultValue=""
           rules={rules}
           render={({ field }) => (
-            <InputMask {...field} className={inputClassName} mask={mask} />
+            <InputMask
+              {...field}
+              {...rest}
+              className={inputClassName}
+              mask={mask}
+            />
           )}
         />
       ) : (
         <input
+          name={name}
           className={inputClassName}
           {...rest}
           {...register(name, rules)}
