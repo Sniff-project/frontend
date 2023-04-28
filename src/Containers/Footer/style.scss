@@ -84,6 +84,24 @@
                         margin-left: 20px;
                     }
                 }
+
+                .facebook {
+                    transition: box-shadow 0.3s ease-in-out;
+                    border-radius: 100%;
+
+                    &:hover {
+                        box-shadow: 0 0 20px 0px #1877f2;
+                    }
+                }
+
+                .instagram {
+                    transition: box-shadow 0.3s ease-in-out;
+                    border-radius: 100%;
+
+                    &:hover {
+                        box-shadow: 0 0 20px 0px #cb38a5;
+                    }
+                }
             }
         }
     }

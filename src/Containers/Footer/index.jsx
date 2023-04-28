@@ -55,14 +55,22 @@ export default function Footer() {
                                 target="_blank"
                                 rel="noreferrer noindex nofollow"
                             >
-                                <img alt="#" src={facebookImg} />
+                                <img
+                                    alt="#"
+                                    src={facebookImg}
+                                    className="facebook"
+                                />
                             </a>
                             <a
                                 href="https://www.instagram.com"
                                 target="_blank"
                                 rel="noreferrer noindex nofollow"
                             >
-                                <img alt="#" src={instagramImg} />
+                                <img
+                                    alt="#"
+                                    src={instagramImg}
+                                    className="instagram"
+                                />
                             </a>
                         </div>
                     </div>

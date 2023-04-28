@@ -1,3 +1,10 @@
+form {
+	.error {
+		position: absolute;
+		margin-top: 3px;
+		font-size: 15px;
+	}
+}
 input.input1 {
 	width: 100%;
 	line-height: 19px;
@@ -26,5 +33,17 @@ input.input1 {
 		color: rgba(0, 0, 0, 0.5);
 		pointer-events: none;
 		transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+	}
+
+	&.errored {
+		border-color: red;
+	}
+}
+
+@media (max-width: 992px) {
+	form {
+		.error {
+			font-size: 13px;
+		}
 	}
 }
