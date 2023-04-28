@@ -7,7 +7,7 @@
       "route": "/*.{png,svg,webp,jpg,gif,ico}"
     },
     {
-      "route": "/*.{txt,json}"
+      "route": "/*.{txt,json,map}"
     },
     {
       "route": "/favicon/*.{json}"
