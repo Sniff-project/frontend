@@ -1,0 +1,55 @@
+.aboutAnimals {
+    padding-top: 31px;
+    padding-bottom: 125px;
+    width: 90%;
+    margin: 0 auto;
+
+    .aboutAnimals-title {
+        font-size: 25px;
+        text-align: center;
+        margin-bottom: 180px;
+    }
+
+    .animalArticle-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 180px 70px;
+
+        .animalArticle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .animalArticle-circle {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                background: rgba(72, 209, 168, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 20px;
+            }
+
+            .animalArticle-info {
+                max-width: 510px;
+
+                .animalArticle-text {
+                    margin: 0;
+                    font-weight: 300;
+                    line-height: 28px;
+                    font-size: 20px;
+                }
+
+                .animalArticle-title {
+                    margin: 0 0 10px 0;
+                    font-weight: 500;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+}

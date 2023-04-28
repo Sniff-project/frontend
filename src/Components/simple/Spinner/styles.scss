@@ -13,15 +13,9 @@
   }
 }
 
-#spinner {
-  transform-origin: center;
-  animation-name: animation;
-  animation-duration: 1.2s;
-  animation-timing-function: cubic-bezier;
-  animation-iteration-count: infinite;
-
+.spinner {
   &__container {
-    z-index: 100000;
+    z-index: 100000 !important;
     &::before {
       display: block;
       content: " ";
@@ -30,8 +24,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.2);
       z-index: -1;
+    }
+
+    #spinner {
+      transform-origin: center;
+      animation-name: animation;
+      animation-duration: 1.2s;
+      animation-timing-function: cubic-bezier;
+      animation-iteration-count: infinite;
     }
   }
 }

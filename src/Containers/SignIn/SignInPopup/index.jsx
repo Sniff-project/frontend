@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
+import { Link1 } from "@components/ui";
 import { ErrorMessage, Spinner } from "@components/simple";
 import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
@@ -37,12 +37,7 @@ const SignInPopup = () => {
             <SignInForm onSubmit={onSubmitHandler} />
             <div className="content-after-form d-flex justify-content-center flex-wrap">
               <p className="mb-2 mb-sm-0">Ще не з нами?</p>
-              <Link
-                to="/signup"
-                className="color-black text-decoration-underline mb-0"
-              >
-                Зареєструватись
-              </Link>
+              <Link1 to="/signup">Зареєструватись</Link1>
             </div>
           </div>
         </div>

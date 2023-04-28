@@ -1,4 +1,4 @@
-import { AboutUs, Home, SignIn, NotFound, Profile, SignUp} from "@pages";
+import { AboutUs, Home, SignIn, NotFound, Profile, SignUp } from "@pages";
 
 const routes = [
   {

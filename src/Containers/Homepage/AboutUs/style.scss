@@ -1,0 +1,29 @@
+.about-bg {
+    background-image: url(../../../Assets/Images/Homepage/cat-bg.webp);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 844px;
+    display: flex;
+    align-items: center;
+
+    .about-block {
+        max-width: 55vw;
+        padding-left: 56px;
+
+        p {
+            margin-bottom: 24px;
+            font-size: 24px;
+            line-height: 38.4px;
+            font-weight: 300;
+            color: #2e2c34;
+        }
+    }
+
+    .btn-blue {
+        font-weight: 400;
+        border-radius: 15px;
+        display: inline-block;
+        padding: 16px 23px 15px;
+    }
+}

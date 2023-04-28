@@ -1,0 +1,110 @@
+.footer {
+    margin-top: 240px;
+    background-color: #587081;
+    padding-right: 154px;
+    color: white;
+    display: flex;
+
+    a {
+        text-decoration: none;
+    }
+
+    .footer-container {
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+
+        .footer-logo {
+            text-transform: uppercase;
+            font-size: 48px;
+            display: flex;
+            align-items: center;
+            padding-left: 60px;
+            color: white;
+        }
+
+        .footer-tabs {
+            padding-top: 50px;
+
+            h3 {
+                margin-bottom: 20px;
+                font-size: 15px;
+                color: white;
+            }
+
+            ul {
+                li {
+                    &::marker {
+                        color: white;
+                    }
+                    a {
+                        font-size: 15px;
+                        transition: color 0.3s ease-in-out;
+
+                        &:hover {
+                            color: #ffb500 !important;
+                        }
+                    }
+
+                    &:not(:first-child) {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+
+        .footer-contacts {
+            display: flex;
+            flex-direction: column;
+            padding-top: 50px;
+            padding-bottom: 72px;
+
+            h3 {
+                font-size: 15px;
+                color: white;
+            }
+
+            > a {
+                &:not(:first-child) {
+                    margin-top: 10px;
+                }
+
+                font-size: 15px;
+                color: white !important;
+            }
+
+            .socials {
+                margin-top: 20px;
+
+                a {
+                    font-size: 15px;
+
+                    &:not(:first-child) {
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-unknown {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        ul {
+            list-style: none;
+
+            li {
+                font-size: 20px;
+                color: white;
+
+                &:not(:first-child) {
+                    margin-top: 17px;
+                }
+            }
+        }
+    }
+}
