@@ -1,38 +1,59 @@
 import React from "react";
 import InputMask from "react-input-mask";
+import { useFormContext, Controller } from "react-hook-form";
 import "./styles.scss";
 
-const Input = ({
-  id,
-  name,
-  className = "",
-  validation = {},
-  formData = null,
-  register = null,
-  value = "",
-  mask = null,
-  ...rest
-}) => {
-  const inputId = id || `Input${name.charAt(0).toUpperCase()}${name.slice(1)}`;
-  const inputClassName = `form-control input1 ${className}`.trim();
+const Input = ({ name, className = "", validation = {}, mask, ...rest }) => {
+  const {
+    register,
+    formState: { errors },
+    control,
+  } = useFormContext();
+  const { required, pattern, maxLength, minLength } = validation;
 
-  const validate = formData ? register(name, validation) : {};
-  const val = formData ? formData[name] : value;
+  const inputClassName = `form-control input1 ${className} ${
+    errors[name] ? "errored" : ""
+  }`.trim();
 
-  const inputProps = {
-    id: inputId,
-    name,
-    className: inputClassName,
-    ...validate,
-    value: val,
-    ...rest,
+  const rules = {
+    required: required && `Поле ${name} обов'язкове до заповнення!`,
+    pattern: pattern && {
+      value: pattern.value || pattern,
+      message: pattern.message || `Поле ${name} не вірне`,
+    },
+    maxLength: maxLength && {
+      value: maxLength.value || maxLength,
+      message: maxLength.message || `Поле ${name} занадто довге`,
+    },
+    minLength: minLength && {
+      value: minLength.value || minLength,
+      message: minLength.message || `Поле ${name} занадто коротке`,
+    },
   };
 
-  if (mask) {
-    return <InputMask {...inputProps} mask={mask} />;
-  }
-
-  return <input {...inputProps} />;
+  return (
+    <>
+      {mask ? (
+        <Controller
+          name={name}
+          control={control}
+          rules={rules}
+          render={({ field }) => (
+            <InputMask {...field} className={inputClassName} mask={mask} />
+          )}
+        />
+      ) : (
+        <input
+          className={inputClassName}
+          {...rest}
+          {...register(name, rules)}
+        />
+      )}
+      {errors?.[name]?.message && (
+        <span className="error text-danger">{errors[name].message}</span>
+      )}
+    </>
+  );
 };
 
 export default Input;

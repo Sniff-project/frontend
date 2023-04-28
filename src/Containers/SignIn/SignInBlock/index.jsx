@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
 import { Link1 } from "@components/ui";
-import { ErrorMessage, Spinner } from "@components/simple";
+import { Spinner } from "@components/simple";
+import { ErrorMessage } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
 
@@ -27,7 +28,9 @@ const SignInBlock = () => {
             <h3 className="block__title m-0">Вхід</h3>
           </div>
           <div className="block__form">
-            {authState.error && <ErrorMessage message={authState.error} />}
+            {authState.error && (
+              <ErrorMessage message={authState.error} margin={{ bottom: 8 }} />
+            )}
             <SignInForm onSubmit={onSubmitHandler} />
             <div className="block__content-after-form d-flex justify-content-center flex-wrap mt-8">
               <p className="mb-2 mb-sm-0">Ще не з нами?</p>
