@@ -91,11 +91,11 @@ export default function Nav() {
               </ul>
             </div>
 
-            {isAuth.isAuthenticated ? (
+            {isAuth.user && isAuth.isAuthenticated ? (
               <div>
                 <button onClick={showUserMenu} className="nav-row__btn">
                   <img alt="#" src={userIcon} />
-                  <span>{isAuth.user}</span>
+                  <span>{isAuth.user.name}</span>
                   <img alt="#" src={imgArrow} />
                 </button>
 
