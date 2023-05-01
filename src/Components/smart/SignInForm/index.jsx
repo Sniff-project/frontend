@@ -20,8 +20,11 @@ const SignInForm = ({ onSubmit }) => {
             placeholder="Пошта або Номер телефону"
             validation={{
               required: true,
-              pattern:
-                /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
+              pattern: {
+                value:
+                  /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
+                message: "Неправильно введено email адресу!",
+              },
             }}
             tabIndex={1}
           />
@@ -34,7 +37,7 @@ const SignInForm = ({ onSubmit }) => {
             placeholder="Пароль"
             validation={{
               required: true,
-              minLength: 8,
+              minLength: { value: 8, message: "Дуже короткий пароль!" },
             }}
             tabIndex={2}
           />

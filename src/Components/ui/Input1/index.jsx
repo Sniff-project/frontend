@@ -18,7 +18,7 @@ const Input = React.memo(
 
     const rules = useMemo(
       () => ({
-        required: required && `Поле ${name} обов'язкове до заповнення!`,
+        required: required || `Поле ${name} обов'язкове до заповнення!`,
         pattern: pattern && {
           value: pattern.value || pattern,
           message: pattern.message || `Поле ${name} не вірне`,

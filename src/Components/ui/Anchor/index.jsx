@@ -1,8 +1,7 @@
 import React, { useEffect, useCallback } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Anchor({ href, text, className, color = "white" }) {
-  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const anchorClassName = `text-${color} ${className}`;

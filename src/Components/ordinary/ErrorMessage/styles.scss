@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
 
-  .icon__wrapper {
+  .alert-outline {
     height: 34px;
     width: 34px;
     min-width: 34px;
@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
 
-    span {
+    i {
       font-size: 21px;
       color: #fff;
     }
@@ -40,9 +40,12 @@
   }
 
   .close {
-    color: #fff;
-    font-size: 20px;
     cursor: pointer;
     margin-left: auto;
+
+    i {
+      color: #fff;
+      font-size: 20px;
+    }
   }
 }
