@@ -11,7 +11,7 @@ import "./styles.scss";
 const SignInBlock = () => {
   const { login } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.auth);
+  const signInState = useSelector((state) => state.signIn);
 
   const onSubmitHandler = (data) => {
     dispatch(loginUser(data)).then((token) => {
@@ -22,14 +22,17 @@ const SignInBlock = () => {
   return (
     <div id="SignInBlock">
       <div className="block__container">
-        {authState.isLoading && <Spinner size={100} />}
+        {signInState.isLoading && <Spinner size={100} />}
         <div className="block__content">
           <div className="d-flex justify-content-center mb-9">
             <h3 className="block__title m-0">Вхід</h3>
           </div>
           <div className="block__form">
-            {authState.error && (
-              <ErrorMessage message={authState.error} margin={{ bottom: 8 }} />
+            {signInState.error && (
+              <ErrorMessage
+                message={signInState.error}
+                margin={{ bottom: 8 }}
+              />
             )}
             <SignInForm onSubmit={onSubmitHandler} />
             <div className="block__content-after-form d-flex justify-content-center flex-wrap mt-8">

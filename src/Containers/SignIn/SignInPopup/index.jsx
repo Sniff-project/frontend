@@ -11,7 +11,7 @@ import "./styles.scss";
 const SignInPopup = () => {
   const { login } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.auth);
+  const signInState = useSelector((state) => state.signIn);
 
   const onSubmitHandler = (data) => {
     dispatch(loginUser(data)).then((token) => {
@@ -29,13 +29,16 @@ const SignInPopup = () => {
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content border-0">
-          {authState.isLoading && <Spinner size={100} />}
+          {signInState.isLoading && <Spinner size={100} />}
           <div className="modal-header p-0 border-0 d-flex justify-content-center">
             <h3 className="modal-title">Вхід</h3>
           </div>
           <div className="modal-body p-0">
-            {authState.error && (
-              <ErrorMessage message={authState.error} margin={{ bottom: 8 }} />
+            {signInState.error && (
+              <ErrorMessage
+                message={signInState.error}
+                margin={{ bottom: 8 }}
+              />
             )}
             <SignInForm onSubmit={onSubmitHandler} />
             <div className="content-after-form d-flex justify-content-center flex-wrap">

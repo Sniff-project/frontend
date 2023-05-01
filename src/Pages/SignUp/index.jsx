@@ -1,8 +1,8 @@
 import React from "react";
-import SignUpForm from "../../Components/smart/SignUpForm";
+import SignUpBlock from "@containers/SignUp";
 
 const SignUp = () => {
-  return <SignUpForm />;
+  return <SignUpBlock />;
 };
 
 export default SignUp;

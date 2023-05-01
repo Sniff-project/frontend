@@ -5,6 +5,12 @@ export {
 	loginRequest,
 	loginSuccess,
 	loginFailure,
+	REGISTER_REQUEST,
+	REGISTER_SUCCESS,
+	REGISTER_FAILURE,
+	registerRequest,
+	registerSuccess,
+	registerFailure,
 } from "./auth";
 
 export {

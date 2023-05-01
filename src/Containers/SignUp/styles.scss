@@ -1,0 +1,16 @@
+.registration {
+	margin: 0 auto;
+	margin-top: 60px;
+	padding: 50px;
+	width: 1000px;
+	min-height: 616px;
+	background: rgba(151, 194, 245, 0.2);
+	border-radius: 15px;
+	position: relative;
+	&__title {
+		font-size: 32px;
+		line-height: 39px;
+		color: #000000;
+		margin-bottom: 0;
+	}
+}
