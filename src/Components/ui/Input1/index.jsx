@@ -1,67 +1,77 @@
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 import InputMask from "react-input-mask";
 import { useFormContext, Controller } from "react-hook-form";
 import "./styles.scss";
 
-const Input = ({ name, className = "", validation = {}, mask, ...rest }) => {
-  const {
-    register,
-    formState: { errors },
-    control,
-  } = useFormContext();
-  const { required, pattern, maxLength, minLength, validate } = validation;
+const Input = React.memo(
+  ({ name, className = "", validation = {}, mask, ...rest }) => {
+    const {
+      register,
+      formState: { errors },
+      control,
+    } = useFormContext();
+    const { required, pattern, maxLength, minLength, validate } = validation;
 
-  const inputClassName = `form-control input1 ${className} ${
-    errors[name] ? "errored" : ""
-  }`.trim();
+    const inputClassName = `form-control input1 ${className} ${
+      errors[name] ? "errored" : ""
+    }`.trim();
 
-  const rules = {
-    required: required && `Поле ${name} обов'язкове до заповнення!`,
-    pattern: pattern && {
-      value: pattern.value || pattern,
-      message: pattern.message || `Поле ${name} не вірне`,
-    },
-    maxLength: maxLength && {
-      value: maxLength.value || maxLength,
-      message: maxLength.message || `Поле ${name} занадто довге`,
-    },
-    minLength: minLength && {
-      value: minLength.value || minLength,
-      message: minLength.message || `Поле ${name} занадто коротке`,
-    },
-    validate: validate || false,
-  };
+    const rules = useMemo(
+      () => ({
+        required: required && `Поле ${name} обов'язкове до заповнення!`,
+        pattern: pattern && {
+          value: pattern.value || pattern,
+          message: pattern.message || `Поле ${name} не вірне`,
+        },
+        maxLength: maxLength && {
+          value: maxLength.value || maxLength,
+          message: maxLength.message || `Поле ${name} занадто довге`,
+        },
+        minLength: minLength && {
+          value: minLength.value || minLength,
+          message: minLength.message || `Поле ${name} занадто коротке`,
+        },
+        validate: validate || false,
+      }),
+      [name, required, pattern, maxLength, minLength, validate]
+    );
 
-  return (
-    <>
-      {mask ? (
-        <Controller
-          name={name}
-          control={control}
-          defaultValue=""
-          rules={rules}
-          render={({ field }) => (
-            <InputMask
-              {...field}
-              {...rest}
-              className={inputClassName}
-              mask={mask}
-            />
-          )}
-        />
-      ) : (
-        <input
-          name={name}
-          className={inputClassName}
+    const render = useCallback(
+      ({ field }) => (
+        <InputMask
+          {...field}
           {...rest}
-          {...register(name, rules)}
+          className={inputClassName}
+          mask={mask}
         />
-      )}
-      {errors?.[name]?.message && (
-        <span className="error text-danger">{errors[name].message}</span>
-      )}
-    </>
-  );
-};
+      ),
+      [rest, inputClassName, mask]
+    );
+
+    return (
+      <>
+        {mask ? (
+          <Controller
+            name={name}
+            control={control}
+            defaultValue=""
+            rules={rules}
+            render={render}
+          />
+        ) : (
+          <input
+            name={name}
+            className={inputClassName}
+            {...rest}
+            {...register(name, rules)}
+          />
+        )}
+        {errors?.[name]?.message && (
+          <span className="error text-danger">{errors[name].message}</span>
+        )}
+      </>
+    );
+  }
+);
 
 export default Input;

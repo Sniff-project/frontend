@@ -10,9 +10,26 @@ const SignUpForm = ({ onSubmit }) => {
     });
 
     const onSubmitHandler = (data) => {
-        const { repPassword, phone, ...formData } = data;
+        const { firstname, lastname, email, phone, password } = data;
+        // firstname
+        const correctedFirstname =
+            firstname.charAt(0).toUpperCase() +
+            firstname.slice(1).toLowerCase();
+        //lastname
+        const correctedLastname =
+            lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
+        // email
+        const correctedEmail = email.toLowerCase();
+        // phone
         const unmaskedPhone = "+" + phone.replace(/\D/g, "");
-        onSubmit({ ...formData, phone: unmaskedPhone });
+
+        onSubmit({
+            firstname: correctedFirstname,
+            lastname: correctedLastname,
+            email: correctedEmail,
+            phone: unmaskedPhone,
+            password,
+        });
     };
 
     return (
@@ -29,6 +46,11 @@ const SignUpForm = ({ onSubmit }) => {
                                 value: 2,
                                 message:
                                     "Ім'я повинно містити не менше 2 символів!",
+                            },
+                            pattern: {
+                                value: /^[^(\d)\W]+$/iu,
+                                message:
+                                    "Неправильно введено Ім'я користувача!",
                             },
                         }}
                         tabIndex={1}
@@ -47,6 +69,11 @@ const SignUpForm = ({ onSubmit }) => {
                                 message:
                                     "Прізвище повинно містити не менше 2 символів!",
                             },
+                            pattern: {
+                                value: /^[^(\d)\W]+$/iu,
+                                message:
+                                    "Неправильно введено Фамілію користувача!",
+                            },
                         }}
                         tabIndex={4}
                         name="lastname"
@@ -60,7 +87,7 @@ const SignUpForm = ({ onSubmit }) => {
                         validation={{
                             required: "Поле обов'язкове до заповнення!",
                             pattern: {
-                                value: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+                                value: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
                                 message: "Неправильно введено email адресу!",
                             },
                         }}
@@ -76,8 +103,8 @@ const SignUpForm = ({ onSubmit }) => {
                         validation={{
                             required: "Поле обов'язкове до заповнення!",
                             pattern: {
-                                value: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12,14}(\s*)?$/,
-                                message: "Телефон не заповнено повністю!",
+                                value: /^\+38\s\((0\d{2})\)\s(\d{3})-(\d{2})-(\d{2})$/,
+                                message: "Неправильний номер телефону!",
                             },
                         }}
                         tabIndex={5}
@@ -133,6 +160,7 @@ const SignUpForm = ({ onSubmit }) => {
                     <Button1
                         type="submit"
                         disabled={!methods.formState.isValid}
+                        tabIndex={7}
                     >
                         Зареєструватись
                     </Button1>

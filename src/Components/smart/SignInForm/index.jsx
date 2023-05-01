@@ -21,7 +21,7 @@ const SignInForm = ({ onSubmit }) => {
             validation={{
               required: true,
               pattern:
-                /^[a-z0-9]+@[a-z0-9]{4,}\.[a-z]{2,3}(\.[a-z]{2,3}){0,1}$/i,
+                /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
             }}
             tabIndex={1}
           />
@@ -34,13 +34,13 @@ const SignInForm = ({ onSubmit }) => {
             placeholder="Пароль"
             validation={{
               required: true,
-              minLength: 6,
+              minLength: 8,
             }}
             tabIndex={2}
           />
         </div>
         <div className="d-flex justify-content-center w-100">
-          <Button1 type="submit" className="mt-10">
+          <Button1 type="submit" className="mt-10" tabIndex={3}>
             Вхід
           </Button1>
         </div>
