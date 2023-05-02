@@ -12,6 +12,6 @@ export const signUp = async (firstname, lastname, email, phone, password) => {
 		});
 		return response;
 	} catch (error) {
-		return error.response;
+		return error?.response || { message: "Unknown error occurred." };
 	}
 };

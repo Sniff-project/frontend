@@ -20,4 +20,10 @@ export {
 	profileRequest,
 	profileSuccess,
 	profileFailure,
+	CHANGE_PASSWORD_REQUEST,
+	CHANGE_PASSWORD_SUCCESS,
+	CHANGE_PASSWORD_FAILURE,
+	changePasswordRequest,
+	changePasswordSuccess,
+	changePasswordFailure,
 } from "./users";
