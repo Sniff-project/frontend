@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
-import jwt_decode from "jwt-decode";
 import Anchor from "@components/ui/Anchor";
 import { AuthContext } from "@contexts";
 import { pageTitles } from "./pageTitles";
@@ -17,7 +16,6 @@ export default function Nav() {
   const isAuth = useContext(AuthContext);
   const [navMenu, setNavMenu] = useState(false);
   const [title, setTitle] = useState("");
-  const [userName, setUserName] = useState(null);
   const bgElem = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
 
@@ -39,11 +37,6 @@ export default function Nav() {
       );
     } else {
       bgElem.current.setAttribute("style", "--bg-color: rgba(0, 0, 0, 0.1);");
-    }
-
-    if (sessionStorage.getItem("jwtToken")) {
-      var decoded = jwt_decode(sessionStorage.getItem("jwtToken"));
-      setUserName(decoded.name);
     }
   }, [isAuth]);
 
@@ -98,11 +91,11 @@ export default function Nav() {
               </ul>
             </div>
 
-            {userName && isAuth.isAuthenticated ? (
+            {isAuth.user && isAuth.isAuthenticated ? (
               <div>
                 <button onClick={showUserMenu} className="nav-row__btn">
                   <img alt="#" src={userIcon} />
-                  <span>{userName}</span>
+                  <span>{isAuth.user.name}</span>
                   <img alt="#" src={imgArrow} />
                 </button>
 
