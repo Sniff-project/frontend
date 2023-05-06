@@ -1,7 +1,9 @@
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { Button1, Input1 } from "@components/ui";
+import { Button1, Input, withInput } from "@components/ui";
 import "./styles.scss";
+
+const Input1 = withInput(Input);
 
 const SignInForm = ({ onSubmit }) => {
   const methods = useForm();

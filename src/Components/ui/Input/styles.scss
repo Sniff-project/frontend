@@ -5,6 +5,32 @@ form {
 		font-size: 15px;
 	}
 }
+input.input {
+	&1,
+	&2 {
+		&:hover,
+		&:focus,
+		&:active {
+			color: #000 !important;
+			border-color: #000;
+
+			&::placeholder {
+				color: rgba(0, 0, 0, 1) !important;
+			}
+		}
+
+		&::placeholder {
+			line-height: 20px;
+			color: rgba(0, 0, 0, 0.5);
+			pointer-events: none;
+			transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+		}
+
+		&.errored {
+			border-color: red;
+		}
+	}
+}
 input.input1 {
 	width: 100%;
 	line-height: 19px;
@@ -16,28 +42,6 @@ input.input1 {
 	border-radius: 0;
 	padding: 5px 10px;
 	transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-
-	&:hover,
-	&:focus,
-	&:active {
-		color: #000 !important;
-		border-color: #000;
-
-		&::placeholder {
-			color: rgba(0, 0, 0, 1) !important;
-		}
-	}
-
-	&::placeholder {
-		line-height: 20px;
-		color: rgba(0, 0, 0, 0.5);
-		pointer-events: none;
-		transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-	}
-
-	&.errored {
-		border-color: red;
-	}
 }
 
 @media (max-width: 992px) {

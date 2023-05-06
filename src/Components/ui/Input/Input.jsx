@@ -2,9 +2,16 @@ import React, { useMemo, useCallback } from "react";
 import InputMask from "react-input-mask";
 import { useFormContext, Controller } from "react-hook-form";
 import "./styles.scss";
+import "./styles2.scss";
 
 const Input = React.memo(
-  ({ name, className = "", validation = {}, mask, ...rest }) => {
+  ({
+    name,
+    className = "form-control input1",
+    validation = {},
+    mask,
+    ...rest
+  }) => {
     const {
       register,
       formState: { errors },
@@ -12,7 +19,7 @@ const Input = React.memo(
     } = useFormContext();
     const { required, pattern, maxLength, minLength, validate } = validation;
 
-    const inputClassName = `form-control input1 ${className} ${
+    const inputClassName = `${className} ${
       errors[name] ? "errored" : ""
     }`.trim();
 
