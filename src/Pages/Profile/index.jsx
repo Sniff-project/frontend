@@ -1,9 +1,9 @@
-import { Password } from "@containers/Profile";
+import { UserInfo, Password } from "@containers/Profile";
 import { Tabs } from "@components/ordinary";
 import "./styles.scss";
 
 const tabs = [
-  { name: "Особисті данні", content: "Content for Tab 1" },
+  { name: "Особисті данні", content: <UserInfo /> },
   { name: "Пароль", content: <Password /> },
   { name: "Загублені тваринки", content: "Content for Tab 3" },
   { name: "Знайдені тваринки", content: "contents for Tab 4" },
