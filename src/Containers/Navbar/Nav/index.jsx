@@ -104,8 +104,7 @@ export default function Nav() {
                     in={userMenu}
                     timeout={50}
                     mountOnEnter
-                    unmountOnExit
-                  >
+                    unmountOnExit>
                     <ul className="nav-userMenu-list">
                       <li className="nav-userMenu-list__item">
                         <NavLink to="/profile">
@@ -134,7 +133,7 @@ export default function Nav() {
             <Transition in={navMenu} timeout={50} mountOnEnter unmountOnExit>
               <ul className="nav-menu-list">
                 <li className="nav-menu-list__item">
-                  <a href="/">Головна сторінка</a>
+                  <NavLink to="/">Головна сторінка</NavLink>
                 </li>
                 <li className="nav-menu-list__item">
                   <Anchor text="Наші тваринки" href="#ourAnimals" />

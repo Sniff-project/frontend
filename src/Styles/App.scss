@@ -14,6 +14,7 @@
 
 body {
   background-color: #e8ebf2;
+  margin: 0;
 }
 
 h1,
@@ -36,35 +37,11 @@ sup,
 input,
 button,
 div,
-li,* {
+li {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: #000;
-}
-
-.btn:focus,
-.btn:active,
-.btn:hover,
-.btn:visited:focus,
-.form-control:focus,
-.form-control:active,
-.form-control:hover {
-  outline: none;
-  box-shadow: none;
-}
-
-.form-control,
-.form-control:focus,
-.form-control:active,
-.form-control:hover {
-  background: none;
-}
-
-.btn-primary {
-  box-shadow: 0px 0px 36px rgba(72, 160, 209, 0.5);
-  border-radius: 15px;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }

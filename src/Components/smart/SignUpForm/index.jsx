@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { Button1, Input, withInput, Link1 } from "@components/ui";
+import { Button, Input, withInput, Link } from "@components/ui";
 import "./SignUpForm.scss";
 
 const Input1 = withInput(Input);
@@ -148,17 +148,17 @@ const SignUpForm = ({ onSubmit }) => {
         </div>
 
         <div className="registration__text">
-          Приєднуючись, ви погоджуєтеся з <Link1 href="#">Умовами</Link1> та{" "}
-          <Link1 href="#">Політикою конфіденційності</Link1>.
+          Приєднуючись, ви погоджуєтеся з <Link href="#">Умовами</Link> та{" "}
+          <Link href="#">Політикою конфіденційності</Link>.
         </div>
 
         <div className="registration__button">
-          <Button1
+          <Button
             type="submit"
             disabled={!methods.formState.isValid}
             tabIndex={7}>
             Зареєструватись
-          </Button1>
+          </Button>
         </div>
       </form>
     </FormProvider>

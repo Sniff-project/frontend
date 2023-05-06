@@ -1,5 +1,5 @@
 import { useForm, FormProvider } from "react-hook-form";
-import { Input, withInput, Button1 } from "@components/ui";
+import { Input, withInput, Button } from "@components/ui";
 
 const Input2 = withInput(Input, { template: 2 });
 
@@ -61,9 +61,9 @@ const ChangePasswordForm = ({ onSubmit }) => {
             tabIndex={2}
           />
         </div>
-        <Button1 type="submit" className="mt-10" tabIndex={3}>
+        <Button type="submit" className="mt-10" tabIndex={3}>
           Update
-        </Button1>
+        </Button>
       </form>
     </FormProvider>
   );

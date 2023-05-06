@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { Button1, Input, withInput } from "@components/ui";
+import { Button, Input, withInput } from "@components/ui";
 import "./styles.scss";
 
 const Input1 = withInput(Input);
@@ -45,9 +45,9 @@ const SignInForm = ({ onSubmit }) => {
           />
         </div>
         <div className="d-flex justify-content-center w-100">
-          <Button1 type="submit" className="mt-10" tabIndex={3}>
+          <Button type="submit" className="mt-10" tabIndex={3}>
             Вхід
-          </Button1>
+          </Button>
         </div>
       </form>
     </FormProvider>
