@@ -13,7 +13,16 @@ $spacers: (
 	7: $spacer * 3.5,
 	8: $spacer * 4,
 	9: $spacer * 4.5,
-	10: $spacer * 5
+	10: $spacer * 5.5,
+	11: $spacer * 6,
+	12: $spacer * 6.5,
+	13: $spacer * 7,
+	14: $spacer * 7.5,
+	15: $spacer * 8,
+	17: $spacer * 8.5,
+	18: $spacer * 9,
+	19: $spacer * 9.5,
+	20: $spacer * 10,
 );
 
 @import "~bootstrap/scss/bootstrap";
@@ -28,5 +37,5 @@ $theme-colors: (
 	"warning": $warning,
 	"danger": $danger,
 	"light": $light,
-	"dark": $dark
+	"dark": $dark,
 );

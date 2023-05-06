@@ -24,7 +24,7 @@ const SignUpBlock = () => {
       <h2 className="registration__title">Реєстрація</h2>
       {signUpState.error && (
         <ErrorMessage
-          message={signUpState.error}
+          message={signUpState.error.message}
           margin={{ top: 8, right: "auto", left: "auto" }}
         />
       )}

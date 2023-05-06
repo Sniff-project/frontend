@@ -30,7 +30,7 @@ const SignInBlock = () => {
           <div className="block__form">
             {signInState.error && (
               <ErrorMessage
-                message={signInState.error}
+                message={signInState.error.message}
                 margin={{ bottom: 8 }}
               />
             )}

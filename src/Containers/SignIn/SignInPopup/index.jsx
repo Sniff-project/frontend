@@ -25,8 +25,7 @@ const SignInPopup = () => {
       id="SignInPopup"
       aria-hidden="true"
       aria-labelledby="SignInPopup"
-      tabIndex="-1"
-    >
+      tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content border-0">
           {signInState.isLoading && <Spinner size={100} />}
@@ -36,7 +35,7 @@ const SignInPopup = () => {
           <div className="modal-body p-0">
             {signInState.error && (
               <ErrorMessage
-                message={signInState.error}
+                message={signInState.error.message}
                 margin={{ bottom: 8 }}
               />
             )}
