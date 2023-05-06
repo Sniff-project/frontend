@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
-import { Link1 } from "@components/ui";
+import { Link } from "@components/ui";
 import { Spinner } from "@components/simple";
 import { ErrorMessage } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
@@ -37,7 +37,7 @@ const SignInBlock = () => {
             <SignInForm onSubmit={onSubmitHandler} />
             <div className="block__content-after-form d-flex justify-content-center flex-wrap mt-8">
               <p className="mb-2 mb-sm-0">Ще не з нами?</p>
-              <Link1 to="/signup">Зареєструватись</Link1>
+              <Link href="/signup">Зареєструватись</Link>
             </div>
           </div>
         </div>

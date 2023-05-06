@@ -34,6 +34,7 @@
             }
 
             ul {
+                padding-inline-start: 32px;
                 li {
                     &::marker {
                         color: white;
@@ -45,10 +46,6 @@
                         &:hover {
                             color: #ffb500 !important;
                         }
-                    }
-
-                    &:not(:first-child) {
-                        margin-top: 10px;
                     }
                 }
             }
