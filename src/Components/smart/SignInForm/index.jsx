@@ -3,11 +3,18 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Button1, Input1 } from "@components/ui";
 import "./styles.scss";
 
-const SignInForm = ({ onSubmit }) => {
+import hidePswd from "@assets/Icons/HideShowPsw/hide.svg";
+import showPswd from "@assets/Icons/HideShowPsw/show.svg";
+
+const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
   const methods = useForm();
 
   const onSubmitHandler = (data) => {
     onSubmit(data);
+  };
+
+  const handleToggleShowPassword = () => {
+    toggleShowPassword();
   };
 
   return (
@@ -31,7 +38,7 @@ const SignInForm = ({ onSubmit }) => {
         </div>
         <div className="form-group">
           <Input1
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             className="mt-8"
             placeholder="Пароль"
@@ -41,6 +48,9 @@ const SignInForm = ({ onSubmit }) => {
             }}
             tabIndex={2}
           />
+          <button type="button" onClick={handleToggleShowPassword} className="hide-show_btn">
+            <img src={showPassword ? showPswd : hidePswd} />
+          </button>
         </div>
         <div className="d-flex justify-content-center w-100">
           <Button1 type="submit" className="mt-10" tabIndex={3}>

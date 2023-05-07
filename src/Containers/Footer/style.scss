@@ -70,12 +70,18 @@
                 color: white;
             }
 
-            >a {
-                &:not(:first-child) {
-                    margin-top: 10px;
-                }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
 
-                font-size: 15px;
+                li {
+                    margin: 10px 0px;
+                    font-size: 15px;
+                }
+            }
+            
+            a {
                 color: white !important;
             }
 

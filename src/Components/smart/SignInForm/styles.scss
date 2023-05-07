@@ -2,4 +2,20 @@
 	width: 100%;
 	max-width: 500px;
 	position: relative;
+
+	.form-group {
+		position: relative;
+		.hide-show_btn {
+			background-color: inherit;
+			padding: 5px;
+			border: 0;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			opacity: .7;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
 }

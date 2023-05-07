@@ -6,7 +6,8 @@ import dogImgFooter from "@assets/Images/Footer/dog.webp";
 import "./style.scss";
 
 export default function Footer() {
-    const OUR_EMAIL = '';
+    const OUR_EMAIL = 'qwerty1234@gmail.com';
+    const ourPhoneNum = ['+380 99 123 45 67', '+380 97 513 24 75'];
 
     return (
     <footer>
@@ -46,9 +47,12 @@ export default function Footer() {
           </div>
           <div className="footer-contacts">
             <h3>Контакти та соціальні мережі</h3>
-            <a href="tel:380991234567">+380 99 123 45 67</a>
-            <a href="tel:380991234567">+380 99 123 45 67</a>
-            <a href="mailto:qwerty1234@gmail.com">qwerty1234@gmail.com</a>
+            <ul>
+            {
+              ourPhoneNum.map((number, index) => <li key={index}><a href={`tel:${number}`}>{number}</a></li>)
+            }
+            </ul>
+            <a href={`mailto:${OUR_EMAIL}`}>{OUR_EMAIL}</a>
             <div className="socials">
               <a
                 href="https://www.facebook.com"

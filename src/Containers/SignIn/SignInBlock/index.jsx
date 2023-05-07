@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
@@ -12,12 +12,15 @@ const SignInBlock = () => {
   const { login } = useContext(AuthContext);
   const dispatch = useDispatch();
   const signInState = useSelector((state) => state.signIn);
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmitHandler = (data) => {
     dispatch(loginUser(data)).then((token) => {
       login(token);
     });
   };
+
+  const toggleShowPassword = () => setShowPassword(!showPassword);
 
   return (
     <div id="SignInBlock">
@@ -34,7 +37,7 @@ const SignInBlock = () => {
                 margin={{ bottom: 8 }}
               />
             )}
-            <SignInForm onSubmit={onSubmitHandler} />
+            <SignInForm onSubmit={onSubmitHandler} toggleShowPassword={toggleShowPassword} showPassword={showPassword}/>
             <div className="block__content-after-form d-flex justify-content-center flex-wrap mt-8">
               <p className="mb-2 mb-sm-0">Ще не з нами?</p>
               <Link1 to="/signup">Зареєструватись</Link1>
