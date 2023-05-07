@@ -4,11 +4,11 @@ import { Transition } from "react-transition-group";
 import Anchor from "@components/ui/Anchor";
 import { AuthContext } from "@contexts";
 import { pageTitles } from "./pageTitles";
-import imgArrow from "../../../Assets/Icons/nav/Arrow.svg";
-import logoCat from "../../../Assets/Icons/nav/LogoCat.svg";
-import userIcon from "../../../Assets/Icons/nav/User.svg";
-import i_icon from "../../../Assets/Icons/nav/i.svg";
-import logout_icon from "../../../Assets/Icons/nav/LogOut.svg";
+import imgArrow from "@assets/Icons/Nav/Arrow.svg";
+import logoCat from "@assets/Icons/Nav/LogoCat.svg";
+import userIcon from "@assets/Icons/Nav/User.svg";
+import i_icon from "@assets/Icons/Nav/i.svg";
+import logout_icon from "@assets/Icons/Nav/LogOut.svg";
 
 import "./style.scss";
 
@@ -25,20 +25,9 @@ export default function Nav() {
     setNavMenu(false);
     setTitle(() => {
       const pageTitle = pageTitles.filter((elem) => elem.link === pathname)[0];
-      return pageTitle ? pageTitle.title : "404";
+      return pageTitle ? pageTitle.title : pageTitles[0].title;
     });
   }, [pathname]);
-
-  useEffect(() => {
-    if (isAuth.isAuthenticated) {
-      bgElem.current.setAttribute(
-        "style",
-        "--bg-color: rgba(151, 194, 245, 0.2);"
-      );
-    } else {
-      bgElem.current.setAttribute("style", "--bg-color: rgba(0, 0, 0, 0.1);");
-    }
-  }, [isAuth]);
 
   const showMenu = () => {
     if (pathname === pageTitles[0].link) {
@@ -55,7 +44,7 @@ export default function Nav() {
   };
 
   return (
-    <header>
+    <header id="nav">
       <nav>
         <div ref={bgElem} className="nav-holder">
           <div className="nav-row">
@@ -124,8 +113,8 @@ export default function Nav() {
                 </div>
               </div>
             ) : (
-              <NavLink className="nav-row_singUp" to="/signup">
-                Зареєструватись
+              <NavLink className="nav-row_singUp" to="/signin">
+                Вхід
               </NavLink>
             )}
           </div>
@@ -141,6 +130,9 @@ export default function Nav() {
                 </li>
                 <li className="nav-menu-list__item">
                   <Anchor text="Інформація про тваринок" href="#aboutAnimals" />
+                </li>
+                <li className="nav-menu-list__item">
+                  <NavLink to="/about">Про нас</NavLink>
                 </li>
               </ul>
             </Transition>

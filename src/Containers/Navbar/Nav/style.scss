@@ -1,4 +1,5 @@
 .nav-holder {
+    --bg-color: rgba(151, 194, 245, 0.2);
     position: relative;
 
     ul {
@@ -69,16 +70,16 @@
                 padding-top: 6px;
                 padding-left: 6px;
 
-                &::after {
-                    content: "";
-                    display: block;
-                    width: 105%;
-                    height: 0.3px;
-                    background-color: black;
-                    position: absolute;
-                    bottom: 3px;
-                    left: 0;
-                }
+                // &::after {  // underline 
+                //     content: "";
+                //     display: block;
+                //     width: 105%;
+                //     height: 0.3px;
+                //     background-color: black;
+                //     position: absolute;
+                //     bottom: 3px;
+                //     left: 0;
+                // }
             }
         }
     }

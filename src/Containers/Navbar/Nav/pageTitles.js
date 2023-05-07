@@ -11,4 +11,8 @@ export const pageTitles = [
         title: "Реєстрація",
         link: "/signup",
     },
+    {
+        title: "Про нас",
+        link: "/about",
+    }
 ];
