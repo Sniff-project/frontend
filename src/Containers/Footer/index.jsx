@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-image">
-          <img src={dogImgFooter} />
+          <img alt="#" src={dogImgFooter} />
         </div>
       </div>
     </footer>

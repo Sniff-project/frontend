@@ -3,8 +3,8 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Button1, Input1, Link1 } from "@components/ui";
 import "./SignUpForm.scss";
 
-import hidePswd from "@assets/Icons/HideShowPsw/hide.svg";
 import showPswd from "@assets/Icons/HideShowPsw/show.svg";
+import hidePswd from "@assets/Icons/HideShowPsw/hide.svg";
 
 const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPassword1,  showPassword2}) => {
   const methods = useForm({
@@ -145,7 +145,7 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             onClick={handleToggleShowPassword1}
             className="hide-show_btn"
           >
-            <img src={showPassword1 ? showPswd : hidePswd} />
+            <img alt="#" src={showPassword1 ? showPswd : hidePswd} />
           </button>
         </div>
 
@@ -167,7 +167,7 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             onClick={handleToggleShowPassword2}
             className="hide-show_btn"
           >
-            <img src={showPassword2 ? showPswd : hidePswd} />
+            <img alt="#" src={showPassword2 ? showPswd : hidePswd} />
           </button>
         </div>
 

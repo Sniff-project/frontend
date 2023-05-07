@@ -2,9 +2,9 @@ import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { Button1, Input1 } from "@components/ui";
 import "./styles.scss";
+import showPswd from "@assets/Icons/HideShowPswd/show.svg";
+import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
 
-import hidePswd from "@assets/Icons/HideShowPsw/hide.svg";
-import showPswd from "@assets/Icons/HideShowPsw/show.svg";
 
 const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
   const methods = useForm();
@@ -49,7 +49,7 @@ const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
             tabIndex={2}
           />
           <button type="button" onClick={handleToggleShowPassword} className="hide-show_btn">
-            <img src={showPassword ? showPswd : hidePswd} />
+            <img alt="#" src={showPassword ? showPswd : hidePswd} />
           </button>
         </div>
         <div className="d-flex justify-content-center w-100">

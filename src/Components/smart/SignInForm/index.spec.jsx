@@ -12,7 +12,7 @@ describe("SignInForm", () => {
   test("should submit form with valid input", () => {
     const mockOnSubmit = jest.fn();
 
-    render(<SignInForm onSubmit={mockOnSubmit} />);
+    render(<SignInForm onSubmit={mockOnSubmit}/>);
 
     const emailInput = screen.getByPlaceholderText("Пошта або Номер телефону");
     const passwordInput = screen.getByPlaceholderText("Пароль");

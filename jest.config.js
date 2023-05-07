@@ -12,7 +12,7 @@ module.exports = {
         ],
       },
     ],
-    "^.+\\.scss$": "jest-transform-stub",
+    "^.+\\.(scss|svg)$": "jest-transform-stub",
   },
   moduleNameMapper: {
     axios: "axios/dist/node/axios.cjs",
