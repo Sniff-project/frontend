@@ -2,7 +2,7 @@ import React from "react";
 import { Link1, Anchor } from "@components/ui";
 import facebookImg from "@assets/Icons/footer/facebook.webp";
 import instagramImg from "@assets/Icons/footer/instagram.webp";
-import dogImgFooter from "@assets/Images/footer/dog.webp";
+import dogImgFooter from "@assets/Images/Footer/dog_footer.webp";
 import "./style.scss";
 
 export default function Footer() {
