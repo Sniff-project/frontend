@@ -23,10 +23,7 @@ const SignUpBlock = () => {
       {signUpState.isLoading && <Spinner size={100} />}
       <h2 className="registration__title">Реєстрація</h2>
       {signUpState.error && (
-        <ErrorMessage
-          message={signUpState.error.message}
-          margin={{ top: 8, right: "auto", left: "auto" }}
-        />
+        <ErrorMessage message={signUpState.error.message} mt={8} mx="auto" />
       )}
       <SignUpForm onSubmit={onSubmitHandler} />
     </section>

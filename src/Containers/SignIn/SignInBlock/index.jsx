@@ -29,10 +29,7 @@ const SignInBlock = () => {
           </Grid>
           <div className="block__form">
             {signInState.error && (
-              <ErrorMessage
-                message={signInState.error.message}
-                margin={{ bottom: 8 }}
-              />
+              <ErrorMessage message={signInState.error.message} mb={8} />
             )}
             <SignInForm onSubmit={onSubmitHandler} />
             <Grid
