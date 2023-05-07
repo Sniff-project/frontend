@@ -51,7 +51,7 @@ const SignUpForm = ({ onSubmit }) => {
             tabIndex={1}
             name="firstname"
             type="text"
-            placeholder="Ім'я"
+            label="Ім'я"
           />
         </div>
 
@@ -71,7 +71,7 @@ const SignUpForm = ({ onSubmit }) => {
             tabIndex={4}
             name="lastname"
             type="text"
-            placeholder="Прізвище"
+            label="Прізвище"
           />
         </div>
 
@@ -88,7 +88,7 @@ const SignUpForm = ({ onSubmit }) => {
             tabIndex={2}
             name="email"
             type="email"
-            placeholder="Електронна пошта"
+            label="Електронна пошта"
           />
         </div>
 
@@ -104,7 +104,7 @@ const SignUpForm = ({ onSubmit }) => {
             tabIndex={5}
             name="phone"
             mask="+38 (999) 999-99-99"
-            placeholder="Номер телефону"
+            label="Номер телефону"
           />
         </div>
 
@@ -116,6 +116,10 @@ const SignUpForm = ({ onSubmit }) => {
                 value: 8,
                 message: "Дуже короткий пароль!",
               },
+              maxLength: {
+                value: 20,
+                message: "Дуже довгий пароль!",
+              },
               pattern: {
                 value:
                   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-={[}\]:;"'<>,.?/|]).*$/,
@@ -126,7 +130,7 @@ const SignUpForm = ({ onSubmit }) => {
             tabIndex={3}
             name="password"
             type="password"
-            placeholder="Пароль"
+            label="Пароль"
           />
         </div>
 
@@ -141,7 +145,7 @@ const SignUpForm = ({ onSubmit }) => {
             tabIndex={6}
             name="repPassword"
             type="password"
-            placeholder="Підтвердити пароль"
+            label="Підтвердити пароль"
           />
         </div>
 

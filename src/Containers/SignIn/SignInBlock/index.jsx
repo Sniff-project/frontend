@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
 import { Link } from "@components/ui";
-import { Spinner } from "@components/simple";
+import { Spinner, Grid } from "@components/simple";
 import { ErrorMessage } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
@@ -24,9 +24,9 @@ const SignInBlock = () => {
       <div className="block__container">
         {signInState.isLoading && <Spinner size={100} />}
         <div className="block__content">
-          <div className="d-flex justify-content-center mb-9">
-            <h3 className="block__title m-0">Вхід</h3>
-          </div>
+          <Grid container justifyContent="center" mb={6}>
+            <h3 className="block__title">Вхід</h3>
+          </Grid>
           <div className="block__form">
             {signInState.error && (
               <ErrorMessage
@@ -35,10 +35,19 @@ const SignInBlock = () => {
               />
             )}
             <SignInForm onSubmit={onSubmitHandler} />
-            <div className="block__content-after-form d-flex justify-content-center flex-wrap mt-8">
-              <p className="mb-2 mb-sm-0">Ще не з нами?</p>
-              <Link href="/signup">Зареєструватись</Link>
-            </div>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              flexWrap="wrap"
+              mt={7}>
+              <Grid item mb={{ xs: 2, md: 0 }} mr={{ xs: 0, md: 2 }}>
+                Ще не з нами?
+              </Grid>
+              <Grid item>
+                <Link href="/signup">Зареєструватись</Link>
+              </Grid>
+            </Grid>
           </div>
         </div>
       </div>

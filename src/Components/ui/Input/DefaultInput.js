@@ -24,7 +24,12 @@ const DefaultInput = styled(Input)(
     &.Mui-focused {
       padding-left: 0;
     }
-  }  
+  }
+  .MuiInput-root {
+    &:before {
+      border-bottom: 1px solid rgba(0,0,0,.25);
+    }
+  }
 `
 );
 

@@ -26,6 +26,10 @@ const ChangePasswordForm = ({ onSubmit }) => {
                 value: 8,
                 message: "Дуже короткий пароль!",
               },
+              maxLength: {
+                value: 20,
+                message: "Дуже довгий пароль!",
+              },
               pattern: {
                 value:
                   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-={[}\]:;"'<>,.?/|]).*$/,
@@ -45,6 +49,10 @@ const ChangePasswordForm = ({ onSubmit }) => {
               minLength: {
                 value: 8,
                 message: "Дуже короткий пароль!",
+              },
+              maxLength: {
+                value: 20,
+                message: "Дуже довгий пароль!",
               },
               pattern: {
                 value:
