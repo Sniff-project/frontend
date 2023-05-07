@@ -1,9 +1,7 @@
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { Button, Input, withInput, Link } from "@components/ui";
+import { Button, DefaultInput as Input, Link } from "@components/ui";
 import "./SignUpForm.scss";
-
-const Input1 = withInput(Input);
 
 const SignUpForm = ({ onSubmit }) => {
   const methods = useForm({
@@ -38,7 +36,7 @@ const SignUpForm = ({ onSubmit }) => {
         className="registration__form"
         onSubmit={methods.handleSubmit(onSubmitHandler)}>
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               minLength: {
@@ -58,7 +56,7 @@ const SignUpForm = ({ onSubmit }) => {
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               minLength: {
@@ -78,7 +76,7 @@ const SignUpForm = ({ onSubmit }) => {
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               pattern: {
@@ -95,7 +93,7 @@ const SignUpForm = ({ onSubmit }) => {
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               pattern: {
@@ -111,7 +109,7 @@ const SignUpForm = ({ onSubmit }) => {
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               minLength: {
@@ -133,7 +131,7 @@ const SignUpForm = ({ onSubmit }) => {
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               validate: (value) =>

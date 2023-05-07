@@ -1,2 +1,2 @@
 export { default as Input } from "./Input";
-export { default as withInput } from "./withInput";
+export { default as DefaultInput } from "./DefaultInput";

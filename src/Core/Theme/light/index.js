@@ -4,7 +4,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#48a0d1",
-      hover: "#2394d3",
+      hover: "#63aed8",
       shadow: "rgba(72, 160, 209, 0.5)"
     },
     error: {

@@ -1,9 +1,7 @@
 import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { Button, Input, withInput } from "@components/ui";
+import { Button, DefaultInput as Input } from "@components/ui";
 import "./styles.scss";
-
-const Input1 = withInput(Input);
 
 const SignInForm = ({ onSubmit }) => {
   const methods = useForm();
@@ -16,10 +14,10 @@ const SignInForm = ({ onSubmit }) => {
     <FormProvider {...methods}>
       <form id="LoginForm" onSubmit={methods.handleSubmit(onSubmitHandler)}>
         <div className="form-group">
-          <Input1
+          <Input
             type="email"
             name="email"
-            placeholder="Пошта або Номер телефону"
+            label="Пошта або Номер телефону"
             validation={{
               required: true,
               pattern: {
@@ -32,14 +30,15 @@ const SignInForm = ({ onSubmit }) => {
           />
         </div>
         <div className="form-group">
-          <Input1
+          <Input
             type="password"
             name="password"
             className="mt-8"
-            placeholder="Пароль"
+            label="Пароль"
             validation={{
               required: true,
               minLength: { value: 8, message: "Дуже короткий пароль!" },
+              maxLength: { value: 20, message: "Дуже довгий пароль!" },
             }}
             tabIndex={2}
           />

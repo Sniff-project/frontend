@@ -1,7 +1,5 @@
 import { useForm, FormProvider } from "react-hook-form";
-import { Input, withInput, Button } from "@components/ui";
-
-const Input2 = withInput(Input, { template: 2 });
+import { DefaultInput as Input, Button } from "@components/ui";
 
 const ChangePasswordForm = ({ onSubmit }) => {
   const methods = useForm({
@@ -18,7 +16,7 @@ const ChangePasswordForm = ({ onSubmit }) => {
         className="changepassword__form"
         onSubmit={methods.handleSubmit(onSubmitHandler)}>
         <div className="form-group">
-          <Input2
+          <Input
             type="password"
             name="currentPassword"
             placeholder="********"
@@ -39,7 +37,7 @@ const ChangePasswordForm = ({ onSubmit }) => {
           />
         </div>
         <div className="form-group">
-          <Input2
+          <Input
             type="password"
             name="newPassword"
             validation={{

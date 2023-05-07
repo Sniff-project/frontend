@@ -1,14 +1,17 @@
 import React, { useMemo, useCallback } from "react";
 import InputMask from "react-input-mask";
 import { useFormContext, Controller } from "react-hook-form";
-import "./styles.scss";
-import "./styles2.scss";
+import { TextField } from "@mui/material";
+// import "./styles.scss";
+// import "./styles2.scss";
 
 const Input = React.memo(
   ({
     name,
+    label = null,
     className = "form-control input1",
     validation = {},
+    variant = "standard",
     mask,
     ...rest
   }) => {
@@ -19,9 +22,7 @@ const Input = React.memo(
     } = useFormContext();
     const { required, pattern, maxLength, minLength, validate } = validation;
 
-    const inputClassName = `${className} ${
-      errors[name] ? "errored" : ""
-    }`.trim();
+    const inpLabel = label || name;
 
     const rules = useMemo(
       () => ({
@@ -45,14 +46,19 @@ const Input = React.memo(
 
     const render = useCallback(
       ({ field }) => (
-        <InputMask
-          {...field}
-          {...rest}
-          className={inputClassName}
-          mask={mask}
-        />
+        <InputMask {...field} {...rest} className={className} mask={mask}>
+          {(inputProps) => (
+            <TextField
+              {...inputProps}
+              variant={variant}
+              label={inpLabel}
+              error={!!errors?.[name] && true}
+              helperText={errors?.[name]?.message || ""}
+            />
+          )}
+        </InputMask>
       ),
-      [rest, inputClassName, mask]
+      [rest, className, mask, inpLabel, errors, name, variant]
     );
 
     return (
@@ -66,15 +72,16 @@ const Input = React.memo(
             render={render}
           />
         ) : (
-          <input
+          <TextField
+            variant={variant}
+            label={inpLabel}
+            error={!!errors?.[name] && true}
+            helperText={errors?.[name]?.message || ""}
             name={name}
-            className={inputClassName}
+            className={className}
             {...rest}
             {...register(name, rules)}
           />
-        )}
-        {errors?.[name]?.message && (
-          <span className="error text-danger">{errors[name].message}</span>
         )}
       </>
     );
