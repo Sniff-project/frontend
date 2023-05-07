@@ -26,6 +26,18 @@
         &-inputbox {
             width: 300px;
             position: relative;
+            .hide-show_btn {
+                background-color: inherit;
+                padding: 5px;
+                border: 0;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                opacity: .7;
+                &:hover {
+                    opacity: 1;
+                }
+            }
             input {
                 width: 100%;
                 height: 50px;
