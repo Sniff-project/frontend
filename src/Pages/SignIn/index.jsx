@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "@contexts";
 import { SignInBlock } from "@containers/SignIn";
-import { Grid } from "@components/simple";
+import { Container, Grid } from "@components/simple";
 
 const Login = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -12,11 +12,11 @@ const Login = () => {
   }
 
   return (
-    <Grid container p={0}>
+    <Container>
       <Grid container justifyContent="center">
         <SignInBlock />
       </Grid>
-    </Grid>
+    </Container>
   );
 };
 

@@ -1,21 +1,7 @@
-import { memo, forwardRef } from "react";
-import "./Tab.scss";
+import { default as MTab } from "@mui/material/Tab";
 
-const Tab = memo(
-  forwardRef(({ isActive = false, className = "", children, ...rest }, ref) => {
-    return (
-      <li
-        ref={ref}
-        className={`tabs__item ${className}`}
-        role="presentation"
-        key={rest.key}
-        {...rest}>
-        <button className={`tabs__button ${isActive ? "active" : ""}`}>
-          {children}
-        </button>
-      </li>
-    );
-  })
-);
+function Tab({ children, ...rest }) {
+  return <MTab {...rest}>{children}</MTab>;
+}
 
 export default Tab;

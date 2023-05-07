@@ -37,10 +37,10 @@ const SignInBlock = () => {
               justifyContent="center"
               alignItems="center"
               flexWrap="wrap"
-              mt={7}>
-              <Grid item mb={{ xs: 2, md: 0 }} mr={{ xs: 0, md: 2 }}>
-                Ще не з нами?
-              </Grid>
+              mt={7}
+              rowSpacing={1}
+              columnSpacing={2}>
+              <Grid item>Ще не з нами?</Grid>
               <Grid item>
                 <Link href="/signup">Зареєструватись</Link>
               </Grid>

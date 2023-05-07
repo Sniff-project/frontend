@@ -1,23 +1,33 @@
+import { useState } from "react";
 import { UserInfo, Password } from "@containers/Profile";
-import { Tabs } from "@components/ordinary";
+import { Box } from "@components/simple";
+import { Tabs, Tab } from "@components/ordinary";
 import "./styles.scss";
 
 const tabs = [
-  { name: "Особисті данні", content: <UserInfo /> },
-  { name: "Пароль", content: <Password /> },
-  { name: "Загублені тваринки", content: "Content for Tab 3" },
-  { name: "Знайдені тваринки", content: "contents for Tab 4" },
+  { label: "Особисті данні", content: <UserInfo /> },
+  { label: "Пароль", content: <Password /> },
+  { label: "Загублені тваринки", content: "Content for Tab 3" },
+  { label: "Знайдені тваринки", content: "contents for Tab 4" },
 ];
 
-const Title = ({ children }) => {
-  return <h3 className="profile__title">{children}</h3>;
-};
-
 const Profile = () => {
+  const [tabNum, setTabNum] = useState(0);
+
+  const handleTabChange = (event, newValue) => {
+    setTabNum(newValue);
+  };
   return (
     <>
-      <Title>Ваш профіль</Title>
-      <Tabs tabs={tabs} className="ps-2 ps-sm-4 ps-md-6 ps-lg-13" />
+      <h3 className="profile__title">Ваш профіль</h3>
+      <Box px={{ xs: 2, sm: 4, md: 6, lg: 13 }}>
+        <Tabs value={tabNum} onChange={handleTabChange}>
+          {tabs.map((tab, index) => (
+            <Tab key={index} label={tab.label} />
+          ))}
+        </Tabs>
+        {tabs[tabNum].content}
+      </Box>
     </>
   );
 };
