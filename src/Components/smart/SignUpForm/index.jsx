@@ -3,8 +3,8 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Button1, Input1, Link1 } from "@components/ui";
 import "./SignUpForm.scss";
 
-import showPswd from "@assets/Icons/HideShowPsw/show.svg";
-import hidePswd from "@assets/Icons/HideShowPsw/hide.svg";
+import showPswd from "@assets/Icons/HideShowPswd/show.svg";
+import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
 
 const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPassword1,  showPassword2}) => {
   const methods = useForm({
