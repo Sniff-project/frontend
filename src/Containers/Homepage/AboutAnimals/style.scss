@@ -1,5 +1,5 @@
 .aboutAnimals {
-    padding-top: 45px;
+    padding-top: 60px;
     padding-bottom: 125px;
     width: 85%;
     margin: 0 auto;
@@ -7,7 +7,7 @@
     .aboutAnimals-title {
         font-size: 1.8rem;
         text-align: center;
-        margin-bottom: 140px;
+        margin-bottom: 120px;
     }
 
     .animalArticle-container {
@@ -31,20 +31,27 @@
                 margin-right: 20px;
             }
 
+            @media (max-width: 1300px) {
+                .animalArticle-circle {
+                    transform: scale(.8);
+                    margin-right: 10px;
+                }
+            }
+
             .animalArticle-info {
                 max-width: 530px;
 
                 .animalArticle-text {
                     margin: 0;
                     font-weight: 300;
-                    line-height: 28px;
-                    font-size: 20px;
+                    line-height: 1.75rem;
+                    font-size: 1.25rem;
                 }
 
                 .animalArticle-title {
                     margin: 0 0 10px 0;
                     font-weight: 500;
-                    font-size: 20px;
+                    font-size: 1.25rem;
                 }
             }
 
@@ -73,4 +80,19 @@
         }
     }
 
+    @media (max-width: 1300px) {
+        .animalArticle-container {
+            gap: 40px 0;
+        }
+
+        .aboutAnimals-title {
+            margin-bottom: 60px;
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .aboutAnimals {
+        padding-bottom:0px;
+    }
 }
