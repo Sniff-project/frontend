@@ -52,11 +52,9 @@ export default function Nav() {
               <NavLink to="/">
                 <div className="logo-holder">
                   sniff
-                  {isAuth.isAuthenticated && (
-                    <div className="logo-cat">
-                      <img alt="#" src={logoCat} />
-                    </div>
-                  )}
+                  <div className="logo-cat">
+                    <img alt="#" src={logoCat} />
+                  </div>
                 </div>
               </NavLink>
             </div>
