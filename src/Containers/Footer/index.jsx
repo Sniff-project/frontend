@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Anchor } from "@components/ui";
-import facebookImg from "@assets/Icons/Footer/facebook.webp";
-import instagramImg from "@assets/Icons/Footer/instagram.webp";
+import facebookImg from "@assets/Icons/footer/facebook.webp";
+import instagramImg from "@assets/Icons/footer/instagram.webp";
 import dogImgFooter from "@assets/Images/Footer/dog.webp";
 import "./style.scss";
 
@@ -14,13 +14,18 @@ export default function Footer() {
       <div className="footer">
         <div className="footer-container">
           <div className="footer-logo">
-            <Anchor className="footer-logo__text" text="sniff" href="/#nav" />
+            <Anchor
+              className="footer-logo__text"
+              text="SNIFF"
+              href="/#nav"
+              sx={{ padding: "20px 40px" }}
+            />
           </div>
           <div className="footer-tabs">
             <h3>Закладки</h3>
             <ul>
               <li>
-                <Link to="/" color="white">
+                <Link href="/" color="white">
                   Головна сторінка
                 </Link>
               </li>
@@ -34,12 +39,12 @@ export default function Footer() {
                 />
               </li>
               <li>
-                <Link to="/profile" color="white">
+                <Link href="/profile" color="white">
                   Профіль
                 </Link>
               </li>
               <li>
-                <Link to="/about" color="white">
+                <Link href="/about" color="white">
                   Про нас
                 </Link>
               </li>

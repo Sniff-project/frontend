@@ -2,16 +2,23 @@ import { useForm, FormProvider } from "react-hook-form";
 import { SecondInput as Input, Button } from "@components/ui";
 import { Grid } from "@components/simple";
 
-const ChangePasswordForm = ({ onSubmit }) => {
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+const ChangePasswordForm = ({ onSubmit, showPassword, toggleShowPassword }) => {
   const methods = useForm({
     mode: "onChange",
   });
+  const { reset, watch } = methods;
 
   const onSubmitHandler = (data) => {
     onSubmit(data);
+    reset();
   };
 
-  const { watch } = methods;
+  const handleToggleShowPassword = () => {
+    toggleShowPassword();
+  };
+
   const currentPassword = watch("currentPassword");
   const newPassword = watch("newPassword");
 
@@ -22,7 +29,7 @@ const ChangePasswordForm = ({ onSubmit }) => {
         onSubmit={methods.handleSubmit(onSubmitHandler)}>
         <Grid container justifyContent="center">
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="currentPassword"
             label="Поточний пароль"
             placeholder="********"
@@ -45,9 +52,11 @@ const ChangePasswordForm = ({ onSubmit }) => {
             }}
             tabIndex={1}
             sx={{ marginTop: "43px" }}
+            endIcon={showPassword ? <Visibility /> : <VisibilityOff />}
+            endIconOnClick={handleToggleShowPassword}
           />
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="newPassword"
             label="Новий пароль"
             validation={{
@@ -72,6 +81,8 @@ const ChangePasswordForm = ({ onSubmit }) => {
             }}
             tabIndex={2}
             sx={{ marginTop: "42px" }}
+            endIcon={showPassword ? <Visibility /> : <VisibilityOff />}
+            endIconOnClick={handleToggleShowPassword}
           />
         </Grid>
         {currentPassword && newPassword && (

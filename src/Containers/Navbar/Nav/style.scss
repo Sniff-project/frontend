@@ -9,7 +9,6 @@
     a {
         text-decoration: none !important;
         color: black !important;
-        transition: color 0.3s ease-in-out;
 
         &:hover {
             color: #3200ff !important;
@@ -70,7 +69,7 @@
                 padding-top: 6px;
                 padding-left: 6px;
 
-                // &::after {  // underline 
+                // &::after {  // underline
                 //     content: "";
                 //     display: block;
                 //     width: 105%;
@@ -144,7 +143,7 @@
     }
 
     .nav-list__addPet {
-        padding: 0 28px;
+        padding: 10px 28px;
         font-size: 20px;
     }
 

@@ -1,14 +1,16 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { Button, DefaultInput as Input } from "@components/ui";
 import "./styles.scss";
-import showPswd from "@assets/Icons/HideShowPswd/show.svg";
-import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
+
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
   const methods = useForm();
+  const { setValue } = methods;
 
   const onSubmitHandler = (data) => {
     onSubmit(data);
+    setValue("password", "");
   };
 
   const handleToggleShowPassword = () => {
@@ -43,13 +45,9 @@ const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
           }}
           tabIndex={2}
           sx={{ marginTop: "24px" }}
+          endIcon={showPassword ? <Visibility /> : <VisibilityOff />}
+          endIconOnClick={handleToggleShowPassword}
         />
-        <button
-          type="button"
-          onClick={handleToggleShowPassword}
-          className="hide-show_btn">
-          <img alt="#" src={showPassword ? showPswd : hidePswd} />
-        </button>
         <div className="button__container">
           <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
             Вхід

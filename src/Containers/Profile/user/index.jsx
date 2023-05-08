@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { profile as getProfile } from "@core/Services/users";
 import { Spinner } from "@components/simple";
-import { ErrorMessage } from "@components/ordinary";
+import { Message, withMessage } from "@components/ordinary";
 
 const Password = () => {
   const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
   const profileState = useSelector((state) => state.profile);
+
+  const ErrorMessage = withMessage(Message, {
+    messageType: "error",
+  });
 
   useEffect(() => {
     if (user && token) {

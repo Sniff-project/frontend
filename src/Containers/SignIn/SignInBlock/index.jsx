@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
 import { Link } from "@components/ui";
 import { Spinner, Grid } from "@components/simple";
-import { ErrorMessage } from "@components/ordinary";
+import { Message, withMessage } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
 
@@ -13,6 +13,10 @@ const SignInBlock = () => {
   const dispatch = useDispatch();
   const signInState = useSelector((state) => state.signIn);
   const [showPassword, setShowPassword] = useState(false);
+
+  const ErrorMessage = withMessage(Message, {
+    messageType: "error",
+  });
 
   const onSubmitHandler = (data) => {
     dispatch(loginUser(data)).then((token) => {

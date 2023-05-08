@@ -1,6 +1,7 @@
 #changePassword {
     .pwd {
         &__container {
+            position: relative;
             display: flex;
             flex-direction: column;
             background: rgba(150, 198, 255, 0.26);

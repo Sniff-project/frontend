@@ -1,11 +1,9 @@
-import React, { useMemo, useCallback } from "react";
+import { memo, useMemo, useCallback } from "react";
 import InputMask from "react-input-mask";
 import { useFormContext, Controller } from "react-hook-form";
-import { TextField } from "@mui/material";
-// import "./styles.scss";
-// import "./styles2.scss";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
 
-const Input = React.memo(
+const Input = memo(
   ({
     name,
     label = null,
@@ -13,6 +11,10 @@ const Input = React.memo(
     validation = {},
     variant = "standard",
     mask,
+    startIcon = null,
+    startIconOnClick = null,
+    endIcon = null,
+    endIconOnClick = null,
     ...rest
   }) => {
     const {
@@ -23,6 +25,22 @@ const Input = React.memo(
     const { required, pattern, maxLength, minLength, validate } = validation;
 
     const inpLabel = label || name;
+
+    const inpProps = useMemo(
+      () => ({
+        startAdornment: startIcon && (
+          <InputAdornment position="start">
+            <IconButton onClick={startIconOnClick}>{startIcon}</IconButton>
+          </InputAdornment>
+        ),
+        endAdornment: endIcon && (
+          <InputAdornment position="end">
+            <IconButton onClick={endIconOnClick}>{endIcon}</IconButton>
+          </InputAdornment>
+        ),
+      }),
+      [startIcon, endIcon, startIconOnClick, endIconOnClick]
+    );
 
     const rules = useMemo(
       () => ({
@@ -54,11 +72,12 @@ const Input = React.memo(
               label={inpLabel}
               error={!!errors?.[name] && true}
               helperText={errors?.[name]?.message || ""}
+              InputProps={inpProps}
             />
           )}
         </InputMask>
       ),
-      [rest, className, mask, inpLabel, errors, name, variant]
+      [rest, className, mask, inpLabel, errors, name, variant, inpProps]
     );
 
     return (
@@ -79,6 +98,7 @@ const Input = React.memo(
             helperText={errors?.[name]?.message || ""}
             name={name}
             className={className}
+            InputProps={inpProps}
             {...rest}
             {...register(name, rules)}
           />

@@ -12,7 +12,7 @@ const TabPanel = memo((props) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}>
       {value === index && (
-        <Box component="div" sx={{ px: 2, py: 14 }}>
+        <Box component="div" sx={{ px: 2, py: 14, position: "relative" }}>
           {children}
         </Box>
       )}

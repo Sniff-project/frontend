@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
-import Anchor from "@components/ui/Anchor";
+import { Anchor, Link } from "@components/ui";
 import { AuthContext } from "@contexts";
 import { pageTitles } from "./pageTitles";
 import imgArrow from "@assets/Icons/nav/Arrow.svg";
@@ -49,7 +49,7 @@ export default function Nav() {
         <div ref={bgElem} className="nav-holder">
           <div className="nav-row">
             <div className="logo">
-              <NavLink to="/">
+              <Link href="/" sx={{ padding: "10px 15px" }}>
                 <div className="logo-holder">
                   sniff
                   {isAuth.isAuthenticated && (
@@ -58,7 +58,7 @@ export default function Nav() {
                     </div>
                   )}
                 </div>
-              </NavLink>
+              </Link>
             </div>
             <div className="nav-row__center">
               <button className="nav-row__btn" onClick={showMenu}>
@@ -68,14 +68,14 @@ export default function Nav() {
 
               <ul className="nav-list">
                 <li className="nav-list__item">
-                  <NavLink className="nav-list__addPet" to="/addpet">
+                  <Link className="nav-list__addPet" href="/addpet">
                     Я знайшов тваринку
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="nav-list__item">
-                  <NavLink className="nav-list__addPet" to="/addpet">
+                  <Link className="nav-list__addPet" href="/addpet">
                     Я загубив тваринку
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -96,10 +96,10 @@ export default function Nav() {
                     unmountOnExit>
                     <ul className="nav-userMenu-list">
                       <li className="nav-userMenu-list__item">
-                        <NavLink to="/profile">
+                        <Link href="/profile">
                           <img alt="#" src={i_icon} />
                           профіль
-                        </NavLink>
+                        </Link>
                       </li>
                       <li className="nav-userMenu-list__item">
                         <button onClick={logOut}>
@@ -112,9 +112,9 @@ export default function Nav() {
                 </div>
               </div>
             ) : (
-              <NavLink className="nav-row_singUp" to="/signin">
+              <Link className="nav-row_singUp" href="/signin">
                 Вхід
-              </NavLink>
+              </Link>
             )}
           </div>
 
@@ -122,7 +122,7 @@ export default function Nav() {
             <Transition in={navMenu} timeout={50} mountOnEnter unmountOnExit>
               <ul className="nav-menu-list">
                 <li className="nav-menu-list__item">
-                  <NavLink to="/">Головна сторінка</NavLink>
+                  <Link href="/">Головна сторінка</Link>
                 </li>
                 <li className="nav-menu-list__item">
                   <Anchor text="Наші тваринки" href="#ourAnimals" />
@@ -131,7 +131,7 @@ export default function Nav() {
                   <Anchor text="Інформація про тваринок" href="#aboutAnimals" />
                 </li>
                 <li className="nav-menu-list__item">
-                  <NavLink to="/about">Про нас</NavLink>
+                  <Link href="/about">Про нас</Link>
                 </li>
               </ul>
             </Transition>

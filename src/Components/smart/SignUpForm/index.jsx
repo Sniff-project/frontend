@@ -2,8 +2,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Button, DefaultInput as Input, Link } from "@components/ui";
 import "./SignUpForm.scss";
 
-import showPswd from "@assets/Icons/HideShowPswd/show.svg";
-import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const SignUpForm = ({
   onSubmit,
@@ -15,6 +14,7 @@ const SignUpForm = ({
   const methods = useForm({
     mode: "all",
   });
+  const { setValue } = methods;
 
   const onSubmitHandler = (data) => {
     const { firstname, lastname, email, phone, password } = data;
@@ -36,6 +36,8 @@ const SignUpForm = ({
       phone: unmaskedPhone,
       password,
     });
+    setValue("password", "");
+    setValue("repPassword", "");
   };
 
   const handleToggleShowPassword1 = () => {
@@ -147,13 +149,9 @@ const SignUpForm = ({
             name="password"
             type={showPassword1 ? "text" : "password"}
             label="Пароль"
+            endIcon={showPassword1 ? <VisibilityOff /> : <Visibility />}
+            endIconOnClick={handleToggleShowPassword1}
           />
-          <button
-            type="button"
-            onClick={handleToggleShowPassword1}
-            className="hide-show_btn">
-            <img alt="#" src={showPassword1 ? showPswd : hidePswd} />
-          </button>
         </div>
 
         <div className="registration__form-inputbox">
@@ -168,13 +166,9 @@ const SignUpForm = ({
             name="repPassword"
             type={showPassword2 ? "text" : "password"}
             label="Підтвердити пароль"
+            endIcon={showPassword2 ? <VisibilityOff /> : <Visibility />}
+            endIconOnClick={handleToggleShowPassword2}
           />
-          <button
-            type="button"
-            onClick={handleToggleShowPassword2}
-            className="hide-show_btn">
-            <img alt="#" src={showPassword2 ? showPswd : hidePswd} />
-          </button>
         </div>
 
         <div className="registration__text">

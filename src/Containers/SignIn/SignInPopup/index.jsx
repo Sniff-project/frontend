@@ -4,7 +4,7 @@ import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
 import { Link } from "@components/ui";
 import { Spinner } from "@components/simple";
-import { ErrorMessage } from "@components/ordinary";
+import { Message, withMessage } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
 
@@ -12,6 +12,10 @@ const SignInPopup = () => {
   const { login } = useContext(AuthContext);
   const dispatch = useDispatch();
   const signInState = useSelector((state) => state.signIn);
+
+  const ErrorMessage = withMessage(Message, {
+    messageType: "error",
+  });
 
   const onSubmitHandler = (data) => {
     dispatch(loginUser(data)).then((token) => {

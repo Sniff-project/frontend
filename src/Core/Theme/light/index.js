@@ -9,7 +9,13 @@ const theme = createTheme({
     },
     error: {
       main: "#e41749",
-      shadow: "rgb(228 23 73 / 80%)"
+      shadow: "rgb(228 23 73 / 80%)",
+      textColor: "rgba(255, 255, 255, 0.253)"
+    },
+    success: {
+      main: "#1de9b6",
+      shadow: "rgb(29 233 182 / 80%)",
+      textColor: "rgba(255, 255, 255, 0.253)"
     },
     black: {
       main: "#000000",
