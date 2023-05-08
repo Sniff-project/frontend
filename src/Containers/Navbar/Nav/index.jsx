@@ -4,11 +4,11 @@ import { Transition } from "react-transition-group";
 import Anchor from "@components/ui/Anchor";
 import { AuthContext } from "@contexts";
 import { pageTitles } from "./pageTitles";
-import imgArrow from "@assets/Icons/Nav/Arrow.svg";
-import logoCat from "@assets/Icons/Nav/LogoCat.svg";
-import userIcon from "@assets/Icons/Nav/User.svg";
-import i_icon from "@assets/Icons/Nav/i.svg";
-import logout_icon from "@assets/Icons/Nav/LogOut.svg";
+import imgArrow from "@assets/Icons/nav/Arrow.svg";
+import logoCat from "@assets/Icons/nav/LogoCat.svg";
+import userIcon from "@assets/Icons/nav/User.svg";
+import i_icon from "@assets/Icons/nav/i.svg";
+import logout_icon from "@assets/Icons/nav/LogOut.svg";
 
 import "./style.scss";
 
