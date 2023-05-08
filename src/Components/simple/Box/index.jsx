@@ -1,7 +1,8 @@
+import { memo } from "react";
 import { default as MBox } from "@mui/material/Box";
 
-function Box({ children, ...rest }) {
+const Box = memo(({ children, ...rest }) => {
   return <MBox {...rest}>{children}</MBox>;
-}
+});
 
 export default Box;

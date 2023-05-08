@@ -12,7 +12,10 @@ const theme = createTheme({
       shadow: "rgb(228 23 73 / 80%)"
     },
     black: {
-      main: "#000000"
+      main: "#000000",
+      secondary: "#2E2C34",
+      opacity05: "rgba(0, 0, 0, .5)",
+      opacity025: "rgba(0,0,0,.25)"
     },
     white: {
       main: "#ffffff",

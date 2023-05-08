@@ -1,24 +1,30 @@
 import { useForm, FormProvider } from "react-hook-form";
-import { DefaultInput as Input, Button } from "@components/ui";
+import { SecondInput as Input, Button } from "@components/ui";
+import { Grid } from "@components/simple";
 
 const ChangePasswordForm = ({ onSubmit }) => {
   const methods = useForm({
-    mode: "all",
+    mode: "onChange",
   });
 
   const onSubmitHandler = (data) => {
     onSubmit(data);
   };
 
+  const { watch } = methods;
+  const currentPassword = watch("currentPassword");
+  const newPassword = watch("newPassword");
+
   return (
     <FormProvider {...methods}>
       <form
         className="changepassword__form"
         onSubmit={methods.handleSubmit(onSubmitHandler)}>
-        <div className="form-group">
+        <Grid container justifyContent="center">
           <Input
             type="password"
             name="currentPassword"
+            label="Поточний пароль"
             placeholder="********"
             validation={{
               required: "Поле обов'язкове до заповнення!",
@@ -38,12 +44,12 @@ const ChangePasswordForm = ({ onSubmit }) => {
               },
             }}
             tabIndex={1}
+            sx={{ marginTop: "43px" }}
           />
-        </div>
-        <div className="form-group">
           <Input
             type="password"
             name="newPassword"
+            label="Новий пароль"
             validation={{
               required: "Поле обов'язкове до заповнення!",
               minLength: {
@@ -65,11 +71,16 @@ const ChangePasswordForm = ({ onSubmit }) => {
                 "Паролі співпадають!",
             }}
             tabIndex={2}
+            sx={{ marginTop: "42px" }}
           />
-        </div>
-        <Button type="submit" className="mt-10" tabIndex={3}>
-          Update
-        </Button>
+        </Grid>
+        {currentPassword && newPassword && (
+          <Grid container justifyContent="center">
+            <Button type="submit" tabIndex={3} sx={{ marginTop: "42px" }}>
+              Зберегти
+            </Button>
+          </Grid>
+        )}
       </form>
     </FormProvider>
   );

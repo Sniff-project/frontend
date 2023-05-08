@@ -5,17 +5,20 @@
             flex-direction: column;
             background: rgba(150, 198, 255, 0.26);
             border-radius: 30px;
-            padding: 40px 97px 86px 98px;
+            padding: 40px 100px 86px 100px;
             margin: auto;
-            max-width: 500px;
+            max-width: 300px;
             width: 100%;
         }
 
         &__title {
+            font-family: "Montserrat";
+            font-style: normal;
             font-weight: 400;
             font-size: 20px;
             line-height: 24px;
             text-align: center;
+            margin: 0;
 
             color: #000000;
         }

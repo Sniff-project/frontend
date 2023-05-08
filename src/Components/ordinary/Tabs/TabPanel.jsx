@@ -1,7 +1,7 @@
-import Typography from "@mui/material/Typography";
+import { memo } from "react";
 import Box from "@mui/material/Box";
 
-function TabPanel(props) {
+const TabPanel = memo((props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -12,12 +12,12 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}>
       {value === index && (
-        <Box sx={{ px: 2, py: 3 }}>
-          <Typography>{children}</Typography>
+        <Box component="div" sx={{ px: 2, py: 14 }}>
+          {children}
         </Box>
       )}
     </div>
   );
-}
+});
 
 export default TabPanel;

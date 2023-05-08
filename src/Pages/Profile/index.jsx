@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { UserInfo, Password } from "@containers/Profile";
 import { Box } from "@components/simple";
-import { Tabs, Tab } from "@components/ordinary";
+import { Tabs, TabPanel, Tab } from "@components/ordinary";
 import "./styles.scss";
 
 const tabs = [
   { label: "Особисті данні", content: <UserInfo /> },
-  { label: "Пароль", content: <Password /> },
+  {
+    label: "Пароль",
+    content: (
+      <Box component="div" mt="38px">
+        <Password />
+      </Box>
+    ),
+  },
   { label: "Загублені тваринки", content: "Content for Tab 3" },
   { label: "Знайдені тваринки", content: "contents for Tab 4" },
 ];
@@ -20,13 +27,13 @@ const Profile = () => {
   return (
     <>
       <h3 className="profile__title">Ваш профіль</h3>
-      <Box px={{ xs: 2, sm: 4, md: 6, lg: 13 }}>
+      <Box component="div" px={{ xs: 2, sm: 4, md: 6, lg: 12 }}>
         <Tabs value={tabNum} onChange={handleTabChange}>
           {tabs.map((tab, index) => (
             <Tab key={index} label={tab.label} />
           ))}
         </Tabs>
-        {tabs[tabNum].content}
+        <TabPanel>{tabs[tabNum].content}</TabPanel>
       </Box>
     </>
   );
