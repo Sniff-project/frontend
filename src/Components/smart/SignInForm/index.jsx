@@ -1,13 +1,18 @@
-import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { Button, DefaultInput as Input } from "@components/ui";
 import "./styles.scss";
+import showPswd from "@assets/Icons/HideShowPswd/show.svg";
+import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
 
-const SignInForm = ({ onSubmit }) => {
+const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
   const methods = useForm();
 
   const onSubmitHandler = (data) => {
     onSubmit(data);
+  };
+
+  const handleToggleShowPassword = () => {
+    toggleShowPassword();
   };
 
   return (
@@ -27,11 +32,9 @@ const SignInForm = ({ onSubmit }) => {
           }}
           tabIndex={1}
         />
-
         <Input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
-          className="mt-8"
           label="Пароль"
           validation={{
             required: true,
@@ -41,6 +44,12 @@ const SignInForm = ({ onSubmit }) => {
           tabIndex={2}
           sx={{ marginTop: "24px" }}
         />
+        <button
+          type="button"
+          onClick={handleToggleShowPassword}
+          className="hide-show_btn">
+          <img alt="#" src={showPassword ? showPswd : hidePswd} />
+        </button>
         <div className="button__container">
           <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
             Вхід

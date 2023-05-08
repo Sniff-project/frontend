@@ -1,9 +1,17 @@
-import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { Button, DefaultInput as Input, Link } from "@components/ui";
 import "./SignUpForm.scss";
 
-const SignUpForm = ({ onSubmit }) => {
+import showPswd from "@assets/Icons/HideShowPswd/show.svg";
+import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
+
+const SignUpForm = ({
+  onSubmit,
+  toggleShowPassword1,
+  toggleShowPassword2,
+  showPassword1,
+  showPassword2,
+}) => {
   const methods = useForm({
     mode: "all",
   });
@@ -28,6 +36,14 @@ const SignUpForm = ({ onSubmit }) => {
       phone: unmaskedPhone,
       password,
     });
+  };
+
+  const handleToggleShowPassword1 = () => {
+    toggleShowPassword1();
+  };
+
+  const handleToggleShowPassword2 = () => {
+    toggleShowPassword2();
   };
 
   return (
@@ -129,9 +145,15 @@ const SignUpForm = ({ onSubmit }) => {
             }}
             tabIndex={3}
             name="password"
-            type="password"
+            type={showPassword1 ? "text" : "password"}
             label="Пароль"
           />
+          <button
+            type="button"
+            onClick={handleToggleShowPassword1}
+            className="hide-show_btn">
+            <img alt="#" src={showPassword1 ? showPswd : hidePswd} />
+          </button>
         </div>
 
         <div className="registration__form-inputbox">
@@ -144,9 +166,15 @@ const SignUpForm = ({ onSubmit }) => {
             }}
             tabIndex={6}
             name="repPassword"
-            type="password"
+            type={showPassword2 ? "text" : "password"}
             label="Підтвердити пароль"
           />
+          <button
+            type="button"
+            onClick={handleToggleShowPassword2}
+            className="hide-show_btn">
+            <img alt="#" src={showPassword2 ? showPswd : hidePswd} />
+          </button>
         </div>
 
         <div className="registration__text">

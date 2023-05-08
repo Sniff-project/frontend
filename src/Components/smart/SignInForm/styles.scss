@@ -3,6 +3,22 @@
 	max-width: 500px;
 	position: relative;
 
+	.form-group {
+		position: relative;
+		.hide-show_btn {
+			background-color: inherit;
+			padding: 5px;
+			border: 0;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			opacity: 0.7;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
 	.button__container {
 		display: flex;
 		justify-content: center;

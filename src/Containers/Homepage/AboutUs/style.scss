@@ -1,6 +1,5 @@
 .about-bg {
     background-image: url(../../../Assets/Images/Homepage/cat-bg.webp);
-    background-size: contain;
     background-position: right;
     background-repeat: no-repeat;
     height: 844px;
@@ -8,15 +7,21 @@
     align-items: center;
 
     .about-block {
-        max-width: 55vw;
+        max-width: 50vw;
         padding-left: 56px;
 
-        p {
-            margin-bottom: 24px;
-            font-size: 24px;
-            line-height: 38.4px;
-            font-weight: 300;
-            color: #2e2c34;
+        .about-block__title {
+            font-size: 48px;
+            line-height: 160%;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .about-block__text {
+            margin-bottom: 57px;
+            margin-top: 40px;
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: 400;
         }
     }
 

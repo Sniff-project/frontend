@@ -1,5 +1,5 @@
 import React from 'react';
-import CardsAnimals from "@components/smart/Homepage/CardsAnimals";
+import AnimalCards from "@components/smart/Homepage/AnimalCards";
 import './style.scss';
 
 export default function OurAnimals() {
@@ -8,7 +8,7 @@ export default function OurAnimals() {
         <section id='ourAnimals'>
             <div className='animals'>
                 <h2 className='animals-title'>Наші тваринки</h2>
-                <CardsAnimals />
+                <AnimalCards />
             </div>
         </section>
 
