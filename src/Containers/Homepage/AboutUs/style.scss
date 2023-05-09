@@ -5,6 +5,8 @@
     height: 844px;
     display: flex;
     align-items: center;
+    background-size: contain;
+
 
     .about-block {
         max-width: 52vw;
@@ -12,7 +14,7 @@
 
         .about-block__title {
             font-size: 3rem;
-            line-height: 160%;
+            line-height: 4.5rem;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -21,7 +23,7 @@
             margin-bottom: 57px;
             margin-top: 40px;
             font-size: 1.25rem;
-            line-height: 30px;
+            line-height: 1.875rem;
             font-weight: 400;
         }
 
@@ -30,6 +32,26 @@
                 margin-bottom: 30px;
                 margin-top: 25px;
             }
+        }
+
+        @media (max-width: 950px) {
+            .about-block__text {
+                margin-bottom: 20px;
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .about-block__text {
+                margin-bottom: 15px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        .about-block {
+            padding-left: 30px;
         }
     }
 
@@ -43,8 +65,20 @@
 
     @media (max-width: 1300px) {
         .btn-blue {
-            font-size: 1.5rem;
             padding: 8px 12px;
+        }
+    }
+
+    @media (max-width: 950px) {
+        .btn-blue {
+            padding: 4px 7px;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .btn-blue {
+            padding: 2px 5px;
+            border-radius: 10px;
         }
     }
 }
@@ -52,6 +86,29 @@
 @media (max-width: 1500px) {
     .about-bg {
         height: 644px;
-        background-size: contain;
+    }
+}
+
+@media (max-width: 1200px) {
+    .about-bg {
+        height: 544px;
+    }
+}
+
+@media (max-width: 950px) {
+    .about-bg {
+        height: 444px;
+    }
+}
+
+@media (max-width: 750px) {
+    .about-bg {
+        height: 400px;
+    }
+}
+
+@media (max-width: 700px) {
+    .about-bg {
+        height: 350px;
     }
 }

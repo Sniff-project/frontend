@@ -18,8 +18,12 @@ export default function Nav() {
   const [title, setTitle] = useState("");
   const bgElem = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
-
   const { pathname } = useLocation();
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  });
 
   useEffect(() => {
     setNavMenu(false);
@@ -28,6 +32,10 @@ export default function Nav() {
       return pageTitle ? pageTitle.title : pageTitles[0].title;
     });
   }, [pathname]);
+
+  const handleResize = (event) => {
+    setScreenWidth(event.target.innerWidth);
+  }
 
   const showMenu = () => {
     if (pathname === pageTitles[0].link) {
@@ -64,18 +72,20 @@ export default function Nav() {
                 <img alt="#" src={imgArrow} />
               </button>
 
-              <ul className="nav-list">
-                <li className="nav-list__item">
-                  <NavLink className="nav-list__addPet" to="/addpet">
-                    Я знайшов тваринку
-                  </NavLink>
-                </li>
-                <li className="nav-list__item">
-                  <NavLink className="nav-list__addPet" to="/addpet">
-                    Я загубив тваринку
-                  </NavLink>
-                </li>
-              </ul>
+              {screenWidth > 750 && (
+                <ul className="nav-list">
+                  <li className="nav-list__item">
+                    <NavLink className="nav-list__addPet" to="/addpet">
+                      Я знайшов тваринку
+                    </NavLink>
+                  </li>
+                  <li className="nav-list__item">
+                    <NavLink className="nav-list__addPet" to="/addpet">
+                      Я загубив тваринку
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
             </div>
 
             {isAuth.user && isAuth.isAuthenticated ? (
@@ -132,6 +142,21 @@ export default function Nav() {
                 <li className="nav-menu-list__item">
                   <NavLink to="/about">Про нас</NavLink>
                 </li>
+
+                {screenWidth <= 750 && (
+                  <>
+                    <li className="nav-menu-list__item">
+                      <NavLink className="nav-list__addPet" to="/addpet">
+                        Я знайшов тваринку
+                      </NavLink>
+                    </li>
+                    <li className="nav-menu-list__item">
+                      <NavLink className="nav-list__addPet" to="/addpet">
+                        Я загубив тваринку
+                      </NavLink>
+                    </li>
+                  </>
+                )}
               </ul>
             </Transition>
           </div>

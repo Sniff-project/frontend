@@ -1,5 +1,6 @@
 .nav-holder {
-    --bg-color: rgba(151, 194, 245, 0.2);
+    // --bg-color: rgba(151, 194, 245, 0.2);
+    --bg-color: #D8E3F3;
     position: relative;
 
     ul {
@@ -23,7 +24,7 @@
         height: 80px;
         background-color: var(--bg-color);
 
-        >div {
+        > div {
             position: relative;
             height: 100%;
 
@@ -54,6 +55,12 @@
     @media (max-width: 1300px) {
         .nav-row {
             height: 60px;
+        }
+    }
+
+    @media (max-width: 950px) {
+        .nav-row {
+            height: 55px;
         }
     }
 
@@ -94,6 +101,18 @@
         }
     }
 
+    @media (max-width: 950px) {
+        .logo {
+            width: 15vw;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .logo {
+            width: 18vw;
+        }
+    }
+
     .nav-row__center {
         display: flex;
         align-items: center;
@@ -116,20 +135,48 @@
         display: flex;
         padding: 8px;
 
-        a {
-            padding: 8px 12px;
-            font-size: 1.25rem;
-            font-weight: 300;
+        .nav-menu-list__item {
+            a {
+                padding: 8px 12px;
+                font-size: 1.25rem;
+                font-weight: 300;
+            }
+
+            @media (max-width: 1300px) {
+                a {
+                    padding: 6px;
+                }
+            }
+        }
+
+        @media (max-width: 950px) {
+            .nav-menu-list__item {
+                padding: 8px 2px;
+            }
+        }
+        @media (max-width: 750px) {
+            .nav-menu-list__item {
+                padding: 5px 0px;
+            }
         }
     }
 
-    @media (max-width: 1300px) {
+    @media (max-width: 950px) {
+        .nav-menu-list {
+            left: 15vw;
+            flex-direction: column;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .nav-menu-list {
+            left: 18vw;
+        }
+    }
+
+    @media (max-width: 750px) {
         .nav-menu-list {
             padding: 5px;
-        }
-
-        a {
-            padding: 5px 7px;
         }
     }
 
@@ -146,13 +193,19 @@
         gap: 12px 0;
 
         .nav-userMenu-list__item {
-            > a {
+            >a {
                 font-size: 1.25rem;
                 padding: 0;
             }
 
             img {
                 margin-right: 8px;
+            }
+
+            @media (max-width: 1300px) {
+                img {
+                    transform: scale(.8);
+                }
             }
 
             button {
@@ -180,6 +233,12 @@
         font-size: 1.25rem;
     }
 
+    @media (max-width: 950px) {
+        .nav-list__addPet {
+            padding: 0 15px;
+        }
+    }
+
     .nav-row__btn {
         border: 0;
         background: none;
@@ -196,6 +255,18 @@
         img {
             margin-left: 5px;
             margin-right: 5px;
+        }
+
+        @media (max-width: 1300px) {
+            img {
+                transform: scale(.8);
+            }
+        }
+    }
+
+    @media (max-width: 950px) {
+        .nav-row__btn {
+            padding: 0 10px;
         }
     }
 }

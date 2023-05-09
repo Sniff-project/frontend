@@ -33,8 +33,21 @@
 
             @media (max-width: 1300px) {
                 .animalArticle-circle {
-                    transform: scale(.8);
-                    margin-right: 10px;
+                    width: 80px;
+                    height: 80px;
+                    img {
+                        transform: scale(.8);
+                    }
+                }
+            }
+
+            @media (max-width: 950px) {
+                .animalArticle-circle {
+                    width: 65px;
+                    height: 65px;
+                    img {
+                        transform: scale(.65);
+                    }
                 }
             }
 
@@ -58,6 +71,12 @@
             @media (max-width: 1600px) {
                 .animalArticle-info {
                     max-width: 450px;
+                }
+            }
+
+            @media (max-width: 650px) {
+                .animalArticle-info {
+                    max-width: 300px;
                 }
             }
         }
@@ -93,6 +112,12 @@
 
 @media (max-width: 1300px) {
     .aboutAnimals {
-        padding-bottom:0px;
+        padding-bottom: 0px;
+    }
+}
+
+@media (max-width: 800px) {
+    .aboutAnimals {
+        padding-top: 20px;
     }
 }
