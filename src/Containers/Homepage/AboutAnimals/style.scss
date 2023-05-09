@@ -79,6 +79,12 @@
                     max-width: 300px;
                 }
             }
+
+            @media (max-width: 500px) {
+                .animalArticle-info {
+                    max-width: 220px;
+                }
+            }
         }
     }
 

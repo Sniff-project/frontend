@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     background-size: contain;
-
+    position: relative;
 
     .about-block {
         max-width: 52vw;
@@ -26,6 +26,41 @@
             }
         }
 
+        @media (max-width: 550px) {
+            .about-block__title {
+                font-size: 2rem;
+                line-height: 3rem;
+            }
+        }
+
+        .about-block__down {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 0 5%;
+            top: 120%;
+            left: 0;
+            
+
+            &::before {
+                content: "";
+                width: 100%;
+                background-color: black;
+                height: 1px;
+                margin-bottom: 20px;
+            }
+            &::after {
+                content: "";
+                width: 100%;
+                background-color: black;
+                height: 1px;
+                margin-top: 20px;
+            }
+        }
+
+
         .about-block__text {
             margin-bottom: 57px;
             margin-top: 40px;
@@ -41,17 +76,10 @@
             }
         }
 
-        @media (max-width: 950px) {
-            .about-block__text {
-                margin-bottom: 20px;
-                margin-top: 15px;
-            }
-        }
-
         @media (max-width: 800px) {
             .about-block__text {
-                margin-bottom: 15px;
-                margin-top: 10px;
+                margin-bottom: 20px;
+                margin-top: 20px;
             }
         }
 
@@ -61,50 +89,58 @@
                 line-height: 1.6rem;
             }
         }
+
+        @media (max-width: 550px) {
+            .about-block__text {
+                margin-bottom: 15px;
+                margin-top: 0px;
+                text-align: center;
+            }
+        }
+
+        .btn-blue {
+            font-size: 1.5rem;
+            font-weight: 400;
+            border-radius: 15px;
+            display: inline-block;
+            padding: 16px 23px;
+        }
+
+        @media (max-width: 1300px) {
+            .btn-blue {
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 950px) {
+            .btn-blue {
+                padding: 4px 7px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .btn-blue {
+                padding: 2px 5px;
+                border-radius: 10px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .btn-blue {
+                font-size: 1.1rem;
+            }
+        }
+
     }
 
     @media (max-width: 800px) {
         .about-block {
             padding-left: 30px;
-        }
-    }
-
-    .btn-blue {
-        font-size: 1.5rem;
-        font-weight: 400;
-        border-radius: 15px;
-        display: inline-block;
-        padding: 16px 23px;
-    }
-
-    @media (max-width: 1300px) {
-        .btn-blue {
-            padding: 8px 12px;
-        }
-    }
-
-    @media (max-width: 950px) {
-        .btn-blue {
-            padding: 4px 7px;
-        }
-    }
-
-    @media (max-width: 800px) {
-        .btn-blue {
-            padding: 2px 5px;
-            border-radius: 10px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-    }
-
-    @media (max-width: 650px) {
-        .btn-blue {
-            font-size: 1.1rem;
-            height: 25px;
         }
     }
 }
@@ -129,19 +165,13 @@
 
 @media (max-width: 750px) {
     .about-bg {
-        height: 400px;
+        height: fit-content;
+        padding: 70px 0px;
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 500px) {
     .about-bg {
-        height: 350px;
-    }
-
-}
-
-@media (max-width: 650px) {
-    .about-bg {
-        height: 300px;
+        padding: 30px 0px;
     }
 }
