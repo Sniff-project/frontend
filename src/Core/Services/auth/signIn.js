@@ -17,7 +17,7 @@ export const login = ({ email, password }) => {
 			}
 		} catch (error) {
 			// unexpected errors
-			dispatch(loginFailure(error.message));
+			dispatch(loginFailure(error));
 			throw error;
 		}
 	};

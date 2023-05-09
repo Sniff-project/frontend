@@ -1,16 +1,16 @@
-import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { Button1, Input1 } from "@components/ui";
+import { Button, DefaultInput as Input } from "@components/ui";
 import "./styles.scss";
-import showPswd from "@assets/Icons/HideShowPswd/show.svg";
-import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
 
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
   const methods = useForm();
+  const { setValue } = methods;
 
   const onSubmitHandler = (data) => {
     onSubmit(data);
+    setValue("password", "");
   };
 
   const handleToggleShowPassword = () => {
@@ -20,42 +20,38 @@ const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
   return (
     <FormProvider {...methods}>
       <form id="LoginForm" onSubmit={methods.handleSubmit(onSubmitHandler)}>
-        <div className="form-group">
-          <Input1
-            type="email"
-            name="email"
-            placeholder="Пошта або Номер телефону"
-            validation={{
-              required: true,
-              pattern: {
-                value:
-                  /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
-                message: "Неправильно введено email адресу!",
-              },
-            }}
-            tabIndex={1}
-          />
-        </div>
-        <div className="form-group">
-          <Input1
-            type={showPassword ? "text" : "password"}
-            name="password"
-            className="mt-8"
-            placeholder="Пароль"
-            validation={{
-              required: true,
-              minLength: { value: 8, message: "Дуже короткий пароль!" },
-            }}
-            tabIndex={2}
-          />
-          <button type="button" onClick={handleToggleShowPassword} className="hide-show_btn">
-            <img alt="#" src={showPassword ? showPswd : hidePswd} />
-          </button>
-        </div>
-        <div className="d-flex justify-content-center w-100">
-          <Button1 type="submit" className="mt-10" tabIndex={3}>
+        <Input
+          type="email"
+          name="email"
+          label="Пошта або Номер телефону"
+          validation={{
+            required: true,
+            pattern: {
+              value:
+                /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
+              message: "Неправильно введено email адресу!",
+            },
+          }}
+          tabIndex={1}
+        />
+        <Input
+          type={showPassword ? "text" : "password"}
+          name="password"
+          label="Пароль"
+          validation={{
+            required: true,
+            minLength: { value: 8, message: "Дуже короткий пароль!" },
+            maxLength: { value: 20, message: "Дуже довгий пароль!" },
+          }}
+          tabIndex={2}
+          sx={{ marginTop: "24px" }}
+          endIcon={showPassword ? <Visibility /> : <VisibilityOff />}
+          endIconOnClick={handleToggleShowPassword}
+        />
+        <div className="button__container">
+          <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
             Вхід
-          </Button1>
+          </Button>
         </div>
       </form>
     </FormProvider>

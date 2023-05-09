@@ -1,2 +1,2 @@
 export { signIn, signUp } from "./auth";
-export { getProfile } from "./users";
+export { getProfile, changePassword } from "./users";

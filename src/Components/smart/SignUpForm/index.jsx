@@ -1,15 +1,20 @@
-import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { Button1, Input1, Link1 } from "@components/ui";
+import { Button, DefaultInput as Input, Link } from "@components/ui";
 import "./SignUpForm.scss";
 
-import showPswd from "@assets/Icons/HideShowPswd/show.svg";
-import hidePswd from "@assets/Icons/HideShowPswd/hide.svg";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPassword1,  showPassword2}) => {
+const SignUpForm = ({
+  onSubmit,
+  toggleShowPassword1,
+  toggleShowPassword2,
+  showPassword1,
+  showPassword2,
+}) => {
   const methods = useForm({
     mode: "all",
   });
+  const { setValue } = methods;
 
   const onSubmitHandler = (data) => {
     const { firstname, lastname, email, phone, password } = data;
@@ -31,6 +36,8 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
       phone: unmaskedPhone,
       password,
     });
+    setValue("password", "");
+    setValue("repPassword", "");
   };
 
   const handleToggleShowPassword1 = () => {
@@ -45,10 +52,9 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
     <FormProvider {...methods}>
       <form
         className="registration__form"
-        onSubmit={methods.handleSubmit(onSubmitHandler)}
-      >
+        onSubmit={methods.handleSubmit(onSubmitHandler)}>
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               minLength: {
@@ -63,12 +69,12 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             tabIndex={1}
             name="firstname"
             type="text"
-            placeholder="Ім'я"
+            label="Ім'я"
           />
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               minLength: {
@@ -83,12 +89,12 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             tabIndex={4}
             name="lastname"
             type="text"
-            placeholder="Прізвище"
+            label="Прізвище"
           />
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               pattern: {
@@ -100,12 +106,12 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             tabIndex={2}
             name="email"
             type="email"
-            placeholder="Електронна пошта"
+            label="Електронна пошта"
           />
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               pattern: {
@@ -116,17 +122,21 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             tabIndex={5}
             name="phone"
             mask="+38 (999) 999-99-99"
-            placeholder="Номер телефону"
+            label="Номер телефону"
           />
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               minLength: {
                 value: 8,
                 message: "Дуже короткий пароль!",
+              },
+              maxLength: {
+                value: 20,
+                message: "Дуже довгий пароль!",
               },
               pattern: {
                 value:
@@ -138,19 +148,14 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             tabIndex={3}
             name="password"
             type={showPassword1 ? "text" : "password"}
-            placeholder="Пароль"
+            label="Пароль"
+            endIcon={showPassword1 ? <VisibilityOff /> : <Visibility />}
+            endIconOnClick={handleToggleShowPassword1}
           />
-          <button
-            type="button"
-            onClick={handleToggleShowPassword1}
-            className="hide-show_btn"
-          >
-            <img alt="#" src={showPassword1 ? showPswd : hidePswd} />
-          </button>
         </div>
 
         <div className="registration__form-inputbox">
-          <Input1
+          <Input
             validation={{
               required: "Поле обов'язкове до заповнення!",
               validate: (value) =>
@@ -160,30 +165,24 @@ const SignUpForm = ({ onSubmit, toggleShowPassword1, toggleShowPassword2, showPa
             tabIndex={6}
             name="repPassword"
             type={showPassword2 ? "text" : "password"}
-            placeholder="Підтвердити пароль"
+            label="Підтвердити пароль"
+            endIcon={showPassword2 ? <VisibilityOff /> : <Visibility />}
+            endIconOnClick={handleToggleShowPassword2}
           />
-          <button
-            type="button"
-            onClick={handleToggleShowPassword2}
-            className="hide-show_btn"
-          >
-            <img alt="#" src={showPassword2 ? showPswd : hidePswd} />
-          </button>
         </div>
 
         <div className="registration__text">
-          Приєднуючись, ви погоджуєтеся з <Link1 href="#">Умовами</Link1> та{" "}
-          <Link1 href="#">Політикою конфіденційності</Link1>.
+          Приєднуючись, ви погоджуєтеся з <Link href="#">Умовами</Link> та{" "}
+          <Link href="#">Політикою конфіденційності</Link>.
         </div>
 
         <div className="registration__button">
-          <Button1
+          <Button
             type="submit"
             disabled={!methods.formState.isValid}
-            tabIndex={7}
-          >
+            tabIndex={7}>
             Зареєструватись
-          </Button1>
+          </Button>
         </div>
       </form>
     </FormProvider>
