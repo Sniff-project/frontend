@@ -6,6 +6,10 @@ import {
 
 import { uploadAvatar as upldAvatar } from "@core/API/users";
 
+const successMsg = "Аватарка успішно завантажена!";
+const errorMsg = "Не вдалося завантажити аватарку!";
+const unknownError = "Щось пішло не так :(";
+
 export const uploadAvatar = ({
 	userId,
 	token,
@@ -22,17 +26,24 @@ export const uploadAvatar = ({
 			if (response.status === 200) {
 				const result = {
 					...response.data,
-					message: "Аватарка успішно завантажена!"
+					message: successMsg
 				};
 				dispatch(uploadAvatarSuccess(result));
 			} else {
 				// error 404 or others
-				dispatch(uploadAvatarFailure(response.data));
-				throw response.data;
+				const result = {
+					...response.data,
+					message: errorMsg
+				};
+				dispatch(uploadAvatarFailure(result));
 			}
 		} catch (error) {
 			// unexpected errors
-			dispatch(uploadAvatarFailure(error));
+			const result = {
+				...error,
+				message: unknownError
+			};
+			dispatch(uploadAvatarFailure(result));
 			throw error;
 		}
 	};
