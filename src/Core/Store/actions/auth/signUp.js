@@ -6,8 +6,8 @@ export const registerRequest = () => {
   return { type: REGISTER_REQUEST };
 };
 
-export const registerSuccess = (token) => {
-  return { type: REGISTER_SUCCESS, payload: { token } };
+export const registerSuccess = (data) => {
+  return { type: REGISTER_SUCCESS, payload: { data } };
 };
 
 export const registerFailure = (error) => {

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { logout as logoutUser } from "@core/Services";
 import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
 import { Anchor, Link } from "@components/ui";
 import { AuthContext } from "@contexts";
 import { pageTitles } from "./pageTitles";
+
 import imgArrow from "@assets/Icons/nav/Arrow.svg";
 import logoCat from "@assets/Icons/nav/LogoCat.svg";
 import userIcon from "@assets/Icons/nav/User.svg";
@@ -18,6 +21,8 @@ export default function Nav() {
   const [title, setTitle] = useState("");
   const bgElem = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
+
+  const dispatch = useDispatch();
 
   const { pathname } = useLocation();
 
@@ -40,7 +45,7 @@ export default function Nav() {
   };
 
   const logOut = () => {
-    isAuth.logout();
+    dispatch(logoutUser(isAuth));
   };
 
   return (

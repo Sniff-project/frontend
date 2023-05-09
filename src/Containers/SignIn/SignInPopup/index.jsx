@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
@@ -9,15 +9,20 @@ import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
 
 const SignInPopup = () => {
-  const { login } = useContext(AuthContext);
+  const auth = useContext(AuthContext);
   const dispatch = useDispatch();
   const signInState = useSelector((state) => state.signIn);
 
   const onSubmitHandler = (data) => {
-    dispatch(loginUser(data)).then((token) => {
-      login(token);
-    });
+    dispatch(loginUser(data));
   };
+
+  useEffect(() => {
+    if (signInState.data?.jwtToken) {
+      auth.login(signInState.data.jwtToken);
+      signInState.data = null;
+    }
+  }, [auth, signInState]);
 
   return (
     <div

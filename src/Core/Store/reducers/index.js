@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import { signInReducer, signUpReducer } from "./auth";
+import { logoutReducer, signInReducer, signUpReducer } from "./auth";
 import { uploadAvatarReducer, profileReducer, changePasswordReducer } from "./users";
 
 const reducer = combineReducers({
   // auth
+  logout: logoutReducer,
   signIn: signInReducer,
   signUp: signUpReducer,
 

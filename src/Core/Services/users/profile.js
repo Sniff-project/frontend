@@ -6,22 +6,36 @@ import {
 
 import { getProfile } from "@core/API/users";
 
+const successMsg = "Профіль завантажено!";
+const errorMsg = "Сесія вичерпана!";
+const unknownError = "Щось пішло не так :(";
+
 export const profile = ({ userId, token }) => {
 	return async (dispatch) => {
 		try {
 			dispatch(profileRequest());
 			const response = await getProfile(userId, token);
 			if (response.status === 200) {
-				dispatch(profileSuccess(response.data));
-				return response.data;
+				const result = {
+					...response.data,
+					message: successMsg
+				};
+				dispatch(profileSuccess(result));
 			} else {
 				// error 404 or others
-				dispatch(profileFailure(response.data));
-				throw response.data;
+				const result = {
+					...response.data,
+					message: errorMsg
+				};
+				dispatch(profileFailure(result));
 			}
 		} catch (error) {
 			// unexpected errors
-			dispatch(profileFailure(error));
+			const result = {
+				...error,
+				message: unknownError
+			};
+			dispatch(profileFailure(result));
 			throw error;
 		}
 	};

@@ -6,6 +6,10 @@ import {
 
 import { signUp } from "@core/API/auth";
 
+const successMsg = "Реєстрація прошла успішно!";
+const errorMsg = "Користувач з таким email/телефоном вже зареєстрований!";
+const unknownError = "Щось пішло не так :(";
+
 export const register = ({ firstname, lastname, email, phone, password }) => {
 	return async (dispatch) => {
 		try {
@@ -18,16 +22,26 @@ export const register = ({ firstname, lastname, email, phone, password }) => {
 				password
 			);
 			if (response.status === 201) {
-				dispatch(registerSuccess(response.data.jwtToken));
-				return response.data.jwtToken;
+				const result = {
+					...response.data,
+					message: successMsg
+				};
+				dispatch(registerSuccess(result));
 			} else {
 				// error 404 or others
-				dispatch(registerFailure(response.data));
-				throw response.data;
+				const result = {
+					...response.data,
+					message: errorMsg
+				};
+				dispatch(registerFailure(result));
 			}
 		} catch (error) {
 			// unexpected errors
-			dispatch(registerFailure(error));
+			const result = {
+				...error,
+				message: unknownError
+			};
+			dispatch(registerFailure(result));
 			throw error;
 		}
 	};

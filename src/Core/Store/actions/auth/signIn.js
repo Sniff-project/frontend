@@ -6,8 +6,8 @@ export const loginRequest = () => {
   return { type: LOGIN_REQUEST };
 };
 
-export const loginSuccess = (token) => {
-  return { type: LOGIN_SUCCESS, payload: { token } };
+export const loginSuccess = (data) => {
+  return { type: LOGIN_SUCCESS, payload: { data } };
 };
 
 export const loginFailure = (error) => {
