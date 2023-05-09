@@ -49,7 +49,7 @@ export default function Nav() {
         <div ref={bgElem} className="nav-holder">
           <div className="nav-row">
             <div className="logo">
-              <Link href="/" sx={{ padding: "10px 15px" }}>
+              <Link href="/" sx={{ padding: "10px 15px", height: "100%" }}>
                 <div className="logo-holder">
                   sniff
                   {isAuth.isAuthenticated && (
@@ -61,10 +61,10 @@ export default function Nav() {
               </Link>
             </div>
             <div className="nav-row__center">
-              <button className="nav-row__btn" onClick={showMenu}>
+              <Link href="#" className="nav-row__btn" onClick={showMenu}>
                 <span>{title}</span>
                 <img alt="#" src={imgArrow} />
-              </button>
+              </Link>
 
               <ul className="nav-list">
                 <li className="nav-list__item">
@@ -82,11 +82,11 @@ export default function Nav() {
 
             {isAuth.user && isAuth.isAuthenticated ? (
               <div>
-                <button onClick={showUserMenu} className="nav-row__btn">
+                <Link href="#" onClick={showUserMenu} className="nav-row__btn">
                   <img alt="#" src={userIcon} />
                   <span>{isAuth.user.name}</span>
                   <img alt="#" src={imgArrow} />
-                </button>
+                </Link>
 
                 <div className="wrap">
                   <Transition
@@ -96,16 +96,29 @@ export default function Nav() {
                     unmountOnExit>
                     <ul className="nav-userMenu-list">
                       <li className="nav-userMenu-list__item">
-                        <Link href="/profile">
+                        <Link
+                          href="/profile"
+                          sx={{
+                            width: "100%",
+                            justifyContent: "flex-start",
+                            px: "10%",
+                          }}>
                           <img alt="#" src={i_icon} />
                           профіль
                         </Link>
                       </li>
                       <li className="nav-userMenu-list__item">
-                        <button onClick={logOut}>
+                        <Link
+                          href="#"
+                          onClick={logOut}
+                          sx={{
+                            width: "100%",
+                            justifyContent: "flex-start",
+                            px: "10%",
+                          }}>
                           <img alt="#" src={logout_icon} />
                           вихід
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </Transition>

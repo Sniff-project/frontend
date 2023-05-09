@@ -1,4 +1,5 @@
-import { memo } from "react";
+import { memo, useState, useCallback } from "react";
+import { useTheme } from "@mui/material/styles";
 import { styled } from "@mui/system";
 import { Box, IconButton, Typography, Zoom } from "@mui/material";
 
@@ -6,15 +7,16 @@ import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 const Message = memo(
-  ({
-    color = "white",
-    message,
-    palette,
-    isShown = true,
-    onClose = null,
-    isMessageHidden = false,
-    ...rest
-  }) => {
+  ({ color = "white", message, messageType, isShown = true, ...rest }) => {
+    const theme = useTheme();
+    const [isMessageHidden, setMessageHidden] = useState(!isShown);
+
+    const palette = theme.palette[messageType];
+
+    const handleClose = useCallback(() => {
+      setMessageHidden(true);
+    }, []);
+
     const MsgBox = styled(Box)(({ theme }) => ({
       width: "auto",
       maxWidth: 560,
@@ -41,7 +43,7 @@ const Message = memo(
               <Typography />
             </Zoom>
           </Box>
-          <IconButton onClick={onClose} sx={{ marginLeft: "auto" }}>
+          <IconButton onClick={handleClose} sx={{ marginLeft: "auto" }}>
             <CloseRoundedIcon color={color} sx={{ fontSize: 21 }} />
           </IconButton>
         </MsgBox>

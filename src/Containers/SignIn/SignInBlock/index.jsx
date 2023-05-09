@@ -4,7 +4,7 @@ import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
 import { Link } from "@components/ui";
 import { Spinner, Grid } from "@components/simple";
-import { Message, withMessage } from "@components/ordinary";
+import { Message } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
 
@@ -13,10 +13,6 @@ const SignInBlock = () => {
   const dispatch = useDispatch();
   const signInState = useSelector((state) => state.signIn);
   const [showPassword, setShowPassword] = useState(false);
-
-  const ErrorMessage = withMessage(Message, {
-    messageType: "error",
-  });
 
   const onSubmitHandler = (data) => {
     dispatch(loginUser(data)).then((token) => {
@@ -36,7 +32,11 @@ const SignInBlock = () => {
           </Grid>
           <div className="block__form">
             {signInState.error && (
-              <ErrorMessage message={signInState.error.message} mb={8} />
+              <Message
+                message={signInState.error.message}
+                messageType="error"
+                mb={8}
+              />
             )}
             <SignInForm
               onSubmit={onSubmitHandler}

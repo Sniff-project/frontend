@@ -3,16 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { profile as getProfile } from "@core/Services/users";
 import { Spinner } from "@components/simple";
-import { Message, withMessage } from "@components/ordinary";
+import { Message } from "@components/ordinary";
 
 const Password = () => {
   const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
   const profileState = useSelector((state) => state.profile);
-
-  const ErrorMessage = withMessage(Message, {
-    messageType: "error",
-  });
 
   useEffect(() => {
     if (user && token) {
@@ -30,7 +26,11 @@ const Password = () => {
       <div>
         {profileState.isLoading && <Spinner size={100} />}
         {profileState.error && (
-          <ErrorMessage message="Щось пішло не так :(" margin={{ bottom: 8 }} />
+          <Message
+            message="Щось пішло не так :("
+            messageType="error"
+            margin={{ bottom: 8 }}
+          />
         )}
         {profileState.profile && (
           <div>

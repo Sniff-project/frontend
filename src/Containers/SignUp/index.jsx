@@ -4,7 +4,7 @@ import { Link } from "@components/ui";
 import { AuthContext } from "@contexts";
 import { register } from "@core/Services";
 import { Spinner, Grid } from "@components/simple";
-import { Message, withMessage } from "@components/ordinary";
+import { Message } from "@components/ordinary";
 import SignUpForm from "@components/smart/SignUpForm";
 import "./styles.scss";
 
@@ -21,10 +21,6 @@ const SignUpBlock = () => {
     });
   };
 
-  const ErrorMessage = withMessage(Message, {
-    messageType: "error",
-  });
-
   const toggleShowPassword1 = () => {
     setShowPassword1(!showPassword1);
   };
@@ -37,7 +33,12 @@ const SignUpBlock = () => {
       {signUpState.isLoading && <Spinner size={100} />}
       <h2 className="registration__title">Реєстрація</h2>
       {signUpState.error && (
-        <ErrorMessage message={signUpState.error.message} mt={8} mx="auto" />
+        <Message
+          message={signUpState.error.message}
+          messageType="error"
+          mt={8}
+          mx="auto"
+        />
       )}
       <SignUpForm
         onSubmit={onSubmitHandler}

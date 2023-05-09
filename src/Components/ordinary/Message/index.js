@@ -1,2 +1,1 @@
-export {default as Message} from "./Message";
-export {default as withMessage} from "./withMessage";
+export { default as Message } from "./Message";

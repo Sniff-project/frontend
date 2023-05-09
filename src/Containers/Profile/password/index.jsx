@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { changePassword } from "@core/Services/users";
 import { Spinner } from "@components/simple";
-import { Message, withMessage } from "@components/ordinary";
+import { Message } from "@components/ordinary";
 import { ChangePasswordForm } from "@components/smart/Profile";
 import "./styles.scss";
 
@@ -12,14 +12,6 @@ const Password = memo(() => {
   const dispatch = useDispatch();
   const changePasswordState = useSelector((state) => state.changePassword);
   const [showPassword, setShowPassword] = useState(false);
-
-  const ErrorMessage = withMessage(Message, {
-    messageType: "error",
-  });
-
-  const SuccessMessage = withMessage(Message, {
-    messageType: "success",
-  });
 
   const onSubmitHandler = useCallback(
     (data) => {
@@ -37,7 +29,7 @@ const Password = memo(() => {
         <h3 className="pwd__title mb-9">Змінити пароль</h3>
         {changePasswordState.isLoading && <Spinner size={100} />}
         {changePasswordState.error && (
-          <ErrorMessage
+          <Message
             message={
               changePasswordState.error.message || "Щось пішло не так :("
             }
@@ -46,7 +38,7 @@ const Password = memo(() => {
           />
         )}
         {changePasswordState.success && (
-          <SuccessMessage
+          <Message
             message={changePasswordState.success}
             messageType="success"
             mt={4}
