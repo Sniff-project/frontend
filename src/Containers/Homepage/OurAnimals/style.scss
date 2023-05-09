@@ -21,12 +21,14 @@
             padding: 0 150px;
         }
     }
+
     @media (max-width: 950px) {
         .cardsAnimals {
             gap: 50px 50px;
             padding: 0 50px;
         }
     }
+
     @media (max-width: 750px) {
         .cardsAnimals {
             padding: 0;
@@ -40,7 +42,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
     .animals {
         padding: 30px 0px;
     }
@@ -66,4 +68,5 @@
 .carousel-cardsAnimal.css-ohwg9z {
     width: 350px;
     margin: 0 auto;
+    overflow: visible;
 }
