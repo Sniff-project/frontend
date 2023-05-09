@@ -7,7 +7,7 @@ const Input = memo(
   ({
     name,
     label = null,
-    className = "form-control input1",
+    className = "",
     validation = {},
     variant = "standard",
     mask,

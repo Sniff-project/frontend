@@ -1,7 +1,13 @@
 import { styled } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
 import Input from "./Input";
 
-const SecondInput = styled(Input)(
+const SecondInput = (props) => {
+  const theme = useTheme();
+  return (<SInput theme={theme} {...props} />);
+};
+
+const SInput = styled(Input)(
   ({ theme }) => `
   & {
     width: 100%;

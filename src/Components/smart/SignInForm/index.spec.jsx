@@ -6,16 +6,22 @@ import {
   waitFor,
   act,
 } from "@testing-library/react";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@core/Theme/light";
 import SignInForm from "./";
 
 describe("SignInForm", () => {
   test("should submit form with valid input", () => {
     const mockOnSubmit = jest.fn();
 
-    render(<SignInForm onSubmit={mockOnSubmit}/>);
+    render(
+      <ThemeProvider theme={theme}>
+        <SignInForm onSubmit={mockOnSubmit} />
+      </ThemeProvider>
+    );
 
-    const emailInput = screen.getByPlaceholderText("Пошта або Номер телефону");
-    const passwordInput = screen.getByPlaceholderText("Пароль");
+    const emailInput = screen.getByLabelText("Пошта або Номер телефону");
+    const passwordInput = screen.getByLabelText("Пароль");
     const submitButton = screen.getByText("Вхід");
 
     act(() => {
@@ -34,9 +40,13 @@ describe("SignInForm", () => {
   });
 
   test("should show warning messages for invalid input", () => {
-    render(<SignInForm onSubmit={() => {}} />);
-    const emailInput = screen.getByPlaceholderText("Пошта або Номер телефону");
-    const passwordInput = screen.getByPlaceholderText("Пароль");
+    render(
+      <ThemeProvider theme={theme}>
+        <SignInForm onSubmit={() => {}} />
+      </ThemeProvider>
+    );
+    const emailInput = screen.getByLabelText("Пошта або Номер телефону");
+    const passwordInput = screen.getByLabelText("Пароль");
     const submitButton = screen.getByText("Вхід");
 
     act(() => {
@@ -56,9 +66,13 @@ describe("SignInForm", () => {
   });
 
   test("should update formData state when input values are changed", () => {
-    render(<SignInForm onSubmit={() => {}} />);
-    const emailInput = screen.getByPlaceholderText("Пошта або Номер телефону");
-    const passwordInput = screen.getByPlaceholderText("Пароль");
+    render(
+      <ThemeProvider theme={theme}>
+        <SignInForm onSubmit={() => {}} />
+      </ThemeProvider>
+    );
+    const emailInput = screen.getByLabelText("Пошта або Номер телефону");
+    const passwordInput = screen.getByLabelText("Пароль");
 
     act(() => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
@@ -72,8 +86,12 @@ describe("SignInForm", () => {
   });
 
   test("should display validation error message when email input is empty", () => {
-    render(<SignInForm onSubmit={() => {}} />);
-    const emailInput = screen.getByPlaceholderText("Пошта або Номер телефону");
+    render(
+      <ThemeProvider theme={theme}>
+        <SignInForm onSubmit={() => {}} />
+      </ThemeProvider>
+    );
+    const emailInput = screen.getByLabelText("Пошта або Номер телефону");
     const submitButton = screen.getByText("Вхід");
 
     act(() => {
@@ -86,8 +104,12 @@ describe("SignInForm", () => {
   });
 
   test("should display validation error message when password input is empty", () => {
-    render(<SignInForm onSubmit={() => {}} />);
-    const passwordInput = screen.getByPlaceholderText("Пароль");
+    render(
+      <ThemeProvider theme={theme}>
+        <SignInForm onSubmit={() => {}} />
+      </ThemeProvider>
+    );
+    const passwordInput = screen.getByLabelText("Пароль");
     const submitButton = screen.getByText("Вхід");
 
     act(() => {
