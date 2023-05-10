@@ -28,7 +28,7 @@ export default function AboutUs() {
               тварин.
             </p>
             <NavLink to="/about">
-              <Button1 className="btn-blue">Дізнатись більше</Button1>
+              <Button className="btn-blue">Дізнатись більше</Button>
             </NavLink>
           </div>
         </div>
