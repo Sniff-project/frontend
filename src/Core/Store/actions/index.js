@@ -5,6 +5,12 @@ export {
 	loginRequest,
 	loginSuccess,
 	loginFailure,
+	LOGOUT_REQUEST,
+	LOGOUT_SUCCESS,
+	LOGOUT_FAILURE,
+	logoutRequest,
+	logoutSuccess,
+	logoutFailure,
 	REGISTER_REQUEST,
 	REGISTER_SUCCESS,
 	REGISTER_FAILURE,
@@ -14,6 +20,12 @@ export {
 } from "./auth";
 
 export {
+	UPLOAD_AVATAR_REQUEST,
+	UPLOAD_AVATAR_SUCCESS,
+	UPLOAD_AVATAR_FAILURE,
+	uploadAvatarRequest,
+	uploadAvatarSuccess,
+	uploadAvatarFailure,
 	PROFILE_REQUEST,
 	PROFILE_SUCCESS,
 	PROFILE_FAILURE,

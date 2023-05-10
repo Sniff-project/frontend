@@ -1,4 +1,13 @@
 export {
+	UPLOAD_AVATAR_REQUEST,
+	UPLOAD_AVATAR_SUCCESS,
+	UPLOAD_AVATAR_FAILURE,
+	uploadAvatarRequest,
+	uploadAvatarSuccess,
+	uploadAvatarFailure,
+} from "./avatar";
+
+export {
 	PROFILE_REQUEST,
 	PROFILE_SUCCESS,
 	PROFILE_FAILURE,

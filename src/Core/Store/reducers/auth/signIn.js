@@ -5,7 +5,7 @@ import {
 } from "@core/Store/actions";
 
 const initialState = {
-  token: null,
+  data: null,
   isLoading: false,
   error: null,
 };
@@ -17,7 +17,7 @@ export function signInReducer(state = initialState, action) {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        token: action.payload.token,
+        data: action.payload.data,
         isLoading: false,
         error: null,
       };

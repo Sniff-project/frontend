@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "@components/ui";
 import { AuthContext } from "@contexts";
@@ -9,17 +9,22 @@ import SignUpForm from "@components/smart/SignUpForm";
 import "./styles.scss";
 
 const SignUpBlock = () => {
-  const { login } = useContext(AuthContext);
+  const auth = useContext(AuthContext);
   const dispatch = useDispatch();
   const signUpState = useSelector((state) => state.signUp);
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
   const onSubmitHandler = (data) => {
-    dispatch(register(data)).then((token) => {
-      login(token);
-    });
+    dispatch(register(data));
   };
+
+  useEffect(() => {
+    if (signUpState.data?.jwtToken) {
+      auth.login(signUpState.data.jwtToken);
+      signUpState.data = null;
+    }
+  }, [auth, signUpState]);
 
   const toggleShowPassword1 = () => {
     setShowPassword1(!showPassword1);

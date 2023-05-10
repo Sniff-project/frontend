@@ -6,6 +6,10 @@ import {
 
 import { changePassword as changePasswd } from "@core/API/users";
 
+const successMsg = "Пароль успішно змінено!";
+const errorMsg = "Невірний пароль!";
+const unknownError = "Щось пішло не так :(";
+
 export const changePassword = ({
 	userId,
 	token,
@@ -22,15 +26,26 @@ export const changePassword = ({
 				newPassword
 			);
 			if (response.status === 200) {
-				dispatch(changePasswordSuccess("Пароль успішно змінено!"));
+				const result = {
+					...response.data,
+					message: successMsg
+				};
+				dispatch(changePasswordSuccess(result));
 			} else {
 				// error 404 or others
-				dispatch(changePasswordFailure(response.data));
-				throw response.data;
+				const result = {
+					...response.data,
+					message: errorMsg
+				};
+				dispatch(changePasswordFailure(result));
 			}
 		} catch (error) {
 			// unexpected errors
-			dispatch(changePasswordFailure(error));
+			const result = {
+				...error,
+				message: unknownError
+			};
+			dispatch(changePasswordFailure(result));
 			throw error;
 		}
 	};

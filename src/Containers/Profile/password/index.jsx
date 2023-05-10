@@ -39,7 +39,7 @@ const Password = memo(() => {
         )}
         {changePasswordState.success && (
           <Message
-            message={changePasswordState.success}
+            message={changePasswordState.success.message}
             messageType="success"
             mt={4}
           />

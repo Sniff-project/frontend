@@ -1,4 +1,13 @@
 export {
+	LOGOUT_REQUEST,
+	LOGOUT_SUCCESS,
+	LOGOUT_FAILURE,
+	logoutRequest,
+	logoutSuccess,
+	logoutFailure,
+} from "./logout";
+
+export {
 	LOGIN_REQUEST,
 	LOGIN_SUCCESS,
 	LOGIN_FAILURE,

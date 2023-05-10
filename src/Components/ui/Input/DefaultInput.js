@@ -23,6 +23,7 @@ const DInput = styled(Input)(
     pointer-events: none;
     padding-left: 10px;
     height: auto;
+    pointer-events: auto;
     transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
       max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, padding 200ms cubic-bezier(0, 0, 0.2, 1);
   }
