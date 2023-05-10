@@ -4,6 +4,7 @@ import { AuthContext } from "@contexts";
 import { profile as getProfile } from "@core/Services/users";
 import { Spinner } from "@components/simple";
 import { Message } from "@components/ordinary";
+import { UserData } from "@components/smart/Profile";
 
 const Password = () => {
   const { user, token } = useContext(AuthContext);
@@ -32,16 +33,8 @@ const Password = () => {
             margin={{ bottom: 8 }}
           />
         )}
-        {profileState.profile && (
-          <div>
-            <p>
-              Name: {profileState.profile.firstname}{" "}
-              {profileState.profile.lastname}
-            </p>
-            <p>Email: {profileState.profile.email}</p>
-            <p>Phone: {profileState.profile.phone}</p>
-            <p>Address: {profileState.profile.city}</p>
-          </div>
+        {(profileState.profile && !profileState.isLoading) && (
+          <UserData profileState={profileState}/>
         )}
       </div>
     </>
