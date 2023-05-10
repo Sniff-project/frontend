@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { logoutReducer, signInReducer, signUpReducer } from "./auth";
-import { uploadAvatarReducer, profileReducer, changePasswordReducer } from "./users";
+import { uploadAvatarReducer, profileReducer, changePasswordReducer, changeProfileReducer } from "./users";
 
 const reducer = combineReducers({
   // auth

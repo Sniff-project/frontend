@@ -75,6 +75,10 @@
                 line-height: 24px;
                 color: #000000;
 
+                input:not([type="image"]) {
+                    cursor: auto;
+                }
+
                 input:last-child {
                     margin-left: 200px;
                 }

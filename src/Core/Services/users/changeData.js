@@ -1,3 +1,9 @@
+import {
+	profileRequest,
+	profileSuccess,
+	profileFailure,
+} from "@core/Store/actions/users";
+
 import {changeProfileData} from "../../API/users/changeProfile";
 
 const unknownError = "Щось пішло не так :(";
@@ -14,6 +20,7 @@ export const changeData = ({
 }) => {
     return async (dispatch) => {
         try {
+            dispatch(profileRequest());
             const response = await changeProfileData(
                 userId,
                 token,
@@ -27,24 +34,23 @@ export const changeData = ({
             if (response.status === 200) {
                 const result = {
                     ...response.data,
-                    message: "successs"
+                    message: "success"
                 };
-                console.log(result);
+                dispatch(profileSuccess(result));
 
             } else {
                 const result = {
                     ...response.data,
-                    message: "errrror"
+                    message: "error"
                 };
-                console.log(result);
-
+                dispatch(profileFailure(result));
             }
         } catch (error) {
             const result = {
                 ...error,
                 message: unknownError
             };
-            console.log(result);
+            dispatch(profileFailure(result));
             throw error;
         }
     };
