@@ -70,7 +70,7 @@
         justify-content: center;
         width: 13vw;
 
-        .logo-holder {
+        &-holder {
             font-size: 2.25rem;
             text-transform: uppercase;
             display: flex;
@@ -164,7 +164,7 @@
         display: flex;
         padding: 0;
 
-        .nav-menu-list__item {
+        &__item {
             a {
                 padding: 8px 12px;
                 font-size: 1.25rem;
@@ -240,7 +240,7 @@
         flex-direction: column;
         gap: 25px 0;
 
-        .nav-userMenu-list__item {
+        &__item {
             >a {
                 font-size: 1.25rem;
                 padding: 0;

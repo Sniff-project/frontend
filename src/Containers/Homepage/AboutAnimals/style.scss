@@ -4,7 +4,7 @@
     width: 85%;
     margin: 0 auto;
 
-    .aboutAnimals-title {
+    &-title {
         font-size: 1.8rem;
         text-align: center;
         margin-bottom: 120px;
@@ -20,7 +20,7 @@
             display: flex;
             justify-content: center;
 
-            .animalArticle-circle {
+            &-circle {
                 width: 100px;
                 height: 100px;
                 border-radius: 50%;
@@ -51,7 +51,7 @@
                 }
             }
 
-            .animalArticle-info {
+            &-info {
                 max-width: 530px;
 
                 .animalArticle-text {

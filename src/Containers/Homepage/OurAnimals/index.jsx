@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import AnimalCards from "@components/smart/Homepage/AnimalCards";
+import AnimalSlideCards from "@components/smart/Homepage/AnimalSlideCards";
 import "./style.scss";
-import AnimalSlideCard from "../../../Components/smart/Homepage/AnimalSlideCards/AnimalSlideCard";
 
 export default function OurAnimals() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -18,7 +18,7 @@ export default function OurAnimals() {
     <section id="ourAnimals">
       <div className="animals">
         <h2 className="animals-title">Наші тваринки</h2>
-        {screenWidth > 619 ? <AnimalCards /> : <AnimalSlideCard />}
+        {screenWidth > 619 ? <AnimalCards /> : <AnimalSlideCards />}
       </div>
     </section>
   );

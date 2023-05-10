@@ -5,7 +5,7 @@ import AnimalCard from "@components/ordinary/Homepage/AnimalCard";
 import dogImg from "../../../../Assets/Images/Homepage/dog.webp";
 import NavigationCard from '../../../ordinary/Homepage/NavigationCard';
 
-export default function AnimalSlideCard() {
+export default function AnimalSlideCards() {
 
     const cardsAnimals = ["Роза", "Бібі", "Ріо", false];
 
