@@ -17,7 +17,6 @@ export default function UserData({ profileState }) {
     email: profileState.profile.email,
   });
 
-
   const onEditHandler = (e) => {
     e.preventDefault();
     setIsEditing(!isEditing);
@@ -98,14 +97,14 @@ export default function UserData({ profileState }) {
             </label>
 
             <label className="emptyInputImage">
-              Выберите файл
+              Виберіть файл
               <input
                 id="input__file"
                 type="file"
                 accept="image/png, image/jpeg"
                 name="avatar"
                 src=""
-                style={{ visibility: "hidden", position: "absolute"}}
+                style={{ visibility: "hidden", position: "absolute" }}
               />
             </label>
 
