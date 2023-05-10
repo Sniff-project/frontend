@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
-import { Link1 } from "@components/ui";
+import { Link } from "@components/ui";
 import { Spinner } from "@components/simple";
-import { ErrorMessage } from "@components/ordinary";
+import { Message } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
 import "./styles.scss";
 
@@ -25,8 +25,7 @@ const SignInPopup = () => {
       id="SignInPopup"
       aria-hidden="true"
       aria-labelledby="SignInPopup"
-      tabIndex="-1"
-    >
+      tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content border-0">
           {signInState.isLoading && <Spinner size={100} />}
@@ -35,15 +34,16 @@ const SignInPopup = () => {
           </div>
           <div className="modal-body p-0">
             {signInState.error && (
-              <ErrorMessage
-                message={signInState.error}
+              <Message
+                message={signInState.error.message}
+                messageType="error"
                 margin={{ bottom: 8 }}
               />
             )}
             <SignInForm onSubmit={onSubmitHandler} />
             <div className="content-after-form d-flex justify-content-center flex-wrap">
               <p className="mb-2 mb-sm-0">Ще не з нами?</p>
-              <Link1 to="/signup">Зареєструватись</Link1>
+              <Link href="/signup">Зареєструватись</Link>
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ export const register = ({ firstname, lastname, email, phone, password }) => {
 			}
 		} catch (error) {
 			// unexpected errors
-			dispatch(registerFailure(error.message));
+			dispatch(registerFailure(error));
 			throw error;
 		}
 	};

@@ -21,7 +21,7 @@ export const profile = ({ userId, token }) => {
 			}
 		} catch (error) {
 			// unexpected errors
-			dispatch(profileFailure(error.message));
+			dispatch(profileFailure(error));
 			throw error;
 		}
 	};

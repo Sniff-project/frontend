@@ -10,6 +10,6 @@ export const getProfile = async (userId, token) => {
 		});
 		return response;
 	} catch (error) {
-		return error.response;
+		return error?.response || { message: "Unknown error occurred." };
 	}
 };

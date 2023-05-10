@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Button1 } from "@components/ui";
+import { Button } from "@components/ui";
 import "./style.scss";
 
 export default function AboutUs() {

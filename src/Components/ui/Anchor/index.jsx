@@ -1,10 +1,18 @@
 import React, { useEffect, useCallback } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import { styled } from "@mui/system";
+import { default as MLink } from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
-export default function Anchor({ href, text, className, color = "white" }) {
+export default function Anchor({
+  href,
+  text,
+  className,
+  color = "white",
+  ...rest
+}) {
+  const theme = useTheme();
   const navigate = useNavigate();
-
-  const anchorClassName = `text-${color} ${className}`;
 
   const handleScroll = useCallback(() => {
     const targetId = window.localStorage.getItem("targetId");
@@ -39,8 +47,31 @@ export default function Anchor({ href, text, className, color = "white" }) {
   );
 
   return (
-    <Link to={href} className={anchorClassName} onClick={handleClick}>
+    <StyledAnchor
+      theme={theme}
+      color={color}
+      to={href}
+      className={className}
+      onClick={handleClick}
+      {...rest}>
       {text}
-    </Link>
+    </StyledAnchor>
   );
 }
+
+const StyledAnchor = styled(MLink)(
+  ({ theme }) => `
+  & {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: none;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+      color: ${theme.palette.primary.main};
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+`
+);

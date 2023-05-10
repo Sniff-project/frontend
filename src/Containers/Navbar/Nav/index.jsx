@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
-import Anchor from "@components/ui/Anchor";
+import { Anchor, Link } from "@components/ui";
 import { AuthContext } from "@contexts";
 import { pageTitles } from "./pageTitles";
 import imgArrow from "@assets/Icons/nav/Arrow.svg";
@@ -57,32 +57,32 @@ export default function Nav() {
         <div ref={bgElem} className="nav-holder">
           <div className="nav-row">
             <div className="logo">
-              <NavLink to="/">
+              <Link href="/" sx={{ padding: "10px 15px", height: "100%" }}>
                 <div className="logo-holder">
                   sniff
                   <div className="logo-cat">
                     <img alt="#" src={logoCat} />
                   </div>
                 </div>
-              </NavLink>
+              </Link>
             </div>
             <div className="nav-row__center">
-              <button className="nav-row__btn" onClick={showMenu}>
+              <Link href="#" className="nav-row__btn" onClick={showMenu}>
                 <span>{title}</span>
                 <img alt="#" src={imgArrow} />
-              </button>
+              </Link>
 
               {screenWidth > 750 && (
                 <ul className="nav-list">
                   <li className="nav-list__item">
-                    <NavLink className="nav-list__addPet" to="/addpet">
+                    <Link className="nav-list__addPet" to="/addpet">
                       Я знайшов тваринку
-                    </NavLink>
+                    </Link>
                   </li>
                   <li className="nav-list__item">
-                    <NavLink className="nav-list__addPet" to="/addpet">
+                    <Link className="nav-list__addPet" to="/addpet">
                       Я загубив тваринку
-                    </NavLink>
+                    </Link>
                   </li>
                 </ul>
               )}
@@ -90,40 +90,52 @@ export default function Nav() {
 
             {isAuth.user && isAuth.isAuthenticated ? (
               <div>
-                <button onClick={showUserMenu} className="nav-row__btn">
+                <Link href="#" onClick={showUserMenu} className="nav-row__btn">
                   <img alt="#" src={userIcon} />
                   <span>{isAuth.user.name}</span>
                   <img alt="#" src={imgArrow} />
-                </button>
+                </Link>
 
                 <div className="wrap">
                   <Transition
                     in={userMenu}
                     timeout={50}
                     mountOnEnter
-                    unmountOnExit
-                  >
+                    unmountOnExit>
                     <ul className="nav-userMenu-list">
                       <li className="nav-userMenu-list__item">
-                        <NavLink to="/profile">
+                        <Link
+                          href="/profile"
+                          sx={{
+                            width: "100%",
+                            justifyContent: "flex-start",
+                            px: "10%",
+                          }}>
                           <img alt="#" src={i_icon} />
                           профіль
-                        </NavLink>
+                        </Link>
                       </li>
                       <li className="nav-userMenu-list__item">
-                        <button onClick={logOut}>
+                        <Link
+                          href="#"
+                          onClick={logOut}
+                          sx={{
+                            width: "100%",
+                            justifyContent: "flex-start",
+                            px: "10%",
+                          }}>
                           <img alt="#" src={logout_icon} />
                           вихід
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </Transition>
                 </div>
               </div>
             ) : (
-              <NavLink className="nav-row_singUp" to="/signin">
+              <Link className="nav-row_singUp" href="/signin">
                 Вхід
-              </NavLink>
+              </Link>
             )}
           </div>
 
@@ -131,7 +143,7 @@ export default function Nav() {
             <Transition in={navMenu} timeout={50} mountOnEnter unmountOnExit>
               <ul className="nav-menu-list">
                 <li className="nav-menu-list__item">
-                  <a href="/">Головна сторінка</a>
+                  <Link href="/">Головна сторінка</Link>
                 </li>
                 <li className="nav-menu-list__item">
                   <Anchor text="Наші тваринки" href="#ourAnimals" />
@@ -140,20 +152,20 @@ export default function Nav() {
                   <Anchor text="Інформація про тваринок" href="#aboutAnimals" />
                 </li>
                 <li className="nav-menu-list__item">
-                  <NavLink to="/about">Про нас</NavLink>
+                  <Link href="/about">Про нас</Link>
                 </li>
 
                 {screenWidth <= 750 && (
                   <>
                     <li className="nav-menu-list__item">
-                      <NavLink className="nav-list__addPet" to="/addpet">
+                      <Link className="nav-list__addPet" to="/addpet">
                         Я знайшов тваринку
-                      </NavLink>
+                      </Link>
                     </li>
                     <li className="nav-menu-list__item">
-                      <NavLink className="nav-list__addPet" to="/addpet">
+                      <Link className="nav-list__addPet" to="/addpet">
                         Я загубив тваринку
-                      </NavLink>
+                      </Link>
                     </li>
                   </>
                 )}

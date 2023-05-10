@@ -15,12 +15,17 @@
 			font-weight: 400;
 			font-size: 32px;
 			line-height: 39px;
+			margin: 0;
 		}
 		&__form {
 			position: relative;
 		}
 		&__content-after-form {
 			gap: 5px 20px;
+
+			p {
+				margin-bottom: 10px;
+			}
 		}
 	}
 }

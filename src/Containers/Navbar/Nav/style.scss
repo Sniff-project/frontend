@@ -4,16 +4,16 @@
     position: relative;
 
     ul {
-        margin: 0 !important;
+        margin: 0;
     }
 
     a {
-        text-decoration: none !important;
-        color: black !important;
-        transition: color 0.3s ease-in-out;
+        text-decoration: none;
+        color: black;
 
         &:hover {
-            color: #3200ff !important;
+            color: #3200ff;
+            background-color: rgba(0, 0, 0, 0.04);
         }
     }
 
@@ -46,7 +46,7 @@
 
             &:hover {
                 span {
-                    color: #3200ff !important;
+                    color: #3200ff;
                 }
             }
         }
@@ -142,6 +142,15 @@
         display: flex;
         align-items: center;
         list-style: none;
+        height: 100%;
+
+        &__item {
+            height: 100%;
+
+            a {
+                height: 100%;
+            }
+        }
     }
 
     .nav-menu-list {
@@ -152,7 +161,7 @@
         left: 13vw;
         background-color: var(--bg-color);
         display: flex;
-        padding: 8px;
+        padding: 0;
 
         .nav-menu-list__item {
             a {

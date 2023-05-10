@@ -1,4 +1,5 @@
 .footer {
+    overflow: hidden;
     margin-top: 240px;
     background-color: #587081;
     color: white;
@@ -20,7 +21,7 @@
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            padding: 0px 8vw;
+            padding: 0px calc(8vw - 40px);
 
             .footer-logo__text {
                 color: white;
@@ -57,6 +58,8 @@
             }
 
             ul {
+                margin-top: 0;
+                padding-inline-start: 2rem;
                 li {
                     &::marker {
                         color: white;
@@ -64,6 +67,9 @@
 
                     a {
                         font-size: var(--font-size-footer);
+                        padding: 5px 8px;
+                        margin-left: -8px;
+                        font-size: 15px;
                         transition: color 0.3s ease-in-out;
 
                         &:hover {
@@ -104,6 +110,7 @@
         .footer-contacts {
             display: flex;
             flex-direction: column;
+
             padding: 61px 80px;
 
             h3 {
