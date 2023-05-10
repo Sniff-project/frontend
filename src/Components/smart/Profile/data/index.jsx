@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "@components/ui/Button";
+import Avatar from "../avatar";
 import editImg from "@assets/Icons/profile/edit.svg";
 import confirmImg from "@assets/Icons/profile/confirm.svg";
 
@@ -180,16 +181,7 @@ export default function UserData({ profileState }) {
               />
             </label>
 
-            {profileState.profile.image ? (
-              <input
-                readOnly
-                type="image"
-                name="avatar"
-                src={profileState.profile.image}
-              />
-            ) : (
-              <div className="emptyInputImage">Фото</div>
-            )}
+            <Avatar />
 
             <div className="profile-form__btn">
               <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>

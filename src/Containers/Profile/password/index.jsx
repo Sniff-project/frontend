@@ -30,9 +30,7 @@ const Password = memo(() => {
         {changePasswordState.isLoading && <Spinner size={100} />}
         {changePasswordState.error && (
           <Message
-            message={
-              changePasswordState.error.message || "Щось пішло не так :("
-            }
+            message={changePasswordState.error.message}
             messageType="error"
             mt={4}
           />
