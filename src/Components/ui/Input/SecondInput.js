@@ -29,6 +29,7 @@ const SInput = styled(Input)(
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
+    pointer-events: auto;
 
     &:placeholder {
       display: block;
