@@ -123,6 +123,7 @@ export default function UserData({ profileState }) {
                 accept="image/png, image/jpeg"
                 name="avatar"
                 src=""
+                alt="Your photo"
                 style={{ visibility: "hidden", position: "absolute" }}
               />
             </label>
@@ -205,6 +206,7 @@ export default function UserData({ profileState }) {
                 type="image"
                 name="avatar"
                 src={profileState.profile.image}
+                alt="Your photo"
               />
             ) : (
               <div className="emptyInputImage">Фото</div>
