@@ -1,9 +1,8 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel';
 import AnimalCard from "@components/ordinary/Homepage/AnimalCard";
-
-import dogImg from "../../../../Assets/Images/Homepage/dog.webp";
-import NavigationCard from '../../../ordinary/Homepage/NavigationCard';
+import dogImg from "@assets/Images/Homepage/dog.webp";
+import NavigationCard from "@components/ordinary/Homepage/NavigationCard";
 
 export default function AnimalSlideCards() {
 
