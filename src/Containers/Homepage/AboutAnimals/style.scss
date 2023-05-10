@@ -1,55 +1,124 @@
 .aboutAnimals {
-    padding-top: 31px;
+    padding-top: 60px;
     padding-bottom: 125px;
-    width: 90%;
+    width: 85%;
     margin: 0 auto;
 
-    .aboutAnimals-title {
-        font-size: 25px;
+    &-title {
+        font-size: 1.8rem;
         text-align: center;
-        margin-bottom: 180px;
+        margin-bottom: 120px;
     }
 
     .animalArticle-container {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
         justify-content: center;
         gap: 180px 70px;
 
         .animalArticle {
             display: flex;
-            align-items: center;
             justify-content: center;
 
-            .animalArticle-circle {
+            &-circle {
                 width: 100px;
                 height: 100px;
                 border-radius: 50%;
-                background: rgba(72, 209, 168, 0.5);
+                background-color: rgba(72, 209, 168, 0.5);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 margin-right: 20px;
             }
 
-            .animalArticle-info {
-                max-width: 510px;
+            @media (max-width: 1300px) {
+                .animalArticle-circle {
+                    width: 80px;
+                    height: 80px;
+                    img {
+                        transform: scale(.8);
+                    }
+                }
+            }
+
+            @media (max-width: 950px) {
+                .animalArticle-circle {
+                    width: 65px;
+                    height: 65px;
+                    img {
+                        transform: scale(.65);
+                    }
+                }
+            }
+
+            &-info {
+                max-width: 530px;
 
                 .animalArticle-text {
                     margin: 0;
                     font-weight: 300;
-                    line-height: 28px;
-                    font-size: 20px;
+                    line-height: 1.75rem;
+                    font-size: 1.25rem;
                 }
 
                 .animalArticle-title {
                     margin: 0 0 10px 0;
                     font-weight: 500;
-                    font-size: 20px;
+                    font-size: 1.25rem;
+                    line-height: 1.75rem;
+                }
+            }
+
+            @media (max-width: 1600px) {
+                .animalArticle-info {
+                    max-width: 450px;
+                }
+            }
+
+            @media (max-width: 650px) {
+                .animalArticle-info {
+                    max-width: 300px;
+                }
+            }
+
+            @media (max-width: 500px) {
+                .animalArticle-info {
+                    max-width: 220px;
                 }
             }
         }
     }
 
+    @media (max-width: 1600px) {
+        .animalArticle-container {
+            gap: 150px 40px;
+        }
+    }
+
+    @media (max-width: 1500px) {
+        .animalArticle-container {
+            gap: 70px 0;
+            flex-direction: column;
+        }
+
+        .aboutAnimals-title {
+            margin-bottom: 80px;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        .animalArticle-container {
+            gap: 40px 0;
+        }
+
+        .aboutAnimals-title {
+            margin-bottom: 60px;
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .aboutAnimals {
+        padding-bottom: 0px;
+    }
 }

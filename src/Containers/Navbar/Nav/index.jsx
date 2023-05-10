@@ -25,6 +25,11 @@ export default function Nav() {
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
 
   useEffect(() => {
     setNavMenu(false);
@@ -33,6 +38,10 @@ export default function Nav() {
       return pageTitle ? pageTitle.title : pageTitles[0].title;
     });
   }, [pathname]);
+
+  const handleResize = (event) => {
+    setScreenWidth(event.target.innerWidth);
+  };
 
   const showMenu = () => {
     if (pathname === pageTitles[0].link) {
@@ -57,11 +66,9 @@ export default function Nav() {
               <Link href="/" sx={{ padding: "10px 15px", height: "100%" }}>
                 <div className="logo-holder">
                   sniff
-                  {isAuth.isAuthenticated && (
-                    <div className="logo-cat">
-                      <img alt="#" src={logoCat} />
-                    </div>
-                  )}
+                  <div className="logo-cat">
+                    <img alt="#" src={logoCat} />
+                  </div>
                 </div>
               </Link>
             </div>
@@ -71,18 +78,20 @@ export default function Nav() {
                 <img alt="#" src={imgArrow} />
               </Link>
 
-              <ul className="nav-list">
-                <li className="nav-list__item">
-                  <Link className="nav-list__addPet" href="/addpet">
-                    Я знайшов тваринку
-                  </Link>
-                </li>
-                <li className="nav-list__item">
-                  <Link className="nav-list__addPet" href="/addpet">
-                    Я загубив тваринку
-                  </Link>
-                </li>
-              </ul>
+              {screenWidth > 750 && (
+                <ul className="nav-list">
+                  <li className="nav-list__item">
+                    <Link className="nav-list__addPet" to="/addpet">
+                      Я знайшов тваринку
+                    </Link>
+                  </li>
+                  <li className="nav-list__item">
+                    <Link className="nav-list__addPet" to="/addpet">
+                      Я загубив тваринку
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </div>
 
             {isAuth.user && isAuth.isAuthenticated ? (
@@ -151,6 +160,21 @@ export default function Nav() {
                 <li className="nav-menu-list__item">
                   <Link href="/about">Про нас</Link>
                 </li>
+
+                {screenWidth <= 750 && (
+                  <>
+                    <li className="nav-menu-list__item">
+                      <Link className="nav-list__addPet" to="/addpet">
+                        Я знайшов тваринку
+                      </Link>
+                    </li>
+                    <li className="nav-menu-list__item">
+                      <Link className="nav-list__addPet" to="/addpet">
+                        Я загубив тваринку
+                      </Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </Transition>
           </div>

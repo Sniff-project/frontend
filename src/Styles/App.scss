@@ -2,12 +2,15 @@
   width: 5px;
   height: 5px;
 }
+
 ::-webkit-scrollbar-track {
   background: #e8ebf2;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #48a0d1;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #33759a;
 }
@@ -54,4 +57,27 @@ h5,
 h6 {
   margin-top: 0;
   margin-bottom: 5px;
+}
+
+@media (max-width: 1400px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1300px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 950px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 10px;
+  }
 }
