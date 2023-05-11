@@ -28,13 +28,13 @@ const Password = () => {
         {profileState.isLoading && <Spinner size={100} />}
         {profileState.error && (
           <Message
-            message="Щось пішло не так :("
+            message={profileState.error.message}
             messageType="error"
             margin={{ bottom: 8 }}
           />
         )}
-        {(profileState.profile && !profileState.isLoading) && (
-          <UserData profileState={profileState}/>
+        {profileState.profile && !profileState.isLoading && (
+          <UserData profileState={profileState} />
         )}
       </div>
     </>
