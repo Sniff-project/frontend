@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout as logoutUser } from "@core/Services";
 import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
@@ -17,11 +17,12 @@ import "./style.scss";
 
 export default function Nav() {
   const isAuth = useContext(AuthContext);
+  const profileState = useSelector((state) => state.profile);
   const [navMenu, setNavMenu] = useState(false);
   const [title, setTitle] = useState("");
   const bgElem = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
-
+  const name = profileState.profile.firstname;
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
@@ -94,11 +95,11 @@ export default function Nav() {
               )}
             </div>
 
-            {isAuth.user && isAuth.isAuthenticated ? (
+            {name && isAuth.isAuthenticated ? (
               <div>
                 <Link href="#" onClick={showUserMenu} className="nav-row__btn">
                   <img alt="#" src={userIcon} />
-                  <span>{isAuth.user.name}</span>
+                  <span>{name}</span>
                   <img alt="#" src={imgArrow} />
                 </Link>
 
