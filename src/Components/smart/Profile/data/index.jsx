@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { changeData } from "@core/Services";
 import Button from "@components/ui/Button";
 import Avatar from "../avatar";
 import editImg from "@assets/Icons/profile/edit.svg";
 import confirmImg from "@assets/Icons/profile/confirm.svg";
+import { useDispatch } from "react-redux";
+import { AuthContext } from "@contexts";
 
 export default function UserData({ profileState }) {
   const emptyFieldMessage = "Незаповнене поле";
+  const { user, token } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
     avatar: profileState.profile.avatar,
@@ -21,6 +26,20 @@ export default function UserData({ profileState }) {
   const onEditHandler = (e) => {
     e.preventDefault();
     setIsEditing(!isEditing);
+    if (isEditing) {
+      dispatch(
+        changeData({
+          userId: user.sub,
+          token: token,
+          firstname: userData.firstname,
+          lastname: userData.lastname,
+          email: userData.email,
+          phone: userData.phone,
+          region: userData.region,
+          city: userData.city,
+        })
+      );
+    }
   };
 
   return (
@@ -105,6 +124,7 @@ export default function UserData({ profileState }) {
                 accept="image/png, image/jpeg"
                 name="avatar"
                 src=""
+                alt="Your photo"
                 style={{ visibility: "hidden", position: "absolute" }}
               />
             </label>
@@ -181,7 +201,7 @@ export default function UserData({ profileState }) {
               />
             </label>
 
-            <Avatar />
+            <Avatar src={profileState.profile.image} />
 
             <div className="profile-form__btn">
               <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
