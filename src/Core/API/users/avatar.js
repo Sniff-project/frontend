@@ -7,11 +7,12 @@ export const uploadAvatar = async (
 	image
 ) => {
 	try {
-		const response = await axios.put(
+		const response = await axios.post(
 			`${imageUrl}/${userId}/upload`, { image },
 			{
 				headers: {
 					Authorization: `Bearer ${token}`,
+					"Content-Type": "multipart/form-data"
 				},
 			}
 		);
