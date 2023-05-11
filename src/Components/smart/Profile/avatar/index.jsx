@@ -28,10 +28,10 @@ const Avatar = ({ src = null, width = 305, height = 315 }) => {
   }, [imageFile, user, token, dispatch]);
 
   const image =
-    src || uploadAvatarState.success?.url ? (
+    uploadAvatarState.success?.url || src ? (
       <div className="profile__avatar">
         <img
-          src={src || uploadAvatarState.success.url}
+          src={uploadAvatarState.success?.url || src}
           alt="avatar"
           width={width}
           height={height}
