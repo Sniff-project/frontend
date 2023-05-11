@@ -7,7 +7,6 @@
     }
 
     &-holder {
-
         .profile-form,
         .editProfile-form {
             height: 300px;
@@ -31,8 +30,9 @@
                     padding-left: 10px;
                     border: none;
                     background-color: transparent;
-                    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
-                        max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, padding 200ms cubic-bezier(0, 0, 0.2, 1);
+                    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+                        transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+                        padding 200ms cubic-bezier(0, 0, 0.2, 1);
                     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
                     cursor: default;
 
@@ -85,7 +85,7 @@
             }
 
             button {
-                background: #6DFA9D;
+                background: #6dfa9d;
                 box-shadow: 0px 0px 25px rgba(109, 250, 157, 0.5);
                 color: #005403;
             }

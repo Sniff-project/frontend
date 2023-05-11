@@ -1,2 +1,2 @@
 export { login, logout, register } from "./auth";
-export { profile, changeData } from "./users";
+export { changeData, changePassword, profile, uploadAvatar } from "./users";
