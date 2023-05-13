@@ -1,5 +1,6 @@
+import { memo } from "react";
 import { Container, Grid, IconButton, Tooltip } from "@mui/material";
-import { PetInfoBlock } from "@components/smart/PetProfile";
+import { PetInfoBlock, PetLocationBlock } from "@components/smart/PetProfile";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import "./styles.scss";
 
@@ -30,8 +31,13 @@ const PetProfileInfo = ({ name, type, age, breed, weight }) => {
         <h3 className="pet-profile__header">Профіль тваринки</h3>
       </Grid>
       <PetInfoBlock petImage={petImage} margin={"60px 0 30px"} />
+      <Grid container>
+        <Grid item xs={12} md={6} lg={8}>
+          <PetLocationBlock />
+        </Grid>
+      </Grid>
     </Container>
   );
 };
 
-export default PetProfileInfo;
+export default memo(PetProfileInfo);

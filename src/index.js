@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "@core/Store";
 import { Spinner } from "@components/simple";
+import "leaflet/dist/leaflet.css";
 import "./Styles/index.scss";
 
 const App = lazy(() => import("./App"));
