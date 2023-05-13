@@ -1,6 +1,9 @@
-import { Box, Container, Grid, IconButton } from "@mui/material";
+import { Container, Grid, IconButton, Tooltip } from "@mui/material";
+import { PetInfoBlock } from "@components/smart/PetProfile";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import "./styles.scss";
+
+import { petImage } from "./testPetImage";
 
 const PetProfileInfo = ({ name, type, age, breed, weight }) => {
   return (
@@ -19,25 +22,14 @@ const PetProfileInfo = ({ name, type, age, breed, weight }) => {
         },
       }}>
       <Grid container alignItems="center" sx={{ top: "50px", left: "50px" }}>
-        <IconButton onClick={null}>
-          <ArrowBackRoundedIcon color="black" />
-        </IconButton>
+        <Tooltip title="В галерею">
+          <IconButton onClick={null}>
+            <ArrowBackRoundedIcon color="black" />
+          </IconButton>
+        </Tooltip>
         <h3 className="pet-profile__header">Профіль тваринки</h3>
       </Grid>
-      <Box className="pet-profile__infoBlock">
-        <p>
-          <strong>Type:</strong> {type}
-        </p>
-        <p>
-          <strong>Age:</strong> {age}
-        </p>
-        <p>
-          <strong>Breed:</strong> {breed}
-        </p>
-        <p>
-          <strong>Weight:</strong> {weight}
-        </p>
-      </Box>
+      <PetInfoBlock petImage={petImage} margin={"60px 0 30px"} />
     </Container>
   );
 };
