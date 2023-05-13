@@ -1,6 +1,6 @@
+import { Grid } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 import { SecondInput as Input, Button } from "@components/ui";
-import { Grid } from "@components/simple";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 

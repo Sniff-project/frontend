@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Box } from "@mui/material";
 import { UserInfo, Password } from "@containers/Profile";
-import { Box } from "@components/simple";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
 import "./styles.scss";
 
