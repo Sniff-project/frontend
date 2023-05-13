@@ -1,7 +1,10 @@
 import { Box, Grid } from "@mui/material";
 import { styled } from "@mui/system";
 
-import { PetAboutBlock } from "@components/ordinary/PetProfile";
+import {
+  PetAboutBlock,
+  PetHistoryBlock,
+} from "@components/ordinary/PetProfile";
 
 const PetInfoBlock = ({
   petImage,
@@ -26,6 +29,7 @@ const PetInfoBlock = ({
         </Grid>
         <Grid item sx={{ width: "66.625%", minWidth: "300px" }}>
           <PetAboutBlock />
+          <PetHistoryBlock margin={"100px 0 0"} />
         </Grid>
       </Grid>
     </SBox>

@@ -12,7 +12,7 @@ const AboutMeBlock = ({ name, city, breed, dataOfFound, margin = 0 }) => {
   return (
     <SBox className="pet-profile__aboutPet" margin={margin}>
       <h3>Про мене</h3>
-      <Table sx={{ marginTop: 10 }}>
+      <Table sx={{ marginTop: "2.125rem" }}>
         <TableBody>
           {data.map((item) => (
             <STableRow key={item.label}>
@@ -27,14 +27,13 @@ const AboutMeBlock = ({ name, city, breed, dataOfFound, margin = 0 }) => {
 };
 
 const SBox = styled(Box)`
-  & {
-    h3 {
-      font-weight: 400;
-      font-size: 32px;
-      line-height: 39px;
-      text-align: center;
-      color: #000000;
-    }
+  h3 {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 2.4375rem;
+    text-align: center;
+    color: #000000;
+    margin: 0;
   }
 `;
 
@@ -60,8 +59,8 @@ const STableRow = styled(TableRow)`
 const STableCell = styled(TableCell)`
   border-bottom: none;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 
   color: #000000;
 `;
