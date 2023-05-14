@@ -12,17 +12,6 @@ const SBox = styled(Box)`
     &:focus {
       box-shadow: 0px 0px 20px #ffffff;
     }
-
-    .pet-profile {
-      &__image {
-        width: 100%;
-        height: 38.5vw;
-        max-width: 534px;
-        max-height: 616px;
-        object-fit: cover;
-        border-radius: 10px;
-      }
-    }
   }
 `;
 

@@ -6,6 +6,7 @@ import { StyledBox } from "@components/simple";
 import defaultProfileIcon from "@assets/Icons/profile/profile50x50.png";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import ReplyRoundedIcon from "@mui/icons-material/ReplyRounded";
 
 const Row = ({ children, columnSpacing = 0 }) => {
   return (
@@ -64,7 +65,10 @@ const PetAuthorBlock = ({ margin = 0 }) => {
         </Grid>
         <Grid container item justifyContent="center">
           <Grid item>
-            <Link href="#">Побачити усі оголошення</Link>
+            <Link href="#" sx={{ textDecoration: "none" }}>
+              Побачити усі оголошення
+              <ReplyRoundedIcon sx={{ transform: "scaleX(-1)" }} />
+            </Link>
           </Grid>
         </Grid>
       </Grid>

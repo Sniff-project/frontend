@@ -1,5 +1,6 @@
 import { memo } from "react";
-import { Container, Grid, IconButton, Tooltip } from "@mui/material";
+import { Grid, IconButton, Tooltip } from "@mui/material";
+import { Container } from "@components/simple";
 import {
   PetAuthorBlock,
   PetInfoBlock,
@@ -12,20 +13,7 @@ import { petImage } from "./testPetImage";
 
 const PetProfileInfo = ({ name, type, age, breed, weight }) => {
   return (
-    <Container
-      sx={{
-        margin: 0,
-        padding: 2,
-        maxWidth: "100%",
-        "@media screen and (min-width: 600px)": {
-          padding: 5,
-          maxWidth: "100%",
-        },
-        "@media screen and (min-width: 960px)": {
-          padding: 10,
-          maxWidth: "100%",
-        },
-      }}>
+    <Container>
       <Grid
         container
         alignItems="center"
@@ -42,11 +30,13 @@ const PetProfileInfo = ({ name, type, age, breed, weight }) => {
         <Grid item xs={12}>
           <PetInfoBlock petImage={petImage} margin={"3.75rem 0 0"} />
         </Grid>
-        <Grid item xs={12} md={6} lg={8}>
-          <PetLocationBlock />
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <PetAuthorBlock />
+        <Grid container item spacing="1.875rem">
+          <Grid item xs={12} md={6} lg={8}>
+            <PetLocationBlock />
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <PetAuthorBlock />
+          </Grid>
         </Grid>
       </Grid>
     </Container>
