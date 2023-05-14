@@ -11,8 +11,6 @@ const Password = () => {
   const dispatch = useDispatch();
   const profileState = useSelector((state) => state.profile);
 
-  console.log(profileState);
-
   useEffect(() => {
     if (user && token && !profileState.profile.email) {
       dispatch(

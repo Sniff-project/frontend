@@ -21,13 +21,14 @@ const Row = ({ children, columnSpacing = 0 }) => {
   );
 };
 
-const PetAuthorBlock = ({ margin = 0 }) => {
-  const phone = "380999999999";
-  const maskedPhone = `+${phone.slice(0, 3)} (${phone.slice(
-    3,
-    5
-  )}) ${phone.slice(5, 8)}-${phone.slice(8, 10)}-${phone.slice(10, 12)}`;
-  const email = "qwerty123@gmail.com";
+const PetAuthorBlock = ({ author, margin = 0 }) => {
+  const { firstname, lastname, phone = null, email = null } = author;
+  const maskedPhone = phone
+    ? `+${phone.slice(1, 4)} (${phone.slice(4, 6)}) ${phone.slice(
+        6,
+        9
+      )}-${phone.slice(9, 11)}-${phone.slice(11, 13)}`
+    : null;
 
   return (
     <StyledBox
@@ -41,27 +42,35 @@ const PetAuthorBlock = ({ margin = 0 }) => {
               <Avatar src={defaultProfileIcon} />
             </Grid>
             <Grid item>
-              <Typography variant="p">Євгеній Сальников</Typography>
+              <Typography variant="p">
+                {firstname} {lastname}
+              </Typography>
             </Grid>
           </Row>
         </Grid>
         <Grid container item rowSpacing="1.25rem">
-          <Row columnSpacing="0.75rem">
-            <Grid item>
-              <PhoneRoundedIcon />
-            </Grid>
-            <Grid item>
-              <Typography variant="p">{maskedPhone}</Typography>
-            </Grid>
-          </Row>
-          <Row columnSpacing="0.75rem">
-            <Grid item>
-              <EmailRoundedIcon />
-            </Grid>
-            <Grid item>
-              <Typography variant="p">{email}</Typography>
-            </Grid>
-          </Row>
+          {maskedPhone && (
+            <Row columnSpacing="0.75rem">
+              <Grid item>
+                <PhoneRoundedIcon />
+              </Grid>
+
+              <Grid item>
+                <Typography variant="p">{maskedPhone}</Typography>
+              </Grid>
+            </Row>
+          )}
+          {email && (
+            <Row columnSpacing="0.75rem">
+              <Grid item>
+                <EmailRoundedIcon />
+              </Grid>
+
+              <Grid item>
+                <Typography variant="p">{email}</Typography>
+              </Grid>
+            </Row>
+          )}
         </Grid>
         <Grid container item justifyContent="center">
           <Grid item>

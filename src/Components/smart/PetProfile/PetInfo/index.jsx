@@ -8,7 +8,10 @@ import {
   PetHistoryBlock,
 } from "@components/ordinary/PetProfile";
 
-const PetInfoBlock = ({ petImage, margin = 0 }) => {
+const PetInfoBlock = ({ petImage, petProfile, margin = 0 }) => {
+  const { author, name, gender, foundOrLostDate, description, status } =
+    petProfile;
+
   return (
     <StyledBox
       className="pet-profile__infoBlock"
@@ -28,8 +31,14 @@ const PetInfoBlock = ({ petImage, margin = 0 }) => {
           </ImageBlock>
         </Grid>
         <Grid item sx={{ minWidth: "300px" }} xs={12} md={7}>
-          <PetAboutBlock />
-          <PetHistoryBlock margin={"6.25rem 0 0"} />
+          <PetAboutBlock
+            name={name}
+            city={author.city}
+            gender={gender}
+            foundOrLostDate={foundOrLostDate}
+            status={status}
+          />
+          <PetHistoryBlock description={description} margin={"6.25rem 0 0"} />
         </Grid>
       </Grid>
     </StyledBox>

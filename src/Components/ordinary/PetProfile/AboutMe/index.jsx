@@ -1,12 +1,22 @@
 import { Box, Table, TableBody, TableCell, TableRow } from "@mui/material";
 import { styled } from "@mui/system";
 
-const AboutMeBlock = ({ name, city, breed, dataOfFound, margin = 0 }) => {
+const AboutMeBlock = ({
+  name,
+  city,
+  gender,
+  foundOrLostDate,
+  status,
+  margin = 0,
+}) => {
   const data = [
-    { label: "Мене звати", value: "Максим" },
-    { label: "Я з міста", value: "Харків, Харківська обл." },
-    { label: "Стать", value: "Хлопчик/Дівчинка/Невідомо" },
-    { label: "Мене знайшли", value: "14.04.2022" },
+    { label: "Мене звати", value: name },
+    { label: "Я з міста", value: city || "Невідомо" },
+    { label: "Стать", value: gender },
+    {
+      label: status === "FOUND" ? "Мене знайшли" : "Мене загубили",
+      value: foundOrLostDate,
+    },
   ];
 
   return (

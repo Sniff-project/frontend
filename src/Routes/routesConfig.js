@@ -32,7 +32,7 @@ const routes = [
     isPrivate: true,
   },
   {
-    path: "/pet",
+    path: "/pets/:petId",
     component: PetProfile,
     exact: true,
     isPrivate: false,
