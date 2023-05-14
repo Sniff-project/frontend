@@ -16,6 +16,7 @@ const Map = ({ lat, lng, scrollWheelZoom = false, style }) => {
     <MapContainer
       center={position}
       zoom={13}
+      attributionControl={false}
       scrollWheelZoom={scrollWheelZoom}
       style={style}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

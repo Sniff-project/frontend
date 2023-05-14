@@ -25,7 +25,7 @@ const PetInfoBlock = ({ petImage, margin = 0 }) => {
         </Grid>
         <Grid item sx={{ width: "66.625%", minWidth: "300px" }}>
           <PetAboutBlock />
-          <PetHistoryBlock margin={"100px 0 0"} />
+          <PetHistoryBlock margin={"6.25rem 0 0"} />
         </Grid>
       </Grid>
     </StyledBox>
