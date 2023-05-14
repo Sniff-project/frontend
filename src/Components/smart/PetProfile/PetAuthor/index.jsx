@@ -41,11 +41,13 @@ const PetAuthorBlock = ({ author, margin = 0 }) => {
             <Grid item>
               <Avatar src={defaultProfileIcon} />
             </Grid>
-            <Grid item>
-              <Typography variant="p">
-                {firstname} {lastname}
-              </Typography>
-            </Grid>
+            {firstname && lastname && (
+              <Grid item>
+                <Typography variant="p">
+                  {firstname} {lastname}
+                </Typography>
+              </Grid>
+            )}
           </Row>
         </Grid>
         <Grid container item rowSpacing="1.25rem">
