@@ -21,12 +21,12 @@ const Message = memo(
       width: "auto",
       maxWidth: 560,
       borderRadius: 12,
-      padding: "16px 22px 17px 20px",
+      padding: "1rem 1.375rem 1.0625rem 1.25rem",
       display: "flex",
       alignItems: "center",
       backgroundColor: theme.main,
       borderColor: theme.main,
-      boxShadow: `0px 0px 36px ${theme.shadow}`,
+      boxShadow: `0 0 2.25rem ${theme.shadow}`,
     }));
 
     return (

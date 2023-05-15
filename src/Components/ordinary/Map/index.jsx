@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import marker from "@assets/Icons/map/marker.png";
@@ -10,7 +10,9 @@ const customIcon = new Icon({
 });
 
 const Map = ({ lat, lng, scrollWheelZoom = false, style }) => {
-  const [position, setPosition] = useState([lat, lng]);
+  const position = useMemo(() => {
+    return [lat, lng];
+  }, [lat, lng]);
 
   return (
     <MapContainer

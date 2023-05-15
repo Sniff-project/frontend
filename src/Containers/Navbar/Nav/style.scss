@@ -1,6 +1,6 @@
 .nav-holder {
     // --bg-color: rgba(151, 194, 245, 0.2);
-    --bg-color: #D8E3F3;
+    --bg-color: #d8e3f3;
     position: relative;
 
     ul {
@@ -79,23 +79,12 @@
             position: relative;
 
             .logo-cat {
-                height: 32px;
-                padding-top: 8px;
-                padding-left: 4px;
+                height: 2rem;
+                padding-top: 0.25rem;
+                padding-left: 0.25rem;
 
                 img {
                     height: 2rem;
-                }
-            }
-
-            @media (max-width: 1300px) {
-                .logo-cat {
-                    padding-top: 10px;
-                }
-            }
-            @media (max-width: 800px) {
-                .logo-cat {
-                    padding-top: 16px;
                 }
             }
         }
@@ -118,7 +107,7 @@
             width: 22vw;
         }
     }
-    
+
     @media (max-width: 500px) {
         .logo {
             width: 30vw;
@@ -241,7 +230,7 @@
         gap: 25px 0;
 
         &__item {
-            >a {
+            > a {
                 font-size: 1.25rem;
                 padding: 0;
             }
@@ -252,7 +241,7 @@
 
             @media (max-width: 1300px) {
                 img {
-                    transform: scale(.8);
+                    transform: scale(0.8);
                 }
             }
 
@@ -308,7 +297,7 @@
 
         @media (max-width: 1300px) {
             img {
-                transform: scale(.8);
+                transform: scale(0.8);
             }
         }
     }

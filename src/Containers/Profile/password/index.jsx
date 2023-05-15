@@ -1,5 +1,7 @@
 import React, { memo, useContext, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Grid, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { AuthContext } from "@contexts";
 import { changePassword } from "@core/Services/users";
 import { Spinner } from "@components/simple";
@@ -8,6 +10,7 @@ import { ChangePasswordForm } from "@components/smart/Profile";
 import "./styles.scss";
 
 const Password = memo(() => {
+  const theme = useTheme();
   const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
   const changePasswordState = useSelector((state) => state.changePassword);
@@ -25,8 +28,19 @@ const Password = memo(() => {
 
   return (
     <div id="changePassword">
-      <div className="pwd__container">
-        <h3 className="pwd__title mb-9">Змінити пароль</h3>
+      <Grid
+        container
+        sx={{
+          position: "relative",
+          background: theme.palette.background.blue,
+          borderRadius: "1.875rem",
+          padding: "2.5rem 6.25rem 5.375rem 6.25rem",
+          margin: "auto",
+          maxWidth: "500px",
+        }}>
+        <Typography variant="h2" sx={{ textAlign: "center", width: "100%" }}>
+          Змінити пароль
+        </Typography>
         {changePasswordState.isLoading && <Spinner size={100} />}
         {changePasswordState.error && (
           <Message
@@ -47,7 +61,7 @@ const Password = memo(() => {
           showPassword={showPassword}
           toggleShowPassword={toggleShowPassword}
         />
-      </div>
+      </Grid>
     </div>
   );
 });

@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
+import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "@contexts";
 import { Header } from "@containers/Navbar";
@@ -12,9 +13,11 @@ function App() {
     <ThemeProvider theme={lightTheme}>
       <Router>
         <AuthProvider>
-          <Header />
-          <AppRoutes />
-          <Footer />
+          <ScopedCssBaseline>
+            <Header />
+            <AppRoutes />
+            <Footer />
+          </ScopedCssBaseline>
         </AuthProvider>
       </Router>
     </ThemeProvider>
