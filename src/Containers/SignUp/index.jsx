@@ -1,9 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Grid } from "@mui/material";
 import { Link } from "@components/ui";
 import { AuthContext } from "@contexts";
 import { register } from "@core/Services";
-import { Spinner, Grid } from "@components/simple";
+import { Spinner } from "@components/simple";
 import { Message } from "@components/ordinary";
 import SignUpForm from "@components/smart/SignUpForm";
 import "./styles.scss";

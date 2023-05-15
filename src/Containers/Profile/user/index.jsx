@@ -12,7 +12,7 @@ const Password = () => {
   const profileState = useSelector((state) => state.profile);
 
   useEffect(() => {
-    if (user && token) {
+    if (user && token && !profileState.profile.email) {
       dispatch(
         getProfile({
           userId: user.sub,
@@ -20,22 +20,28 @@ const Password = () => {
         })
       );
     }
-  }, [dispatch, user, token]);
+  }, [dispatch, user, token, profileState.profile]);
+
+  const profile = profileState.profile.email && !profileState.isLoading && (
+    <UserData profileState={profileState} />
+  );
+  const loading = (!profileState.profile.email || profileState.isLoading) && (
+    <Spinner size={100} />
+  );
+  const error = profileState.error && !profileState.isLoading && (
+    <Message
+      message={profileState.error.message}
+      messageType="error"
+      margin={{ bottom: 8 }}
+    />
+  );
 
   return (
     <>
       <div>
-        {profileState.isLoading && <Spinner size={100} />}
-        {profileState.error && (
-          <Message
-            message={profileState.error.message}
-            messageType="error"
-            margin={{ bottom: 8 }}
-          />
-        )}
-        {profileState.profile && !profileState.isLoading && (
-          <UserData profileState={profileState} />
-        )}
+        {profile}
+        {loading}
+        {error}
       </div>
     </>
   );

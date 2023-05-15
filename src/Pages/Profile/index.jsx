@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Box, Typography } from "@mui/material";
 import { UserInfo, Password } from "@containers/Profile";
-import { Box } from "@components/simple";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
 import "./styles.scss";
 
@@ -26,9 +26,18 @@ const Profile = () => {
   };
   return (
     <>
-      <h3 className="profile__title">Ваш профіль</h3>
+      <Typography
+        variant="h1"
+        sx={{ margin: "3.125rem 0 4.625rem 3.125rem", color: "#2e2c34" }}>
+        Ваш профіль
+      </Typography>
       <Box component="div" px={{ xs: 2, sm: 4, md: 6, lg: 12 }}>
-        <Tabs value={tabNum} onChange={handleTabChange}>
+        <Tabs
+          value={tabNum}
+          onChange={handleTabChange}
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile>
           {tabs.map((tab, index) => (
             <Tab key={index} label={tab.label} />
           ))}

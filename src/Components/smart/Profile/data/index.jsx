@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { changeData } from "@core/Services";
-import Button from "@components/ui/Button";
+import { Button } from "@components/ui";
 import Avatar from "../avatar";
 import editImg from "@assets/Icons/profile/edit.svg";
 import confirmImg from "@assets/Icons/profile/confirm.svg";

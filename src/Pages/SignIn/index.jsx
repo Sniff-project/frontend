@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
+import { Container, Grid } from "@mui/material";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "@contexts";
 import { SignInBlock } from "@containers/SignIn";
-import { Container, Grid } from "@components/simple";
 
 const Login = () => {
   const { isAuthenticated } = useContext(AuthContext);

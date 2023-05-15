@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { logoutReducer, signInReducer, signUpReducer } from "./auth";
 import { uploadAvatarReducer, profileReducer, changePasswordReducer } from "./users";
+import { petProfileReducer } from "./pets";
 
 const reducer = combineReducers({
   // auth
@@ -8,10 +9,13 @@ const reducer = combineReducers({
   signIn: signInReducer,
   signUp: signUpReducer,
 
-  // profile
+  // users
   uploadAvatar: uploadAvatarReducer,
   profile: profileReducer,
   changePassword: changePasswordReducer,
+
+  // pets
+  petProfile: petProfileReducer
 });
 
 export default reducer;
