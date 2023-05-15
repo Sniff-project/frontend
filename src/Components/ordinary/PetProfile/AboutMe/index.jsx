@@ -1,4 +1,12 @@
-import { Box, Table, TableBody, TableCell, TableRow } from "@mui/material";
+import React from "react";
+import {
+  Box,
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@mui/material";
 import { styled } from "@mui/system";
 
 const AboutMeBlock = ({
@@ -7,6 +15,7 @@ const AboutMeBlock = ({
   gender,
   foundOrLostDate,
   status,
+  isLoading,
   margin = 0,
 }) => {
   const data = [
@@ -25,10 +34,20 @@ const AboutMeBlock = ({
       <Table sx={{ marginTop: "2.125rem" }}>
         <TableBody>
           {data.map((item) => (
-            <STableRow key={item.label}>
-              <STableCell>{item.label}</STableCell>
-              <STableCell>{item.value}</STableCell>
-            </STableRow>
+            <React.Fragment key={item.label}>
+              {!isLoading ? (
+                <STableRow>
+                  <STableCell>{item.label}</STableCell>
+                  <STableCell>{item.value}</STableCell>
+                </STableRow>
+              ) : (
+                <TableRow>
+                  <STableCell sx={{ padding: "0.75rem" }}>
+                    <Skeleton variant="rounded" height="2rem" />
+                  </STableCell>
+                </TableRow>
+              )}
+            </React.Fragment>
           ))}
         </TableBody>
       </Table>

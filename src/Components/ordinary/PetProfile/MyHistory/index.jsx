@@ -1,12 +1,28 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
-const MyHistoryBlock = ({ description, margin = 0 }) => {
+const Skelet = () => {
+  return (
+    <>
+      {[...Array(3)].map((_, i) => (
+        <Skeleton
+          key={i}
+          variant="rounded"
+          height="2rem"
+          sx={{ marginBottom: "0.625rem" }}
+        />
+      ))}
+    </>
+  );
+};
+
+const MyHistoryBlock = ({ description, isLoading, margin = 0 }) => {
   return (
     <SBox className="pet-profile__petHistory" margin={margin}>
       <h3>Моя історія</h3>
+
       <Typography fontSize="1.25rem" lineHeight="180%" mt={4}>
-        {description}
+        {!isLoading ? <>{description}</> : <Skelet />}
       </Typography>
     </SBox>
   );

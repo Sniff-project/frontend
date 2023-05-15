@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
 import { StyledBox } from "@components/simple";
 import { styled } from "@mui/system";
 
@@ -8,9 +8,15 @@ import {
   PetHistoryBlock,
 } from "@components/ordinary/PetProfile";
 
-const PetInfoBlock = ({ petImage, petProfile, margin = 0 }) => {
-  const { author, name, gender, foundOrLostDate, description, status } =
-    petProfile;
+const PetInfoBlock = ({ petImage, petProfile, isLoading, margin = 0 }) => {
+  const {
+    name,
+    author: { city } = "",
+    gender,
+    foundOrLostDate,
+    status,
+    description,
+  } = petProfile ?? {};
 
   return (
     <StyledBox
@@ -20,25 +26,34 @@ const PetInfoBlock = ({ petImage, petProfile, margin = 0 }) => {
       <Grid container rowSpacing="1.25rem" columnSpacing="5.3125rem">
         <Grid container item justifyContent="center" xs={12} md={5}>
           <ImageBlock item>
-            <img
-              className="pet-profile__image"
-              src={petImage}
-              width="300"
-              height="300"
-              alt="Фото тваринки"
-              loading="lazy"
-            />
+            {!isLoading ? (
+              <img
+                className="pet-profile__image"
+                src={petImage}
+                width="300"
+                height="300"
+                alt="Фото тваринки"
+                loading="lazy"
+              />
+            ) : (
+              <Skeleton variant="rounded" width="100%" height="100%" />
+            )}
           </ImageBlock>
         </Grid>
         <Grid item sx={{ minWidth: "300px" }} xs={12} md={7}>
           <PetAboutBlock
             name={name}
-            city={author.city}
+            city={city}
             gender={gender}
             foundOrLostDate={foundOrLostDate}
             status={status}
+            isLoading={isLoading}
           />
-          <PetHistoryBlock description={description} margin={"6.25rem 0 0"} />
+          <PetHistoryBlock
+            description={description}
+            isLoading={isLoading}
+            margin={"6.25rem 0 0"}
+          />
         </Grid>
       </Grid>
     </StyledBox>
@@ -46,15 +61,14 @@ const PetInfoBlock = ({ petImage, petProfile, margin = 0 }) => {
 };
 
 const ImageBlock = styled(Grid)`
-  @media screen and (max-width: 480px) {
-    width: 18.75rem;
-    max-height: 18.75rem;
-  }
-  @media screen and (max-width: 600px) {
+  width: 20rem;
+  height: 20rem;
+
+  @media screen and (min-width: 480px) {
     width: 28.125rem;
-    max-height: 28.125rem;
+    height: 28.125rem;
   }
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 600px) {
     width: 31.25rem;
     height: 31.25rem;
   }

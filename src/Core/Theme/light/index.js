@@ -27,6 +27,9 @@ const theme = createTheme({
       opacity05: "rgba(0, 0, 0, .5)",
       opacity025: "rgba(0,0,0,.25)"
     },
+    grey: {
+      main: "#587081"
+    },
     white: {
       main: "#ffffff",
       opacity: "rgba(255, 255, 255, 0.253)"

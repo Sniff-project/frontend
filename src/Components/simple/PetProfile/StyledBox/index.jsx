@@ -12,6 +12,12 @@ const SBox = styled(Box)`
     &:focus {
       box-shadow: 0px 0px 20px #ffffff;
     }
+
+    @media (max-width: 899px) {
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 `;
 
