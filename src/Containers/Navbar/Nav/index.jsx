@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
 import { Anchor, Link } from "@components/ui";
 import { AuthContext } from "@contexts";
-import { pageTitles } from "./pageTitles";
 
 import imgArrow from "@assets/Icons/nav/Arrow.svg";
 import logoCat from "@assets/Icons/nav/LogoCat.svg";
@@ -19,14 +18,17 @@ export default function Nav() {
   const isAuth = useContext(AuthContext);
   const profileState = useSelector((state) => state.profile);
   const [navMenu, setNavMenu] = useState(false);
-  const [title, setTitle] = useState("");
   const bgElem = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
   const name = profileState.profile.firstname;
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
+  let isHome = false;
+  if (pathname === "/") isHome = true;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const pageTitles = "Головна сторінка";
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -34,10 +36,6 @@ export default function Nav() {
 
   useEffect(() => {
     setNavMenu(false);
-    setTitle(() => {
-      const pageTitle = pageTitles.filter((elem) => elem.link === pathname)[0];
-      return pageTitle ? pageTitle.title : pageTitles[0].title;
-    });
   }, [pathname]);
 
   const handleResize = (event) => {
@@ -45,9 +43,7 @@ export default function Nav() {
   };
 
   const showMenu = () => {
-    if (pathname === pageTitles[0].link) {
-      setNavMenu((prev) => !prev);
-    }
+    setNavMenu((prev) => !prev);
   };
 
   const showUserMenu = () => {
@@ -74,10 +70,13 @@ export default function Nav() {
               </Link>
             </div>
             <div className="nav-row__center">
-              <Link href="#" className="nav-row__btn" onClick={showMenu}>
-                <span>{title}</span>
-                <img alt="#" src={imgArrow} />
-              </Link>
+
+              {isHome && (
+                <Link href="#" className="nav-row__btn" onClick={showMenu}>
+                  <span>{pageTitles}</span>
+                  <img alt="#" src={imgArrow} />
+                </Link>
+              )}
 
               {screenWidth > 750 && (
                 <ul className="nav-list">
@@ -108,7 +107,8 @@ export default function Nav() {
                     in={userMenu}
                     timeout={50}
                     mountOnEnter
-                    unmountOnExit>
+                    unmountOnExit
+                  >
                     <ul className="nav-userMenu-list">
                       <li className="nav-userMenu-list__item">
                         <Link
@@ -117,7 +117,8 @@ export default function Nav() {
                             width: "100%",
                             justifyContent: "flex-start",
                             px: "10%",
-                          }}>
+                          }}
+                        >
                           <img alt="#" src={i_icon} />
                           профіль
                         </Link>
@@ -130,7 +131,8 @@ export default function Nav() {
                             width: "100%",
                             justifyContent: "flex-start",
                             px: "10%",
-                          }}>
+                          }}
+                        >
                           <img alt="#" src={logout_icon} />
                           вихід
                         </Link>
