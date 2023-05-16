@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { UserInfo, Password } from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
-import "./styles.scss";
 
 const tabs = [
   { label: "Особисті данні", content: <UserInfo /> },
