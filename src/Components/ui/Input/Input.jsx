@@ -15,6 +15,7 @@ const Input = memo(
     startIconOnClick = null,
     endIcon = null,
     endIconOnClick = null,
+    readOnly = false,
     ...rest
   }) => {
     const {
@@ -38,8 +39,9 @@ const Input = memo(
             <IconButton onClick={endIconOnClick}>{endIcon}</IconButton>
           </InputAdornment>
         ),
+        readOnly
       }),
-      [startIcon, endIcon, startIconOnClick, endIconOnClick]
+      [startIcon, endIcon, startIconOnClick, endIconOnClick, readOnly]
     );
 
     const rules = useMemo(

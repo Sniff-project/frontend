@@ -7,40 +7,47 @@ import editImg from "@assets/Icons/profile/edit.svg";
 import confirmImg from "@assets/Icons/profile/confirm.svg";
 import { useDispatch } from "react-redux";
 import { AuthContext } from "@contexts";
+import { DefaultInput as Input } from "@components/ui";
 
 export default function UserData({ profileState }) {
   const emptyFieldMessage = "Незаповнене поле";
   const { user, token } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
-  const methods = useForm();
-
-  const [userData, setUserData] = useState({
-    avatar: profileState.profile.avatar,
-    firstname: profileState.profile.firstname,
-    lastname: profileState.profile.lastname,
-    region: profileState.profile.region,
-    city: profileState.profile.city,
-    phone: profileState.profile.phone,
-    email: profileState.profile.email,
+  const methods = useForm({
+    mode: "all",
   });
 
+  const city_Array = [1, 2, 3, 4, 5];
+  const region_Array = [1, 2, 3, 4, 5];
+  const [city, setCity] = useState('');
+  const [region, setRegion] = useState('');
+
   const onEditHandler = (e) => {
-    e.preventDefault();
     setIsEditing(!isEditing);
     if (isEditing) {
+      const { firstname, lastname, email, phone } = e;
+      const correctedFirstname =
+        firstname.charAt(0).toUpperCase() + firstname.slice(1).toLowerCase();
+      const correctedLastname =
+        lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
+      const correctedEmail = email.toLowerCase();
+      const unmaskedPhone = "+" + phone.replace(/\D/g, "");
+
       dispatch(
         changeData({
           userId: user.sub,
           token: token,
-          firstname: userData.firstname,
-          lastname: userData.lastname,
-          email: userData.email,
-          phone: userData.phone,
-          region: userData.region,
-          city: userData.city,
+          firstname: correctedFirstname,
+          lastname: correctedLastname,
+          email: correctedEmail,
+          phone: unmaskedPhone,
+          region: region,
+          city: city,
         })
       );
+    } else {
+      e.preventDefault();
     }
   };
 
@@ -49,91 +56,140 @@ export default function UserData({ profileState }) {
       {isEditing ? (
         <div className="profile-holder">
           <FormProvider {...methods}>
-            <form className="editProfile-form" onSubmit={onEditHandler}>
-              <label>
-                Як вас звати?
-                <br></br>
-                <input
-                  onChange={(e) =>
-                    setUserData({ ...userData, firstname: e.target.value })
-                  }
-                  type="text"
-                  name="firstName"
-                  placeholder="Ім'я"
-                  value={userData.firstname}
-                />
-                <input
-                  onChange={(e) =>
-                    setUserData({ ...userData, lastname: e.target.value })
-                  }
-                  type="text"
-                  name="lastName"
-                  placeholder="Прізвище"
-                  value={userData.lastname}
-                />
-              </label>
-              <br></br>
-              <label>
-                Як з вами зв’язатись?
-                <br></br>
-                <input
-                  onChange={(e) =>
-                    setUserData({ ...userData, phone: e.target.value })
-                  }
-                  type="tel"
-                  name="phone"
-                  placeholder="Номер телефону"
-                  value={userData.phone}
-                />
-                <input
-                  onChange={(e) =>
-                    setUserData({ ...userData, email: e.target.value })
-                  }
-                  type="email"
-                  name="email"
-                  placeholder="Пошта"
-                  value={userData.email}
-                />
-              </label>
-              <br></br>
-              <label>
-                Де ви знаходитесь?
-                <br></br>
-                <input
-                  onChange={(e) =>
-                    setUserData({ ...userData, region: e.target.value })
-                  }
-                  type="text"
-                  name="region"
-                  placeholder="Область"
-                  value="__"
-                />
-                <input
-                  onChange={(e) =>
-                    setUserData({ ...userData, city: e.target.value })
-                  }
-                  type="text"
-                  name="city"
-                  placeholder="Місто"
-                  value="__"
-                />
-              </label>
+            <form
+              className="editProfile-form"
+              onSubmit={methods.handleSubmit(onEditHandler)}
+            >
+              <div className="editProfile-form__inputs">
+                <div>
+                  <h3>Як вас звати?</h3>
+                  <div className="editProfile-form__section">
+                    <Input
+                      validation={{
+                        required: "Поле обов'язкове до заповнення!",
+                        minLength: {
+                          value: 2,
+                          message: "Ім'я повинно містити не менше 2 символів!",
+                        },
+                        pattern: {
+                          value: /^[^(\d)\W]+$/iu,
+                          message: "Неправильно введено Ім'я користувача!",
+                        },
+                      }}
+                      tabIndex={1}
+                      name="firstname"
+                      type="text"
+                      label="Ім'я"
+                    />
+                    <Input
+                      validation={{
+                        required: "Поле обов'язкове до заповнення!",
+                        minLength: {
+                          value: 2,
+                          message:
+                            "Прізвище повинно містити не менше 2 символів!",
+                        },
+                        pattern: {
+                          value: /^[^(\d)\W]+$/iu,
+                          message: "Неправильно введено Фамілію користувача!",
+                        },
+                      }}
+                      tabIndex={4}
+                      name="lastname"
+                      type="text"
+                      label="Прізвище"
+                    />
+                  </div>
 
-              <label className="emptyInputImage">
-                Виберіть файл
-                <input
-                  id="input__file"
-                  type="file"
-                  accept="image/png, image/jpeg"
-                  name="avatar"
-                  src=""
-                  alt="Your photo"
-                  style={{ visibility: "hidden", position: "absolute" }}
-                />
-              </label>
+                  <h3>Як з вами зв’язатись?</h3>
+                  <div className="editProfile-form__section">
+                    <Input
+                      validation={{
+                        required: "Поле обов'язкове до заповнення!",
+                        pattern: {
+                          value:
+                            /^\+38\s\((0\d{2})\)\s(\d{3})-(\d{2})-(\d{2})$/,
+                          message: "Неправильний номер телефону!",
+                        },
+                      }}
+                      tabIndex={5}
+                      name="phone2"
+                      mask="+38 (999) 999-99-99"
+                      label="Номер телефону"
+                    />
+
+                    <Input
+                      validation={{
+                        required: "Поле обов'язкове до заповнення!",
+                        pattern: {
+                          value:
+                            /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
+                          message: "Неправильно введено email адресу!",
+                        },
+                      }}
+                      tabIndex={2}
+                      name="email"
+                      type="email"
+                      label="Електронна пошта"
+                    />
+                  </div>
+
+                  <h3>Де ви знаходитесь?</h3>
+                  <div className="editProfile-form__section">
+                    <div>
+                      <label>
+                        Місто
+                        <select onChange={e => setCity(e.target.value)} id="city" name="city">
+                          <option value="">Не вказано</option>
+                          {city_Array.map((city, index) => {
+                            return (
+                              <option key={index} value={city}>
+                                {city}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </label>
+                    </div>
+
+                    <div>
+                      <label>
+                        Область
+                        <select onChange={e => setRegion(e.target.value)} id="region" name="region">
+                          <option value="">Не вказано</option>
+                          {region_Array.map((region, index) => {
+                            return (
+                              <option key={index} value={region}>
+                                {region}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <label className="emptyInputImage">
+                  Виберіть файл
+                  <input
+                    id="input__file"
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    name="avatar"
+                    src=""
+                    alt="Your photo"
+                    style={{ visibility: "hidden", position: "absolute" }}
+                  />
+                </label>
+              </div>
 
               <div className="profile-form__btn">
-                <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
+                <Button
+                  type="submit"
+                  sx={{ marginTop: "50px" }}
+                  tabIndex={3}
+                  disabled={!methods.formState.isValid}
+                >
                   Підтвердити
                   <img src={confirmImg} alt="Edit" />
                 </Button>
@@ -145,13 +201,13 @@ export default function UserData({ profileState }) {
         <div className="profile-holder">
           <FormProvider {...methods}>
             <form className="profile-form" onSubmit={onEditHandler}>
-              <label>
-                Як вас звати
-                <br></br>
-                <input
-                  readOnly
+              <div className="profile-form__inputs">
+                <Input
+                  readOnly={true}
+                  tabIndex={1}
+                  name="fullname"
                   type="text"
-                  name="fullName"
+                  label="Як вас звати"
                   value={
                     profileState.profile.firstname ||
                     profileState.profile.lastname
@@ -159,54 +215,48 @@ export default function UserData({ profileState }) {
                       : emptyFieldMessage
                   }
                 />
-              </label>
 
-              <label>
-                Номер телефону
-                <br></br>
-                <input
-                  readOnly
+                <Input
+                  readOnly={true}
+                  tabIndex={1}
                   type="tel"
                   name="phone"
+                  label="Номер телефону"
                   value={
                     profileState.profile.phone
                       ? profileState.profile.phone
                       : emptyFieldMessage
                   }
                 />
-              </label>
 
-              <label>
-                Електронна пошта
-                <br></br>
-                <input
-                  readOnly
+                <Input
+                  readOnly={true}
+                  tabIndex={1}
+                  type="text"
+                  name="city"
+                  label="Місто та Область"
+                  value={
+                    (profileState.profile.city || profileState.profile.region)
+                      ? `${profileState.profile.city}, ${profileState.profile.region}`
+                      : emptyFieldMessage
+                  }
+                />
+
+                <Input
+                  readOnly={true}
+                  tabIndex={1}
                   type="email"
                   name="email"
+                  label="Електронна пошта"
                   value={
                     profileState.profile.email
                       ? profileState.profile.email
                       : emptyFieldMessage
                   }
                 />
-              </label>
 
-              <label>
-                Місто та Область
-                <br></br>
-                <input
-                  readOnly
-                  type="text"
-                  name="city"
-                  value={
-                    profileState.profile.city
-                      ? profileState.profile.city
-                      : emptyFieldMessage
-                  }
-                />
-              </label>
-
-              <Avatar src={profileState.profile.avatar} />
+                <Avatar src={profileState.profile.avatar} />
+              </div>
 
               <div className="profile-form__btn">
                 <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>

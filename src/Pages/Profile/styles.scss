@@ -1,87 +1,177 @@
-.profile {
-    &-holder {
-        .profile-form,
-        .editProfile-form {
-            height: 300px;
-            flex-wrap: wrap;
+.profile-holder {
+    .profile-form {
+        &__inputs {
             display: flex;
+            flex-wrap: wrap;
             flex-direction: column;
-            position: relative;
+            justify-content: center;
+            gap: 56px 300px;
+            max-width: 80%;
+            height: 300px;
 
             label {
-                margin-bottom: 56px;
                 font-weight: 300;
-                font-size: 16px;
+                font-size: 1.1rem;
                 line-height: 20px;
                 color: rgba(0, 0, 0, 0.5);
+            }
 
-                input:not([type="image"]) {
-                    width: 350px;
-                    margin-top: 20px;
-                    font-size: 20px;
+            input {
+                font-size: 1.2rem;
+                line-height: 24px;
+                color: #2E2C34;
+                cursor: default;
+            }
+
+            div {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 1900px) {
+            &__inputs {
+                gap: 56px 150px;
+            }
+        }
+
+        @media (max-width: 1550px) {
+            &__inputs {
+                gap: 56px 100px;
+            }
+        }
+
+        @media (max-width: 1450px) {
+            &__inputs {
+                height: 400px;
+
+                input {
+                    padding: 0;
+                }
+
+            }
+        }
+
+        @media (max-width: 900px) {
+            &__inputs {
+                flex-wrap: nowrap;
+                height: 800px;
+                margin: 0 auto;
+                align-items: center;
+                gap: 30px 0px;
+            }
+        }
+
+        &__btn {
+            img {
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            &__btn {
+                text-align: center;
+            }
+        }
+    }
+
+    .editProfile-form {
+        height: 500px;
+
+        &__section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 45px;
+
+
+            div {
+                width: 400px;
+                font-weight: 200;
+                font-size: 1.1rem;
+                color: #000000;
+
+                input {
+                    font-size: 1.2rem;
                     line-height: 24px;
-                    padding-left: 10px;
-                    border: none;
-                    background-color: transparent;
-                    transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
-                        transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
-                        padding 200ms cubic-bezier(0, 0, 0.2, 1);
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+                    color: #2E2C34;
                     cursor: default;
+                }
 
-                    &:focus {
-                        outline: none;
+                label {
+                    font-weight: 300;
+                    font-size: 1.1rem;
+                    line-height: 20px;
+                    color: rgba(0, 0, 0, 0.5);
+                }
+
+                select {
+                    background-color: transparent;
+                    margin-left: 20px;
+                    margin-top: 10px;
+                    color: #000000;
+                    width: 200px;
+                    font-size: 1.1rem;
+                }
+            }
+
+            @media (max-width: 1400px) {
+                div {
+                    width: 300px;
+
+                    input {
+                        padding: 0;
                     }
                 }
             }
 
-            input[type="image"],
-            .emptyInputImage {
-                height: 315px;
-                width: 305px;
-                border: 1px solid rgba(0, 0, 0, 0.2);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: rgba(0, 0, 0, 0.2);
-                font-size: 24px;
-                line-height: 29px;
-                color: #000000;
+        }
+
+        @media (max-width: 1120px) {
+            &__section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px 0px;
+            }
+        }
+
+        &__inputs {
+            display: flex;
+
+            >div {
+                margin-right: 200px;
+                flex-grow: 1;
+
+                h3 {
+                    font-size: 1.2rem;
+                    color: #000000;
+                    margin-bottom: 10px;
+                }
             }
 
-            &__btn {
-                position: absolute;
-                left: 0;
-                bottom: -10%;
+            @media (max-width: 1550px) {
+                >div {
+                    margin-right: 100px;
+                }
+            }
 
-                img {
-                    margin-left: 10px;
+            @media (max-width: 800px) {
+                >div {
+                    margin: 0 auto;
                 }
             }
         }
 
+        @media (max-width: 800px) {
+            &__inputs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
         .editProfile-form {
-            height: 450px;
-
-            label {
-                font-size: 20px;
-                line-height: 24px;
-                color: #000000;
-
-                input:not([type="image"]) {
-                    cursor: auto;
-                }
-
-                input:last-child {
-                    margin-left: 200px;
-                }
-            }
-
-            button {
-                background: #6dfa9d;
-                box-shadow: 0px 0px 25px rgba(109, 250, 157, 0.5);
-                color: #005403;
-            }
+            height: 900px;
         }
     }
 }
