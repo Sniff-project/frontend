@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { AuthContext } from "@contexts";
 import { DefaultInput as Input } from "@components/ui";
 
-import './styles.scss';
+import "./styles.scss";
 
 export default function UserData({ profileState }) {
   const emptyFieldMessage = "Незаповнене поле";
@@ -23,8 +23,8 @@ export default function UserData({ profileState }) {
 
   const city_Array = [1, 2, 3, 4, 5];
   const region_Array = [1, 2, 3, 4, 5];
-  const [city, setCity] = useState('');
-  const [region, setRegion] = useState('');
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
 
   const onEditHandler = (e) => {
     setIsEditing(!isEditing);
@@ -64,7 +64,7 @@ export default function UserData({ profileState }) {
               onSubmit={methods.handleSubmit(onEditHandler)}
             >
               <div className="editProfile-form__inputs">
-                <div>
+                <div className="editProfile-form__holder">
                   <h3>Як вас звати?</h3>
                   <div className="editProfile-form__section">
                     <Input
@@ -142,7 +142,11 @@ export default function UserData({ profileState }) {
                     <div>
                       <label>
                         Місто
-                        <select onChange={e => setCity(e.target.value)} id="city" name="city">
+                        <select
+                          onChange={(e) => setCity(e.target.value)}
+                          id="city"
+                          name="city"
+                        >
                           <option value="">Не вказано</option>
                           {city_Array.map((city, index) => {
                             return (
@@ -158,7 +162,11 @@ export default function UserData({ profileState }) {
                     <div>
                       <label>
                         Область
-                        <select onChange={e => setRegion(e.target.value)} id="region" name="region">
+                        <select
+                          onChange={(e) => setRegion(e.target.value)}
+                          id="region"
+                          name="region"
+                        >
                           <option value="">Не вказано</option>
                           {region_Array.map((region, index) => {
                             return (
@@ -172,23 +180,12 @@ export default function UserData({ profileState }) {
                     </div>
                   </div>
                 </div>
-                <label className="emptyInputImage">
-                  Виберіть файл
-                  <input
-                    id="input__file"
-                    type="file"
-                    accept="image/png, image/jpeg"
-                    name="avatar"
-                    src=""
-                    alt="Your photo"
-                    style={{ visibility: "hidden", position: "absolute" }}
-                  />
-                </label>
+                <Avatar src={profileState.profile.avatar} />
               </div>
 
               <div className="editProfile-form__btn">
                 <Button
-                  className={methods.formState.isValid ? 'green__btn' : ''}
+                  className={methods.formState.isValid ? "green__btn" : ""}
                   type="submit"
                   sx={{ marginTop: "50px" }}
                   tabIndex={3}
@@ -206,61 +203,62 @@ export default function UserData({ profileState }) {
           <FormProvider {...methods}>
             <form className="profile-form" onSubmit={onEditHandler}>
               <div className="profile-form__inputs">
-                <Input
-                  readOnly={true}
-                  tabIndex={1}
-                  name="fullname"
-                  type="text"
-                  label="Як вас звати"
-                  value={
-                    profileState.profile.firstname ||
-                    profileState.profile.lastname
-                      ? `${profileState.profile.firstname} ${profileState.profile.lastname}`
-                      : emptyFieldMessage
-                  }
-                />
+                <div className="profile-form__holder">
+                  <Input
+                    readOnly={true}
+                    tabIndex={1}
+                    name="fullname"
+                    type="text"
+                    label="Як вас звати"
+                    value={
+                      profileState.profile.firstname ||
+                      profileState.profile.lastname
+                        ? `${profileState.profile.firstname} ${profileState.profile.lastname}`
+                        : emptyFieldMessage
+                    }
+                  />
 
-                <Input
-                  readOnly={true}
-                  tabIndex={1}
-                  type="tel"
-                  name="phone"
-                  label="Номер телефону"
-                  value={
-                    profileState.profile.phone
-                      ? profileState.profile.phone
-                      : emptyFieldMessage
-                  }
-                />
+                  <Input
+                    readOnly={true}
+                    tabIndex={1}
+                    type="tel"
+                    name="phone"
+                    label="Номер телефону"
+                    value={
+                      profileState.profile.phone
+                        ? profileState.profile.phone
+                        : emptyFieldMessage
+                    }
+                  />
 
-                <Input
-                  readOnly={true}
-                  tabIndex={1}
-                  type="text"
-                  name="city"
-                  label="Місто та Область"
-                  value={
-                    (profileState.profile.city || profileState.profile.region)
-                      ? `${profileState.profile.city}, ${profileState.profile.region}`
-                      : emptyFieldMessage
-                  }
-                />
+                  <Input
+                    readOnly={true}
+                    tabIndex={1}
+                    type="text"
+                    name="city"
+                    label="Місто та Область"
+                    value={
+                      profileState.profile.city || profileState.profile.region
+                        ? `${profileState.profile.city}, ${profileState.profile.region}`
+                        : emptyFieldMessage
+                    }
+                  />
 
-                <Input
-                  readOnly={true}
-                  tabIndex={1}
-                  type="email"
-                  name="email"
-                  label="Електронна пошта"
-                  value={
-                    profileState.profile.email
-                      ? profileState.profile.email
-                      : emptyFieldMessage
-                  }
-                />
+                  <Input
+                    readOnly={true}
+                    tabIndex={1}
+                    type="email"
+                    name="email"
+                    label="Електронна пошта"
+                    value={
+                      profileState.profile.email
+                        ? profileState.profile.email
+                        : emptyFieldMessage
+                    }
+                  />
+                </div>
 
-                <Avatar src={profileState.profile.avatar} />
-                
+                <Avatar onlyRead={true} src={profileState.profile.avatar} />
               </div>
 
               <div className="profile-form__btn">
