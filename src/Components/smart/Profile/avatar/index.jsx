@@ -6,15 +6,12 @@ import { Message } from "@components/ordinary";
 import { Spinner } from "@components/simple";
 import "./styles.scss";
 
-const Avatar = ({
-  src = null,
-  width = '350px',
-  onlyRead = false,
-}) => {
+const Avatar = ({ src = null, width = "350px", onlyRead = false }) => {
   const dispatch = useDispatch();
   const { user, token } = useContext(AuthContext);
   const [imageFile, setImageFile] = useState(null);
   const [isBigSize, setIsBigSize] = useState(false);
+  const [currentAvatar, setCurrentAvatar] = useState(src);
   const uploadAvatarState = useSelector((state) => state.uploadAvatar);
   const maxSizeFile = 5 * 1024 * 1024;
   const bigSizeMessage =
@@ -29,9 +26,9 @@ const Avatar = ({
     setImageFile(file);
   };
 
-  useEffect(() => {
+  const handleChange = async () => {
     if (imageFile) {
-      dispatch(
+      await dispatch(
         uploadAvatar({
           userId: user.sub,
           token: token,
@@ -39,6 +36,16 @@ const Avatar = ({
         })
       );
     }
+  };
+
+  useEffect(() => {
+    if (uploadAvatarState.success) {
+      setCurrentAvatar(uploadAvatarState.success.urls[0]);
+    }
+  }, [uploadAvatarState]);
+
+  useEffect(() => {
+    handleChange();
   }, [imageFile, user, token, dispatch]);
 
   const title = !onlyRead ? (
@@ -47,58 +54,57 @@ const Avatar = ({
     ""
   );
 
-  const image =
-    uploadAvatarState.success?.url || src ? (
-      <>
-        {title}
-        <img
-          src={uploadAvatarState.success?.url || src}
-          alt="avatar"
-          width={width}
-          style={{border: '1px solid rgba(0, 0, 0, 0.5)'}}
+  const image = currentAvatar ? (
+    <>
+      {title}
+      <img
+        src={currentAvatar}
+        alt="avatar"
+        width={width}
+        style={{ border: "1px solid rgba(0, 0, 0, 0.5)" }}
+      />
+      <label className="filledInputImage">
+        <input
+          disabled={onlyRead}
+          id="input__file"
+          name="avatar"
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={handleUpload}
         />
-        <label className="filledInputImage">
-          <input
-            disabled={onlyRead}
-            id="input__file"
-            name="avatar"
-            type="file"
-            accept="image/png, image/jpeg"
-            onChange={handleUpload}
-          />
-        </label>
-        {isBigSize && (
-          <Message
-            style={{ width: "500px" }}
-            message={bigSizeMessage}
-            messageType="error"
-            mt={5}
-          />
-        )}
-      </>
-    ) : (
-      <>
-        {title}
-        <label className="emptyInputImage">
-          <input
-            disabled={onlyRead}
-            id="input__file"
-            name="avatar"
-            type="file"
-            accept="image/png, image/jpeg"
-            onChange={handleUpload}
-          />
-        </label>
-        {isBigSize && (
-          <Message
-            style={{ width: "500px" }}
-            message={bigSizeMessage}
-            messageType="error"
-            mt={5}
-          />
-        )}
-      </>
-    );
+      </label>
+      {isBigSize && (
+        <Message
+          style={{ width: "500px" }}
+          message={bigSizeMessage}
+          messageType="error"
+          mt={5}
+        />
+      )}
+    </>
+  ) : (
+    <>
+      {title}
+      <label className="emptyInputImage">
+        <input
+          disabled={onlyRead}
+          id="input__file"
+          name="avatar"
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={handleUpload}
+        />
+      </label>
+      {isBigSize && (
+        <Message
+          style={{ width: "500px" }}
+          message={bigSizeMessage}
+          messageType="error"
+          mt={5}
+        />
+      )}
+    </>
+  );
 
   return (
     <>
