@@ -1,4 +1,5 @@
 .profile-holder {
+    --font-size: 1.1rem;
     .profile-form {
         &__inputs {
             display: flex;
@@ -69,13 +70,13 @@
 
             label {
                 font-weight: 300;
-                font-size: 1.1rem;
+                font-size: var(--font-size);
                 line-height: 20px;
                 color: rgba(0, 0, 0, 0.5);
             }
 
             input {
-                font-size: 1.1rem;
+                font-size: var(--font-size);
                 line-height: 24px;
                 color: #2E2C34;
                 cursor: default;
@@ -91,14 +92,6 @@
             @media (max-width: 1300px) {
                 input {
                     padding-top: 10px;
-                }
-            }
-
-            @media (max-width: 800px) {
-
-                input,
-                label {
-                    font-size: 1.2rem;
                 }
             }
         }
@@ -130,16 +123,6 @@
         @media (max-width: 900px) {
             &__btn {
                 width: 100%;
-
-                button {
-                    font-size: 1.8rem;
-                    width: 150px;
-                    padding: 5px 10px;
-
-                    img {
-                        transform: scale(0.8);
-                    }
-                }
             }
         }
 
@@ -152,8 +135,6 @@
     }
 
     .editProfile-form {
-        height: 500px;
-
         &__btn {
             button {
                 width: 250px;
@@ -181,26 +162,25 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 45px;
+            &:not(:last-child) {
+                margin-bottom: 70px;
+            }
 
 
             div {
                 width: 400px;
                 font-weight: 200;
-                font-size: 1.1rem;
                 color: #000000;
 
                 input {
-                    font-size: 1.1rem;
-                    line-height: 24px;
+                    font-size: var(--font-size);
                     color: #2E2C34;
                     cursor: default;
                 }
 
                 label {
                     font-weight: 300;
-                    font-size: 1.1rem;
-                    line-height: 20px;
+                    font-size: var(--font-size);
                     color: rgba(0, 0, 0, 0.5);
                 }
 
@@ -210,7 +190,16 @@
                     margin-top: 10px;
                     color: #000000;
                     width: 200px;
-                    font-size: 1.1rem;
+                    font-size: var(--font-size);
+                    option {
+                        font-size: var(--font-size);
+                    }
+                }
+            }
+
+            @media (max-width: 1600px) {
+                div {
+                    width: 380px;
                 }
             }
 
@@ -219,17 +208,7 @@
                     width: 300px;
 
                     input {
-                        padding: 0 !important;
-                    }
-                }
-            }
-
-            @media (max-width: 800px) {
-                div {
-                    font-size: 1.2rem;
-
-                    select {
-                        font-size: 1.2rem;
+                        // padding-bottom: 0 !important;
                     }
                 }
             }
@@ -246,48 +225,62 @@
 
         &__inputs {
             display: flex;
+            align-items: center;
 
             .editProfile-form__holder {
                 margin-right: 200px;
                 flex-grow: 1;
 
                 h3 {
-                    font-size: 1.1rem;
+                    font-size: var(--font-size);
                     color: #000000;
                     margin-bottom: 20px;
                 }
-            }
 
-            @media (max-width: 1550px) {
-                >div {
-                    margin-right: 100px;
-                }
-            }
-
-            @media (max-width: 800px) {
-                >div {
-                    margin: 0 auto;
-
+                @media (max-width: 1300px) {
                     h3 {
-                        font-size: 1.2rem;
-                        margin-bottom: 0px;
+                        margin-bottom: 10px;
                     }
                 }
             }
+
+            @media (max-width: 1600px) {
+                .editProfile-form__holder {
+                    margin-right: 100px;
+                }
+            }
+            @media (max-width: 1250px) {
+                .editProfile-form__holder {
+                    margin-right: 60px;
+                }
+            }
+            @media (max-width: 800px) {
+                .editProfile-form__holder {
+                    margin-right: 0px;
+                    margin-top: 50px;
+                }
+            }
+
         }
 
         @media (max-width: 800px) {
             &__inputs {
-                flex-direction: column;
+                flex-direction:column-reverse;
                 align-items: center;
             }
         }
     }
 
-    @media (max-width: 800px) {
-        .editProfile-form {
-            height: 1000px;
-        }
+}
+
+@media (max-width: 1300px) {
+    .profile-holder {
+        --font-size: 1.3rem;
+    }
+}
+@media (max-width: 800px) {
+    .profile-holder {
+        --font-size: 1.5rem;
     }
 }
 
