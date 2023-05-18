@@ -45,7 +45,7 @@ const Profile = () => {
     setTabNum(newValue);
   };
   return (
-    <>
+    <div className="container2000">
       <Typography
         variant="h1"
         sx={{ margin: "3.125rem 0 4.625rem 3.125rem", color: "#2e2c34" }}
@@ -66,7 +66,7 @@ const Profile = () => {
         </Tabs>
         <TabPanel>{tabs[tabNum].content}</TabPanel>
       </Box>
-    </>
+    </div>
   );
 };
 

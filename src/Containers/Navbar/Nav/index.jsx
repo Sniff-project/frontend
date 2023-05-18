@@ -18,7 +18,6 @@ export default function Nav() {
   const isAuth = useContext(AuthContext);
   const profileState = useSelector((state) => state.profile);
   const [navMenu, setNavMenu] = useState(false);
-  const bgElem = useRef(null);
   const [userMenu, setUserMenu] = useState(false);
   const name = profileState.profile.firstname;
   const dispatch = useDispatch();
@@ -57,129 +56,137 @@ export default function Nav() {
   return (
     <header id="nav">
       <nav>
-        <div ref={bgElem} className="nav-holder">
-          <div className="nav-row">
-            <div className="logo">
-              <Link href="/" sx={{ padding: "10px 15px", height: "100%" }}>
-                <div className="logo-holder">
-                  sniff
-                  <div className="logo-cat">
-                    <img alt="#" src={logoCat} />
+        <div className="nav-holder">
+          <div className="container2000">
+            <div className="nav-row">
+              <div className="logo">
+                <Link href="/" sx={{ padding: "10px 15px", height: "100%" }}>
+                  <div className="logo-holder">
+                    sniff
+                    <div className="logo-cat">
+                      <img alt="#" src={logoCat} />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-            <div className="nav-row__center">
-
-              {isHome && (
-                <Link href="#" className="nav-row__btn" onClick={showMenu}>
-                  <span>{pageTitles}</span>
-                  <img alt="#" src={imgArrow} />
                 </Link>
-              )}
-
-              {screenWidth > 750 && (
-                <ul className="nav-list">
-                  <li className="nav-list__item">
-                    <Link className="nav-list__addPet" to="/addpet">
-                      Я знайшов тваринку
-                    </Link>
-                  </li>
-                  <li className="nav-list__item">
-                    <Link className="nav-list__addPet" to="/addpet">
-                      Я загубив тваринку
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </div>
-
-            {name && isAuth.isAuthenticated ? (
-              <div>
-                <Link href="#" onClick={showUserMenu} className="nav-row__btn">
-                  <img alt="#" src={userIcon} />
-                  <span>{name}</span>
-                  <img alt="#" src={imgArrow} />
-                </Link>
-
-                <div className="wrap">
-                  <Transition
-                    in={userMenu}
-                    timeout={50}
-                    mountOnEnter
-                    unmountOnExit
-                  >
-                    <ul className="nav-userMenu-list">
-                      <li className="nav-userMenu-list__item">
-                        <Link
-                          href="/profile"
-                          sx={{
-                            width: "100%",
-                            justifyContent: "flex-start",
-                            px: "10%",
-                          }}
-                        >
-                          <img alt="#" src={i_icon} />
-                          профіль
-                        </Link>
-                      </li>
-                      <li className="nav-userMenu-list__item">
-                        <Link
-                          href="#"
-                          onClick={logOut}
-                          sx={{
-                            width: "100%",
-                            justifyContent: "flex-start",
-                            px: "10%",
-                          }}
-                        >
-                          <img alt="#" src={logout_icon} />
-                          вихід
-                        </Link>
-                      </li>
-                    </ul>
-                  </Transition>
-                </div>
               </div>
-            ) : (
-              <Link className="nav-row_singUp" href="/signin">
-                Вхід
-              </Link>
-            )}
-          </div>
+              <div className="nav-row__center">
+                {isHome && (
+                  <Link href="#" className="nav-row__btn" onClick={showMenu}>
+                    <span>{pageTitles}</span>
+                    <img alt="#" src={imgArrow} />
+                  </Link>
+                )}
 
-          <div className="wrap">
-            <Transition in={navMenu} timeout={50} mountOnEnter unmountOnExit>
-              <ul className="nav-menu-list">
-                <li className="nav-menu-list__item">
-                  <Link href="/">Головна сторінка</Link>
-                </li>
-                <li className="nav-menu-list__item">
-                  <Anchor text="Наші тваринки" href="#ourAnimals" />
-                </li>
-                <li className="nav-menu-list__item">
-                  <Anchor text="Інформація про тваринок" href="#aboutAnimals" />
-                </li>
-                <li className="nav-menu-list__item">
-                  <Link href="/about">Про нас</Link>
-                </li>
-
-                {screenWidth <= 750 && (
-                  <>
-                    <li className="nav-menu-list__item">
+                {screenWidth > 750 && (
+                  <ul className="nav-list">
+                    <li className="nav-list__item">
                       <Link className="nav-list__addPet" to="/addpet">
                         Я знайшов тваринку
                       </Link>
                     </li>
-                    <li className="nav-menu-list__item">
+                    <li className="nav-list__item">
                       <Link className="nav-list__addPet" to="/addpet">
                         Я загубив тваринку
                       </Link>
                     </li>
-                  </>
+                  </ul>
                 )}
-              </ul>
-            </Transition>
+              </div>
+
+              {name && isAuth.isAuthenticated ? (
+                <div>
+                  <Link
+                    href="#"
+                    onClick={showUserMenu}
+                    className="nav-row__btn"
+                  >
+                    <img alt="#" src={userIcon} />
+                    <span>{name}</span>
+                    <img alt="#" src={imgArrow} />
+                  </Link>
+
+                  <div className="wrap">
+                    <Transition
+                      in={userMenu}
+                      timeout={50}
+                      mountOnEnter
+                      unmountOnExit
+                    >
+                      <ul className="nav-userMenu-list">
+                        <li className="nav-userMenu-list__item">
+                          <Link
+                            href="/profile"
+                            sx={{
+                              width: "100%",
+                              justifyContent: "flex-start",
+                              px: "10%",
+                            }}
+                          >
+                            <img alt="#" src={i_icon} />
+                            профіль
+                          </Link>
+                        </li>
+                        <li className="nav-userMenu-list__item">
+                          <Link
+                            href="#"
+                            onClick={logOut}
+                            sx={{
+                              width: "100%",
+                              justifyContent: "flex-start",
+                              px: "10%",
+                            }}
+                          >
+                            <img alt="#" src={logout_icon} />
+                            вихід
+                          </Link>
+                        </li>
+                      </ul>
+                    </Transition>
+                  </div>
+                </div>
+              ) : (
+                <Link className="nav-row_singUp" href="/signin">
+                  Вхід
+                </Link>
+              )}
+            </div>
+
+            <div className="wrap">
+              <Transition in={navMenu} timeout={50} mountOnEnter unmountOnExit>
+                <ul className="nav-menu-list">
+                  <li className="nav-menu-list__item">
+                    <Link href="/">Головна сторінка</Link>
+                  </li>
+                  <li className="nav-menu-list__item">
+                    <Anchor text="Наші тваринки" href="#ourAnimals" />
+                  </li>
+                  <li className="nav-menu-list__item">
+                    <Anchor
+                      text="Інформація про тваринок"
+                      href="#aboutAnimals"
+                    />
+                  </li>
+                  <li className="nav-menu-list__item">
+                    <Link href="/about">Про нас</Link>
+                  </li>
+
+                  {screenWidth <= 750 && (
+                    <>
+                      <li className="nav-menu-list__item">
+                        <Link className="nav-list__addPet" to="/addpet">
+                          Я знайшов тваринку
+                        </Link>
+                      </li>
+                      <li className="nav-menu-list__item">
+                        <Link className="nav-list__addPet" to="/addpet">
+                          Я загубив тваринку
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </Transition>
+            </div>
           </div>
         </div>
       </nav>

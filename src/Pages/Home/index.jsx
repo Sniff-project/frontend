@@ -5,9 +5,11 @@ import "./style.scss";
 const Home = () => {
   return (
     <div className="main-page">
-      <AboutUs />
-      <OurAnimals />
-      <AboutAnimals />
+      <div className="container2000">
+        <AboutUs />
+        <OurAnimals />
+        <AboutAnimals />
+      </div>
     </div>
   );
 };
