@@ -16,16 +16,16 @@
 }
 
 .filledInputImage {
-    height: 315px;
-    width: 305px;
+    height: 100%;
+    width: 100%;
     display: block;
     position: absolute;
     top: 0;
     left: 0;
 }
 .emptyInputImage {
-    height: 315px;
-    width: 305px;
+    min-height: 315px;
+    min-width: 305px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
