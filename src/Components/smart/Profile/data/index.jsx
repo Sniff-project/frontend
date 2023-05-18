@@ -4,7 +4,6 @@ import { changeData } from "@core/Services";
 import { Button } from "@components/ui";
 import Avatar from "../avatar";
 import editImg from "@assets/Icons/profile/edit.svg";
-import deleteImg from "@assets/Icons/profile/delete.svg";
 import confirmImg from "@assets/Icons/profile/confirm.svg";
 import { useDispatch } from "react-redux";
 import { AuthContext } from "@contexts";
@@ -265,10 +264,6 @@ export default function UserData({ profileState }) {
                 <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
                   Змінити
                   <img src={editImg} alt="Edit" />
-                </Button>
-                <Button sx={{ marginTop: "50px" }} tabIndex={3}>
-                  Видалити
-                  <img src={deleteImg} alt="Edit" />
                 </Button>
               </div>
             </form>
