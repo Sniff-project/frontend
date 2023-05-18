@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadAvatar } from "@core/Services/users";
 import { AuthContext } from "@contexts";
@@ -23,10 +23,11 @@ const Avatar = ({ src = null, width = "350px", onlyRead = false }) => {
       setIsBigSize(true);
       return;
     }
+    setIsBigSize(false);
     setImageFile(file);
   };
 
-  const handleChange = async () => {
+  const handleChange = useCallback(async () => {
     if (imageFile) {
       await dispatch(
         uploadAvatar({
@@ -36,9 +37,10 @@ const Avatar = ({ src = null, width = "350px", onlyRead = false }) => {
         })
       );
     }
-  };
+  }, [imageFile, user, token, dispatch]);
 
   useEffect(() => {
+    console.log(uploadAvatarState)
     if (uploadAvatarState.success) {
       setCurrentAvatar(uploadAvatarState.success.urls[0]);
     }
@@ -46,7 +48,7 @@ const Avatar = ({ src = null, width = "350px", onlyRead = false }) => {
 
   useEffect(() => {
     handleChange();
-  }, [imageFile, user, token, dispatch]);
+  }, [handleChange]);
 
   const title = !onlyRead ? (
     <p className="profile__avatar-title">Клікніть сюди, щоб змінити фото</p>
