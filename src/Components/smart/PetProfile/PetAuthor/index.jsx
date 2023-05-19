@@ -31,7 +31,7 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
     lastname,
     phone = "+380XXXXXXXXX",
     email = "XXXX@XXX.XX",
-  } = author;
+  } = author ?? {};
 
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
   }, [navigate]);
 
   const fullName =
-    firstname.length + lastname.length <= MAX_NAME_LENGTH
+    firstname?.length + lastname?.length <= MAX_NAME_LENGTH
       ? `${firstname} ${lastname}`
       : `${(firstname + " " + lastname).slice(0, MAX_NAME_LENGTH)}...`;
   const maskedPhone = phone
