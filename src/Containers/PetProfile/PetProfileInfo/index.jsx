@@ -20,7 +20,7 @@ const PetProfileInfo = () => {
   const theme = useTheme();
   const { petId } = useParams();
   const navigate = useNavigate();
-  const { token, user } = useContext(AuthContext);
+  const { token, user, isAuthenticated } = useContext(AuthContext);
   const dispatch = useDispatch();
   const petProfileState = useSelector((state) => state.petProfile);
 
@@ -40,7 +40,9 @@ const PetProfileInfo = () => {
   }, [navigate]);
 
   const isPetOwner =
-    +user?.sub === petProfileState.petProfile?.author?.id || false;
+    (isAuthenticated &&
+      +user?.sub === petProfileState.petProfile?.author?.id) ||
+    false;
 
   const petInfo = !petProfileState.error ? (
     <PetInfoBlock
