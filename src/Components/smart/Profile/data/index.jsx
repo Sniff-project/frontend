@@ -1,13 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { changeData } from "@core/Services";
 import { Button } from "@components/ui";
 import Avatar from "../avatar";
 import editImg from "@assets/Icons/profile/edit.svg";
 import confirmImg from "@assets/Icons/profile/confirm.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { DefaultInput as Input } from "@components/ui";
+import {
+  cities as getCities,
+  regions as getRegions,
+} from "@core/Services/users";
 import "./styles.scss";
 import UserLocation from "../location";
 
@@ -15,23 +19,53 @@ export default function UserData({ profileState }) {
   const emptyFieldMessage = "Незаповнене поле";
   const { user, token } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
+  const cities_Array = useSelector(({ cities }) => cities.cities.citiesArray);
+  const regions_Array = useSelector(
+    ({ regions }) => regions.regions.regionsArray
+  );
   const dispatch = useDispatch();
   const methods = useForm({
     mode: "all",
   });
-  const [city, setCity] = useState(profileState.city);
-  const [region, setRegion] = useState(profileState.region);
+  const [currentCity, setCurrentCity] = useState(null);
+  const [currentRegion, setCurrentRegion] = useState(null);
+
+  useEffect(() => {
+    if (user && token) {
+      dispatch(getCities({ token }));
+      dispatch(getRegions({ token }));
+    }
+  }, [dispatch, user, token]);
+
+  useEffect(() => {
+    if (regions_Array?.length > 0 && cities_Array?.length > 0) {
+      if (profileState.profile.city !== null) {
+        setCurrentCity(
+          cities_Array.find((city) => city.name == profileState.profile.city).id
+        );
+      }
+      if (profileState.profile.region !== null) {
+        setCurrentRegion(
+          regions_Array.find(
+            (region) => region.name == profileState.profile.region
+          ).id
+        );
+      }
+    }
+  }, [cities_Array, regions_Array]);
 
   const onEditHandler = (e) => {
     setIsEditing(!isEditing);
     if (isEditing) {
-      const { firstname, lastname, email, phone } = e;
+      const { firstname, lastname, email, phone2 } = e;
       const correctedFirstname =
         firstname.charAt(0).toUpperCase() + firstname.slice(1).toLowerCase();
       const correctedLastname =
         lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
       const correctedEmail = email.toLowerCase();
-      const unmaskedPhone = "+" + phone.replace(/\D/g, "");
+      const unmaskedPhone = "+" + phone2.replace(/\D/g, "");
+      const correctedCurrentCity = currentCity === 0 ? null : currentCity;
+      const correctedCurrentRegion = currentRegion === 0 ? null : currentRegion;
 
       dispatch(
         changeData({
@@ -41,8 +75,8 @@ export default function UserData({ profileState }) {
           lastname: correctedLastname,
           email: correctedEmail,
           phone: unmaskedPhone,
-          regionId: region,
-          cityId: city
+          regionId: correctedCurrentRegion,
+          cityId: correctedCurrentCity,
         })
       );
     } else {
@@ -134,7 +168,14 @@ export default function UserData({ profileState }) {
                   </div>
 
                   <h3>Де ви знаходитесь?</h3>
-                  <UserLocation setCity={setCity} setRegion={setRegion} user={user} token={token}/>
+                  <UserLocation
+                    setCurrentCity={setCurrentCity}
+                    setCurrentRegion={setCurrentRegion}
+                    cities_Array={cities_Array}
+                    regions_Array={regions_Array}
+                    currentCity={currentCity}
+                    currentRegion={currentRegion}
+                  />
                 </div>
                 <Avatar src={profileState.profile.avatar} />
               </div>

@@ -1,5 +1,6 @@
 .profile-holder {
     --font-size: 1.1rem;
+
     .profile-form {
         &__inputs {
             display: flex;
@@ -103,13 +104,12 @@
             }
         }
 
-
-
         &__btn {
             width: 50%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 50px;
 
             button {
                 width: 250px;
@@ -136,6 +136,8 @@
 
     .editProfile-form {
         &__btn {
+            margin-top: 50px;
+
             button {
                 width: 250px;
 
@@ -147,7 +149,6 @@
 
         @media (max-width: 800px) {
             &__btn {
-                margin-top: 50px;
                 text-align: center;
             }
         }
@@ -162,6 +163,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             &:not(:last-child) {
                 margin-bottom: 70px;
             }
@@ -189,8 +191,13 @@
                     margin-left: 20px;
                     margin-top: 10px;
                     color: #000000;
-                    width: 200px;
+                    height: 100%;
+                    width: 80%;
+                    padding: 3px;
                     font-size: var(--font-size);
+                    border: 1px solid #999;
+                    border-radius: 5px;
+                    box-shadow: 4px 4px #ccc;
                     option {
                         font-size: var(--font-size);
                     }
@@ -206,10 +213,6 @@
             @media (max-width: 1400px) {
                 div {
                     width: 300px;
-
-                    input {
-                        // padding-bottom: 0 !important;
-                    }
                 }
             }
 
@@ -249,11 +252,13 @@
                     margin-right: 100px;
                 }
             }
+
             @media (max-width: 1250px) {
                 .editProfile-form__holder {
                     margin-right: 60px;
                 }
             }
+
             @media (max-width: 800px) {
                 .editProfile-form__holder {
                     margin-right: 0px;
@@ -265,7 +270,7 @@
 
         @media (max-width: 800px) {
             &__inputs {
-                flex-direction:column-reverse;
+                flex-direction: column-reverse;
                 align-items: center;
             }
         }
@@ -278,6 +283,7 @@
         --font-size: 1.3rem;
     }
 }
+
 @media (max-width: 800px) {
     .profile-holder {
         --font-size: 1.5rem;
