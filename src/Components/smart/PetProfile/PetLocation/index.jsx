@@ -11,8 +11,8 @@ const PetLocationBlock = ({ lat, lng, isLoading, margin = 0 }) => {
       padding="1rem">
       {!isLoading ? (
         <Map
-          lat={lat}
-          lng={lng}
+          lat={lat || 0}
+          lng={lng || 0}
           zoom={12}
           style={{ height: "31.25rem", borderRadius: "10px" }}
         />

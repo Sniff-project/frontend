@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Box,
+  Grid,
+  IconButton,
   Skeleton,
   Table,
   TableBody,
@@ -9,6 +11,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
+
 const AboutMeBlock = ({
   name,
   city,
@@ -16,6 +20,7 @@ const AboutMeBlock = ({
   foundOrLostDate,
   status,
   isLoading,
+  isPetOwner,
   margin = 0,
 }) => {
   const data = [
@@ -30,7 +35,18 @@ const AboutMeBlock = ({
 
   return (
     <SBox className="pet-profile__aboutPet" margin={margin}>
-      <h3>Про мене</h3>
+      <Grid container alignItems="center" justifyContent="center">
+        <Grid item>
+          <h3>Про мене</h3>
+        </Grid>
+        {isPetOwner && (
+          <Grid item>
+            <IconButton aria-label="Редагувати" sx={{ marginTop: "0.25rem" }}>
+              <EditRoundedIcon fontSize="small" />
+            </IconButton>
+          </Grid>
+        )}
+      </Grid>
       <Table sx={{ marginTop: "2.125rem" }}>
         <TableBody>
           {data.map((item) => (

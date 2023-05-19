@@ -20,7 +20,7 @@ const PetProfileInfo = () => {
   const theme = useTheme();
   const { petId } = useParams();
   const navigate = useNavigate();
-  const { token } = useContext(AuthContext);
+  const { token, user } = useContext(AuthContext);
   const dispatch = useDispatch();
   const petProfileState = useSelector((state) => state.petProfile);
 
@@ -39,16 +39,20 @@ const PetProfileInfo = () => {
     navigate("/pets");
   }, [navigate]);
 
+  const isPetOwner =
+    +user?.sub === petProfileState.petProfile?.author?.id || false;
+
   const petInfo = !petProfileState.error ? (
     <PetInfoBlock
       petImage={petImage}
       margin={"3.75rem 0 0"}
       petProfile={petProfileState.petProfile}
       isLoading={petProfileState.isLoading}
+      isPetOwner={isPetOwner}
     />
   ) : null;
 
-  const petLocation = petProfileState.petProfile ? (
+  const petLocation = !petProfileState.error ? (
     <PetLocationBlock
       lat={petProfileState.petProfile?.latitude}
       lng={petProfileState.petProfile?.longitude}
@@ -56,7 +60,7 @@ const PetProfileInfo = () => {
     />
   ) : null;
 
-  const petAuthor = petProfileState.petProfile ? (
+  const petAuthor = !petProfileState.error ? (
     <PetAuthorBlock
       author={petProfileState.petProfile?.author}
       isLoading={petProfileState.isLoading}

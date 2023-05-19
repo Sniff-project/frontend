@@ -1,5 +1,7 @@
-import { Box, Skeleton, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Skeleton, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 
 const Skelet = () => {
   return (
@@ -16,12 +18,26 @@ const Skelet = () => {
   );
 };
 
-const MyHistoryBlock = ({ description, isLoading, margin = 0 }) => {
+const MyHistoryBlock = ({ description, isLoading, isPetOwner, margin = 0 }) => {
   return (
     <SBox className="pet-profile__petHistory" margin={margin}>
-      <h3>Моя історія</h3>
-
-      <Typography fontSize="1.25rem" lineHeight="180%" mt={4}>
+      <Grid container alignItems="center" justifyContent="center">
+        <Grid item>
+          <h3>Моя історія</h3>
+        </Grid>
+        {isPetOwner && (
+          <Grid item>
+            <IconButton aria-label="Редагувати" sx={{ marginTop: "0.25rem" }}>
+              <EditRoundedIcon fontSize="small" />
+            </IconButton>
+          </Grid>
+        )}
+      </Grid>
+      <Typography
+        fontSize="1.25rem"
+        lineHeight="180%"
+        mt={4}
+        sx={{ textAlign: "justify" }}>
         {!isLoading ? <>{description}</> : <Skelet />}
       </Typography>
     </SBox>

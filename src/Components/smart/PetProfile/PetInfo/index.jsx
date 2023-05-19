@@ -8,7 +8,13 @@ import {
   PetHistoryBlock,
 } from "@components/ordinary/PetProfile";
 
-const PetInfoBlock = ({ petImage, petProfile, isLoading, margin = 0 }) => {
+const PetInfoBlock = ({
+  petImage,
+  petProfile,
+  isLoading,
+  isPetOwner,
+  margin = 0,
+}) => {
   const {
     name,
     author: { city } = "",
@@ -48,10 +54,12 @@ const PetInfoBlock = ({ petImage, petProfile, isLoading, margin = 0 }) => {
             foundOrLostDate={foundOrLostDate}
             status={status}
             isLoading={isLoading}
+            isPetOwner={isPetOwner}
           />
           <PetHistoryBlock
             description={description}
             isLoading={isLoading}
+            isPetOwner={isPetOwner}
             margin={"6.25rem 0 0"}
           />
         </Grid>
