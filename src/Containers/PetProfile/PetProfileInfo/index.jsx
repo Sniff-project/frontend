@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Grid, IconButton, Tooltip, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { AuthContext } from "@contexts";
-import { petProfile as getPetProfile } from "@core/Services/pets";
-import { Container } from "@components/simple";
+import {
+  editPetProfile,
+  petProfile as getPetProfile,
+} from "@core/Services/pets";
+import { Container, Snackbar } from "@components/simple";
 import { Message } from "@components/ordinary";
 import {
   PetAuthorBlock,
@@ -23,6 +26,7 @@ const PetProfileInfo = () => {
   const { token, user, isAuthenticated } = useContext(AuthContext);
   const dispatch = useDispatch();
   const petProfileState = useSelector((state) => state.petProfile);
+  const editPetProfileState = useSelector((state) => state.editPetProfile);
 
   useEffect(() => {
     if (!petProfileState.petProfile) {
@@ -34,6 +38,21 @@ const PetProfileInfo = () => {
       );
     }
   }, [dispatch, petId, token, petProfileState.petProfile]);
+
+  const onEditHandler = useCallback(
+    (data) => {
+      dispatch(
+        editPetProfile({
+          petId: petId,
+          token: token || null,
+          data: data,
+        })
+      );
+    },
+    [dispatch, petId, token]
+  );
+
+  console.log(editPetProfileState);
 
   const goToPetsGallery = useCallback(() => {
     navigate("/pets");
@@ -51,6 +70,7 @@ const PetProfileInfo = () => {
       petProfile={petProfileState.petProfile}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
+      onEditHandler={onEditHandler}
     />
   ) : null;
 
@@ -77,6 +97,15 @@ const PetProfileInfo = () => {
     />
   ) : null;
 
+  const editError = editPetProfileState.error ? (
+    <Snackbar message={editPetProfileState.error?.message} severity="error" />
+  ) : editPetProfileState.petProfile ? (
+    <Snackbar
+      message={editPetProfileState.petProfile?.message}
+      severity="success"
+    />
+  ) : null;
+
   return (
     <Container>
       <Grid
@@ -94,6 +123,7 @@ const PetProfileInfo = () => {
       </Grid>
 
       {error}
+      {editError}
       <Grid container spacing="1.875rem">
         <Grid item xs={12}>
           {petInfo}

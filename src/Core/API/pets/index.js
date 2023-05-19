@@ -1,1 +1,1 @@
-export { getPetProfile } from "./profile";
+export { editPetProfile, getPetProfile } from "./profile";

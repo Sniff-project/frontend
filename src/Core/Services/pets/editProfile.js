@@ -7,7 +7,7 @@ import {
 import { editPetProfile as editPetProf } from "@core/API/pets";
 
 const successMsg = "Профіль тваринки змінено!";
-const errorMsg = "Тваринка не знайдена!";
+const errorMsg = "Дані не змінено!";
 const unknownError = "Щось пішло не так :(";
 
 export const editPetProfile = ({ petId, token, data }) => {

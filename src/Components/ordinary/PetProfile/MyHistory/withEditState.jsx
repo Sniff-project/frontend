@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { EditButton, SaveButton } from "@components/simple";
@@ -7,21 +7,18 @@ const withEditState = (WrappedComponent) => {
   return (props) => {
     const methods = useForm();
     const [isEdit, setIsEdit] = useState(false);
-    const formRef = useRef();
 
     const onEditHandler = useCallback(() => {
+      // on click btn edit
       setIsEdit((prev) => !prev);
     }, []);
 
     const onSaveHandler = useCallback(() => {
-      formRef.current.submit();
+      // on click btn save
+      const formData = methods.getValues();
+      props?.onEditHandler(formData);
       setIsEdit((prev) => !prev);
-    }, []);
-
-    const onSubmitHandler = useCallback(() => {
-      // send form
-      console.log("submit form");
-    }, []);
+    }, [methods, props]);
 
     const button = !isEdit ? (
       <EditButton onClick={onEditHandler} />
@@ -29,14 +26,14 @@ const withEditState = (WrappedComponent) => {
       <SaveButton onClick={onSaveHandler} color="success" />
     );
 
+    console.log(props);
+
     return (
       <WrappedComponent
         {...props}
         button={button}
         isEdit={isEdit}
         methods={methods}
-        onSubmitHandler={onSubmitHandler}
-        formRef={formRef}
       />
     );
   };
