@@ -4,3 +4,4 @@ export const signUpUrl = apiUrl + "/auth/signup";
 export const imageUrl = apiUrl + "/images/users";
 export const petProfileUrl = apiUrl + "/pets";
 export const profileUrl = apiUrl + "/users";
+export const profileLocation = apiUrl + "/location";

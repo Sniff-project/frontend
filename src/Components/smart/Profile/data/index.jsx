@@ -8,8 +8,8 @@ import confirmImg from "@assets/Icons/profile/confirm.svg";
 import { useDispatch } from "react-redux";
 import { AuthContext } from "@contexts";
 import { DefaultInput as Input } from "@components/ui";
-
 import "./styles.scss";
+import UserLocation from "../location";
 
 export default function UserData({ profileState }) {
   const emptyFieldMessage = "Незаповнене поле";
@@ -19,11 +19,9 @@ export default function UserData({ profileState }) {
   const methods = useForm({
     mode: "all",
   });
-
-  const city_Array = [1, 2, 3, 4, 5];
-  const region_Array = [1, 2, 3, 4, 5];
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
+
 
   const onEditHandler = (e) => {
     setIsEditing(!isEditing);
@@ -44,8 +42,8 @@ export default function UserData({ profileState }) {
           lastname: correctedLastname,
           email: correctedEmail,
           phone: unmaskedPhone,
-          region: region,
-          city: city,
+          // region: region,
+          // city: city,
         })
       );
     } else {
@@ -137,47 +135,7 @@ export default function UserData({ profileState }) {
                   </div>
 
                   <h3>Де ви знаходитесь?</h3>
-                  <div className="editProfile-form__section">
-                    <div>
-                      <label>
-                        Місто
-                        <select
-                          onChange={(e) => setCity(e.target.value)}
-                          id="city"
-                          name="city"
-                        >
-                          <option value="">Не вказано</option>
-                          {city_Array.map((city, index) => {
-                            return (
-                              <option key={index} value={city}>
-                                {city}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </label>
-                    </div>
-
-                    <div>
-                      <label>
-                        Область
-                        <select
-                          onChange={(e) => setRegion(e.target.value)}
-                          id="region"
-                          name="region"
-                        >
-                          <option value="">Не вказано</option>
-                          {region_Array.map((region, index) => {
-                            return (
-                              <option key={index} value={region}>
-                                {region}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </label>
-                    </div>
-                  </div>
+                  <UserLocation setCity={setCity} setRegion={setRegion} user={user} token={token}/>
                 </div>
                 <Avatar src={profileState.profile.avatar} />
               </div>

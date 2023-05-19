@@ -40,7 +40,6 @@ const Avatar = ({ src = null, width = "350px", onlyRead = false }) => {
   }, [imageFile, user, token, dispatch]);
 
   useEffect(() => {
-    console.log(uploadAvatarState)
     if (uploadAvatarState.success) {
       setCurrentAvatar(uploadAvatarState.success.urls[0]);
     }
