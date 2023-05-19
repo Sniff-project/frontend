@@ -2,7 +2,6 @@ import React from "react";
 import {
   Box,
   Grid,
-  IconButton,
   Skeleton,
   Table,
   TableBody,
@@ -10,8 +9,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { styled } from "@mui/system";
-
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import { EditButton } from "@components/simple";
 
 const AboutMeBlock = ({
   name,
@@ -41,9 +39,7 @@ const AboutMeBlock = ({
         </Grid>
         {isPetOwner && (
           <Grid item>
-            <IconButton aria-label="Редагувати" sx={{ marginTop: "0.25rem" }}>
-              <EditRoundedIcon fontSize="small" />
-            </IconButton>
+            <EditButton />
           </Grid>
         )}
       </Grid>
