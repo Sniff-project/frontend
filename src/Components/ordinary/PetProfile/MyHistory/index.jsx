@@ -28,8 +28,6 @@ const MyHistoryBlock = withEditState(
     margin = 0,
     isEdit,
     methods,
-    onSubmitHandler,
-    formRef,
   }) => {
     return (
       <SBox className="pet-profile__petHistory" margin={margin}>
@@ -51,9 +49,7 @@ const MyHistoryBlock = withEditState(
                 <>{description}</>
               ) : (
                 <FormProvider {...methods}>
-                  <form
-                    onSubmit={methods.handleSubmit(onSubmitHandler)}
-                    ref={formRef}>
+                  <form>
                     <DefaultInput
                       type="text"
                       name="description"
