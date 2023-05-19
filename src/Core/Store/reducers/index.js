@@ -1,7 +1,13 @@
 import { combineReducers } from "redux";
 import { logoutReducer, signInReducer, signUpReducer } from "./auth";
-import { uploadAvatarReducer, profileReducer, changePasswordReducer, citiesReducer, regionsReducer } from "./users";
-import { petProfileReducer, galleryReducer } from "./pets";
+import {
+  uploadAvatarReducer,
+  profileReducer,
+  changePasswordReducer,
+  citiesReducer,
+  regionsReducer,
+} from "./users";
+import { editPetProfileReducer, petProfileReducer, galleryReducer } from "./pets";
 
 const reducer = combineReducers({
   // auth
@@ -17,6 +23,7 @@ const reducer = combineReducers({
   regions: regionsReducer,
 
   // pets
+  editPetProfile: editPetProfileReducer,
   petProfile: petProfileReducer,
   gallery: galleryReducer
 });
