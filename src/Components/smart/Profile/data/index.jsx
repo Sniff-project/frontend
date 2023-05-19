@@ -30,6 +30,7 @@ export default function UserData({ profileState }) {
   const [currentCity, setCurrentCity] = useState(null);
   const [currentRegion, setCurrentRegion] = useState(null);
 
+
   useEffect(() => {
     if (user && token) {
       dispatch(getCities({ token }));
@@ -173,8 +174,8 @@ export default function UserData({ profileState }) {
                     setCurrentRegion={setCurrentRegion}
                     cities_Array={cities_Array}
                     regions_Array={regions_Array}
-                    currentCity={currentCity}
-                    currentRegion={currentRegion}
+                    currentCity={currentCity === null ? 0 : currentCity}
+                    currentRegion={currentRegion === null ? 0 : currentRegion}
                   />
                 </div>
                 <Avatar src={profileState.profile.avatar} />
@@ -234,11 +235,7 @@ export default function UserData({ profileState }) {
                     type="text"
                     name="city"
                     label="Місто та Область"
-                    value={
-                      profileState.profile.city || profileState.profile.region
-                        ? `${profileState.profile.city}, ${profileState.profile.region}`
-                        : emptyFieldMessage
-                    }
+                    value={`${profileState.profile.city ? profileState.profile.city + ',' : ''} ${profileState.profile.region ? profileState.profile.region : ''}`}
                   />
 
                   <Input
