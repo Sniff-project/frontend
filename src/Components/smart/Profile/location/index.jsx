@@ -26,8 +26,8 @@ export default function UserLocation({ user, token, setCity, setRegion }) {
             id="city"
             name="city"
           >
-            <option value="">Не вказано</option>
-            {cities_Array && cities_Array.map(city => <option key={city.id} value={city.name}>{city.name}</option>)}
+            <option value="0">Не вказано</option>
+            {cities_Array && cities_Array.map(city => <option key={city.id} value={city.id}>{city.name}</option>)}
           </select>
         </label>
       </div>
@@ -36,12 +36,12 @@ export default function UserLocation({ user, token, setCity, setRegion }) {
         <label>
           Область
           <select
-            // onChange={(e) => setRegion(e.target.value)}
+            onChange={(e) => setRegion(e.target.value)}
             id="region"
             name="region"
           >
-            <option value="">Не вказано</option>
-            {regions_Array && regions_Array.map(region => <option key={region.id} value={region.name}>{region.name}</option> )}
+            <option value="0">Не вказано</option>
+            {regions_Array && regions_Array.map(region => <option key={region.id} value={region.id}>{region.name}</option> )}
           </select>
         </label>
       </div>

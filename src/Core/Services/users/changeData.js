@@ -15,8 +15,8 @@ export const changeData = ({
 	lastname,
 	email,
 	phone,
-	region,
-	city
+	regionId,
+	cityId
 }) => {
     return async (dispatch) => {
         try {
@@ -28,8 +28,8 @@ export const changeData = ({
                 lastname,
                 email,
                 phone,
-                region,
-                city
+                regionId,
+                cityId
             );
             if (response.status === 200) {
                 const result = {

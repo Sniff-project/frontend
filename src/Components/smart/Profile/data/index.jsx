@@ -19,9 +19,8 @@ export default function UserData({ profileState }) {
   const methods = useForm({
     mode: "all",
   });
-  const [city, setCity] = useState("");
-  const [region, setRegion] = useState("");
-
+  const [city, setCity] = useState(profileState.city);
+  const [region, setRegion] = useState(profileState.region);
 
   const onEditHandler = (e) => {
     setIsEditing(!isEditing);
@@ -42,8 +41,8 @@ export default function UserData({ profileState }) {
           lastname: correctedLastname,
           email: correctedEmail,
           phone: unmaskedPhone,
-          // region: region,
-          // city: city,
+          regionId: region,
+          cityId: city
         })
       );
     } else {

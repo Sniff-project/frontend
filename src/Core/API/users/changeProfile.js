@@ -8,8 +8,8 @@ export const changeProfileData = async (
     lastname,
     email,
     phone,
-    region,
-    city
+    regionId,
+    cityId
 ) => {
     try {
         const response = await axios.patch(
@@ -19,8 +19,8 @@ export const changeProfileData = async (
                 lastname,
                 email,
                 phone,
-                region,
-                city
+                regionId,
+                cityId
             },
             {
                 headers: {
