@@ -7,6 +7,16 @@
     text-align: center;
     justify-content: flex-end;
 
+    .cardAnimal__icon {
+        height: 90px;
+    }
+
+    @media (max-width:1300px) {
+        .cardAnimal__icon {
+            height: 70px;
+        }
+    }
+
     .cardAnimal__text {
         margin: 0;
         color: white;

@@ -1,0 +1,298 @@
+.profile-holder {
+    --font-size: 1.1rem;
+
+    .profile-form {
+        &__inputs {
+            display: flex;
+            align-items: center;
+
+            .profile-form__holder {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                justify-content: center;
+                gap: 56px 150px;
+                flex-grow: 1;
+                height: 400px;
+                padding-right: 30px;
+
+                div {
+                    width: 400px;
+                }
+
+                @media (max-width: 1400px) {
+                    div {
+                        width: 300px;
+                    }
+                }
+
+                @media (max-width: 1300px) {
+                    div {
+                        width: 250px;
+                    }
+                }
+            }
+
+            @media (max-width: 1700px) {
+                .profile-form__holder {
+                    gap: 56px 100px;
+                }
+            }
+
+            @media (max-width: 1550px) {
+                .profile-form__holder {
+                    gap: 56px 60px;
+                }
+            }
+
+            @media (max-width: 1300px) {
+                .profile-form__holder {
+                    height: 300px;
+                }
+            }
+
+            @media (max-width: 1100px) {
+                .profile-form__holder {
+                    height: 350px;
+                    gap: 36px 0px;
+                    flex-grow: 0;
+                    width: 50%;
+                }
+            }
+
+            @media (max-width: 750px) {
+                .profile-form__holder {
+                    padding-right: 0;
+                    padding-top: 20px;
+                    align-items: center;
+                    width: 100%;
+                }
+            }
+
+            label {
+                font-weight: 300;
+                font-size: var(--font-size);
+                line-height: 20px;
+                color: rgba(0, 0, 0, 0.5);
+            }
+
+            input {
+                font-size: var(--font-size);
+                line-height: 24px;
+                color: #2E2C34;
+                cursor: default;
+                padding-top: 20px;
+            }
+
+            @media (max-width: 1400px) {
+                input {
+                    padding-bottom: 0;
+                }
+            }
+
+            @media (max-width: 1300px) {
+                input {
+                    padding-top: 10px;
+                }
+            }
+        }
+
+
+        @media (max-width: 750px) {
+            &__inputs {
+                flex-direction: column-reverse;
+            }
+        }
+
+        &__btn {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+
+            button {
+                width: 250px;
+
+                img {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        @media (max-width: 900px) {
+            &__btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 750px) {
+            &__btn {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+
+    .editProfile-form {
+        &__btn {
+            margin-top: 50px;
+
+            button {
+                width: 250px;
+
+                img {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        @media (max-width: 800px) {
+            &__btn {
+                text-align: center;
+            }
+        }
+
+        .green__btn {
+            background: #6DFA9D;
+            box-shadow: 0px 0px 25px rgba(109, 250, 157, 0.5);
+            color: #005403;
+        }
+
+        &__section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &:not(:last-child) {
+                margin-bottom: 70px;
+            }
+
+
+            div {
+                width: 400px;
+                font-weight: 200;
+                color: #000000;
+
+                input {
+                    font-size: var(--font-size);
+                    color: #2E2C34;
+                    cursor: default;
+                }
+
+                label {
+                    font-weight: 300;
+                    font-size: var(--font-size);
+                    color: rgba(0, 0, 0, 0.5);
+                }
+
+                select {
+                    background-color: transparent;
+                    margin-left: 20px;
+                    margin-top: 10px;
+                    color: #000000;
+                    height: 100%;
+                    width: 80%;
+                    padding: 3px;
+                    font-size: var(--font-size);
+                    border: 1px solid #999;
+                    border-radius: 5px;
+                    box-shadow: 4px 4px #ccc;
+                    option {
+                        font-size: var(--font-size);
+                    }
+                }
+            }
+
+            @media (max-width: 1600px) {
+                div {
+                    width: 380px;
+                }
+            }
+
+            @media (max-width: 1400px) {
+                div {
+                    width: 300px;
+                }
+            }
+
+        }
+
+        @media (max-width: 1120px) {
+            &__section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px 0px;
+            }
+        }
+
+        &__inputs {
+            display: flex;
+            align-items: center;
+
+            .editProfile-form__holder {
+                margin-right: 200px;
+                flex-grow: 1;
+
+                h3 {
+                    font-size: var(--font-size);
+                    color: #000000;
+                    margin-bottom: 20px;
+                }
+
+                @media (max-width: 1300px) {
+                    h3 {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            @media (max-width: 1600px) {
+                .editProfile-form__holder {
+                    margin-right: 100px;
+                }
+            }
+
+            @media (max-width: 1250px) {
+                .editProfile-form__holder {
+                    margin-right: 60px;
+                }
+            }
+
+            @media (max-width: 800px) {
+                .editProfile-form__holder {
+                    margin-right: 0px;
+                    margin-top: 50px;
+                }
+            }
+
+        }
+
+        @media (max-width: 800px) {
+            &__inputs {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 1300px) {
+    .profile-holder {
+        --font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .profile-holder {
+        --font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 1300px) {
+    .css-1u6paag {
+        padding-top: 40px !important;
+        padding-bottom: 0 !important;
+    }
+}

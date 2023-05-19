@@ -59,11 +59,18 @@ h6 {
   margin-bottom: 5px;
 }
 
+.container2000 {
+  max-width: 2000px;
+  margin: 0 auto;
+  position: relative;
+}
+
 @media (max-width: 1400px) {
   html {
     font-size: 14px;
   }
 }
+
 @media (max-width: 1300px) {
   html {
     font-size: 12px;

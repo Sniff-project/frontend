@@ -11,7 +11,7 @@ export default function AnimalCards() {
       {cardsAnimals.map((elem, index) => {
         return <AnimalCard key={index} name={elem} imageSrc={dogImg} />;
       })}
-      <NavigationCard />
+      <NavigationCard/>
     </div>
   );
 }

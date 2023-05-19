@@ -21,7 +21,7 @@
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            padding: 0px calc(8vw - 40px);
+            padding: 0px calc(8% - 40px);
 
             .footer-logo__text {
                 color: white;
@@ -31,7 +31,7 @@
 
         @media (max-width: 1150px) {
             .footer-logo {
-                padding: 0px 5vw;
+                padding: 0px 5%;
             }
         }
 
@@ -61,6 +61,7 @@
                 margin-top: 0;
                 padding-inline-start: 2rem;
                 li {
+                    line-height: 170% !important;
                     &::marker {
                         color: white;
                     }
@@ -78,10 +79,18 @@
                     }
 
                     &:not(:first-child) {
-                        margin-top: 10px;
+                        margin-top: 5px;
                     }
 
+                    @media (max-width: 850px) {
+                        &:not(:first-child) {
+                            margin-top: 0;
+                        }
+                    }
                     @media (max-width: 750px) {
+                        &:not(:first-child) {
+                            margin-top: 10px;
+                        }
                         & {
                             margin: 10px;
                         }
@@ -187,7 +196,8 @@
             .footer-contacts {
                 padding-top: 35px;
                 padding-bottom: 0;
-                padding-left: 35px;
+                padding-left: 25px;
+                padding-right: 40px;
             }
         }
 

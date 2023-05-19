@@ -25,3 +25,22 @@ export {
 	changePasswordFailure,
 } from "./password";
 
+
+export {
+	CITIES_REQUEST,
+	CITIES_SUCCESS,
+	CITIES_FAILURE,
+	citiesRequest,
+	citiesSuccess,
+	citiesFailure,
+} from "./cities";
+
+export {
+	REGIONS_REQUEST,
+	REGIONS_SUCCESS,
+	REGIONS_FAILURE,
+	regionsRequest,
+	regionsSuccess,
+	regionsFailure,
+} from "./regions";
+
