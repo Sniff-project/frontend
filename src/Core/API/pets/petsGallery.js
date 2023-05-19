@@ -8,14 +8,11 @@ export const getGallery = async (token) => {
 				Authorization: `Bearer ${token}`,
 			},
 		});
-        console.log(response);
 		return response;
 	} catch (error) {
 		return error?.response || { message: "Unknown error occurred." };
 	}
 };
-
-
 
 
 

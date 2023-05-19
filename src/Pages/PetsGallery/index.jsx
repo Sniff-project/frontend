@@ -1,15 +1,17 @@
 import React, { useContext, useEffect } from "react";
-import { getGallery } from "../../Core/API/pets/gallery";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
+import { petsGallery } from "@core/Services/pets";
 
 export default function PetsGallery() {
   const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
+  const gallery_Array = useSelector((state) => state.gallery);
+
 
   useEffect(() => {
-    // dispatch(getGallery(token));
+    dispatch(petsGallery(token));
   }, [dispatch, user, token]);
 
-  return <div></div>;
+  return <div>Gallery</div>;
 }
