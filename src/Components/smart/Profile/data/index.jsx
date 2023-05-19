@@ -30,7 +30,6 @@ export default function UserData({ profileState }) {
   const [currentCity, setCurrentCity] = useState(null);
   const [currentRegion, setCurrentRegion] = useState(null);
 
-
   useEffect(() => {
     if (user && token) {
       dispatch(getCities({ token }));
@@ -42,18 +41,18 @@ export default function UserData({ profileState }) {
     if (regions_Array?.length > 0 && cities_Array?.length > 0) {
       if (profileState.profile.city !== null) {
         setCurrentCity(
-          cities_Array.find((city) => city.name == profileState.profile.city).id
+          cities_Array.find((city) => city.name === profileState.profile.city).id
         );
       }
       if (profileState.profile.region !== null) {
         setCurrentRegion(
           regions_Array.find(
-            (region) => region.name == profileState.profile.region
+            (region) => region.name === profileState.profile.region
           ).id
         );
       }
     }
-  }, [cities_Array, regions_Array]);
+  }, [cities_Array, regions_Array, profileState.profile.city, profileState.profile.region]);
 
   const onEditHandler = (e) => {
     setIsEditing(!isEditing);

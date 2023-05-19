@@ -19,8 +19,6 @@ export const changeData = ({
 	cityId
 }) => {
     return async (dispatch) => {
-        console.log(regionId);
-        console.log(cityId);
         try {
             dispatch(profileRequest());
             const response = await changeProfileData(
@@ -33,7 +31,6 @@ export const changeData = ({
                 regionId,
                 cityId
             );
-            console.log(response);
             if (response.status === 200) {
                 const result = {
                     ...response.data,
