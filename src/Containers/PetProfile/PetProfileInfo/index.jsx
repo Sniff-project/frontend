@@ -1,94 +1,139 @@
-import { memo, useContext, useEffect, useCallback } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useCallback, useContext, useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, IconButton, Tooltip, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { AuthContext } from "@contexts";
+import { useParams, useNavigate } from "react-router-dom";
 import {
-  editPetProfile,
-  petProfile as getPetProfile,
-} from "@core/Services/pets";
-import { Container, Snackbar } from "@components/simple";
+  Alert,
+  IconButton,
+  Grid,
+  Snackbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+
+import { AuthContext } from "@contexts";
+import { editPetProfile, getPetProfile } from "@core/Services/pets";
+
+import { Container } from "@components/simple";
 import { Message } from "@components/ordinary";
 import {
   PetAuthorBlock,
   PetInfoBlock,
   PetLocationBlock,
 } from "@components/smart/PetProfile";
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { petImage } from "./testPetImage";
 
 const PetProfileInfo = () => {
   const theme = useTheme();
   const { petId } = useParams();
   const navigate = useNavigate();
-  const { token, user, isAuthenticated } = useContext(AuthContext);
+
   const dispatch = useDispatch();
+  const { token, user, isAuthenticated } = useContext(AuthContext);
+
   const petProfileState = useSelector((state) => state.petProfile);
   const editPetProfileState = useSelector((state) => state.editPetProfile);
 
+  const [isPetOwner, setIsPetOwner] = useState(false);
+  const [petProfile, setPetProfile] = useState(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(true);
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+  const showSnackbar = () => {
+    setSnackbarOpen(true);
+  };
+
   useEffect(() => {
     if (!petProfileState.petProfile) {
-      dispatch(
-        getPetProfile({
-          petId: petId,
-          token: token || null,
-        })
-      );
+      dispatch(getPetProfile({ petId: petId, token: token || null }));
+    } else if (editPetProfileState.petProfile) {
+      setPetProfile(editPetProfileState.petProfile);
+    } else if (petProfileState.petProfile) {
+      setPetProfile(petProfileState.petProfile);
     }
-  }, [dispatch, petId, token, petProfileState.petProfile]);
+  }, [
+    dispatch,
+    petId,
+    token,
+    petProfileState.petProfile,
+    editPetProfileState.petProfile,
+  ]);
+
+  useEffect(() => {
+    setIsPetOwner(
+      isAuthenticated && +user?.sub === petProfile?.author?.id ? true : false
+    );
+  }, [isAuthenticated, petProfile?.author?.id, user?.sub]);
 
   const onEditHandler = useCallback(
     (data) => {
-      dispatch(
-        editPetProfile({
-          petId: petId,
-          token: token || null,
-          data: data,
-        })
-      );
+      if (isAuthenticated) {
+        dispatch(
+          editPetProfile({
+            petId: petId,
+            token: token || null,
+            data: {
+              status: petProfileState.petProfile?.status,
+              name: petProfileState.petProfile?.name,
+              latitude: petProfileState.petProfile?.latitude,
+              longitude: petProfileState.petProfile?.longitude,
+              gender: petProfileState.petProfile?.gender,
+              foundOrLostDate: petProfileState.petProfile?.foundOrLostDate,
+              description: petProfileState.petProfile?.description,
+              ...data,
+            },
+          })
+        );
+      }
     },
-    [dispatch, petId, token]
+    [
+      dispatch,
+      petId,
+      petProfileState.petProfile?.description,
+      petProfileState.petProfile?.foundOrLostDate,
+      petProfileState.petProfile?.gender,
+      petProfileState.petProfile?.latitude,
+      petProfileState.petProfile?.longitude,
+      petProfileState.petProfile?.name,
+      petProfileState.petProfile?.status,
+      token,
+      isAuthenticated,
+    ]
   );
-
-  console.log(editPetProfileState);
 
   const goToPetsGallery = useCallback(() => {
     navigate("/pets");
   }, [navigate]);
 
-  const isPetOwner =
-    (isAuthenticated &&
-      +user?.sub === petProfileState.petProfile?.author?.id) ||
-    false;
-
   const petInfo = !petProfileState.error ? (
     <PetInfoBlock
       petImage={petImage}
       margin={"3.75rem 0 0"}
-      petProfile={petProfileState.petProfile}
+      petProfile={petProfile}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
       onEditHandler={onEditHandler}
+      showSnackbar={showSnackbar}
     />
   ) : null;
-
   const petLocation = !petProfileState.error ? (
     <PetLocationBlock
-      lat={petProfileState.petProfile?.latitude}
-      lng={petProfileState.petProfile?.longitude}
+      lat={petProfile?.latitude}
+      lng={petProfile?.longitude}
       isLoading={petProfileState.isLoading}
     />
   ) : null;
-
   const petAuthor = !petProfileState.error ? (
     <PetAuthorBlock
-      author={petProfileState.petProfile?.author}
+      author={petProfile?.author}
       isLoading={petProfileState.isLoading}
     />
   ) : null;
-
   const error = petProfileState.error ? (
     <Message
       message={petProfileState.error?.message}
@@ -98,12 +143,29 @@ const PetProfileInfo = () => {
   ) : null;
 
   const editError = editPetProfileState.error ? (
-    <Snackbar message={editPetProfileState.error?.message} severity="error" />
+    <Snackbar
+      open={snackbarOpen}
+      autoHideDuration={5000}
+      onClose={handleCloseSnackbar}>
+      <Alert
+        severity="error"
+        onClose={handleCloseSnackbar}
+        sx={{ width: "100%" }}>
+        {editPetProfileState.error?.message}
+      </Alert>
+    </Snackbar>
   ) : editPetProfileState.petProfile ? (
     <Snackbar
-      message={editPetProfileState.petProfile?.message}
-      severity="success"
-    />
+      open={snackbarOpen}
+      autoHideDuration={5000}
+      onClose={handleCloseSnackbar}>
+      <Alert
+        severity="success"
+        onClose={handleCloseSnackbar}
+        sx={{ width: "100%" }}>
+        {editPetProfileState.petProfile?.message}
+      </Alert>
+    </Snackbar>
   ) : null;
 
   return (

@@ -1,2 +1,2 @@
 export { editPetProfile } from "./editProfile";
-export { petProfile } from "./profile";
+export { getPetProfile } from "./profile";

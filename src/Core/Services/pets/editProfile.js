@@ -11,6 +11,12 @@ const errorMsg = "Дані не змінено!";
 const unknownError = "Щось пішло не так :(";
 
 export const editPetProfile = ({ petId, token, data }) => {
+  data.gender =
+    data.gender === "Чоловіча"
+      ? "MALE"
+      : data.gender === "Жіноча"
+      ? "FEMALE"
+      : "UNKNOWN";
   return async (dispatch) => {
     try {
       dispatch(editPetProfileRequest());
@@ -18,7 +24,12 @@ export const editPetProfile = ({ petId, token, data }) => {
       if (response.status === 200) {
         const result = {
           ...response.data,
-          gender: response.data.gender === "MALE" ? "Чоловіча" : "Жіноча",
+          gender:
+            response.data.gender === "MALE"
+              ? "Чоловіча"
+              : response.data.gender === "FEMALE"
+              ? "Жіноча"
+              : "Невідомо",
           message: successMsg,
         };
         dispatch(editPetProfileSuccess(result));

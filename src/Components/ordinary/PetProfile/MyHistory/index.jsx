@@ -25,31 +25,32 @@ const MyHistoryBlock = withEditState(
     description,
     isLoading,
     isPetOwner,
-    margin = 0,
     isEdit,
     methods,
+    onSaveHandler,
+    margin = 0,
   }) => {
     return (
       <SBox className="pet-profile__petHistory" margin={margin}>
-        <Grid container alignItems="center" justifyContent="center">
-          <Grid item>
-            <h3>Моя історія</h3>
-          </Grid>
-          {isPetOwner && <Grid item>{button}</Grid>}
-        </Grid>
-        <Typography
-          fontSize="1.25rem"
-          lineHeight="180%"
-          mt={4}
-          sx={{ textAlign: "justify" }}
-          component="div">
-          {!isLoading ? (
-            <>
-              {!isEdit ? (
-                <>{description}</>
-              ) : (
-                <FormProvider {...methods}>
-                  <form>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSaveHandler)}>
+            <Grid container alignItems="center" justifyContent="center">
+              <Grid item>
+                <h3>Моя історія</h3>
+              </Grid>
+              {isPetOwner && <Grid item>{button}</Grid>}
+            </Grid>
+            <Typography
+              fontSize="1.25rem"
+              lineHeight="180%"
+              mt={4}
+              sx={{ textAlign: "justify" }}
+              component="div">
+              {!isLoading && description ? (
+                <>
+                  {!isEdit ? (
+                    <>{description}</>
+                  ) : (
                     <DefaultInput
                       type="text"
                       name="description"
@@ -69,24 +70,18 @@ const MyHistoryBlock = withEditState(
                         },
                       }}
                     />
-                  </form>
-                </FormProvider>
+                  )}
+                </>
+              ) : (
+                <Skelet />
               )}
-            </>
-          ) : (
-            <Skelet />
-          )}
-        </Typography>
+            </Typography>
+          </form>
+        </FormProvider>
       </SBox>
     );
   }
 );
-
-// validation={{
-//   required: true,
-//   minLength: { value: 20, message: "Дуже коротка історія!" },
-//   maxLength: { value: 250, message: "Дуже довга історія!" },
-// }}
 
 const SBox = styled(Box)`
   h3 {

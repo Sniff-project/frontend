@@ -33,6 +33,13 @@ export const AuthProvider = ({ children }) => {
         // Check if token has expired
         if (decoded.exp < currentTime) {
           logout();
+        } else {
+          const interval = setInterval(() => {
+            if (decoded.exp < currentTime) {
+              logout();
+              clearInterval(interval);
+            }
+          }, currentTime - decoded.exp + 1);
         }
       } catch (error) {
         console.error("Invalid token");
