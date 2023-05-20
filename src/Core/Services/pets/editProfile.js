@@ -31,6 +31,7 @@ export const editPetProfile = ({ petId, token, data }) => {
               : response.data.gender === "FEMALE"
               ? "Жіноча"
               : "Невідомо",
+          status: response.data.status === "FOUND" ? "Знайдено" : "Загублено",
           message: successMsg,
         };
         dispatch(editPetProfileSuccess(result));
