@@ -17,14 +17,8 @@ const PetInfoBlock = ({
   showSnackbar,
   margin = 0,
 }) => {
-  const {
-    name,
-    author: { city } = "",
-    gender,
-    foundOrLostDate,
-    status,
-    description,
-  } = petProfile ?? {};
+  const { name, gender, foundOrLostDate, status, description } =
+    petProfile ?? {};
 
   return (
     <StyledBox
@@ -51,7 +45,6 @@ const PetInfoBlock = ({
         <Grid item sx={{ minWidth: "300px" }} xs={12} md={7}>
           <PetAboutBlock
             name={name}
-            city={city}
             gender={gender}
             foundOrLostDate={foundOrLostDate}
             status={status}

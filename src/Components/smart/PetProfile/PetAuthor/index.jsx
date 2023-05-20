@@ -98,7 +98,7 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
         <Grid container item>
           <Row columnSpacing="1.25rem">
             <Grid item>{avatarItem}</Grid>
-            <Grid item width="75%">
+            <Grid item width="225px">
               {nameItem}
             </Grid>
           </Row>
@@ -110,7 +110,7 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
               <PhoneRoundedIcon />
             </Grid>
 
-            <Grid item width="60%">
+            <Grid item width="230px">
               {phoneItem}
             </Grid>
           </Row>
@@ -120,7 +120,7 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
             <Grid item>
               <EmailRoundedIcon />
             </Grid>
-            <Grid item width="60%">
+            <Grid item width="230px">
               {emailItem}
             </Grid>
           </Row>

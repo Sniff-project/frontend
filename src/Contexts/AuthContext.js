@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
           const interval = setInterval(() => {
             if (decoded.exp < currentTime) {
               logout();
+              console.log(isAuthenticated, "logout");
               clearInterval(interval);
             }
           }, currentTime - decoded.exp + 1);
