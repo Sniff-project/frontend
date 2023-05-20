@@ -4,7 +4,7 @@ import Input from "./Input";
 
 const DefaultInput = (props) => {
   const theme = useTheme();
-  return (<DInput theme={theme} {...props} />);
+  return <DInput theme={theme} {...props} />;
 };
 
 const DInput = styled(Input)(
@@ -20,10 +20,8 @@ const DInput = styled(Input)(
     font-weight: 400;
     line-height: 20px;
     color: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
     padding-left: 10px;
     height: auto;
-    pointer-events: auto;
     transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
       max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, padding 200ms cubic-bezier(0, 0, 0.2, 1);
   }
