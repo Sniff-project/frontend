@@ -1,0 +1,14 @@
+.gallery {
+    &-container {
+        width: 1500px;
+        margin: 80px auto;
+    }
+    &-page {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+        width: 100%;
+    }
+}
