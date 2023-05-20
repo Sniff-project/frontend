@@ -25,7 +25,7 @@ export default function AnimalSlideCards() {
             activeIndicatorIconButtonProps={{
                 style: {
                     padding: "5px",
-                    backgroundColor: '#48A0D1'
+                    color: '#48A0D1'
                 }
             }}
         >

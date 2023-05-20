@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { petsGallery } from "@core/Services/pets";
@@ -14,7 +14,7 @@ export default function PetsGallery() {
   const gallery_Array = useSelector((state) => state.gallery);
   const test_Array = new Array(50).fill(1).map((elem, i) => (elem = ++i)); // from 1 to 50 numbers
 
-  console.log(gallery_Array);
+  const anArrayOfNumbers = [1,2,3,4,5,6];
 
   useEffect(() => {
     dispatch(petsGallery(token));
@@ -25,23 +25,35 @@ export default function PetsGallery() {
       <div className="container2000">
         <div className="gallery-container">
           <Carousel
-            animation="slide"
+            className="gallery-slider"
+            animation="fade"
             autoPlay={false}
             navButtonsAlwaysVisible={true}
-            slidesPerPage={12}
-            itemPadding={[0, 10]}
+            slidesPerPage={maxCardsOnPage}
+            activeIndicatorIconButtonProps={{
+              style: {
+                color: "#48A0D1",
+              },
+            }}
+            indicatorContainerProps={{
+              style: {
+                display: "flex",
+                justifyContent: "center",
+                gap: '0 10px'
+              },
+            }}
+            IndicatorIcon={anArrayOfNumbers}
           >
-            {[...Array(Math.ceil(test_Array.length / 12))].map(
+            {[...Array(Math.ceil(test_Array.length / maxCardsOnPage))].map(
               (_, slideIndex) => (
                 <div className="gallery-page" key={slideIndex}>
                   {test_Array
-                    .slice(slideIndex * 12, (slideIndex + 1) * 12)
+                    .slice(
+                      slideIndex * maxCardsOnPage,
+                      (slideIndex + 1) * maxCardsOnPage
+                    )
                     .map((animal, index) => (
-                      <AnimalCard
-                        key={index}
-                        name={animal}
-                        imageSrc={dogImg}
-                      />
+                      <AnimalCard key={index} name={animal} imageSrc={dogImg} />
                     ))}
                 </div>
               )
