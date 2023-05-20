@@ -17,11 +17,19 @@ const withEditState = (WrappedComponent) => {
       (formData) => {
         // on click btn save
         const data = {
-          description: formData.description.replace(/\s{2,}/g, " ").trim(),
+          ...formData,
+          name: formData.name.replace(/\s{2,}/g, " ").trim(),
         };
-        if (props.description !== data.description) props?.onEditHandler(data);
+        if (
+          props.name !== data.name &&
+          props.gender !== data.gender &&
+          props.status !== data.status &&
+          props.foundOrLostDate !== data.foundOrLostDate
+        ) {
+          props?.onEditHandler(data);
+          props.showSnackbar();
+        }
         setIsEdit((prev) => !prev);
-        props.showSnackbar();
       },
       [props]
     );

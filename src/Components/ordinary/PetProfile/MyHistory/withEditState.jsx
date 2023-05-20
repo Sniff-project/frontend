@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { EditButton, SaveButton } from "@components/simple";
+import { EditButton, SaveButton } from "@components/ui";
 
 const withEditState = (WrappedComponent) => {
   return (props) => {
@@ -19,9 +19,11 @@ const withEditState = (WrappedComponent) => {
         const data = {
           description: formData.description.replace(/\s{2,}/g, " ").trim(),
         };
-        if (props.description !== data.description) props?.onEditHandler(data);
+        if (props.description !== data.description) {
+          props?.onEditHandler(data);
+          props.showSnackbar();
+        }
         setIsEdit((prev) => !prev);
-        props.showSnackbar();
       },
       [props]
     );

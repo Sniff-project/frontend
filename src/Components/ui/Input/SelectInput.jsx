@@ -73,6 +73,7 @@ const SInput = styled(TextField)(({ theme }) => ({
     lineHeight: "20px",
     color: "rgba(0, 0, 0, 0.5)",
     paddingLeft: 10,
+    paddingBottom: 1,
   },
 }));
 
