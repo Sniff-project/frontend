@@ -24,7 +24,7 @@ export const getPetProfile = ({ petId, token }) => {
               : response.data.gender === "FEMALE"
               ? "Жіноча"
               : "Невідомо",
-          status: response.data.gender === "FOUND" ? "Знайдено" : "Загублено",
+          status: response.data.status === "FOUND" ? "Знайдено" : "Загублено",
           message: successMsg,
         };
         dispatch(petProfileSuccess(result));

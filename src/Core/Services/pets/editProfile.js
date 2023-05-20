@@ -17,6 +17,7 @@ export const editPetProfile = ({ petId, token, data }) => {
       : data.gender === "Жіноча"
       ? "FEMALE"
       : "UNKNOWN";
+  data.status = data.status === "Знайдено" ? "FOUND" : "LOST";
   return async (dispatch) => {
     try {
       dispatch(editPetProfileRequest());
