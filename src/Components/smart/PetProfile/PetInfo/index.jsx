@@ -14,6 +14,7 @@ const PetInfoBlock = ({
   isLoading,
   isPetOwner,
   onEditHandler,
+  showSnackbar,
   margin = 0,
 }) => {
   const {
@@ -57,12 +58,14 @@ const PetInfoBlock = ({
             isLoading={isLoading}
             isPetOwner={isPetOwner}
             onEditHandler={onEditHandler}
+            showSnackbar={showSnackbar}
           />
           <PetHistoryBlock
             description={description}
             isLoading={isLoading}
             isPetOwner={isPetOwner}
             onEditHandler={onEditHandler}
+            showSnackbar={showSnackbar}
             margin={"6.25rem 0 0"}
           />
         </Grid>

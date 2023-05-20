@@ -5,7 +5,7 @@ import { EditButton, SaveButton } from "@components/simple";
 
 const withEditState = (WrappedComponent) => {
   return (props) => {
-    const methods = useForm();
+    const methods = useForm({ mode: "all" });
     const [isEdit, setIsEdit] = useState(false);
 
     const onEditHandler = useCallback(() => {
@@ -13,20 +13,24 @@ const withEditState = (WrappedComponent) => {
       setIsEdit((prev) => !prev);
     }, []);
 
-    const onSaveHandler = useCallback(() => {
-      // on click btn save
-      const formData = methods.getValues();
-      props?.onEditHandler(formData);
-      setIsEdit((prev) => !prev);
-    }, [methods, props]);
+    const onSaveHandler = useCallback(
+      (formData) => {
+        // on click btn save
+        const data = {
+          description: formData.description.replace(/\s{2,}/g, " ").trim(),
+        };
+        if (props.description !== data.description) props?.onEditHandler(data);
+        setIsEdit((prev) => !prev);
+        props.showSnackbar();
+      },
+      [props]
+    );
 
     const button = !isEdit ? (
       <EditButton onClick={onEditHandler} />
     ) : (
-      <SaveButton onClick={onSaveHandler} color="success" />
+      <SaveButton type="submit" color="success" />
     );
-
-    console.log(props);
 
     return (
       <WrappedComponent
@@ -34,6 +38,7 @@ const withEditState = (WrappedComponent) => {
         button={button}
         isEdit={isEdit}
         methods={methods}
+        onSaveHandler={onSaveHandler}
       />
     );
   };

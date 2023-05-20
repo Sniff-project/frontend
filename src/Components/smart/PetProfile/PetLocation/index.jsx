@@ -9,10 +9,10 @@ const PetLocationBlock = ({ lat, lng, isLoading, margin = 0 }) => {
       className="pet-profile__locationBlock"
       margin={margin}
       padding="1rem">
-      {!isLoading ? (
+      {!isLoading && lat && lng ? (
         <Map
-          lat={lat || 0}
-          lng={lng || 0}
+          lat={lat}
+          lng={lng}
           zoom={12}
           style={{ height: "31.25rem", borderRadius: "10px" }}
         />
