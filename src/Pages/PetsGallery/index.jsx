@@ -6,19 +6,27 @@ import AnimalCard from "../../Components/ordinary/Homepage/AnimalCard";
 import dogImg from "@assets/Images/Homepage/dog.webp";
 import Carousel from "react-material-ui-carousel";
 import "./styles.scss";
+import Pagination from "@mui/material/Pagination";
 
 export default function PetsGallery() {
   const maxCardsOnPage = 12;
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
   const gallery_Array = useSelector((state) => state.gallery);
-  const test_Array = new Array(50).fill(1).map((elem, i) => (elem = ++i)); // from 1 to 50 numbers
-
-  const anArrayOfNumbers = [1,2,3,4,5,6];
+  const test_Array = new Array(150).fill(1).map((elem, i) => (elem = ++i));
+  const maxPages = Math.ceil(test_Array.length / maxCardsOnPage);
+  const anArrayOfNumbers = new Array(maxPages)
+    .fill(1)
+    .map((elem, i) => (elem = ++i));
 
   useEffect(() => {
-    dispatch(petsGallery(token));
+    // dispatch(petsGallery(token));
   }, [dispatch, user, token]);
+
+  const handleSlide = (e, value) => {
+    setCurrentSlideIndex(--value);
+  }
 
   return (
     <div className="gallery">
@@ -28,38 +36,26 @@ export default function PetsGallery() {
             className="gallery-slider"
             animation="fade"
             autoPlay={false}
-            navButtonsAlwaysVisible={true}
+            navButtonsProps={{ style: { display: 'none' }, className: '' }}
             slidesPerPage={maxCardsOnPage}
-            activeIndicatorIconButtonProps={{
-              style: {
-                color: "#48A0D1",
-              },
-            }}
-            indicatorContainerProps={{
-              style: {
-                display: "flex",
-                justifyContent: "center",
-                gap: '0 10px'
-              },
-            }}
-            IndicatorIcon={anArrayOfNumbers}
+            indicators={false}
+            index={currentSlideIndex}
           >
-            {[...Array(Math.ceil(test_Array.length / maxCardsOnPage))].map(
-              (_, slideIndex) => (
-                <div className="gallery-page" key={slideIndex}>
-                  {test_Array
-                    .slice(
-                      slideIndex * maxCardsOnPage,
-                      (slideIndex + 1) * maxCardsOnPage
-                    )
-                    .map((animal, index) => (
-                      <AnimalCard key={index} name={animal} imageSrc={dogImg} />
-                    ))}
-                </div>
-              )
-            )}
+            {[...Array(maxPages)].map((_, slideIndex) => (
+              <div className="gallery-page" key={slideIndex}>
+                {test_Array
+                  .slice(
+                    slideIndex * maxCardsOnPage,
+                    (slideIndex + 1) * maxCardsOnPage
+                  )
+                  .map((animal, index) => (
+                    <AnimalCard key={index} name={animal} imageSrc={dogImg} />
+                  ))}
+              </div>
+            ))}
           </Carousel>
         </div>
+        <Pagination count={maxPages} onChange={handleSlide} />
       </div>
     </div>
   );

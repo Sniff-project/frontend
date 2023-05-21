@@ -1,7 +1,7 @@
 .gallery {
     &-container {
         width: 1500px;
-        margin: 80px auto;
+        margin: 0 auto;
     }
 
     &-page {
@@ -18,36 +18,8 @@
         padding-bottom: 20px;
     }
 
-    .css-hn784z,
-    .css-1abc02a {
-        height: fit-content;
-        top: unset;
-        background-color: transparent;
-
-        button {
-            background-color: transparent;
-            padding: 0;
-
-            svg {
-                color: #737373;
-            }
-        }
-
-    }
-
-    .css-hn784z {
-        left: 43%;
-    }
-    .css-1abc02a {
-        right: 43%;
-    }
-
-    .css-1m9128y {
-        margin-top: 8px;
-    }
-
-    .css-jh650f-MuiButtonBase-root-MuiIconButton-root {
-        font-size: unset;
+    .MuiPagination-ul {
+        justify-content: center;
     }
 
 }
