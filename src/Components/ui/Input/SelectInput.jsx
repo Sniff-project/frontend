@@ -16,12 +16,7 @@ const SelectInput = ({
     formState: { errors },
   } = useFormContext();
   const theme = useTheme();
-  const rules = useMemo(
-    () => ({
-      ...validation,
-    }),
-    [validation]
-  );
+  const rules = useMemo(() => validation, [validation]);
 
   return (
     <SInput

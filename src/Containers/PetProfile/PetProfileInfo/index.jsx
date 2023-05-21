@@ -78,32 +78,14 @@ const PetProfileInfo = () => {
             petId: petId,
             token: token || null,
             data: {
-              status: petProfileState.petProfile?.status,
-              name: petProfileState.petProfile?.name,
-              latitude: petProfileState.petProfile?.latitude,
-              longitude: petProfileState.petProfile?.longitude,
-              gender: petProfileState.petProfile?.gender,
-              foundOrLostDate: petProfileState.petProfile?.foundOrLostDate,
-              description: petProfileState.petProfile?.description,
+              ...petProfile,
               ...data,
             },
           })
         );
       }
     },
-    [
-      dispatch,
-      petId,
-      petProfileState.petProfile?.description,
-      petProfileState.petProfile?.foundOrLostDate,
-      petProfileState.petProfile?.gender,
-      petProfileState.petProfile?.latitude,
-      petProfileState.petProfile?.longitude,
-      petProfileState.petProfile?.name,
-      petProfileState.petProfile?.status,
-      token,
-      isAuthenticated,
-    ]
+    [isAuthenticated, dispatch, petId, token, petProfile]
   );
 
   const goToPetsGallery = useCallback(() => {

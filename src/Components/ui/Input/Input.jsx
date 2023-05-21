@@ -39,7 +39,7 @@ const Input = memo(
             <IconButton onClick={endIconOnClick}>{endIcon}</IconButton>
           </InputAdornment>
         ),
-        readOnly
+        readOnly,
       }),
       [startIcon, endIcon, startIconOnClick, endIconOnClick, readOnly]
     );
@@ -72,8 +72,8 @@ const Input = memo(
               {...inputProps}
               variant={variant}
               label={inpLabel}
-              error={!!errors?.[name] && true}
-              helperText={errors?.[name]?.message || ""}
+              error={!!errors?.[name]}
+              helperText={errors?.[name]?.message}
               InputProps={inpProps}
             />
           )}
@@ -96,8 +96,8 @@ const Input = memo(
           <TextField
             variant={variant}
             label={inpLabel}
-            error={!!errors?.[name] && true}
-            helperText={errors?.[name]?.message || ""}
+            error={!!errors?.[name]}
+            helperText={errors?.[name]?.message}
             name={name}
             className={className}
             InputProps={inpProps}
