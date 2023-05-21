@@ -1,24 +1,53 @@
+import { useMemo } from "react";
+import { useFormContext, Controller } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import TextField from "@mui/material/TextField";
 import styled from "@mui/system/styled";
 import useTheme from "@mui/material/styles/useTheme";
+import dayjs from "dayjs";
 import "dayjs/locale/uk";
 
 const CustomDatePicker = ({
+  name,
   views = ["year", "month", "day"],
   slotProps = { textField: { variant: "filled" } },
+  defaultValue,
+  validation,
   ...rest
 }) => {
   const theme = useTheme();
+  const { control } = useFormContext();
+
+  const rules = useMemo(() => validation, [validation]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
-      <SDatePicker
-        theme={theme}
-        views={views}
-        slotProps={slotProps}
-        {...rest}
+      <Controller
+        control={control}
+        name={name}
+        defaultValue={defaultValue}
+        rules={rules}
+        render={({ field: { ref, name, value, ...field }, fieldState }) => (
+          <SDatePicker
+            {...field}
+            inputRef={ref}
+            theme={theme}
+            views={views}
+            slotProps={slotProps}
+            value={value ? dayjs(value) : null}
+            renderInput={(inputProps) => (
+              <TextField
+                {...inputProps}
+                name={name}
+                error={!!fieldState.error}
+                helperText={fieldState.error?.message}
+              />
+            )}
+            {...rest}
+          />
+        )}
       />
     </LocalizationProvider>
   );

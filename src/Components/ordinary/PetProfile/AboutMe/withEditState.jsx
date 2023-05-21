@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { EditButton, SaveButton } from "@components/ui";
+import dayjs from "dayjs";
 
 const withEditState = (WrappedComponent) => {
   return (props) => {
@@ -19,11 +20,15 @@ const withEditState = (WrappedComponent) => {
         const data = {
           ...formData,
           name: formData.name.replace(/\s{2,}/g, " ").trim(),
+          foundOrLostDate: dayjs(formData.foundOrLostDate.$d).format(
+            "YYYY-MM-DD"
+          ),
         };
+
         if (
-          props.name !== data.name &&
-          props.gender !== data.gender &&
-          props.status !== data.status &&
+          props.name !== data.name ||
+          props.gender !== data.gender ||
+          props.status !== data.status ||
           props.foundOrLostDate !== data.foundOrLostDate
         ) {
           props?.onEditHandler(data);

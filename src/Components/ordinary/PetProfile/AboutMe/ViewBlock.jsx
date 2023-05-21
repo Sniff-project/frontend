@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Table, TableBody } from "@mui/material";
 import { STableRow, STableCell } from "./styles";
+import dayjs from "dayjs";
 
 const ViewBlock = ({ name, gender, foundOrLostDate, status }) => {
-  const data = [
-    { label: "Мене звати", value: name },
-    { label: "Стать", value: gender },
-    {
-      label: status === "FOUND" ? "Мене знайшли" : "Мене загубили",
-      value: foundOrLostDate,
-    },
-  ];
+  const data = useMemo(
+    () => [
+      { label: "Мене звати", value: name },
+      { label: "Стать", value: gender },
+      {
+        label: status === "Знайдено" ? "Мене знайшли" : "Мене загубили",
+        value: dayjs(foundOrLostDate).format("DD.MM.YYYY"),
+      },
+    ],
+    [foundOrLostDate, gender, name, status]
+  );
   return (
     <Table>
       <TableBody>

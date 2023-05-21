@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import { DatePicker, DefaultInput, SelectInput } from "@components/ui";
 import dayjs from "dayjs";
@@ -8,45 +8,34 @@ const getValueByLabel = (label, options) =>
 
 const genderSelect = [
   {
-    value: "MALE",
+    value: "Чоловіча",
     label: "Чоловіча",
   },
   {
-    value: "FEMALE",
+    value: "Жіноча",
     label: "Жіноча",
   },
   {
-    value: "UNKNOWN",
+    value: "Невідомо",
     label: "Невідомо",
   },
 ];
 
 const statusSelect = [
   {
-    value: "LOST",
+    value: "Загублено",
     label: "Загублено",
   },
   {
-    value: "FOUND",
+    value: "Знайдено",
     label: "Знайдено",
   },
 ];
 
+const minDate = new Date("2022-02-23");
+const maxDate = new Date();
+
 const EditBlock = ({ name, gender, foundOrLostDate, status }) => {
-  const data = useMemo(
-    () => [
-      {
-        name: "foundOrLostDate",
-        label: `Коли ${status}`,
-        value: foundOrLostDate,
-        validation: {
-          required: true,
-        },
-        sx: { marginTop: "16px" },
-      },
-    ],
-    [foundOrLostDate, gender, name, status]
-  );
   return (
     <>
       <DefaultInput
@@ -101,8 +90,19 @@ const EditBlock = ({ name, gender, foundOrLostDate, status }) => {
         name="foundOrLostDate"
         label={`Коли ${status}`}
         defaultValue={dayjs(foundOrLostDate)}
-        maxDate={dayjs(new Date())}
-        minDate={dayjs(new Date("2022-02-23"))}
+        maxDate={dayjs(maxDate)}
+        minDate={dayjs(minDate)}
+        validation={{
+          required: true,
+          validate: {
+            futureDate: (value) =>
+              dayjs(value).isBefore(dayjs(maxDate)) ||
+              "Дата не може будти пізніша за сьогоднішню",
+            pastDate: (value) =>
+              dayjs(value).isAfter(dayjs(minDate)) ||
+              `Дата повинна бути після ${dayjs(minDate).format("DD.MM.YYYY")}`,
+          },
+        }}
         sx={{ marginTop: "16px" }}
       />
     </>
