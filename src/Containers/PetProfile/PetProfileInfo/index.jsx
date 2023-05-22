@@ -70,7 +70,7 @@ const PetProfileInfo = () => {
     );
   }, [isAuthenticated, petProfile?.author?.id, user?.sub]);
 
-  const onEditHandler = useCallback(
+  const onSubmitHandler = useCallback(
     (data) => {
       if (isAuthenticated) {
         dispatch(
@@ -99,7 +99,7 @@ const PetProfileInfo = () => {
       petProfile={petProfile}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
-      onEditHandler={onEditHandler}
+      onSubmit={onSubmitHandler}
       showSnackbar={showSnackbar}
     />
   ) : null;
