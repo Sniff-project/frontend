@@ -95,12 +95,12 @@ const PetProfileInfo = () => {
   const petInfo = !petProfileState.error ? (
     <PetInfoBlock
       petImage={petImage}
-      margin={"3.75rem 0 0"}
       petProfile={petProfile}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
       onSubmit={onSubmitHandler}
       showSnackbar={showSnackbar}
+      margin={"3.75rem 0 0"}
     />
   ) : null;
   const petLocation = !petProfileState.error ? (
@@ -108,6 +108,9 @@ const PetProfileInfo = () => {
       lat={petProfile?.latitude}
       lng={petProfile?.longitude}
       isLoading={petProfileState.isLoading}
+      isPetOwner={isPetOwner}
+      onSubmit={onSubmitHandler}
+      showSnackbar={showSnackbar}
     />
   ) : null;
   const petAuthor = !petProfileState.error ? (
