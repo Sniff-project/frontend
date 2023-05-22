@@ -1,24 +1,89 @@
-import { memo } from "react";
+import { memo, useState, useCallback } from "react";
 import { Grid, Skeleton } from "@mui/material";
 import { StyledBox } from "@components/simple";
-import { styled } from "@mui/system";
 
 import {
   PetAboutBlock,
   PetHistoryBlock,
 } from "@components/ordinary/PetProfile";
 
+import { EditButton, SaveButton } from "@components/ui";
+import { ImageBlock } from "./styles";
+import dayjs from "dayjs";
+
 const PetInfoBlock = ({
   petImage,
   petProfile,
   isLoading,
   isPetOwner,
-  onEditHandler,
+  onSubmit,
   showSnackbar,
   margin = 0,
 }) => {
   const { name, gender, foundOrLostDate, status, description } =
     petProfile ?? {};
+
+  const [isEditAbout, setIsEditAbout] = useState(false);
+  const [isEditDescr, setIsEditDescr] = useState(false);
+
+  const onEditAboutHandler = useCallback(() => {
+    setIsEditAbout((prev) => !prev);
+  }, []);
+
+  const onEditDescrHandler = useCallback(() => {
+    setIsEditDescr((prev) => !prev);
+  }, []);
+
+  const onSaveAboutHandler = useCallback(
+    (formData) => {
+      // on click btn save (submit form)
+      const data = {
+        ...formData,
+        name: formData.name.replace(/\s{2,}/g, " ").trim(),
+        foundOrLostDate: dayjs(formData.foundOrLostDate.$d).format(
+          "YYYY-MM-DD"
+        ),
+      };
+      if (
+        name !== data.name ||
+        gender !== data.gender ||
+        status !== data.status ||
+        foundOrLostDate !== data.foundOrLostDate
+      ) {
+        onSubmit(data);
+        showSnackbar();
+      }
+      setIsEditAbout((prev) => !prev);
+    },
+    [foundOrLostDate, gender, name, onSubmit, showSnackbar, status]
+  );
+
+  const onSaveDescrHandler = useCallback(
+    (formData) => {
+      // on click btn save (submit form)
+      const data = {
+        description: formData.description.replace(/\s{2,}/g, " ").trim(),
+      };
+      if (description !== data.description) {
+        onSubmit(data);
+        showSnackbar();
+      }
+      setIsEditDescr((prev) => !prev);
+    },
+    [description, onSubmit, showSnackbar]
+  );
+
+  const buttonAbout = !isEditAbout ? (
+    <EditButton onClick={onEditAboutHandler} />
+  ) : (
+    <SaveButton type="submit" color="success" />
+  );
+
+  const buttonDescr = !isEditDescr ? (
+    <EditButton onClick={onEditDescrHandler} />
+  ) : (
+    <SaveButton type="submit" color="success" />
+  );
 
   return (
     <StyledBox
@@ -50,15 +115,17 @@ const PetInfoBlock = ({
             status={status}
             isLoading={isLoading}
             isPetOwner={isPetOwner}
-            onEditHandler={onEditHandler}
-            showSnackbar={showSnackbar}
+            button={buttonAbout}
+            isEdit={isEditAbout}
+            onSave={onSaveAboutHandler}
           />
           <PetHistoryBlock
             description={description}
             isLoading={isLoading}
             isPetOwner={isPetOwner}
-            onEditHandler={onEditHandler}
-            showSnackbar={showSnackbar}
+            button={buttonDescr}
+            isEdit={isEditDescr}
+            onSave={onSaveDescrHandler}
             margin={"6.25rem 0 0"}
           />
         </Grid>
@@ -66,29 +133,5 @@ const PetInfoBlock = ({
     </StyledBox>
   );
 };
-
-const ImageBlock = styled(Grid)`
-  width: 20rem;
-  height: 20rem;
-
-  @media screen and (min-width: 480px) {
-    width: 28.125rem;
-    height: 28.125rem;
-  }
-  @media screen and (min-width: 600px) {
-    width: 31.25rem;
-    height: 31.25rem;
-  }
-  @media screen and (min-width: 1600px) {
-    width: 33.375rem;
-    height: 38.5rem;
-  }
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-`;
 
 export default memo(PetInfoBlock);
