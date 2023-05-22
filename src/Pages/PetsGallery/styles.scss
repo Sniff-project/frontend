@@ -11,15 +11,15 @@
         justify-content: center;
         gap: 100px;
         width: 100%;
-        padding: 50px 0;
-    }
-
-    &-slider {
-        padding-bottom: 20px;
+        padding: 80px 0;
     }
 
     .MuiPagination-ul {
         justify-content: center;
+    }
+
+    .cardAnimal__imgCat {
+        height: 40%;
     }
 
 }

@@ -1,9 +1,9 @@
-import { petProfileUrl } from "@core/Config/sniffApi";
+import { filterByStatus as url } from "@core/Config/sniffApi";
 import axios from "axios";
 
-export const getGallery = async (token) => {
+export const filterByStatus = async (token, status) => {
 	try {
-		const response = await axios.get(`${petProfileUrl}`, {
+		const response = await axios.get(`${url}${status}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -13,6 +13,3 @@ export const getGallery = async (token) => {
 		return error?.response || { message: "Unknown error occurred." };
 	}
 };
-
-
-

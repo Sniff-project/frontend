@@ -8,7 +8,7 @@ export default function NavigationCard() {
   const numAnimals = 25402;
 
   return (
-    <NavLink className="cardAnimal" to="/">
+    <NavLink className="cardAnimal" to="/pets">
       <div className="cardAnimal-holder">
         <img className="cardAnimal__icon" src={catImg} alt="Cat"/>
         <p className="cardAnimal__text">Ще {numAnimals} які чекають на тебе</p>

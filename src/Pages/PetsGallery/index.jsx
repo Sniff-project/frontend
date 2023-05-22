@@ -3,39 +3,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "@contexts";
 import { petsGallery } from "@core/Services/pets";
 import AnimalCard from "../../Components/ordinary/Homepage/AnimalCard";
-import dogImg from "@assets/Images/Homepage/dog.webp";
 import Carousel from "react-material-ui-carousel";
 import { Message } from "@components/ordinary";
 import { Spinner } from "@components/simple";
 import "./styles.scss";
 import { Pagination } from "@mui/material";
 import { SortingSelects } from "@components/smart/Gallery";
+import catImg from "@assets/Icons/petCards/iconCat.svg";
+
+const successMessage = "Галерея завантажена!";
+const emptyGalleryMessage = "Галерея поки порожня!";
+let unregisteredMessage = "Увійдіть в акаунт, щоб побачити галерею тварин!";
+const maxCardsOnPage = 12;
 
 export default function PetsGallery() {
-  const maxCardsOnPage = 12;
   const [spinnerState, setSpinnerState] = useState(true);
   const [emptyGalleryState, setEmptyGalleryState] = useState(false);
-  const successMessage = "Галерея завантажена!";
-  const emptyGalleryMessage = "Галерея поки порожня!";
-  let unregisteredMessage = "Увійдіть в акаунт, щоб побачити галерею тварин!";
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const gallery_Array = useSelector((state) => state.gallery);
-  const { gallery, isLoading, error } = gallery_Array;
-  const test_Array = new Array(50).fill(1).map((elem, i) => (elem = ++i));
-  const maxPages = Math.ceil(test_Array.length / maxCardsOnPage);
+  const { gallery, isLoading, error } = useSelector((state) => state.gallery);
+  const maxPages = gallery?.totalPages;
+  const galleryArray = gallery?.content;
 
   useEffect(() => {
-    dispatch(petsGallery(token));
-  }, [dispatch, user, token]);
+    dispatch(petsGallery(token, currentSlideIndex));
+  }, [dispatch, user, token, currentSlideIndex]);
+
 
   useEffect(() => {
     if ((!isLoading && gallery.message === successMessage) || error) {
       setSpinnerState(false);
       if (!gallery.content?.length && !error) setEmptyGalleryState(true);
     }
-
     if (error && !user && !token) error.message = unregisteredMessage;
   }, [gallery, isLoading, error]);
 
@@ -67,30 +67,37 @@ export default function PetsGallery() {
             </p>
           )}
 
-          <SortingSelects />
+          {!error && !emptyGalleryState && <SortingSelects />}
 
-          <Carousel
-            className="gallery-slider"
-            animation="fade"
-            autoPlay={false}
-            navButtonsProps={{ style: { display: "none" }, className: "" }}
-            slidesPerPage={maxCardsOnPage}
-            indicators={false}
-            index={currentSlideIndex}
-          >
-            {[...Array(maxPages)].map((_, slideIndex) => (
-              <div className="gallery-page" key={slideIndex}>
-                {test_Array
-                  .slice(
-                    slideIndex * maxCardsOnPage,
-                    (slideIndex + 1) * maxCardsOnPage
-                  )
-                  .map((animal, index) => (
-                    <AnimalCard key={index} name={animal} imageSrc={dogImg} />
-                  ))}
-              </div>
-            ))}
-          </Carousel>
+          {!spinnerState && !error && !emptyGalleryState && (
+            <Carousel
+              className="gallery-slider"
+              animation="fade"
+              autoPlay={false}
+              navButtonsProps={{ style: { display: "none" }, className: "" }}
+              slidesPerPage={maxCardsOnPage}
+              indicators={false}
+              index={currentSlideIndex}
+            >
+              {[...Array(maxPages)].map((_, slideIndex) => (
+                <div className="gallery-page" key={slideIndex}>
+                  {galleryArray
+                    ?.slice(
+                      slideIndex * maxCardsOnPage,
+                      (slideIndex + 1) * maxCardsOnPage
+                    )
+                    .map((animal) => (
+                      <AnimalCard
+                        className={!animal.photo ? 'cardAnimal__imgCat' : ''}
+                        key={animal.id}
+                        name={animal.name}
+                        imageSrc={!animal.photo ? catImg : animal.photo}
+                      />
+                    ))}
+                </div>
+              ))}
+            </Carousel>
+          )}
         </div>
         {!error && !emptyGalleryState && (
           <Pagination count={maxPages} onChange={handleSlide} />

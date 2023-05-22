@@ -4,17 +4,17 @@ import {
 	galleryFailure,
 } from "@core/Store/actions/pets";
 
-import { getGallery } from "@core/API/pets";
+import { chooseSort } from "./chooseSort";
 
 const successMsg = "Галерея завантажена!";
 const errorMsg = "Галерея не знайдена!";
 const unknownError = "Щось пішло не так :(";
 
-export const petsGallery = (token) => {
+export const petsGallery = (token, request, filter) => {
 	return async (dispatch) => {
 		try {
 			dispatch(galleryRequest());
-			const response = await getGallery(token);
+			const response = await chooseSort(token, request, filter);
 			if (response.status === 200) {
 				const result = {
 					...response.data,

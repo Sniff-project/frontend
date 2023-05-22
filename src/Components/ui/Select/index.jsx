@@ -1,10 +1,11 @@
 import React from "react";
 import { Select, InputLabel, MenuItem, FormControl } from "@mui/material";
 
-export default function SelectComponent({title, valueArray}) {
-  const [age, setAge] = React.useState("");
+export default function SelectComponent({title, valueArray, handleChangeFilter, name}) {
+  const [value, setValue] = React.useState("");
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setValue(event.target.value);
+    handleChangeFilter(event.target);
   };
 
   return (
@@ -13,15 +14,17 @@ export default function SelectComponent({title, valueArray}) {
       <Select
         labelId="demo-simple-select-autowidth-label"
         id="demo-simple-select-autowidth"
-        value={age}
+        value={value}
         onChange={handleChange}
         label={title}
+        name={name}
       >
-        <MenuItem value="">
+        <MenuItem value="empty">
           <em>None</em>
         </MenuItem>
 
-        {valueArray.map((elem, index) => <MenuItem value={index}>{elem}</MenuItem>)}
+
+        {valueArray.map(elem => <MenuItem key={elem.id} value={elem.name}>{elem.name}</MenuItem>)}
         
       </Select>
     </FormControl>
