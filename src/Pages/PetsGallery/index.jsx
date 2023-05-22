@@ -8,7 +8,8 @@ import Carousel from "react-material-ui-carousel";
 import { Message } from "@components/ordinary";
 import { Spinner } from "@components/simple";
 import "./styles.scss";
-import Pagination from "@mui/material/Pagination";
+import { Pagination } from "@mui/material";
+import { SortingSelects } from "@components/smart/Gallery";
 
 export default function PetsGallery() {
   const maxCardsOnPage = 12;
@@ -30,13 +31,12 @@ export default function PetsGallery() {
   }, [dispatch, user, token]);
 
   useEffect(() => {
-    if (!isLoading && gallery.message === successMessage || error) {
+    if ((!isLoading && gallery.message === successMessage) || error) {
       setSpinnerState(false);
-      if(!gallery.content?.length && !error) setEmptyGalleryState(true);
+      if (!gallery.content?.length && !error) setEmptyGalleryState(true);
     }
 
-    if(error && !user && !token) error.message = unregisteredMessage;
-
+    if (error && !user && !token) error.message = unregisteredMessage;
   }, [gallery, isLoading, error]);
 
   const handleSlide = (_, value) => {
@@ -55,7 +55,20 @@ export default function PetsGallery() {
               m={"50px auto"}
             />
           )}
-          {emptyGalleryState && (<p style={{fontSize: '25px', textAlign: 'center', marginTop: '80px'}}>{emptyGalleryMessage}</p>)}
+          {emptyGalleryState && (
+            <p
+              style={{
+                fontSize: "25px",
+                textAlign: "center",
+                marginTop: "80px",
+              }}
+            >
+              {emptyGalleryMessage}
+            </p>
+          )}
+
+          <SortingSelects />
+
           <Carousel
             className="gallery-slider"
             animation="fade"
@@ -79,7 +92,9 @@ export default function PetsGallery() {
             ))}
           </Carousel>
         </div>
-        {!error && !emptyGalleryState && <Pagination count={maxPages} onChange={handleSlide} />}
+        {!error && !emptyGalleryState && (
+          <Pagination count={maxPages} onChange={handleSlide} />
+        )}
       </div>
     </div>
   );
