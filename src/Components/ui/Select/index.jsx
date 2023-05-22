@@ -1,5 +1,6 @@
 import React from "react";
 import { Select, InputLabel, MenuItem, FormControl } from "@mui/material";
+import './styles.scss';
 
 export default function SelectComponent({title, valueArray, handleChangeFilter, name}) {
   const [value, setValue] = React.useState("");
@@ -20,7 +21,7 @@ export default function SelectComponent({title, valueArray, handleChangeFilter, 
         name={name}
       >
         <MenuItem value="empty">
-          <em>None</em>
+          Усі варіанти
         </MenuItem>
 
 
