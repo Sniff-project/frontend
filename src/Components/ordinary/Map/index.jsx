@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useRef, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import marker from "@assets/Icons/map/marker.png";
@@ -9,10 +9,26 @@ const customIcon = new Icon({
   iconAnchor: [12, 41],
 });
 
-const Map = ({ lat, lng, scrollWheelZoom = false, style }) => {
-  const position = useMemo(() => {
-    return [lat, lng];
-  }, [lat, lng]);
+const Map = ({
+  position,
+  draggable,
+  onPosChange,
+  scrollWheelZoom = false,
+  style,
+}) => {
+  const markerRef = useRef();
+  const eventHandlers = useMemo(
+    () => ({
+      dragend() {
+        const marker = markerRef.current;
+        if (marker != null) {
+          const newPosition = marker.getLatLng();
+          onPosChange(newPosition);
+        }
+      },
+    }),
+    [onPosChange]
+  );
 
   return (
     <MapContainer
@@ -22,7 +38,12 @@ const Map = ({ lat, lng, scrollWheelZoom = false, style }) => {
       scrollWheelZoom={scrollWheelZoom}
       style={style}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker position={position} icon={customIcon}>
+      <Marker
+        ref={markerRef}
+        position={position}
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+        icon={customIcon}>
         <Popup>Мене знайшли тут</Popup>
       </Marker>
     </MapContainer>

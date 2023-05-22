@@ -4,36 +4,37 @@ const theme = createTheme({
   palette: {
     background: {
       default: "#e8ebf2",
-      blue: "rgba(150, 198, 255, 0.26)"
+      blue: "rgba(150, 198, 255, 0.26)",
     },
     primary: {
       main: "#48a0d1",
       hover: "#63aed8",
-      shadow: "rgba(72, 160, 209, 0.5)"
+      shadow: "rgba(72, 160, 209, 0.5)",
     },
     error: {
       main: "#e41749",
       shadow: "rgb(228 23 73 / 80%)",
-      textColor: "rgba(255, 255, 255, 0.253)"
+      textColor: "rgba(255, 255, 255, 0.253)",
     },
     success: {
       main: "#1de9b6",
       shadow: "rgb(29 233 182 / 80%)",
-      textColor: "rgba(255, 255, 255, 0.253)"
+      textColor: "rgba(255, 255, 255, 0.253)",
     },
     black: {
       main: "#000000",
       secondary: "#2E2C34",
       opacity05: "rgba(0, 0, 0, .5)",
-      opacity025: "rgba(0,0,0,.25)"
+      opacity025: "rgba(0,0,0,.25)",
     },
     grey: {
-      main: "#587081"
+      main: "#587081",
     },
     white: {
       main: "#ffffff",
-      opacity: "rgba(255, 255, 255, 0.253)"
-    }
+      dark: "#F5F5F5",
+      opacity: "rgba(255, 255, 255, 0.253)",
+    },
   },
   typography: {
     fontFamily: "'Montserrat'",
