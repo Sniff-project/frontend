@@ -3,10 +3,10 @@ import "./style.scss";
 import { NavLink } from "react-router-dom";
 import { Paper } from "@mui/material";
 
-export default function AnimalCard({ name, imageSrc, className}) {
+export default function AnimalCard({ name, imageSrc, className, id}) {
   return (
     <Paper>
-      <NavLink className="cardAnimal" to="/">
+      <NavLink className="cardAnimal" to={`/pets/${id}`}>
         <div
           className={`cardAnimal__img ${className}`}
           style={{ backgroundImage: `url(${imageSrc})` }}
