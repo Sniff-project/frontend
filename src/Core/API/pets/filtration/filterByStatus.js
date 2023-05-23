@@ -3,11 +3,7 @@ import axios from "axios";
 
 export const filterByStatus = async (token, status) => {
 	try {
-		const response = await axios.get(`${url}${status}`, {
-			// headers: {
-			// 	Authorization: `Bearer ${token}`,
-			// },
-		});
+		const response = await axios.get(`${url}${status}`);
 		return response;
 	} catch (error) {
 		return error?.response || { message: "Unknown error occurred." };

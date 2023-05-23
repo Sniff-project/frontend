@@ -9,7 +9,6 @@ export default function AnimalCards({animals}) {
   return (
     <div className="cardsAnimals">
       {animalCards?.map((animal) => {
-        {console.log(animal)}
         return <AnimalCard id={animal.id} key={animal.id} name={animal.name} imageSrc={animal.photo} />;
       })}
       <NavigationCard/>

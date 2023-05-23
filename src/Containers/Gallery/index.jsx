@@ -23,7 +23,6 @@ import "./styles.scss";
 
 const successMessage = "Галерея завантажена!";
 const emptyGalleryMessage = "Галерея поки порожня!";
-// const unregisteredMessage = "Увійдіть в акаунт, щоб побачити галерею тварин!";
 const maxCardsOnPage = 12;
 
 export default function Gallery() {
@@ -38,8 +37,6 @@ export default function Gallery() {
   const maxPages = gallery?.totalPages;
   const galleryArray = gallery?.content;
 
-  // const arr = new Array(10).fill(1).map((elem) => (elem = "Bob")); // test
-
   useEffect(() => {
     dispatch(petsGallery(token, currentSlideIndex));
   }, [dispatch, user, token, currentSlideIndex]);
@@ -49,7 +46,6 @@ export default function Gallery() {
       setSpinnerState(false);
       if (!gallery.content?.length && !error) setEmptyGalleryState(true);
     }
-    // if (error && !user && !token) error.message = unregisteredMessage;
   }, [gallery, isLoading, error, token, user]);
 
   const handleSlide = useCallback((_, value) => {
@@ -130,12 +126,6 @@ export default function Gallery() {
                         imageSrc={!animal.photo ? catImg : animal.photo}
                       />
                     ))}
-                  {/* {arr.map((elem, index) => (
-                    <AnimalCard
-                      key={index}
-                      name={elem}
-                    />
-                  ))} */}
                 </div>
               ))}
             </Carousel>
