@@ -1,10 +1,17 @@
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { Dialog, DialogTitle, DialogContent, Box, Grid } from "@mui/material";
 import useTheme from "@mui/system/useTheme";
 import CrossButton from "@components/ui/CrossButton";
 import SaveButton from "@components/ui/SaveButton";
+import { convertUrlsToBlobs } from "@utils/photos";
 
-const ImageUploadPopup = ({ open, togglePopup, maxImages = 5, onSave }) => {
+const ImageUploadPopup = ({
+  open,
+  togglePopup,
+  petPhotos,
+  maxImages = 5,
+  onSave,
+}) => {
   const theme = useTheme();
   const [files, setFiles] = useState([]);
   const inputRef = useRef(null);
@@ -13,6 +20,16 @@ const ImageUploadPopup = ({ open, togglePopup, maxImages = 5, onSave }) => {
     () => `Ви не можете завантажувати більше ніж ${maxImages} фото!`,
     [maxImages]
   );
+
+  useEffect(() => {
+    if (petPhotos?.length > 0) {
+      const getPhotos = async () => {
+        const startPhotos = await convertUrlsToBlobs(petPhotos);
+        setFiles([...startPhotos]);
+      };
+      getPhotos();
+    }
+  }, [petPhotos]);
 
   const handleUpload = useCallback(
     (event) => {
@@ -60,7 +77,8 @@ const ImageUploadPopup = ({ open, togglePopup, maxImages = 5, onSave }) => {
 
   const onSaveHandler = useCallback(() => {
     onSave(files);
-  }, [files, onSave]);
+    togglePopup();
+  }, [files, onSave, togglePopup]);
 
   return (
     <div>
@@ -110,22 +128,24 @@ const ImageUploadPopup = ({ open, togglePopup, maxImages = 5, onSave }) => {
                     key={index}
                     sx={{ position: "relative" }}>
                     <img
-                      src={URL.createObjectURL(file)}
+                      src={URL.createObjectURL(file) || file}
                       alt={file.name}
                       height="150"
                       width="150"
                     />
-                    <CrossButton
-                      title="Видалити"
-                      onClick={() => handleRemove(index)}
-                      sx={{
-                        color: theme.palette.error.main,
-                        marginLeft: "auto",
-                        position: "absolute",
-                        top: "0.5rem",
-                        right: 0,
-                      }}
-                    />
+                    {files.length > 1 && (
+                      <CrossButton
+                        title="Видалити"
+                        onClick={() => handleRemove(index)}
+                        sx={{
+                          color: theme.palette.error.main,
+                          marginLeft: "auto",
+                          position: "absolute",
+                          top: "0.5rem",
+                          right: 0,
+                        }}
+                      />
+                    )}
                   </Grid>
                 ))}
               </Grid>
