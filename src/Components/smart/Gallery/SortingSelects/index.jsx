@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { SelectComponent } from "@components/ui";
 import { useDispatch, useSelector } from "react-redux";
 import { petsGallery } from "@core/Services/pets";
@@ -28,7 +28,7 @@ export default function SortingSelects() {
       dispatch(getCities({ token }));
       dispatch(getRegions({ token }));
     }
-  }, [dispatch, user, token]);
+  }, [dispatch, user, token, cities_Array, regions_Array]);
 
   const handleChangeFilter = (choice) => {
     switch (choice.name) {

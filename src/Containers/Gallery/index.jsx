@@ -23,7 +23,7 @@ import "./styles.scss";
 
 const successMessage = "Галерея завантажена!";
 const emptyGalleryMessage = "Галерея поки порожня!";
-let unregisteredMessage = "Увійдіть в акаунт, щоб побачити галерею тварин!";
+const unregisteredMessage = "Увійдіть в акаунт, щоб побачити галерею тварин!";
 const maxCardsOnPage = 12;
 
 export default function Gallery() {
@@ -38,11 +38,11 @@ export default function Gallery() {
   const maxPages = gallery?.totalPages;
   const galleryArray = gallery?.content;
 
-  const arr = new Array(10).fill(1).map((elem) => (elem = "Bob")); // test
+  // const arr = new Array(10).fill(1).map((elem) => (elem = "Bob")); // test
 
   useEffect(() => {
     dispatch(petsGallery(token, currentSlideIndex));
-  }, [dispatch, user, token]);
+  }, [dispatch, user, token, currentSlideIndex]);
 
   useEffect(() => {
     if ((!isLoading && gallery.message === successMessage) || error) {
@@ -50,11 +50,11 @@ export default function Gallery() {
       if (!gallery.content?.length && !error) setEmptyGalleryState(true);
     }
     if (error && !user && !token) error.message = unregisteredMessage;
-  }, [gallery, isLoading, error]);
+  }, [gallery, isLoading, error, token, user]);
 
-  const handleSlide = (_, value) => {
+  const handleSlide = useCallback((_, value) => {
     setCurrentSlideIndex(--value);
-  };
+  }, []);
 
   const goToPetsGallery = useCallback(() => {
     navigate("/");
