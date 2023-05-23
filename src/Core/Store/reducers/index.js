@@ -14,7 +14,6 @@ import {
   uploadPhotosPetProfileReducer,
 } from "./pets";
 
-
 const reducer = combineReducers({
   // auth
   logout: logoutReducer,
@@ -30,7 +29,7 @@ const reducer = combineReducers({
 
   // pets
   editPetProfile: editPetProfileReducer,
-  gallery: galleryReducer
+  gallery: galleryReducer,
   petProfile: petProfileReducer,
   uploadPetPhotos: uploadPhotosPetProfileReducer,
 });
