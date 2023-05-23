@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
 import { Container, Grid } from "@mui/material";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "@contexts";
+import { useAuth } from "@core/Hooks";
 import { SignInBlock } from "@containers/SignIn";
 
 const Login = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
 
   if (isAuthenticated) {
     return <Navigate to="/profile" />;

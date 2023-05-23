@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { AuthContext } from "@contexts";
+import { useAuth } from "@core/Hooks";
 import routes from "./routesConfig";
 import PrivateRoute from "./PrivateRoute";
 
 export default function AppRoutes() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
 
   return (
     <Routes>

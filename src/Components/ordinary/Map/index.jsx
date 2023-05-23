@@ -14,6 +14,7 @@ const Map = ({
   draggable,
   onPosChange,
   scrollWheelZoom = false,
+  text = "Мене знайшли тут",
   style,
 }) => {
   const markerRef = useRef();
@@ -44,7 +45,7 @@ const Map = ({
         draggable={draggable}
         eventHandlers={eventHandlers}
         icon={customIcon}>
-        <Popup>Мене знайшли тут</Popup>
+        <Popup>{text}</Popup>
       </Marker>
     </MapContainer>
   );
