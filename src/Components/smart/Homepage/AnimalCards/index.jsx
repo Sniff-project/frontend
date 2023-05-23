@@ -4,7 +4,7 @@ import NavigationCard from "@components/ordinary/Homepage/NavigationCard";
 
 export default function AnimalCards({animals}) {
 
-  const animalCards = animals?.length > 3 ?  animals?.slice(0, 4) : animals;
+  const animalCards = animals?.length > 3 ?  animals?.slice(0, 3) : animals;
 
   return (
     <div className="cardsAnimals">

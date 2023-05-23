@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout as logoutUser } from "@core/Services";
 import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
