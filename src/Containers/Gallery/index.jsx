@@ -10,7 +10,13 @@ import catImg from "@assets/Icons/petCards/iconCat.svg";
 import { Message } from "@components/ordinary";
 import { Spinner } from "@components/simple";
 import { useTheme } from "@mui/material/styles";
-import { Grid, IconButton, Tooltip, Typography, Pagination } from "@mui/material";
+import {
+  Grid,
+  IconButton,
+  Tooltip,
+  Typography,
+  Pagination,
+} from "@mui/material";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
 import "./styles.scss";
@@ -36,7 +42,7 @@ export default function Gallery() {
 
   useEffect(() => {
     dispatch(petsGallery(token, currentSlideIndex));
-  }, [dispatch, user, token, currentSlideIndex]);
+  }, [dispatch, user, token]);
 
   useEffect(() => {
     if ((!isLoading && gallery.message === successMessage) || error) {
@@ -58,11 +64,10 @@ export default function Gallery() {
     <div className="gallery">
       <div className="container2000">
         <div className="gallery-container">
-
           <Grid
             container
             alignItems="center"
-            sx={{ top: "3.125rem", left: "3.125rem", paddingTop:'40px' }}
+            sx={{ top: "3.125rem", left: "3.125rem", paddingTop: "40px" }}
           >
             <Tooltip title="На головну">
               <IconButton onClick={goToPetsGallery}>
@@ -73,7 +78,7 @@ export default function Gallery() {
               variant="h1"
               sx={{ color: theme.palette.black.secondary }}
             >
-              Галерея тваринок 
+              Галерея тваринок
             </Typography>
           </Grid>
 
