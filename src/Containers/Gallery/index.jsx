@@ -123,6 +123,7 @@ export default function Gallery() {
                         key={animal.id}
                         name={animal.name}
                         id={animal.id}
+                        hasPhoto={!animal.photo ? false : true}
                         imageSrc={!animal.photo ? catImg : animal.photo}
                       />
                     ))}

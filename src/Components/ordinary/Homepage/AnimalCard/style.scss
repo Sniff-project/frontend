@@ -6,16 +6,19 @@
     border-radius: 30px;
     overflow: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
     position: relative;
 
     &__img {
         height: 100%;
         width: 100%;
-        background-position: top;
+        background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+
+        &:first-child {
+            width: 90%;
+        }
     }
 
     &__name {
@@ -30,6 +33,7 @@
         font-size: 1.25rem;
         color: white;
         border-radius: 50% 50% 0 0;
+        z-index: 3;
     }
 }
 
