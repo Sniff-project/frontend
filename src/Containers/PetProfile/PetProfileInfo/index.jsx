@@ -77,7 +77,7 @@ const PetProfileInfo = () => {
   ]);
 
   useEffect(() => {
-    if (newPetPhotos.photos) setPetPhotos(newPetPhotos.photos);
+    if (newPetPhotos.photos) setPetPhotos(newPetPhotos.photos.urls);
   }, [newPetPhotos.photos]);
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const PetProfileInfo = () => {
   const uploadImages = useCallback(
     (photos) => {
       console.log(photos);
-      if (isAuthenticated && photos.length > 0) {
+      if (isAuthenticated && photos.length > 0 && photos !== petPhotos) {
         dispatch(
           uploadPetPhotos({
             petId: petId,
@@ -119,7 +119,7 @@ const PetProfileInfo = () => {
         );
       }
     },
-    [dispatch, isAuthenticated, petId, token]
+    [dispatch, isAuthenticated, petId, petPhotos, token]
   );
 
   const goToPetsGallery = useCallback(() => {
@@ -130,6 +130,7 @@ const PetProfileInfo = () => {
     <PetInfoBlock
       petProfile={petProfile}
       petPhotos={petPhotos}
+      isImageLoading={newPetPhotos.isLoading}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
       toggleUploadImage={toggleUploadImage}
@@ -223,6 +224,7 @@ const PetProfileInfo = () => {
         <ImageUploadPopup
           open={isOpenUploadImage}
           togglePopup={toggleUploadImage}
+          petPhotos={petPhotos}
           onSave={uploadImages}
         />
       )}

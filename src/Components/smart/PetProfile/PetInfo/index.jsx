@@ -6,6 +6,7 @@ import { StyledBox } from "@components/simple";
 import {
   PetAboutBlock,
   PetHistoryBlock,
+  PetPhotosCarousel,
 } from "@components/ordinary/PetProfile";
 
 import { EditButton, SaveButton } from "@components/ui";
@@ -16,6 +17,7 @@ const PetInfoBlock = ({
   petProfile,
   petPhotos,
   isLoading,
+  isImageLoading,
   isPetOwner,
   toggleUploadImage,
   onSubmit,
@@ -97,15 +99,10 @@ const PetInfoBlock = ({
       <Grid container rowSpacing="1.25rem" columnSpacing="5.3125rem">
         <Grid container item justifyContent="center" xs={12} md={5}>
           <ImageBlock item>
-            {!isLoading ? (
-              petPhotos.length > 0 ? (
-                <img
-                  className="pet-profile__image"
-                  src={petPhotos[0]}
-                  width="300"
-                  height="300"
-                  alt="Фото тваринки"
-                  loading="lazy"
+            {!isLoading && !isImageLoading ? (
+              petPhotos?.length > 0 ? (
+                <PetPhotosCarousel
+                  petPhotos={petPhotos}
                   onClick={toggleUploadImage}
                 />
               ) : (
@@ -113,6 +110,9 @@ const PetInfoBlock = ({
                   onClick={toggleUploadImage}
                   sx={{
                     background: theme.palette.grey.secondary,
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "10px",
                   }}
                 />
               )

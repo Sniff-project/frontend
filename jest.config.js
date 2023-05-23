@@ -24,6 +24,7 @@ module.exports = {
     "^@pages/(.*)$": "<rootDir>/src/Pages/$1",
     "^@routes/(.*)$": "<rootDir>/src/Routes/$1",
     "^@styles/(.*)$": "<rootDir>/src/Styles/$1",
+    "^@utils/(.*)$": "<rootDir>/src/Utils/$1",
   },
   modulePathIgnorePatterns: ["<rootDir>/build/"],
   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
