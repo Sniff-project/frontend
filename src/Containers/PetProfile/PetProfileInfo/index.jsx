@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState, memo } from "react";
+import { useCallback, useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import { AuthContext } from "@contexts";
+import { useAuth } from "@core/Hooks";
 import {
   editPetProfile,
   getPetProfile,
@@ -28,7 +28,6 @@ import {
 import ImageUploadPopup from "@components/smart/ImageUploadPopup";
 
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import { petImage } from "./testPetImage";
 
 const PetProfileInfo = () => {
   const theme = useTheme();
@@ -36,7 +35,7 @@ const PetProfileInfo = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { token, user, isAuthenticated } = useContext(AuthContext);
+  const { token, user, isAuthenticated } = useAuth();
 
   const petProfileState = useSelector((state) => state.petProfile);
   const editPetProfileState = useSelector((state) => state.editPetProfile);
