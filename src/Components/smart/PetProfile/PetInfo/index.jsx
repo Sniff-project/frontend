@@ -1,6 +1,6 @@
 import { memo, useState, useCallback } from "react";
 import { Box, Grid, Skeleton } from "@mui/material";
-import useTheme from "@mui/system/useTheme";
+import { useTheme } from "@mui/material/styles";
 import { StyledBox } from "@components/simple";
 
 import {
