@@ -7,7 +7,7 @@ import {
   citiesReducer,
   regionsReducer,
 } from "./users";
-import { editPetProfileReducer, petProfileReducer, galleryReducer } from "./pets";
+import { editPetProfileReducer, petProfileReducer, galleryReducer, uploadPhotosPetProfileReducer } from "./pets";
 
 const reducer = combineReducers({
   // auth
@@ -25,7 +25,8 @@ const reducer = combineReducers({
   // pets
   editPetProfile: editPetProfileReducer,
   petProfile: petProfileReducer,
-  gallery: galleryReducer
+  gallery: galleryReducer,
+  uploadPetPhotos: uploadPhotosPetProfileReducer,
 });
 
 export default reducer;

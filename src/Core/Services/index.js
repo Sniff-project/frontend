@@ -1,5 +1,5 @@
 export { login, logout, register } from "./auth";
-export { editPetProfile, getPetProfile } from "./pets";
+export { editPetProfile, getPetProfile, uploadPetPhotos } from "./pets";
 export {
   changeData,
   changePassword,

@@ -1,3 +1,4 @@
 export { editPetProfile } from "./editProfile";
-export { petProfile, getPetProfile } from "./profile";
+export { getPetProfile } from "./profile";
 export {petsGallery} from "./gallery";
+export { uploadPetPhotos } from "./uploadPhotos";

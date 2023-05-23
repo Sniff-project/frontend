@@ -17,7 +17,7 @@ export const ImageBlock = styled(Grid)`
     width: 33.375rem;
     height: 38.5rem;
   }
-  & > img {
+  & > * {
     width: 100%;
     height: 100%;
     object-fit: cover;
