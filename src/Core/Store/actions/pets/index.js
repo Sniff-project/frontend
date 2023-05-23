@@ -17,6 +17,15 @@ export {
 } from "./profile";
 
 export {
+  GALLERY_REQUEST,
+  GALLERY_SUCCESS,
+  GALLERY_FAILURE,
+  galleryRequest,
+  gallerySuccess,
+  galleryFailure,
+} from "./gallery";
+
+export {
   UPLOAD_PHOTOS_PET_PROFILE_REQUEST,
   UPLOAD_PHOTOS_PET_PROFILE_SUCCESS,
   UPLOAD_PHOTOS_PET_PROFILE_FAILURE,

@@ -1,0 +1,33 @@
+.gallery {
+    &-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    &-page {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+        width: 100%;
+        padding: 80px 50px;
+        height: 100%;
+    }
+
+    .MuiPagination-ul {
+        justify-content: center;
+    }
+
+    .cardAnimal__imgCat {
+        height: 40%;
+    }
+
+    .css-1f8sh1y {
+        height: 100% !important;
+        > div {
+            position: relative;
+        }
+    }
+
+}

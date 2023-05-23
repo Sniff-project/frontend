@@ -12,6 +12,10 @@
 
     &__img {
         height: 100%;
+        width: 100%;
+        background-position: top;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     &__name {

@@ -1,0 +1,25 @@
+.MuiSelect-select {
+    height: fit-content !important;
+    span {
+        line-height:unset !important;
+    }
+}
+
+@media (max-width: 800px) {
+    .MuiFormControl-root {
+        min-width: 110px !important;
+    }
+
+    .gallery-selectors {
+        justify-content: center;
+    }
+
+    #demo-simple-select-autowidth {
+        padding: 10px 10px;
+        padding-right: 20px;
+    }
+
+    #demo-simple-select-autowidth-label {
+        top: -5px;
+    }
+}

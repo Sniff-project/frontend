@@ -9,9 +9,11 @@ import {
 } from "./users";
 import {
   editPetProfileReducer,
+  galleryReducer,
   petProfileReducer,
   uploadPhotosPetProfileReducer,
 } from "./pets";
+
 
 const reducer = combineReducers({
   // auth
@@ -28,6 +30,7 @@ const reducer = combineReducers({
 
   // pets
   editPetProfile: editPetProfileReducer,
+  gallery: galleryReducer
   petProfile: petProfileReducer,
   uploadPetPhotos: uploadPhotosPetProfileReducer,
 });
