@@ -21,6 +21,7 @@ import {
   PetInfoBlock,
   PetLocationBlock,
 } from "@components/smart/PetProfile";
+import ImageUploadPopup from "@components/smart/ImageUploadPopup";
 
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { petImage } from "./testPetImage";
@@ -36,17 +37,22 @@ const PetProfileInfo = () => {
   const petProfileState = useSelector((state) => state.petProfile);
   const editPetProfileState = useSelector((state) => state.editPetProfile);
 
+  const [isOpenUploadImage, setOpenUploadImage] = useState(false);
   const [isPetOwner, setIsPetOwner] = useState(false);
   const [petProfile, setPetProfile] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(true);
 
-  const handleCloseSnackbar = () => {
-    setSnackbarOpen(false);
-  };
+  const toggleUploadImage = useCallback(() => {
+    setOpenUploadImage((prev) => !prev);
+  }, []);
 
-  const showSnackbar = () => {
+  const handleCloseSnackbar = useCallback(() => {
+    setSnackbarOpen(false);
+  }, []);
+
+  const showSnackbar = useCallback(() => {
     setSnackbarOpen(true);
-  };
+  }, []);
 
   useEffect(() => {
     if (!petProfileState.petProfile) {
@@ -98,6 +104,7 @@ const PetProfileInfo = () => {
       petProfile={petProfile}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
+      toggleUploadImage={toggleUploadImage}
       onSubmit={onSubmitHandler}
       showSnackbar={showSnackbar}
       margin={"3.75rem 0 0"}
@@ -184,6 +191,10 @@ const PetProfileInfo = () => {
           </Grid>
         </Grid>
       </Grid>
+      <ImageUploadPopup
+        open={isOpenUploadImage}
+        togglePopup={toggleUploadImage}
+      />
     </Container>
   );
 };

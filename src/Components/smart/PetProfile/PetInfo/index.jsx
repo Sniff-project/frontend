@@ -16,6 +16,7 @@ const PetInfoBlock = ({
   petProfile,
   isLoading,
   isPetOwner,
+  toggleUploadImage,
   onSubmit,
   showSnackbar,
   margin = 0,
@@ -101,6 +102,7 @@ const PetInfoBlock = ({
                 height="300"
                 alt="Фото тваринки"
                 loading="lazy"
+                onClick={toggleUploadImage}
               />
             ) : (
               <Skeleton variant="rounded" width="100%" height="100%" />
