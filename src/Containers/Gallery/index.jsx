@@ -23,7 +23,7 @@ import "./styles.scss";
 
 const successMessage = "Галерея завантажена!";
 const emptyGalleryMessage = "Галерея поки порожня!";
-const unregisteredMessage = "Увійдіть в акаунт, щоб побачити галерею тварин!";
+// const unregisteredMessage = "Увійдіть в акаунт, щоб побачити галерею тварин!";
 const maxCardsOnPage = 12;
 
 export default function Gallery() {
@@ -49,7 +49,7 @@ export default function Gallery() {
       setSpinnerState(false);
       if (!gallery.content?.length && !error) setEmptyGalleryState(true);
     }
-    if (error && !user && !token) error.message = unregisteredMessage;
+    // if (error && !user && !token) error.message = unregisteredMessage;
   }, [gallery, isLoading, error, token, user]);
 
   const handleSlide = useCallback((_, value) => {

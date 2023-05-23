@@ -4,9 +4,9 @@ import axios from "axios";
 export const filterByStatus = async (token, status) => {
 	try {
 		const response = await axios.get(`${url}${status}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${token}`,
+			// },
 		});
 		return response;
 	} catch (error) {

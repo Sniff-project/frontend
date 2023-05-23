@@ -4,9 +4,9 @@ import axios from "axios";
 export const getGallery = async (token, page = 0) => {
 	try {
 		const response = await axios.get(`${getGalleryPage}${page}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
+			// headers: {
+			// 	Authorization: `Bearer ${token}`,
+			// },
 		});
 		return response;
 	} catch (error) {
