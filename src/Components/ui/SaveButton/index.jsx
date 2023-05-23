@@ -5,10 +5,7 @@ import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 const SaveButton = ({ fontSize = "small", ...props }) => {
   return (
     <Tooltip title="Зберегти" placement="top">
-      <IconButton
-        aria-label="Зберегти"
-        sx={{ marginTop: "0.25rem" }}
-        {...props}>
+      <IconButton aria-label="Зберегти" {...props}>
         <SaveRoundedIcon fontSize={fontSize} />
       </IconButton>
     </Tooltip>

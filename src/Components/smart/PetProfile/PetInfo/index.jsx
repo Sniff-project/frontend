@@ -1,5 +1,6 @@
 import { memo, useState, useCallback } from "react";
-import { Grid, Skeleton } from "@mui/material";
+import { Box, Grid, Skeleton } from "@mui/material";
+import useTheme from "@mui/system/useTheme";
 import { StyledBox } from "@components/simple";
 
 import {
@@ -12,8 +13,8 @@ import { ImageBlock } from "./styles";
 import dayjs from "dayjs";
 
 const PetInfoBlock = ({
-  petImage,
   petProfile,
+  petPhotos,
   isLoading,
   isPetOwner,
   toggleUploadImage,
@@ -23,6 +24,8 @@ const PetInfoBlock = ({
 }) => {
   const { name, gender, foundOrLostDate, status, description } =
     petProfile ?? {};
+
+  const theme = useTheme();
 
   const [isEditAbout, setIsEditAbout] = useState(false);
   const [isEditDescr, setIsEditDescr] = useState(false);
@@ -95,15 +98,24 @@ const PetInfoBlock = ({
         <Grid container item justifyContent="center" xs={12} md={5}>
           <ImageBlock item>
             {!isLoading ? (
-              <img
-                className="pet-profile__image"
-                src={petImage}
-                width="300"
-                height="300"
-                alt="Фото тваринки"
-                loading="lazy"
-                onClick={toggleUploadImage}
-              />
+              petPhotos.length > 0 ? (
+                <img
+                  className="pet-profile__image"
+                  src={petPhotos[0]}
+                  width="300"
+                  height="300"
+                  alt="Фото тваринки"
+                  loading="lazy"
+                  onClick={toggleUploadImage}
+                />
+              ) : (
+                <Box
+                  onClick={toggleUploadImage}
+                  sx={{
+                    background: theme.palette.grey.secondary,
+                  }}
+                />
+              )
             ) : (
               <Skeleton variant="rounded" width="100%" height="100%" />
             )}

@@ -7,7 +7,11 @@ import {
   citiesReducer,
   regionsReducer,
 } from "./users";
-import { editPetProfileReducer, petProfileReducer } from "./pets";
+import {
+  editPetProfileReducer,
+  petProfileReducer,
+  uploadPhotosPetProfileReducer,
+} from "./pets";
 
 const reducer = combineReducers({
   // auth
@@ -25,6 +29,7 @@ const reducer = combineReducers({
   // pets
   editPetProfile: editPetProfileReducer,
   petProfile: petProfileReducer,
+  uploadPetPhotos: uploadPhotosPetProfileReducer,
 });
 
 export default reducer;

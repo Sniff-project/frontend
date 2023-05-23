@@ -12,7 +12,11 @@ import {
 import { useTheme } from "@mui/material/styles";
 
 import { AuthContext } from "@contexts";
-import { editPetProfile, getPetProfile } from "@core/Services/pets";
+import {
+  editPetProfile,
+  getPetProfile,
+  uploadPetPhotos,
+} from "@core/Services/pets";
 
 import { Container } from "@components/simple";
 import { Message } from "@components/ordinary";
@@ -36,10 +40,12 @@ const PetProfileInfo = () => {
 
   const petProfileState = useSelector((state) => state.petProfile);
   const editPetProfileState = useSelector((state) => state.editPetProfile);
+  const newPetPhotos = useSelector((state) => state.uploadPetPhotos);
 
   const [isOpenUploadImage, setOpenUploadImage] = useState(false);
   const [isPetOwner, setIsPetOwner] = useState(false);
   const [petProfile, setPetProfile] = useState(null);
+  const [petPhotos, setPetPhotos] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(true);
 
   const toggleUploadImage = useCallback(() => {
@@ -61,6 +67,7 @@ const PetProfileInfo = () => {
       setPetProfile(editPetProfileState.petProfile);
     } else if (petProfileState.petProfile) {
       setPetProfile(petProfileState.petProfile);
+      setPetPhotos(petProfileState.petProfile.photos);
     }
   }, [
     dispatch,
@@ -69,6 +76,10 @@ const PetProfileInfo = () => {
     petProfileState.petProfile,
     editPetProfileState.petProfile,
   ]);
+
+  useEffect(() => {
+    if (newPetPhotos.photos) setPetPhotos(newPetPhotos.photos);
+  }, [newPetPhotos.photos]);
 
   useEffect(() => {
     setIsPetOwner(
@@ -82,7 +93,7 @@ const PetProfileInfo = () => {
         dispatch(
           editPetProfile({
             petId: petId,
-            token: token || null,
+            token: token,
             data: {
               ...petProfile,
               ...data,
@@ -94,14 +105,32 @@ const PetProfileInfo = () => {
     [isAuthenticated, dispatch, petId, token, petProfile]
   );
 
+  const uploadImages = useCallback(
+    (photos) => {
+      console.log(photos);
+      if (isAuthenticated && photos.length > 0) {
+        dispatch(
+          uploadPetPhotos({
+            petId: petId,
+            token: token,
+            data: {
+              images: photos,
+            },
+          })
+        );
+      }
+    },
+    [dispatch, isAuthenticated, petId, token]
+  );
+
   const goToPetsGallery = useCallback(() => {
     navigate("/pets");
   }, [navigate]);
 
   const petInfo = !petProfileState.error ? (
     <PetInfoBlock
-      petImage={petImage}
       petProfile={petProfile}
+      petPhotos={petPhotos}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
       toggleUploadImage={toggleUploadImage}
@@ -191,10 +220,13 @@ const PetProfileInfo = () => {
           </Grid>
         </Grid>
       </Grid>
-      <ImageUploadPopup
-        open={isOpenUploadImage}
-        togglePopup={toggleUploadImage}
-      />
+      {isPetOwner && (
+        <ImageUploadPopup
+          open={isOpenUploadImage}
+          togglePopup={toggleUploadImage}
+          onSave={uploadImages}
+        />
+      )}
     </Container>
   );
 };

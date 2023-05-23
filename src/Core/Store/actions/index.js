@@ -32,6 +32,12 @@ export {
   petProfileRequest,
   petProfileSuccess,
   petProfileFailure,
+  UPLOAD_PHOTOS_PET_PROFILE_REQUEST,
+  UPLOAD_PHOTOS_PET_PROFILE_SUCCESS,
+  UPLOAD_PHOTOS_PET_PROFILE_FAILURE,
+  uploadPhotosPetProfileRequest,
+  uploadPhotosPetProfileSuccess,
+  uploadPhotosPetProfileFailure,
 } from "./pets";
 
 export {
