@@ -16,17 +16,14 @@ import "./style.scss";
 
 export default function Nav() {
   const isAuth = useContext(AuthContext);
-  const profileState = useSelector((state) => state.profile);
   const [navMenu, setNavMenu] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
-  const name = profileState.profile.firstname;
+  const name = isAuth.user?.name;
   const dispatch = useDispatch();
-
   const { pathname } = useLocation();
   let isHome = false;
   if (pathname === "/") isHome = true;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
   const pageTitles = "Головна сторінка";
 
   useEffect(() => {

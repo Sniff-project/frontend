@@ -1,5 +1,6 @@
-const PetsGallery = () => {
-  return <div>Gallery</div>;
-};
+import React from "react";
+import Gallery from "@containers/Gallery";
 
-export default PetsGallery;
+export default function PetsGallery() {
+  return <Gallery />;
+}
