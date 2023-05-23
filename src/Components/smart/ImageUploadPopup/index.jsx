@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { Dialog, DialogTitle, DialogContent, Box, Grid } from "@mui/material";
-import useTheme from "@mui/system/useTheme";
+import { useTheme } from "@mui/material/styles";
 import CrossButton from "@components/ui/CrossButton";
 import SaveButton from "@components/ui/SaveButton";
 import { convertUrlsToBlobs } from "@utils/photos";

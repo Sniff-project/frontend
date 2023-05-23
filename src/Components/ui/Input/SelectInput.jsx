@@ -2,7 +2,7 @@ import { memo, useMemo } from "react";
 import { useFormContext } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import styled from "@mui/system/styled";
-import useTheme from "@mui/material/styles/useTheme";
+import { useTheme } from "@mui/material/styles";
 
 const SelectInput = ({
   name,
