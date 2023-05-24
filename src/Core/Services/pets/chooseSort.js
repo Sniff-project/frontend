@@ -1,10 +1,14 @@
-import { getGallery, filterByStatus } from "@core/API/pets";
+import { getGallery, filterByStatus, filterByRegion, filterByCity } from "@core/API/pets";
 
-export const chooseSort = (token, request, filter) => {
+export const chooseSort = (request, filter) => {
     switch(filter) {
         case 'status':
-            return filterByStatus(token, request);
+            return filterByStatus(request);
+        case 'city':
+            return filterByCity(request);
+        case 'region':
+            return filterByRegion(request);
         default:
-            return getGallery(token, request);
+            return getGallery(request);
     }
 }

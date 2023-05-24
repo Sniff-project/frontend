@@ -8,3 +8,5 @@ export const profileUrl = apiUrl + "/users";
 export const profileLocation = apiUrl + "/location";
 export const getGalleryPage = petProfileUrl + "?page=";
 export const filterByStatus = petProfileUrl + "?status=";
+export const filterByCity = petProfileUrl + "?cityId=";
+export const filterByRegion = petProfileUrl + "?regionId=";

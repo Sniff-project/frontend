@@ -7,4 +7,8 @@ export {
   getGallery,
   filterByStatus,
   uploadPhotosPetProfile,
+  getGallery,
+  filterByStatus,
+  filterByRegion,
+  filterByCity,
 } from "./pets";

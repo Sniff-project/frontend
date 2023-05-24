@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import AnimalCard from "@components/ordinary/Homepage/AnimalCard";
 import NavigationCard from "@components/ordinary/Homepage/NavigationCard";
+import catImg from "@assets/Icons/petCards/iconCat.svg";
 
 export default function AnimalSlideCards({ animals }) {
   const animalCards = animals?.length > 3 ? animals?.slice(0, 4) : animals;
@@ -33,13 +34,15 @@ export default function AnimalSlideCards({ animals }) {
       }}
     >
       {fullArray?.map((animal) => {
-        if (!animal) return <NavigationCard key={-1}/>;
+        if (!animal) return <NavigationCard key={-1} />;
         return (
           <AnimalCard
+            className={!animal.photo ? "cardAnimal__imgCat" : ""}
             key={animal.id}
             id={animal.id}
             name={animal.name}
-            imageSrc={animal.photo}
+            hasPhoto={!animal.photo ? false : true}
+            imageSrc={!animal.photo ? catImg : animal.photo}
           />
         );
       })}
