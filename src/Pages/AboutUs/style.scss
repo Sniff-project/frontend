@@ -1,0 +1,51 @@
+.about{
+    padding: 40px 50px 0 50px;
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__title{
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 400;
+        font-size: 64px;
+        letter-spacing: 0.25em;
+        line-height: normal;
+        color: #000000;
+    }
+    &__text{
+        width: 710px;
+        min-height: 265px;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 220%;
+        text-align: center;
+        color: #2E2C34;
+        &_cat{
+            width: 780px;
+        }
+    }
+    &__block{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        &_cat{
+            flex-direction: row-reverse;
+        }
+    }
+    &__img{
+        
+        width: 712px;
+        &_cat{
+            width: 610px;
+        }
+        img{
+            width: 100%;
+        }
+    }
+}
