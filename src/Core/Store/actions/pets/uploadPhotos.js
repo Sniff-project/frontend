@@ -4,6 +4,8 @@ export const UPLOAD_PHOTOS_PET_PROFILE_SUCCESS =
   "UPLOAD_PHOTOS_PET_PROFILE_SUCCESS";
 export const UPLOAD_PHOTOS_PET_PROFILE_FAILURE =
   "UPLOAD_PHOTOS_PET_PROFILE_FAILURE";
+export const UPLOAD_PHOTOS_PET_PROFILE_RESET =
+  "UPLOAD_PHOTOS_PET_PROFILE_RESET";
 
 export const uploadPhotosPetProfileRequest = () => {
   return { type: UPLOAD_PHOTOS_PET_PROFILE_REQUEST };
@@ -15,4 +17,8 @@ export const uploadPhotosPetProfileSuccess = (photos) => {
 
 export const uploadPhotosPetProfileFailure = (error) => {
   return { type: UPLOAD_PHOTOS_PET_PROFILE_FAILURE, payload: { error } };
+};
+
+export const uploadPhotosPetProfileReset = () => {
+  return { type: UPLOAD_PHOTOS_PET_PROFILE_RESET };
 };

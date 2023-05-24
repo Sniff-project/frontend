@@ -2,6 +2,7 @@ import {
   uploadPhotosPetProfileRequest,
   uploadPhotosPetProfileSuccess,
   uploadPhotosPetProfileFailure,
+  uploadPhotosPetProfileReset,
 } from "@core/Store/actions/pets";
 
 import { uploadPhotosPetProfile } from "@core/API/pets";
@@ -38,5 +39,11 @@ export const uploadPetPhotos = ({ petId, token, data }) => {
       dispatch(uploadPhotosPetProfileFailure(result));
       throw error;
     }
+  };
+};
+
+export const uploadPetPhotosResetState = () => {
+  return async (dispatch) => {
+    dispatch(uploadPhotosPetProfileReset());
   };
 };

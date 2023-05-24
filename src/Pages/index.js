@@ -1,4 +1,5 @@
 export { default as AboutUs } from "./AboutUs";
+export { default as CreatePetProfilePage } from "./CreatePet";
 export { default as Home } from "./Home";
 export { default as SignIn } from "./SignIn";
 export { default as SignUp } from "./SignUp";

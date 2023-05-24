@@ -1,4 +1,4 @@
-import { memo, useState, useCallback, useEffect } from "react";
+import { memo, useMemo, useState, useCallback, useEffect } from "react";
 import { Skeleton } from "@mui/material";
 import { StyledBox } from "@components/simple";
 import { Map } from "@components/ordinary";
@@ -7,14 +7,20 @@ import { useTheme } from "@mui/system";
 import { EditButton, SaveButton } from "@components/ui";
 
 const PetLocationBlock = ({
-  lat,
-  lng,
+  petProfile,
   isLoading,
   isPetOwner,
   onSubmit,
   showSnackbar,
   margin = 0,
 }) => {
+  const { latitude: lat, longitude: lng, status } = petProfile ?? {};
+
+  const statusText = useMemo(
+    () => (status === "Знайдено" ? "знайшли" : "загубили"),
+    [status]
+  );
+
   const theme = useTheme();
   const [isEdit, setIsEdit] = useState(false);
   const [position, setPosition] = useState({ lat: +lat, lng: +lng });
@@ -80,6 +86,7 @@ const PetLocationBlock = ({
             scrollWheelZoom={true}
             onPosChange={onPosChangeHandler}
             zoom={12}
+            text={`Мене ${statusText} тут`}
             style={{ height: "31.25rem", borderRadius: "10px" }}
           />
         </>
