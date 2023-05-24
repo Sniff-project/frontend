@@ -41,11 +41,16 @@
     &__img{
         
         width: 712px;
+        /* overflow: hidden; */
         &_cat{
             width: 610px;
         }
         img{
             width: 100%;
+            transition: transform 0.5s ease;
+            &:hover{
+                transform: scale(1.1);
+            }
         }
     }
 }
@@ -61,6 +66,12 @@
 
         &__img{
             width: 450px;
+            img{
+                &:hover{
+                    transform: none;
+                }
+            }
+            
         }
     }
     
