@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthContext } from "@contexts";
 import AnimalCards from "@components/smart/Homepage/AnimalCards";
 import AnimalSlideCards from "@components/smart/Homepage/AnimalSlideCards";
 import { petsGallery } from "@core/Services/pets";
@@ -9,14 +8,13 @@ import "./style.scss";
 
 export default function OurAnimals() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
   const { gallery, isLoading, error } = useSelector((state) => state.gallery);
   const galleryArray = gallery?.content;
 
   useEffect(() => {
-    dispatch(petsGallery(token));
-  }, [dispatch, user, token]);
+    dispatch(petsGallery());
+  }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);

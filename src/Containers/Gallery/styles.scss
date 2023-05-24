@@ -19,10 +19,6 @@
         justify-content: center;
     }
 
-    .cardAnimal__imgCat {
-        height: 40%;
-    }
-
     .css-1f8sh1y {
         height: 100% !important;
         > div {
@@ -30,4 +26,8 @@
         }
     }
 
+}
+
+.cardAnimal__imgCat {
+    background-size: 70% 70%;
 }

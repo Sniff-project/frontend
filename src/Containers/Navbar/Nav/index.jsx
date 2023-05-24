@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout as logoutUser } from "@core/Services";
 import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
@@ -77,12 +77,12 @@ export default function Nav() {
                 {screenWidth > 750 && (
                   <ul className="nav-list">
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" to="/addpet">
+                      <Link className="nav-list__addPet" href="/addpet">
                         Я знайшов тваринку
                       </Link>
                     </li>
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" to="/addpet">
+                      <Link className="nav-list__addPet" href="/pets">
                         Я загубив тваринку
                       </Link>
                     </li>
@@ -170,12 +170,12 @@ export default function Nav() {
                   {screenWidth <= 750 && (
                     <>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" to="/addpet">
+                        <Link className="nav-list__addPet" href="/addpet">
                           Я знайшов тваринку
                         </Link>
                       </li>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" to="/addpet">
+                        <Link className="nav-list__addPet" href="/pets">
                           Я загубив тваринку
                         </Link>
                       </li>

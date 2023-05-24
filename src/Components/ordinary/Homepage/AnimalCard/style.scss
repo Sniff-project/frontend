@@ -1,21 +1,24 @@
 .cardAnimal {
-    width: 260px;
-    height: 390px;
+    width: 275px;
+    height: 325px;
     background: #48A0D1;
     box-shadow: 0px 0px 30px #48A0D1;
     border-radius: 30px;
     overflow: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
     position: relative;
 
     &__img {
-        height: 100%;
+        height: 90%;
         width: 100%;
-        background-position: top;
+        background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+
+        &:first-child {
+            width: 90%;
+        }
     }
 
     &__name {
@@ -30,19 +33,20 @@
         font-size: 1.25rem;
         color: white;
         border-radius: 50% 50% 0 0;
+        z-index: 3;
     }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1400px) {
     .cardAnimal {
-        width: 230px;
-        height: 345px;
+        width: 250px;
+        height: 300px;
     }
 }
 
 @media (max-width: 1300px) {
     .cardAnimal {
         width: 200px;
-        height: 300px;
+        height: 250px;
     }
 }
