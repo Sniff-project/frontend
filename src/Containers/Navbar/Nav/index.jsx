@@ -170,12 +170,12 @@ export default function Nav() {
                   {screenWidth <= 750 && (
                     <>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" to="/addpet">
+                        <Link className="nav-list__addPet" href="/addpet">
                           Я знайшов тваринку
                         </Link>
                       </li>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" to="/pets">
+                        <Link className="nav-list__addPet" href="/pets">
                           Я загубив тваринку
                         </Link>
                       </li>
