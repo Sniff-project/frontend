@@ -39,14 +39,15 @@ export default function Gallery() {
 
   const [galleryArray, setGalleryArray] = useState(() => {
     const storedGalleryArray = localStorage.getItem("galleryArray");
-    if (storedGalleryArray) {
+    if (storedGalleryArray && JSON.parse(storedGalleryArray)?.length) {
+      setIsEmptyStore(false);
       return JSON.parse(storedGalleryArray);
     } else {
       setIsEmptyStore(true);
       return [];
     }
   });
-  
+
   useEffect(() => {
     localStorage.setItem("galleryArray", JSON.stringify(galleryArray));
     setEmptyGalleryState(!galleryArray?.length && !error);
