@@ -72,7 +72,7 @@ export default function Gallery() {
     }
   }, [gallery, isLoading, error, isEmptyStore]);
 
-  const handleSlide = (d, value) => {
+  const handleSlide = (_, value) => {
     setCurrentSlideIndex(--value);
   };
 
@@ -142,10 +142,6 @@ export default function Gallery() {
               {[...Array(maxPages)].map((_, slideIndex) => (
                 <div className="gallery-page" key={slideIndex}>
                   {galleryArray
-                    ?.slice(
-                      slideIndex * maxCardsOnPage,
-                      (slideIndex + 1) * maxCardsOnPage
-                    )
                     .map((animal) => (
                       <AnimalCard
                         className={!animal.photo ? "cardAnimal__imgCat" : ""}
