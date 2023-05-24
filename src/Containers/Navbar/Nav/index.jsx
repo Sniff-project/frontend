@@ -77,12 +77,14 @@ export default function Nav() {
                 {screenWidth > 750 && (
                   <ul className="nav-list">
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/addpet">
+                      <Link
+                        className="nav-list__addPet"
+                        href="/pets/create?status=found">
                         Я знайшов тваринку
                       </Link>
                     </li>
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/pets">
+                      <Link className="nav-list__addPet" href="/pets/create">
                         Я загубив тваринку
                       </Link>
                     </li>

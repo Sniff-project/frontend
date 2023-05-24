@@ -42,7 +42,7 @@ const CreatePet = ({ params }) => {
     if (!petData?.status) {
       setPetData((prev) => ({
         ...prev,
-        status: params.status === "found" ? "Знайдено" : "Загулбено",
+        status: params.status === "found" ? "Знайдено" : "Загублено",
       }));
     }
   }, [petData?.status, params?.status]);
@@ -59,43 +59,43 @@ const CreatePet = ({ params }) => {
     }));
   }, []);
 
-  const stepsContent = useMemo(
-    () => [
-      <Box sx={{ maxWidth: "600px", margin: "3.125rem auto" }}>
-        <InfoBlock
-          name={petData?.name}
-          gender={petData?.gender}
-          foundOrLostDate={petData?.foundOrLostDate}
-          status={petData?.status}
-        />
-        <DescriptionBlock
-          description={petData?.description}
-          sx={{ marginTop: "16px" }}
-        />
-      </Box>,
-      <Box sx={{ margin: "3.125rem auto" }}>
-        <UploadBox inpFiles={photos} onChange={updatePhotos} />
-      </Box>,
-      <Box sx={{ margin: "3.125rem auto" }}>
-        <Map
-          {...(petData?.longitude &&
-            petData?.latitude && {
-              position: {
-                lat: petData.latitude,
-                lng: petData.longitude,
-              },
-            })}
-          draggable={true}
-          onPosChange={onChangeMapMarker}
-          text={`Мене ${
-            petData?.status === "Знайдено" ? "знайшли" : "загубили"
-          } тут`}
-          style={{ height: "31.25rem", borderRadius: "10px" }}
-        />
-      </Box>,
-    ],
-    [onChangeMapMarker, petData, photos, updatePhotos]
-  );
+  const stepsContent = useMemo(() => {
+    if (petData)
+      return [
+        <Box sx={{ maxWidth: "600px", margin: "3.125rem auto" }}>
+          <InfoBlock
+            name={petData?.name}
+            gender={petData?.gender}
+            foundOrLostDate={petData?.foundOrLostDate}
+            status={petData?.status}
+          />
+          <DescriptionBlock
+            description={petData?.description}
+            sx={{ marginTop: "16px" }}
+          />
+        </Box>,
+        <Box sx={{ margin: "3.125rem auto" }}>
+          <UploadBox inpFiles={photos} onChange={updatePhotos} />
+        </Box>,
+        <Box sx={{ margin: "3.125rem auto" }}>
+          <Map
+            {...(petData?.longitude &&
+              petData?.latitude && {
+                position: {
+                  lat: petData.latitude,
+                  lng: petData.longitude,
+                },
+              })}
+            draggable={true}
+            onPosChange={onChangeMapMarker}
+            text={`Мене ${
+              petData?.status === "Знайдено" ? "знайшли" : "загубили"
+            } тут`}
+            style={{ height: "31.25rem", borderRadius: "10px" }}
+          />
+        </Box>,
+      ];
+  }, [onChangeMapMarker, petData, photos, updatePhotos]);
 
   const isStepOptional = useCallback((step) => {
     return step === 1;
@@ -145,8 +145,6 @@ const CreatePet = ({ params }) => {
     setPhotos([]);
     methods.reset();
   }, [dispatch, methods]);
-
-  console.log(createPetProfileState, uploadedPetPhotos);
 
   const onFormSubmitHandler = useCallback(
     (formData) => {
@@ -294,7 +292,7 @@ const CreatePet = ({ params }) => {
       ) : (
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onFormSubmitHandler)}>
-            {stepsContent[activeStep]}
+            {stepsContent && stepsContent[activeStep]}
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
                 color="inherit"
