@@ -13,19 +13,21 @@ export default function SelectComponent({
   const [currentValue, setCurrentValue] = useState("");
   const filterState = "filterState";
 
-
   useEffect(() => {
     if (typeof globalState === "object") {
 
-      if(globalState.filter === name) {
+      if (globalState.filter === name) {
         setCurrentValue(globalState.value);
+      } else {
+        setCurrentValue('');
       }
 
       setCurrentValue((prev) =>
         prev === globalState.value ? globalState.value : ""
       );
+
     }
-  }, [globalState]);
+  }, [globalState, name]);
 
   const handleChange = (event) => {
     setCurrentValue(event.target.value);
@@ -41,7 +43,7 @@ export default function SelectComponent({
       <Select
         labelId="demo-simple-select-autowidth-label"
         id="demo-simple-select-autowidth"
-        value={currentValue}
+        value={valueArray?.length > 0 ? currentValue : ''}
         onChange={handleChange}
         label={title}
         name={name}
