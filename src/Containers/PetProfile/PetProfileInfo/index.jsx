@@ -140,8 +140,7 @@ const PetProfileInfo = () => {
   ) : null;
   const petLocation = !petProfileState.error ? (
     <PetLocationBlock
-      lat={petProfile?.latitude}
-      lng={petProfile?.longitude}
+      petProfile={petProfile}
       isLoading={petProfileState.isLoading}
       isPetOwner={isPetOwner}
       onSubmit={onSubmitHandler}

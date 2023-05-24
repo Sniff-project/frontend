@@ -8,6 +8,7 @@ import {
   regionsReducer,
 } from "./users";
 import {
+  createPetProfileReducer,
   editPetProfileReducer,
   galleryReducer,
   petProfileReducer,
@@ -28,6 +29,7 @@ const reducer = combineReducers({
   regions: regionsReducer,
 
   // pets
+  createPetProfile: createPetProfileReducer,
   editPetProfile: editPetProfileReducer,
   gallery: galleryReducer,
   petProfile: petProfileReducer,

@@ -33,11 +33,14 @@ const statusSelect = [
 ];
 
 const minDate = new Date("2022-02-23");
-const maxDate = new Date();
-
-const EditBlock = ({ name, gender, foundOrLostDate, status }) => {
+const EditBlock = ({
+  name = "",
+  gender = genderSelect[2].value,
+  foundOrLostDate = new Date(),
+  status = statusSelect[0].value,
+}) => {
   return (
-    <>
+    <React.Fragment>
       <DefaultInput
         type="text"
         name="name"
@@ -53,6 +56,10 @@ const EditBlock = ({ name, gender, foundOrLostDate, status }) => {
           maxLength: {
             value: 25,
             message: "Максимальна довжина імені 25 символів!",
+          },
+          pattern: {
+            value: /^([а-яіїє'\s-]{3,25})$/i,
+            message: "Ім'я може містити тільки українські літери!",
           },
         }}
       />
@@ -88,15 +95,15 @@ const EditBlock = ({ name, gender, foundOrLostDate, status }) => {
       </SelectInput>
       <DatePicker
         name="foundOrLostDate"
-        label={`Коли ${status}`}
+        label={`Коли знайшли/загубили`}
         defaultValue={dayjs(foundOrLostDate)}
-        maxDate={dayjs(maxDate)}
+        maxDate={dayjs()}
         minDate={dayjs(minDate)}
         validation={{
           required: true,
           validate: {
             futureDate: (value) =>
-              dayjs(value).isBefore(dayjs(maxDate)) ||
+              dayjs(value).isBefore(dayjs()) ||
               "Дата не може будти пізніша за сьогоднішню",
             pastDate: (value) =>
               dayjs(value).isAfter(dayjs(minDate)) ||
@@ -105,7 +112,7 @@ const EditBlock = ({ name, gender, foundOrLostDate, status }) => {
         }}
         sx={{ marginTop: "16px" }}
       />
-    </>
+    </React.Fragment>
   );
 };
 

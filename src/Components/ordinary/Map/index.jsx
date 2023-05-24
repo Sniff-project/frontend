@@ -2,6 +2,7 @@ import { memo, useRef, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import marker from "@assets/Icons/map/marker.png";
+import L from "leaflet";
 
 const customIcon = new Icon({
   iconUrl: marker,
@@ -9,13 +10,16 @@ const customIcon = new Icon({
   iconAnchor: [12, 41],
 });
 
+const defaultPos = { lat: 49.0266, lng: 31.4826 };
+
 const Map = ({
-  position,
-  draggable,
+  position = defaultPos,
+  draggable = false,
   onPosChange,
   scrollWheelZoom = false,
   text = "Мене знайшли тут",
   style,
+  ...rest
 }) => {
   const markerRef = useRef();
   const eventHandlers = useMemo(
@@ -24,11 +28,19 @@ const Map = ({
         const marker = markerRef.current;
         if (marker != null) {
           const newPosition = marker.getLatLng();
-          onPosChange(newPosition);
+          const ukraineBounds = L.latLngBounds(
+            L.latLng(44.182524, 22.132763), // south-west corner of Ukraine
+            L.latLng(52.391435, 40.336914) // north-east corner of Ukraine
+          );
+          if (!ukraineBounds.contains(newPosition)) {
+            marker.setLatLng(position); //reset position if marker is dragged outside of Ukraine
+          } else {
+            onPosChange(newPosition); // update position if marker is dragged within Ukraine
+          }
         }
       },
     }),
-    [onPosChange]
+    [onPosChange, position]
   );
 
   return (
@@ -37,7 +49,8 @@ const Map = ({
       zoom={13}
       attributionControl={false}
       scrollWheelZoom={scrollWheelZoom}
-      style={style}>
+      style={style}
+      {...rest}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Marker
         ref={markerRef}

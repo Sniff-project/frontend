@@ -1,9 +1,10 @@
+import React from "react";
 import { useCallback } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Box, Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import { DefaultInput } from "@components/ui";
 
+import EditDescription from "./EditDescription";
 import Skelet from "./Skelet";
 
 const MyHistoryBlock = ({
@@ -40,32 +41,14 @@ const MyHistoryBlock = ({
             mt={4}
             sx={{ textAlign: "justify" }}
             component="div">
-            {!isLoading && description ? (
-              <>
+            {!isLoading ? (
+              <React.Fragment>
                 {!isEdit ? (
                   <>{description}</>
                 ) : (
-                  <DefaultInput
-                    type="text"
-                    name="description"
-                    label="Опис"
-                    multiline
-                    defaultValue={description}
-                    tabIndex={1}
-                    validation={{
-                      required: true,
-                      minLength: {
-                        value: 20,
-                        message: "Мінімальна довжина опису 20 символів!",
-                      },
-                      maxLength: {
-                        value: 250,
-                        message: "Максимальна довжина опису 250 символів!",
-                      },
-                    }}
-                  />
+                  <EditDescription description={description} />
                 )}
-              </>
+              </React.Fragment>
             ) : (
               <Skelet />
             )}

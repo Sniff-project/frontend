@@ -2,6 +2,7 @@ import {
   UPLOAD_PHOTOS_PET_PROFILE_REQUEST,
   UPLOAD_PHOTOS_PET_PROFILE_SUCCESS,
   UPLOAD_PHOTOS_PET_PROFILE_FAILURE,
+  UPLOAD_PHOTOS_PET_PROFILE_RESET,
 } from "@core/Store/actions/pets";
 
 const initialState = {
@@ -23,6 +24,8 @@ export function uploadPhotosPetProfileReducer(state = initialState, action) {
       };
     case UPLOAD_PHOTOS_PET_PROFILE_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error };
+    case UPLOAD_PHOTOS_PET_PROFILE_RESET:
+      return initialState;
     default:
       return state;
   }

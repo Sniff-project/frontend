@@ -13,7 +13,8 @@ const DInput = styled(Input)(
     width: 100%;
   }
   label,
-  input {
+  input,
+  textarea {
     font-family: Montserrat;
     font-size: 16px;
     font-style: normal;

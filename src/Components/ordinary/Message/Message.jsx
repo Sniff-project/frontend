@@ -19,7 +19,7 @@ const Message = memo(
 
     const MsgBox = styled(Box)(({ theme }) => ({
       width: "auto",
-      maxWidth: 560,
+      maxWidth: "35rem",
       borderRadius: 12,
       padding: "1rem 1.375rem 1.0625rem 1.25rem",
       display: "flex",
@@ -33,10 +33,13 @@ const Message = memo(
       <Zoom in={!isMessageHidden} mountOnEnter unmountOnExit>
         <MsgBox theme={palette} {...rest}>
           <InfoBox theme={palette}>
-            <ReportProblemOutlinedIcon color={color} sx={{ fontSize: 21 }} />
+            <ReportProblemOutlinedIcon
+              color={color}
+              sx={{ fontSize: "1.25rem" }}
+            />
           </InfoBox>
-          <Box marginLeft="10px">
-            <Typography variant="body1" p={{ color: color, fontSize: "16px" }}>
+          <Box marginLeft="0.625rem">
+            <Typography variant="body1" p={{ color: color, fontSize: "1rem" }}>
               {message}
             </Typography>
             <Zoom in={isMessageHidden} mountOnEnter unmountOnExit>
@@ -44,7 +47,7 @@ const Message = memo(
             </Zoom>
           </Box>
           <IconButton onClick={handleClose} sx={{ marginLeft: "auto" }}>
-            <CloseRoundedIcon color={color} sx={{ fontSize: 21 }} />
+            <CloseRoundedIcon color={color} sx={{ fontSize: "1.25rem" }} />
           </IconButton>
         </MsgBox>
       </Zoom>
@@ -53,9 +56,9 @@ const Message = memo(
 );
 
 const InfoBox = styled(Box)(({ theme }) => ({
-  height: 34,
-  width: 34,
-  minWidth: 34,
+  height: "2.125rem",
+  width: "2.125rem",
+  minWidth: "2.125rem",
   borderRadius: "50%",
   background: theme.textColor,
   display: "flex",

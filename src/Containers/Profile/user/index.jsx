@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthContext } from "@contexts";
+import { useAuth } from "@core/Hooks";
 import { profile as getProfile } from "@core/Services/users";
 import { Spinner } from "@components/simple";
 import { Message } from "@components/ordinary";
 import { UserData } from "@components/smart/Profile";
 
 const Password = () => {
-  const { user, token } = useContext(AuthContext);
+  const { user, token } = useAuth();
   const dispatch = useDispatch();
   const profileState = useSelector((state) => state.profile);
 

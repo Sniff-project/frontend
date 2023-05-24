@@ -11,7 +11,7 @@ import {
 
 import { EditButton, SaveButton } from "@components/ui";
 import { ImageBlock } from "./styles";
-import dayjs from "dayjs";
+import { toTitleCase, dateToString } from "@utils/string";
 
 const PetInfoBlock = ({
   petProfile,
@@ -45,10 +45,8 @@ const PetInfoBlock = ({
       // on click btn save (submit form)
       const data = {
         ...formData,
-        name: formData.name.replace(/\s{2,}/g, " ").trim(),
-        foundOrLostDate: dayjs(formData.foundOrLostDate.$d).format(
-          "YYYY-MM-DD"
-        ),
+        name: toTitleCase(formData.name),
+        foundOrLostDate: dateToString(formData.foundOrLostDate),
       };
       if (
         name !== data.name ||
