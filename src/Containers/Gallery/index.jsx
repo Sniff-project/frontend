@@ -39,7 +39,7 @@ export default function Gallery() {
 
   const [galleryArray, setGalleryArray] = useState(() => {
     const storedGalleryArray = localStorage.getItem("galleryArray");
-    if (storedGalleryArray && JSON.parse(storedGalleryArray)?.length) {
+    if (storedGalleryArray) {
       setIsEmptyStore(false);
       return JSON.parse(storedGalleryArray);
     } else {
@@ -54,11 +54,11 @@ export default function Gallery() {
   }, [galleryArray]);
 
   useEffect(() => {
-    if(isChanged) {
+    if (isChanged) {
       setGalleryArray(gallery?.content);
       setIsChanged(false);
     }
-  }, [gallery?.content])
+  }, [gallery?.content]);
 
   useEffect(() => {
     dispatch(petsGallery(currentSlideIndex));
@@ -73,7 +73,6 @@ export default function Gallery() {
       setEmptyGalleryState(false);
     }
   }, [gallery, isLoading, error]);
-
 
   const handleSlide = useCallback((_, value) => {
     setCurrentSlideIndex(--value);
@@ -113,6 +112,9 @@ export default function Gallery() {
               m={"50px auto"}
             />
           )}
+
+          {!error && <SortingSelects setIsChanged={setIsChanged} />}
+
           {emptyGalleryState && (
             <p
               style={{
@@ -124,8 +126,6 @@ export default function Gallery() {
               {emptyGalleryMessage}
             </p>
           )}
-
-          {!error && !emptyGalleryState && <SortingSelects setIsChanged={setIsChanged}/>}
 
           {!spinnerState && !error && !emptyGalleryState && (
             <Carousel

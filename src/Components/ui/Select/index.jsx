@@ -1,34 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Select, InputLabel, MenuItem, FormControl } from "@mui/material";
 import "./styles.scss";
-
 
 export default function SelectComponent({
   title,
   valueArray,
   handleChangeFilter,
   name,
+  setGlobalState,
+  globalState,
 }) {
+  const [currentValue, setCurrentValue] = useState("");
+  const filterState = "filterState";
 
-  const [currentValue, setCurrentValue] = useState('');
+
+  useEffect(() => {
+    if (typeof globalState === "object") {
+
+      if(globalState.filter === name) {
+        setCurrentValue(globalState.value);
+      }
+
+      setCurrentValue((prev) =>
+        prev === globalState.value ? globalState.value : ""
+      );
+    }
+  }, [globalState]);
 
   const handleChange = (event) => {
     setCurrentValue(event.target.value);
     handleChangeFilter(event.target);
-
-    // localStorage.removeItem(filterState);
-    // const objData = {value: event.target.value, filter: event.target.name};
-    // localStorage.setItem(filterState, JSON.stringify(objData));
-
+    setGlobalState({ value: event.target.value, filter: name });
+    const storeData = { value: event.target.value, filter: name };
+    localStorage.setItem(filterState, JSON.stringify(storeData));
   };
-
-  // useEffect(() => {
-  //   const storedGalleryArray = localStorage.getItem(filterState);
-  //   if (storedGalleryArray) {
-  //     setCurrentValue(JSON.parse(storedGalleryArray));
-  //   }
-  // }, []);
-
 
   return (
     <FormControl sx={{ minWidth: 200 }}>
