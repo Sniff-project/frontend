@@ -14,7 +14,6 @@ export const petsGallery = (request, filter = false) => {
 	return async (dispatch) => {
 		try {
 			dispatch(galleryRequest());
-			console.log(request)
 			const response = await (filter ? filtration(request) : getGallery(request));
 			if (response.status === 200) {
 				const result = {

@@ -72,9 +72,9 @@ export default function Gallery() {
     }
   }, [gallery, isLoading, error, isEmptyStore]);
 
-  const handleSlide = useCallback((_, value) => {
+  const handleSlide = (d, value) => {
     setCurrentSlideIndex(--value);
-  }, []);
+  };
 
   const goToPetsGallery = useCallback(() => {
     navigate("/");
@@ -83,7 +83,6 @@ export default function Gallery() {
   const handleIsChanged = () => {
     setIsChanged(true);
   };
-
 
   return (
     <div className="gallery">
@@ -135,7 +134,7 @@ export default function Gallery() {
               className="gallery-slider"
               animation="fade"
               autoPlay={false}
-              navButtonsProps={{ style: { display: "none" }, className: "" }}
+              // navButtonsProps={{ style: { display: "none" }, className: "" }}
               slidesPerPage={maxCardsOnPage}
               indicators={false}
               index={currentSlideIndex}

@@ -10,7 +10,6 @@ export default function SelectComponent({
   globalState
 }) {
   const [currentValue, setCurrentValue] = useState("");
-  const filterState = "filterState";
 
   const handleChange = (event) => {
     setCurrentValue(event.target.value);
@@ -18,15 +17,9 @@ export default function SelectComponent({
   };
 
   useEffect(() => {
-    console.log(globalState)
-
     for(let key in globalState){
-      if(key === name){
-        setCurrentValue(globalState[key]);
-        console.log(globalState[key]);
-      }
+      if(key === name) setCurrentValue(globalState[key]);
     }
-  
   }, [globalState]);
 
   return (
