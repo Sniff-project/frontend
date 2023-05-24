@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthContext } from "@contexts";
 import AnimalCards from "@components/smart/Homepage/AnimalCards";
 import AnimalSlideCards from "@components/smart/Homepage/AnimalSlideCards";
 import { petsGallery } from "@core/Services/pets";

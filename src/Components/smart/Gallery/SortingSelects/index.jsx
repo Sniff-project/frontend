@@ -15,7 +15,7 @@ const FOUND = "Знайдено";
 const LOST = "Загублено";
 const filterState = "filterState";
 
-export default function SortingSelects({ setIsChanged }) {
+export default function SortingSelects({ handleIsChanged }) {
   const dispatch = useDispatch();
   const cities_Array = useSelector(({ cities }) => cities.cities.citiesArray);
   const regions_Array = useSelector(
@@ -35,10 +35,10 @@ export default function SortingSelects({ setIsChanged }) {
       dispatch(getCities());
       dispatch(getRegions());
     }
-  }, [dispatch]);
+  }, [dispatch, cities_Array?.length, regions_Array?.length]);
 
   const handleChangeFilter = (choice) => {
-    setIsChanged(true);
+    handleIsChanged();
 
     switch (choice.name) {
       case STATUS:

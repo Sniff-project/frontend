@@ -51,14 +51,13 @@ export default function Gallery() {
   useEffect(() => {
     localStorage.setItem("galleryArray", JSON.stringify(galleryArray));
     setEmptyGalleryState(!galleryArray?.length && !error);
-  }, [galleryArray]);
+  }, [galleryArray, error]);
 
   useEffect(() => {
     if (isChanged) {
       setGalleryArray(gallery?.content);
-      setIsChanged(false);
     }
-  }, [gallery?.content]);
+  }, [gallery?.content, isChanged]);
 
   useEffect(() => {
     dispatch(petsGallery(currentSlideIndex));
@@ -70,9 +69,8 @@ export default function Gallery() {
     }
     if (gallery?.content && isEmptyStore) {
       setGalleryArray(gallery?.content);
-      setEmptyGalleryState(false);
     }
-  }, [gallery, isLoading, error]);
+  }, [gallery, isLoading, error, isEmptyStore]);
 
   const handleSlide = useCallback((_, value) => {
     setCurrentSlideIndex(--value);
@@ -81,6 +79,11 @@ export default function Gallery() {
   const goToPetsGallery = useCallback(() => {
     navigate("/");
   }, [navigate]);
+
+  const handleIsChanged = () => {
+    setIsChanged(true);
+  };
+
 
   return (
     <div className="gallery">
@@ -113,7 +116,7 @@ export default function Gallery() {
             />
           )}
 
-          {!error && <SortingSelects setIsChanged={setIsChanged} />}
+          {!error && <SortingSelects handleIsChanged={handleIsChanged} />}
 
           {emptyGalleryState && (
             <p
