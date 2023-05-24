@@ -6,13 +6,20 @@ const PetPhotosCarousel = ({
   petPhotos,
   onClick,
   autoPlay = false,
+  cycleNavigation = false,
   height = "100%",
   alt = "Фото тваринки",
   sx = carouselStyles,
   ...props
 }) => {
   return (
-    <Carousel autoPlay={autoPlay} height={height} sx={sx} {...props}>
+    <Carousel
+      autoPlay={autoPlay}
+      cycleNavigation={cycleNavigation}
+      navButtonsAlwaysInvisible={petPhotos.length === 1}
+      height={height}
+      sx={sx}
+      {...props}>
       {petPhotos.map((photo) => (
         <Avatar
           key={photo}

@@ -8,7 +8,7 @@ export const carouselStyles = {
   ":hover": {
     button: {
       opacity: 0.75,
-      background: "transparent",
+      background: "transparent!important",
     },
   },
   button: {
