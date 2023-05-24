@@ -7,35 +7,27 @@ export default function SelectComponent({
   valueArray,
   handleChangeFilter,
   name,
-  setGlobalState,
-  globalState,
+  globalState
 }) {
   const [currentValue, setCurrentValue] = useState("");
   const filterState = "filterState";
 
-  useEffect(() => {
-    if (typeof globalState === "object") {
-
-      if (globalState.filter === name) {
-        setCurrentValue(globalState.value);
-      } else {
-        setCurrentValue('');
-      }
-
-      setCurrentValue((prev) =>
-        prev === globalState.value ? globalState.value : ""
-      );
-
-    }
-  }, [globalState, name]);
-
   const handleChange = (event) => {
     setCurrentValue(event.target.value);
     handleChangeFilter(event.target);
-    setGlobalState({ value: event.target.value, filter: name });
-    const storeData = { value: event.target.value, filter: name };
-    localStorage.setItem(filterState, JSON.stringify(storeData));
   };
+
+  useEffect(() => {
+    console.log(globalState)
+
+    for(let key in globalState){
+      if(key === name){
+        setCurrentValue(globalState[key]);
+        console.log(globalState[key]);
+      }
+    }
+  
+  }, [globalState]);
 
   return (
     <FormControl sx={{ minWidth: 200 }}>
@@ -48,10 +40,10 @@ export default function SelectComponent({
         label={title}
         name={name}
       >
-        <MenuItem value="empty">Усі варіанти</MenuItem>
+        <MenuItem value="">Усі варіанти</MenuItem>
 
         {valueArray.map((elem) => (
-          <MenuItem key={elem.id} value={elem.name}>
+          <MenuItem key={elem.id} value={elem.id}>
             {elem.name}
           </MenuItem>
         ))}

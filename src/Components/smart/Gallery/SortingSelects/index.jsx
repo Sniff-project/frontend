@@ -11,8 +11,6 @@ import { SelectComponent } from "@components/ui";
 const STATUS = "status";
 const CITY = "city";
 const REGION = "region";
-const FOUND = "Знайдено";
-const LOST = "Загублено";
 const filterState = "filterState";
 
 export default function SortingSelects({ handleIsChanged }) {
@@ -21,14 +19,15 @@ export default function SortingSelects({ handleIsChanged }) {
   const regions_Array = useSelector(
     ({ regions }) => regions.regions.regionsArray
   );
-  const [globalState, setGlobalState] = useState("");
-
-  useEffect(() => {
-    const storedGalleryArray = localStorage.getItem(filterState);
-    if (storedGalleryArray) {
-      setGlobalState(JSON.parse(storedGalleryArray));
-    }
-  }, []);
+  
+  const [globalState, setGlobalState] = useState(() => {
+    const storedState = localStorage.getItem(filterState);
+    return storedState ? JSON.parse(storedState) : {
+      region: '',
+      city: '',
+      status: ''
+    };
+  });
 
   useEffect(() => {
     if (!cities_Array?.length || !regions_Array?.length) {
@@ -37,34 +36,24 @@ export default function SortingSelects({ handleIsChanged }) {
     }
   }, [dispatch, cities_Array?.length, regions_Array?.length]);
 
+  useEffect(() => {
+    localStorage.setItem(filterState, JSON.stringify(globalState));
+    const url = `status=${globalState.status}&regionId=${globalState.region}&cityId=${globalState.city}`;
+    dispatch(petsGallery(url, true));
+  }, [globalState]);
+
   const handleChangeFilter = (choice) => {
     handleIsChanged();
-
-    switch (choice.name) {
-      case STATUS:
-        if (choice.value === FOUND) dispatch(petsGallery("FOUND", choice.name));
-        else if (choice.value === LOST)
-          dispatch(petsGallery("LOST", choice.name));
-        else dispatch(petsGallery());
-        return;
-      case CITY:
-        if(choice.value === 'empty') {
-          dispatch(petsGallery());
-          return;
-        }
-        const cityId = cities_Array.find(city => city.name === choice.value).id;
-        dispatch(petsGallery(cityId, choice.name));
-        return;
-      case REGION:
-        if(choice.value === 'empty') {
-          dispatch(petsGallery());
-          return;
-        }
-        const regionId = regions_Array.find(region => region.name === choice.value).id;
-        dispatch(petsGallery(regionId, choice.name));
-        return;
-      default:
-        return;
+    switch(choice.name) {
+      case "status":
+        setGlobalState({...globalState, status: choice.value});
+        break;
+      case "city":
+        setGlobalState({...globalState, city: choice.value});
+        break;
+      case "region":
+        setGlobalState({...globalState, region: choice.value});
+        break;
     }
   };
 
@@ -95,8 +84,8 @@ export default function SortingSelects({ handleIsChanged }) {
           handleChangeFilter={handleChangeFilter}
           name={STATUS}
           valueArray={[
-            { name: "Знайдено", id: 1 },
-            { name: "Загублено", id: 2 },
+            { name: "Знайдено", id: 'FOUND' },
+            { name: "Загублено", id: 'LOST' },
           ]}
           title={"Статус"}
           setGlobalState={setGlobalState}
