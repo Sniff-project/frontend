@@ -1,97 +1,69 @@
-import React from "react";
-import {
-  Box,
-  Skeleton,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from "@mui/material";
-import { styled } from "@mui/system";
+import { useCallback } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import Grid from "@mui/material/Grid";
+import ViewBlock from "./ViewBlock";
+import EditBlock from "./EditBlock";
+import Skelet from "./Skelet";
+import { SBox } from "./styles";
 
 const AboutMeBlock = ({
   name,
-  city,
   gender,
   foundOrLostDate,
   status,
   isLoading,
+  isPetOwner,
+  button,
+  isEdit,
+  onSave,
   margin = 0,
 }) => {
-  const data = [
-    { label: "Мене звати", value: name },
-    { label: "Я з міста", value: city || "Невідомо" },
-    { label: "Стать", value: gender },
-    {
-      label: status === "FOUND" ? "Мене знайшли" : "Мене загубили",
-      value: foundOrLostDate,
+  const methods = useForm({ mode: "all" });
+
+  const onSaveHandler = useCallback(
+    (formData) => {
+      return onSave(formData);
     },
-  ];
+    [onSave]
+  );
 
   return (
     <SBox className="pet-profile__aboutPet" margin={margin}>
-      <h3>Про мене</h3>
-      <Table sx={{ marginTop: "2.125rem" }}>
-        <TableBody>
-          {data.map((item) => (
-            <React.Fragment key={item.label}>
-              {!isLoading ? (
-                <STableRow>
-                  <STableCell>{item.label}</STableCell>
-                  <STableCell>{item.value}</STableCell>
-                </STableRow>
-              ) : (
-                <TableRow>
-                  <STableCell sx={{ padding: "0.75rem" }}>
-                    <Skeleton variant="rounded" height="2rem" />
-                  </STableCell>
-                </TableRow>
-              )}
-            </React.Fragment>
-          ))}
-        </TableBody>
-      </Table>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSaveHandler)}>
+          <Grid container alignItems="center" justifyContent="center">
+            <Grid item>
+              <h3>Про мене</h3>
+            </Grid>
+            {isPetOwner && <Grid item>{button}</Grid>}
+          </Grid>
+          <Grid container sx={{ marginTop: "2.125rem" }}>
+            {!isLoading && name ? (
+              <>
+                {!isEdit ? (
+                  <ViewBlock
+                    name={name}
+                    gender={gender}
+                    foundOrLostDate={foundOrLostDate}
+                    status={status}
+                  />
+                ) : (
+                  <EditBlock
+                    name={name}
+                    gender={gender}
+                    foundOrLostDate={foundOrLostDate}
+                    status={status}
+                  />
+                )}
+              </>
+            ) : (
+              <Skelet />
+            )}
+          </Grid>
+        </form>
+      </FormProvider>
     </SBox>
   );
 };
-
-const SBox = styled(Box)`
-  h3 {
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 2.4375rem;
-    text-align: center;
-    color: #000000;
-    margin: 0;
-  }
-`;
-
-const STableRow = styled(TableRow)`
-  position: relative;
-
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.3) -0.71%,
-      rgba(0, 0, 0, 0) 84.44%
-    );
-  }
-`;
-
-const STableCell = styled(TableCell)`
-  border-bottom: none;
-  font-weight: 400;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-
-  color: #000000;
-`;
 
 export default AboutMeBlock;

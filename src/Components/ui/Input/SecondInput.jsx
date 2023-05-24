@@ -4,7 +4,7 @@ import Input from "./Input";
 
 const SecondInput = (props) => {
   const theme = useTheme();
-  return (<SInput theme={theme} {...props} />);
+  return <SInput theme={theme} {...props} />;
 };
 
 const SInput = styled(Input)(
@@ -29,7 +29,6 @@ const SInput = styled(Input)(
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
-    pointer-events: auto;
 
     &:placeholder {
       display: block;

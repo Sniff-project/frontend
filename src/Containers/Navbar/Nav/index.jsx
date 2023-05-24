@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { logout as logoutUser } from "@core/Services";
 import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
 import { Anchor, Link } from "@components/ui";
-import { AuthContext } from "@contexts";
+import { useAuth } from "@core/Hooks";
 
 import imgArrow from "@assets/Icons/nav/Arrow.svg";
 import logoCat from "@assets/Icons/nav/LogoCat.svg";
@@ -15,7 +15,7 @@ import logout_icon from "@assets/Icons/nav/LogOut.svg";
 import "./style.scss";
 
 export default function Nav() {
-  const isAuth = useContext(AuthContext);
+  const isAuth = useAuth();
   const [navMenu, setNavMenu] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const name = isAuth.user?.name;
@@ -77,12 +77,14 @@ export default function Nav() {
                 {screenWidth > 750 && (
                   <ul className="nav-list">
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/addpet">
+                      <Link
+                        className="nav-list__addPet"
+                        href="/pets/create?status=found">
                         Я знайшов тваринку
                       </Link>
                     </li>
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/pets">
+                      <Link className="nav-list__addPet" href="/pets/create">
                         Я загубив тваринку
                       </Link>
                     </li>
@@ -95,8 +97,7 @@ export default function Nav() {
                   <Link
                     href="#"
                     onClick={showUserMenu}
-                    className="nav-row__btn"
-                  >
+                    className="nav-row__btn">
                     <img alt="#" src={userIcon} />
                     <span>{name}</span>
                     <img alt="#" src={imgArrow} />
@@ -107,8 +108,7 @@ export default function Nav() {
                       in={userMenu}
                       timeout={50}
                       mountOnEnter
-                      unmountOnExit
-                    >
+                      unmountOnExit>
                       <ul className="nav-userMenu-list">
                         <li className="nav-userMenu-list__item">
                           <Link
@@ -117,8 +117,7 @@ export default function Nav() {
                               width: "100%",
                               justifyContent: "flex-start",
                               px: "10%",
-                            }}
-                          >
+                            }}>
                             <img alt="#" src={i_icon} />
                             профіль
                           </Link>
@@ -131,8 +130,7 @@ export default function Nav() {
                               width: "100%",
                               justifyContent: "flex-start",
                               px: "10%",
-                            }}
-                          >
+                            }}>
                             <img alt="#" src={logout_icon} />
                             вихід
                           </Link>

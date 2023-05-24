@@ -1,29 +1,60 @@
-import { Box, Skeleton, Typography } from "@mui/material";
+import React from "react";
+import { useCallback } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { Box, Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
-const Skelet = () => {
-  return (
-    <>
-      {[...Array(3)].map((_, i) => (
-        <Skeleton
-          key={i}
-          variant="rounded"
-          height="2rem"
-          sx={{ marginBottom: "0.625rem" }}
-        />
-      ))}
-    </>
-  );
-};
+import EditDescription from "./EditDescription";
+import Skelet from "./Skelet";
 
-const MyHistoryBlock = ({ description, isLoading, margin = 0 }) => {
+const MyHistoryBlock = ({
+  description,
+  isLoading,
+  isPetOwner,
+  button,
+  isEdit,
+  onSave,
+  margin = 0,
+}) => {
+  const methods = useForm({ mode: "all" });
+
+  const onSaveHandler = useCallback(
+    (formData) => {
+      return onSave(formData);
+    },
+    [onSave]
+  );
+
   return (
     <SBox className="pet-profile__petHistory" margin={margin}>
-      <h3>Моя історія</h3>
-
-      <Typography fontSize="1.25rem" lineHeight="180%" mt={4}>
-        {!isLoading ? <>{description}</> : <Skelet />}
-      </Typography>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSaveHandler)}>
+          <Grid container alignItems="center" justifyContent="center">
+            <Grid item>
+              <h3>Моя історія</h3>
+            </Grid>
+            {isPetOwner && <Grid item>{button}</Grid>}
+          </Grid>
+          <Typography
+            fontSize="1.25rem"
+            lineHeight="180%"
+            mt={4}
+            sx={{ textAlign: "justify" }}
+            component="div">
+            {!isLoading ? (
+              <React.Fragment>
+                {!isEdit ? (
+                  <>{description}</>
+                ) : (
+                  <EditDescription description={description} />
+                )}
+              </React.Fragment>
+            ) : (
+              <Skelet />
+            )}
+          </Typography>
+        </form>
+      </FormProvider>
     </SBox>
   );
 };
