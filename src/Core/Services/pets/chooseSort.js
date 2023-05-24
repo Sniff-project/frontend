@@ -1,10 +1,10 @@
 import { getGallery, filterByStatus } from "@core/API/pets";
 
-export const chooseSort = (token, request, filter) => {
+export const chooseSort = (request, filter) => {
     switch(filter) {
         case 'status':
-            return filterByStatus(token, request);
+            return filterByStatus(request);
         default:
-            return getGallery(token, request);
+            return getGallery(request);
     }
 }

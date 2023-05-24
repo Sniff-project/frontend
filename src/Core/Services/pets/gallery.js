@@ -10,11 +10,11 @@ const successMsg = "Галерея завантажена!";
 const errorMsg = "Галерея не знайдена!";
 const unknownError = "Щось пішло не так :(";
 
-export const petsGallery = (token, request, filter) => {
+export const petsGallery = (request, filter) => {
 	return async (dispatch) => {
 		try {
 			dispatch(galleryRequest());
-			const response = await chooseSort(token, request, filter);
+			const response = await chooseSort(request, filter);
 			if (response.status === 200) {
 				const result = {
 					...response.data,

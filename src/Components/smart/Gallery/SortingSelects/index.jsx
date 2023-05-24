@@ -15,7 +15,7 @@ const REGION = "region";
 const FOUND = "Знайдено";
 const LOST = "Загублено";
 
-export default function SortingSelects() {
+export default function SortingSelects({setIsChanged}) {
   const { user, token } = useContext(AuthContext);
   const dispatch = useDispatch();
   const cities_Array = useSelector(({ cities }) => cities.cities.citiesArray);
@@ -31,13 +31,14 @@ export default function SortingSelects() {
   }, [dispatch, user, token, cities_Array, regions_Array]);
 
   const handleChangeFilter = (choice) => {
+    setIsChanged(true);
     switch (choice.name) {
       case STATUS:
         if (choice.value === FOUND)
-          dispatch(petsGallery(token, "FOUND", choice.name));
+          dispatch(petsGallery("FOUND", choice.name));
         else if (choice.value === LOST)
-          dispatch(petsGallery(token, "LOST", choice.name));
-        else dispatch(petsGallery(token));
+          dispatch(petsGallery("LOST", choice.name));
+        else dispatch(petsGallery());
         return;
       default:
         return;
@@ -46,7 +47,7 @@ export default function SortingSelects() {
 
   return (
     <div className="gallery-selectors">
-      <div className="gallery-selectors__item">
+      {/* <div className="gallery-selectors__item">
         <SelectComponent
           handleChangeFilter={handleChangeFilter}
           valueArray={regions_Array?.length ? regions_Array : []}
@@ -61,7 +62,7 @@ export default function SortingSelects() {
           name={CITY}
           title={"Місто"}
         />
-      </div>
+      </div> */}
       <div className="gallery-selectors__item">
         <SelectComponent
           handleChangeFilter={handleChangeFilter}

@@ -1,7 +1,7 @@
 import { filterByStatus as url } from "@core/Config/sniffApi";
 import axios from "axios";
 
-export const filterByStatus = async (token, status) => {
+export const filterByStatus = async (status) => {
 	try {
 		const response = await axios.get(`${url}${status}`);
 		return response;

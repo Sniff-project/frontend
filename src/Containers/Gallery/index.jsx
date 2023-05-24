@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
-import { AuthContext } from "@contexts";
 import { petsGallery } from "@core/Services/pets";
 import AnimalCard from "@components/ordinary/Homepage/AnimalCard";
 import { SortingSelects } from "@components/smart/Gallery";
@@ -29,24 +28,51 @@ export default function Gallery() {
   const [spinnerState, setSpinnerState] = useState(true);
   const [emptyGalleryState, setEmptyGalleryState] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const { user, token } = useContext(AuthContext);
+  const [isChanged, setIsChanged] = useState(false);
+  const [isEmptyStore, setIsEmptyStore] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
   const { gallery, isLoading, error } = useSelector((state) => state.gallery);
   const maxPages = gallery?.totalPages;
-  const galleryArray = gallery?.content;
+
+  const [galleryArray, setGalleryArray] = useState(() => {
+    const storedGalleryArray = localStorage.getItem("galleryArray");
+    if (storedGalleryArray) {
+      return JSON.parse(storedGalleryArray);
+    } else {
+      setIsEmptyStore(true);
+      return [];
+    }
+  });
+  
+  useEffect(() => {
+    localStorage.setItem("galleryArray", JSON.stringify(galleryArray));
+    setEmptyGalleryState(!galleryArray?.length && !error);
+  }, [galleryArray]);
 
   useEffect(() => {
-    dispatch(petsGallery(token, currentSlideIndex));
-  }, [dispatch, user, token, currentSlideIndex]);
+    if(isChanged) {
+      setGalleryArray(gallery?.content);
+      setIsChanged(false);
+    }
+  }, [gallery?.content])
+
+  useEffect(() => {
+    dispatch(petsGallery(currentSlideIndex));
+  }, [dispatch, currentSlideIndex]);
 
   useEffect(() => {
     if ((!isLoading && gallery.message === successMessage) || error) {
       setSpinnerState(false);
-      if (!gallery.content?.length && !error) setEmptyGalleryState(true);
     }
-  }, [gallery, isLoading, error, token, user]);
+    if (gallery?.content && isEmptyStore) {
+      setGalleryArray(gallery?.content);
+      setEmptyGalleryState(false);
+    }
+  }, [gallery, isLoading, error]);
+
 
   const handleSlide = useCallback((_, value) => {
     setCurrentSlideIndex(--value);
@@ -98,7 +124,7 @@ export default function Gallery() {
             </p>
           )}
 
-          {!error && !emptyGalleryState && <SortingSelects />}
+          {!error && !emptyGalleryState && <SortingSelects setIsChanged={setIsChanged}/>}
 
           {!spinnerState && !error && !emptyGalleryState && (
             <Carousel

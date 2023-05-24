@@ -1,13 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Select, InputLabel, MenuItem, FormControl } from "@mui/material";
 import './styles.scss';
 
 export default function SelectComponent({title, valueArray, handleChangeFilter, name}) {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
   const handleChange = (event) => {
     setValue(event.target.value);
     handleChangeFilter(event.target);
+    localStorage.setItem("statusState", event.target.value);
   };
+
+  useEffect(() => {
+    const storedGalleryArray = localStorage.getItem("statusState");
+    if (storedGalleryArray) {
+      setValue(storedGalleryArray);
+    }
+  }, [])
+
 
   return (
     <FormControl sx={{ minWidth: 180 }}>
