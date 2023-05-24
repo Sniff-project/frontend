@@ -106,7 +106,6 @@ const PetProfileInfo = () => {
 
   const uploadImages = useCallback(
     (photos) => {
-      console.log(photos);
       if (isAuthenticated && photos.length > 0 && photos !== petPhotos) {
         dispatch(
           uploadPetPhotos({
@@ -224,7 +223,6 @@ const PetProfileInfo = () => {
         <ImageUploadPopup
           open={isOpenUploadImage}
           togglePopup={toggleUploadImage}
-          petPhotos={petPhotos}
           onSave={uploadImages}
         />
       )}
