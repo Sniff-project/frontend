@@ -29,11 +29,9 @@ const AboutUs = () => {
               <img src={catImg} alt="cat" />
             </div>
           </div>
-          
+
       </div>
       
-      
-
     </section>
   )
 };
