@@ -77,17 +77,14 @@ export default function Nav() {
                 {screenWidth > 1000 && (
                   <ul className="nav-list">
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/pets">
-                        Галерея тваринок
-                      </Link>
-                    </li>
-                    <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/">
+                      <Link
+                        className="nav-list__addPet"
+                        href="/pets/create?status=found">
                         Я знайшов тваринку
                       </Link>
                     </li>
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/">
+                      <Link className="nav-list__addPet" href="/pets/create">
                         Я загубив тваринку
                       </Link>
                     </li>
@@ -176,12 +173,12 @@ export default function Nav() {
                         </Link>
                       </li>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" href="/">
+                        <Link className="nav-list__addPet" href="/pets/create?status=found">
                           Я знайшов тваринку
                         </Link>
                       </li>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" href="/">
+                        <Link className="nav-list__addPet"  href="/pets/create">
                           Я загубив тваринку
                         </Link>
                       </li>
