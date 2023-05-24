@@ -271,7 +271,12 @@
         font-size: 1.25rem;
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 1200px) {
+        .nav-list__addPet {
+            padding: 0 20px;
+        }
+    }
+    @media (max-width: 1150px) {
         .nav-list__addPet {
             padding: 0 15px;
         }
