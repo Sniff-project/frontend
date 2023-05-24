@@ -10,11 +10,11 @@ const successMsg = "Області отримані!";
 const errorMsg = "Помилка отримання Областей!";
 const unknownError = "Щось пішло не так :(";
 
-export const regions = ({token }) => {
+export const regions = () => {
 	return async (dispatch) => {
 		try {
 			dispatch(regionsRequest());
-			const response = await getRegions(token);
+			const response = await getRegions();
 			if (response.status === 200) {
 				const result = {
 					regionsArray: [...response.data],

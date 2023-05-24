@@ -1,3 +1,3 @@
 export { getPetProfile } from "./profile";
 export { getGallery } from "./getPetsGallery";
-export { filterByStatus } from "./filtration/filterByStatus";
+export {filterByStatus, filterByRegion, filterByCity } from "./filtration"

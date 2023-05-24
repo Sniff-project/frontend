@@ -10,11 +10,11 @@ const successMsg = "Міста отримані!";
 const errorMsg = "Помилка отримання міст!";
 const unknownError = "Щось пішло не так :(";
 
-export const cities = ({token }) => {
+export const cities = () => {
 	return async (dispatch) => {
 		try {
 			dispatch(citiesRequest());
-			const response = await getCities(token);
+			const response = await getCities();
 			if (response.status === 200) {
 				const result = {
 					citiesArray: [...response.data],
