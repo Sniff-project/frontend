@@ -5,10 +5,6 @@ export {
   editPetProfile,
   getPetProfile,
   getGallery,
-  filterByStatus,
   uploadPhotosPetProfile,
-  getGallery,
-  filterByStatus,
-  filterByRegion,
-  filterByCity,
+  filtration,
 } from "./pets";

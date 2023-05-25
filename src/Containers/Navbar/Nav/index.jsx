@@ -66,7 +66,9 @@ export default function Nav() {
                   </div>
                 </Link>
               </div>
-              <div className="nav-row__center">
+              <div
+                className="nav-row__center"
+                style={!isHome ? { justifyContent: "flex-end" } : {}}>
                 {isHome && (
                   <Link href="#" className="nav-row__btn" onClick={showMenu}>
                     <span>{pageTitles}</span>
@@ -74,8 +76,13 @@ export default function Nav() {
                   </Link>
                 )}
 
-                {screenWidth > 750 && (
+                {screenWidth > 1000 && (
                   <ul className="nav-list">
+                    <li className="nav-list__item">
+                      <Link className="nav-list__addPet" href="/pets">
+                        Галерея тваринок
+                      </Link>
+                    </li>
                     <li className="nav-list__item">
                       <Link
                         className="nav-list__addPet"
@@ -165,15 +172,22 @@ export default function Nav() {
                     <Link href="/about">Про нас</Link>
                   </li>
 
-                  {screenWidth <= 750 && (
+                  {screenWidth <= 1000 && (
                     <>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" href="/addpet">
+                        <Link className="nav-list__addPet" href="/pets">
+                          Галерея тваринок
+                        </Link>
+                      </li>
+                      <li className="nav-menu-list__item">
+                        <Link
+                          className="nav-list__addPet"
+                          href="/pets/create?status=found">
                           Я знайшов тваринку
                         </Link>
                       </li>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" href="/pets">
+                        <Link className="nav-list__addPet" href="/pets/create">
                           Я загубив тваринку
                         </Link>
                       </li>
