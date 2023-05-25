@@ -94,7 +94,12 @@ export default function Gallery() {
             />
           )}
 
-          {!error && <SortingSelects currentSlideIndex={currentSlideIndex} handleIsChanged={handleIsChanged} />}
+          {!error && (
+            <SortingSelects
+              currentSlideIndex={currentSlideIndex}
+              handleIsChanged={handleIsChanged}
+            />
+          )}
 
           {emptyGalleryState && (
             <p
@@ -109,30 +114,22 @@ export default function Gallery() {
           )}
 
           {!spinnerState && !error && !emptyGalleryState && (
-            <Carousel
+            <div
               className="gallery-slider"
-              animation="fade"
-              autoPlay={false}
-              navButtonsProps={{ style: { display: "none" }, className: "" }}
-              indicators={false}
-              index={currentSlideIndex}
             >
-              {[...Array(maxPages)].map((_, slideIndex) => (
-                <div className="gallery-page" key={slideIndex}>
-                  {galleryArray
-                    .map((animal) => (
-                      <AnimalCard
-                        className={!animal.photo ? "cardAnimal__imgCat" : ""}
-                        key={animal.id}
-                        name={animal.name}
-                        id={animal.id}
-                        hasPhoto={!animal.photo ? false : true}
-                        imageSrc={!animal.photo ? catImg : animal.photo}
-                      />
-                    ))}
-                </div>
-              ))}
-            </Carousel>
+              <div className="gallery-page">
+                {galleryArray.map((animal) => (
+                  <AnimalCard
+                    className={!animal.photo ? "cardAnimal__imgCat" : ""}
+                    key={animal.id}
+                    name={animal.name}
+                    id={animal.id}
+                    hasPhoto={!animal.photo ? false : true}
+                    imageSrc={!animal.photo ? catImg : animal.photo}
+                  />
+                ))}
+              </div>
+            </div>
           )}
         </div>
         {!error && !emptyGalleryState && (
