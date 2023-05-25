@@ -4,10 +4,6 @@
         margin: 0 auto;
     }
 
-    &-slider {
-        // width: 100%;
-    }
-
     &-page {
         display: flex;
         flex-wrap: wrap;
@@ -22,16 +18,6 @@
     .MuiPagination-ul {
         justify-content: center;
     }
-
-    .css-1f8sh1y {
-        // height: fit-content !important;
-        // display: flex !important;
-        // width: inherit !important;
-        // > div {
-        //     position: relative;
-        // }
-    }
-
 }
 
 .cardAnimal__imgCat {

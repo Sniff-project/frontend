@@ -21,7 +21,6 @@ import "./styles.scss";
 
 const successMessage = "Галерея завантажена!";
 const emptyGalleryMessage = "Галерея поки порожня!";
-const maxCardsOnPage = 12;
 
 export default function Gallery() {
   const [spinnerState, setSpinnerState] = useState(true);
