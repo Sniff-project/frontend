@@ -66,7 +66,9 @@ export default function Nav() {
                   </div>
                 </Link>
               </div>
-              <div className="nav-row__center" style={!isHome ? {justifyContent: 'flex-end'} : {}} >
+              <div
+                className="nav-row__center"
+                style={!isHome ? { justifyContent: "flex-end" } : {}}>
                 {isHome && (
                   <Link href="#" className="nav-row__btn" onClick={showMenu}>
                     <span>{pageTitles}</span>
@@ -77,9 +79,7 @@ export default function Nav() {
                 {screenWidth > 1000 && (
                   <ul className="nav-list">
                     <li className="nav-list__item">
-                      <Link
-                        className="nav-list__addPet"
-                        href="/pets">
+                      <Link className="nav-list__addPet" href="/pets">
                         Галерея тваринок
                       </Link>
                     </li>
@@ -180,12 +180,14 @@ export default function Nav() {
                         </Link>
                       </li>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet" href="/pets/create?status=found">
+                        <Link
+                          className="nav-list__addPet"
+                          href="/pets/create?status=found">
                           Я знайшов тваринку
                         </Link>
                       </li>
                       <li className="nav-menu-list__item">
-                        <Link className="nav-list__addPet"  href="/pets/create">
+                        <Link className="nav-list__addPet" href="/pets/create">
                           Я загубив тваринку
                         </Link>
                       </li>

@@ -28,12 +28,12 @@ export {
 } from "./profile";
 
 export {
-	GALLERY_REQUEST,
-	GALLERY_SUCCESS,
-	GALLERY_FAILURE,
-	galleryRequest,
-	gallerySuccess,
-	galleryFailure,
+  GALLERY_REQUEST,
+  GALLERY_SUCCESS,
+  GALLERY_FAILURE,
+  galleryRequest,
+  gallerySuccess,
+  galleryFailure,
 } from "./gallery";
 
 export {

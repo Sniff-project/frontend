@@ -31,8 +31,8 @@ const reducer = combineReducers({
   // pets
   createPetProfile: createPetProfileReducer,
   editPetProfile: editPetProfileReducer,
-  petProfile: petProfileReducer,
   gallery: galleryReducer,
+  petProfile: petProfileReducer,
   uploadPetPhotos: uploadPhotosPetProfileReducer,
 });
 
