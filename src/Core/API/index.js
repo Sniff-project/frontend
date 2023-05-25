@@ -6,6 +6,5 @@ export {
   getPetProfile,
   getGallery,
   uploadPhotosPetProfile,
-  getGallery,
   filtration,
 } from "./pets";
