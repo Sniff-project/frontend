@@ -19,20 +19,27 @@ export default function SortingSelects({ handleIsChanged, currentSlideIndex }) {
   const regions_Array = useSelector(
     ({ regions }) => regions.regions.regionsArray
   );
-  
+
   const [globalState, setGlobalState] = useState(() => {
     const storedState = localStorage.getItem(filterState);
-    return storedState ? JSON.parse(storedState) : {
-      region: '',
-      city: '',
-      status: '',
-      page: 0
-    };
+    return storedState
+      ? JSON.parse(storedState)
+      : {
+          region: "",
+          city: "",
+          status: "",
+          page: 0,
+        };
   });
 
   useEffect(() => {
-    setGlobalState({...globalState, page: currentSlideIndex});
-  }, [currentSlideIndex])
+    setGlobalState((prev) => {
+      return {
+        ...prev,
+        page: currentSlideIndex,
+      };
+    });
+  }, [currentSlideIndex]);
 
   useEffect(() => {
     if (!cities_Array?.length || !regions_Array?.length) {
@@ -45,21 +52,23 @@ export default function SortingSelects({ handleIsChanged, currentSlideIndex }) {
     localStorage.setItem(filterState, JSON.stringify(globalState));
     const url = `page=${globalState.page}&status=${globalState.status}&regionId=${globalState.region}&cityId=${globalState.city}`;
     dispatch(petsGallery(url, true));
-  }, [globalState]);
+  }, [globalState, dispatch]);
 
   const handleChangeFilter = (choice) => {
-    handleIsChanged();
-    switch(choice.name) {
+    switch (choice.name) {
       case "status":
-        setGlobalState({...globalState, status: choice.value});
+        setGlobalState({ ...globalState, status: choice.value });
         break;
       case "city":
-        setGlobalState({...globalState, city: choice.value});
+        setGlobalState({ ...globalState, city: choice.value });
         break;
       case "region":
-        setGlobalState({...globalState, region: choice.value});
+        setGlobalState({ ...globalState, region: choice.value });
         break;
+      default:
+        return;
     }
+    handleIsChanged();
   };
 
   return (
@@ -89,8 +98,8 @@ export default function SortingSelects({ handleIsChanged, currentSlideIndex }) {
           handleChangeFilter={handleChangeFilter}
           name={STATUS}
           valueArray={[
-            { name: "Знайдено", id: 'FOUND' },
-            { name: "Загублено", id: 'LOST' },
+            { name: "Знайдено", id: "FOUND" },
+            { name: "Загублено", id: "LOST" },
           ]}
           title={"Статус"}
           setGlobalState={setGlobalState}

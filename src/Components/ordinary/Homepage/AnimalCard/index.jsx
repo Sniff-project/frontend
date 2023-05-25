@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
-import { Paper } from "@mui/material";
 
 export default function AnimalCard({
   name,
