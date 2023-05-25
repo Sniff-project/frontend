@@ -4,6 +4,10 @@
         margin: 0 auto;
     }
 
+    &-slider {
+        // width: 100%;
+    }
+
     &-page {
         display: flex;
         flex-wrap: wrap;
@@ -20,7 +24,9 @@
     }
 
     .css-1f8sh1y {
-        // height: 100% !important;
+        // height: fit-content !important;
+        // display: flex !important;
+        // width: inherit !important;
         // > div {
         //     position: relative;
         // }

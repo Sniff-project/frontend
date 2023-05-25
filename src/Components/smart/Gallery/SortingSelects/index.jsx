@@ -30,8 +30,6 @@ export default function SortingSelects({ handleIsChanged, currentSlideIndex }) {
     };
   });
 
-  console.log(globalState)
-
   useEffect(() => {
     setGlobalState({...globalState, page: currentSlideIndex});
   }, [currentSlideIndex])

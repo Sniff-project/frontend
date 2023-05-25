@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
-import { petsGallery } from "@core/Services/pets";
 import AnimalCard from "@components/ordinary/Homepage/AnimalCard";
 import { SortingSelects } from "@components/smart/Gallery";
 import catImg from "@assets/Icons/petCards/iconCat.svg";
@@ -28,8 +27,6 @@ export default function Gallery() {
   const [spinnerState, setSpinnerState] = useState(true);
   const [emptyGalleryState, setEmptyGalleryState] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [isChanged, setIsChanged] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
   const { gallery, isLoading, error } = useSelector((state) => state.gallery);
@@ -42,10 +39,8 @@ export default function Gallery() {
   }, [galleryArray, error]);
 
   useEffect(() => {
-    if (isChanged) {
-      setGalleryArray(gallery?.content);
-    }
-  }, [gallery?.content, isChanged]);
+    setGalleryArray(gallery?.content);
+  }, [gallery?.content]);
 
   useEffect(() => {
     if ((!isLoading && gallery.message === successMessage) || error) {
@@ -66,7 +61,6 @@ export default function Gallery() {
 
   const handleIsChanged = () => {
     setCurrentSlideIndex(0);
-    setIsChanged(true);
   };
 
   return (
@@ -120,7 +114,6 @@ export default function Gallery() {
               animation="fade"
               autoPlay={false}
               navButtonsProps={{ style: { display: "none" }, className: "" }}
-              slidesPerPage={maxCardsOnPage}
               indicators={false}
               index={currentSlideIndex}
             >
