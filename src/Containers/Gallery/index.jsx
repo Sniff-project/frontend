@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Carousel from "react-material-ui-carousel";
 import AnimalCard from "@components/ordinary/Homepage/AnimalCard";
 import { SortingSelects } from "@components/smart/Gallery";
 import catImg from "@assets/Icons/petCards/iconCat.svg";

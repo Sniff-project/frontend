@@ -20,7 +20,7 @@ export default function SelectComponent({
     for(let key in globalState){
       if(key === name) setCurrentValue(globalState[key]);
     }
-  }, [globalState]);
+  }, [globalState, name]);
 
   return (
     <FormControl sx={{ minWidth: 200 }}>
