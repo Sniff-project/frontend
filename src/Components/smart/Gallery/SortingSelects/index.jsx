@@ -13,7 +13,7 @@ const CITY = "city";
 const REGION = "region";
 const filterState = "filterState";
 
-export default function SortingSelects({ handleIsChanged }) {
+export default function SortingSelects({ handleIsChanged, currentSlideIndex }) {
   const dispatch = useDispatch();
   const cities_Array = useSelector(({ cities }) => cities.cities.citiesArray);
   const regions_Array = useSelector(
@@ -25,9 +25,16 @@ export default function SortingSelects({ handleIsChanged }) {
     return storedState ? JSON.parse(storedState) : {
       region: '',
       city: '',
-      status: ''
+      status: '',
+      page: 0
     };
   });
+
+  console.log(globalState)
+
+  useEffect(() => {
+    setGlobalState({...globalState, page: currentSlideIndex});
+  }, [currentSlideIndex])
 
   useEffect(() => {
     if (!cities_Array?.length || !regions_Array?.length) {
@@ -38,7 +45,7 @@ export default function SortingSelects({ handleIsChanged }) {
 
   useEffect(() => {
     localStorage.setItem(filterState, JSON.stringify(globalState));
-    const url = `status=${globalState.status}&regionId=${globalState.region}&cityId=${globalState.city}`;
+    const url = `page=${globalState.page}&status=${globalState.status}&regionId=${globalState.region}&cityId=${globalState.city}`;
     dispatch(petsGallery(url, true));
   }, [globalState]);
 

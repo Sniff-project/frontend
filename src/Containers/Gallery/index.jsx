@@ -29,27 +29,15 @@ export default function Gallery() {
   const [emptyGalleryState, setEmptyGalleryState] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isChanged, setIsChanged] = useState(false);
-  const [isEmptyStore, setIsEmptyStore] = useState(false);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
   const { gallery, isLoading, error } = useSelector((state) => state.gallery);
   const maxPages = gallery?.totalPages;
 
-  const [galleryArray, setGalleryArray] = useState(() => {
-    const storedGalleryArray = localStorage.getItem("galleryArray");
-    if (storedGalleryArray) {
-      setIsEmptyStore(false);
-      return JSON.parse(storedGalleryArray);
-    } else {
-      setIsEmptyStore(true);
-      return [];
-    }
-  });
+  const [galleryArray, setGalleryArray] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("galleryArray", JSON.stringify(galleryArray));
     setEmptyGalleryState(!galleryArray?.length && !error);
   }, [galleryArray, error]);
 
@@ -60,17 +48,13 @@ export default function Gallery() {
   }, [gallery?.content, isChanged]);
 
   useEffect(() => {
-    dispatch(petsGallery(currentSlideIndex));
-  }, [dispatch, currentSlideIndex]);
-
-  useEffect(() => {
     if ((!isLoading && gallery.message === successMessage) || error) {
       setSpinnerState(false);
     }
-    if (gallery?.content && isEmptyStore) {
+    if (gallery?.content) {
       setGalleryArray(gallery?.content);
     }
-  }, [gallery, isLoading, error, isEmptyStore]);
+  }, [gallery, isLoading, error]);
 
   const handleSlide = (_, value) => {
     setCurrentSlideIndex(--value);
@@ -81,6 +65,7 @@ export default function Gallery() {
   }, [navigate]);
 
   const handleIsChanged = () => {
+    setCurrentSlideIndex(0);
     setIsChanged(true);
   };
 
@@ -115,7 +100,7 @@ export default function Gallery() {
             />
           )}
 
-          {!error && <SortingSelects handleIsChanged={handleIsChanged} />}
+          {!error && <SortingSelects currentSlideIndex={currentSlideIndex} handleIsChanged={handleIsChanged} />}
 
           {emptyGalleryState && (
             <p
@@ -134,7 +119,7 @@ export default function Gallery() {
               className="gallery-slider"
               animation="fade"
               autoPlay={false}
-              // navButtonsProps={{ style: { display: "none" }, className: "" }}
+              navButtonsProps={{ style: { display: "none" }, className: "" }}
               slidesPerPage={maxCardsOnPage}
               indicators={false}
               index={currentSlideIndex}
