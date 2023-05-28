@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
+import { Button } from "@components/ui";
+
 import "./style.scss";
 
 const NotFound = () => {
@@ -23,9 +26,11 @@ const NotFound = () => {
     <section className="NotFound" ref={pictureRef}>
       <div className="NotFound__container">
         <h2 className="NotFound__title">404</h2>
-        <h4 className="NotFound__subtitle">Opps! Page not found</h4>
-        <p className="NotFound__text">The page you were looking for doesn't exist. You may have mistyped the address or the page may have moved.</p>
-        <a href="#" className="NotFound__link">Back To Home</a>
+        <h4 className="NotFound__subtitle">Оопс! Сторінку не знайдено</h4>
+        <p className="NotFound__text">Сторінка, яку ви шукали, не існує. Можливо, ви помилилися з адресою або сторінка перемістилася.</p>
+        <NavLink to="/">
+            <Button className="btn-blue">Повернутися додому</Button>
+        </NavLink>
       </div>
     </section>
   );

@@ -40,18 +40,37 @@
         color: #fff;
         font-size: 1.2em;
         line-height: 30px;
-         
+        margin-bottom: 40px;
     }
-    &__link{
-        position: relative;
-        display: inline-block;
-        padding: 10px 25px;
-        background: #ff0562;
-        color: #fff;
-        text-decoration: none;
-        margin-top: 25px;
-        border-radius: 25px;
-        border-bottom: 4px solid #d00d56;
+
+    button{
+        width: 310px;
+        height: 50px;
+        padding: 0;
+    }
+
+}
+
+@media (max-width: 576px){
+    .NotFound{
+        padding: 0 10px;
+        &__subtitle{
+            
+            margin-top: 15px;
+            font-size: 1.1em;
+            
+        }
+
+        &__text{
+            width: 100%;
+            font-size: 0.9em;
+        }
+
+        button{
+            width: 290px;
+            height: 50px;
+            font-size: 20px;
+        }
     }
 }
 
