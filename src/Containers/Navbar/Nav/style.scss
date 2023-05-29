@@ -3,7 +3,6 @@
     position: relative;
     background-color: var(--bg-color);
 
-
     ul {
         margin: 0;
     }
@@ -262,7 +261,8 @@
     }
 
     .nav-row_singUp {
-        padding: 28px;
+        padding: 0 28px;
+        height: 100%;
         font-size: 1.25rem;
     }
 
