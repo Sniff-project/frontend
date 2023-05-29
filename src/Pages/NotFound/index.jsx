@@ -9,8 +9,8 @@ const NotFound = () => {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      let x = -e.clientX / 5;
-      let y = -e.clientY / 5;
+      let x = -e.clientX / 100;
+      let y = -e.clientY / 100;
       pictureRef.current.style.backgroundPositionX = x + 'px';
       pictureRef.current.style.backgroundPositionY = y + 'px';
     };
