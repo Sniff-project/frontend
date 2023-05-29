@@ -2,7 +2,8 @@ import {
   EDIT_PET_PROFILE_REQUEST,
   EDIT_PET_PROFILE_SUCCESS,
   EDIT_PET_PROFILE_FAILURE,
-} from "@core/Store/actions/pets";
+  RESET_PET_PROFILE_EDIT,
+} from "@core/Store/actions/pets/editProfile";
 
 const initialState = {
   petProfile: null,
@@ -23,6 +24,8 @@ export function editPetProfileReducer(state = initialState, action) {
       };
     case EDIT_PET_PROFILE_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error };
+    case RESET_PET_PROFILE_EDIT:
+      return { ...initialState };
     default:
       return state;
   }

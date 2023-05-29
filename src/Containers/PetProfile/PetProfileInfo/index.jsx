@@ -16,6 +16,8 @@ import {
   editPetProfile,
   getPetProfile,
   uploadPetPhotos,
+  resetPetProfile,
+  resetPetProfileEdit,
 } from "@core/Services/pets";
 
 import { Container } from "@components/simple";
@@ -57,6 +59,12 @@ const PetProfileInfo = () => {
 
   const showSnackbar = useCallback(() => {
     setSnackbarOpen(true);
+  }, []);
+
+  useEffect(() => {
+    dispatch(resetPetProfile());
+    dispatch(resetPetProfileEdit());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
