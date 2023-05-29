@@ -7,17 +7,34 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
 
+    &:hover &__img, &:hover &__name{
+        transform: scale(1.08);
+        transition: transform .2s ease;
+    }
+
+
     &__img {
-        height: 90%;
+        height: 100%;
         width: 100%;
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+        border-radius: inherit;
 
         &:first-child {
+            padding-bottom: 10%;
+            z-index: 2;
             width: 90%;
+            height: fit-content;
+
+            img {
+                width: 100%;
+                border-radius: inherit;
+                box-shadow: 0px 0px 10px #48A0D1;
+            }
         }
     }
 
