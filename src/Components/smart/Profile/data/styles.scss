@@ -193,13 +193,15 @@
                     color: #000000;
                     height: 100%;
                     width: 80%;
-                    padding: 3px;
+                    padding: 5px;
                     font-size: var(--font-size);
                     border: 1px solid #999;
                     border-radius: 5px;
                     box-shadow: 4px 4px #ccc;
+
                     option {
                         font-size: var(--font-size);
+
                     }
                 }
             }

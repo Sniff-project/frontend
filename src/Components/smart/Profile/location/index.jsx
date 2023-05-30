@@ -14,6 +14,7 @@ export default function UserLocation({
       <div>
         <label>
           Місто
+          <br></br>
           <select
             onChange={e => setCurrentCity(+e.target.value)}
             id="city"
@@ -34,6 +35,7 @@ export default function UserLocation({
       <div>
         <label>
           Область
+          <br></br>
           <select
             onChange={e => setCurrentRegion(+e.target.value)}
             id="region"

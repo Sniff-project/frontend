@@ -16,6 +16,7 @@ const Input = memo(
     endIcon = null,
     endIconOnClick = null,
     readOnly = false,
+    defaultValue = null,
     ...rest
   }) => {
     const {
@@ -88,7 +89,7 @@ const Input = memo(
           <Controller
             name={name}
             control={control}
-            defaultValue=""
+            defaultValue={defaultValue ? defaultValue : ''}
             rules={rules}
             render={render}
           />
@@ -101,6 +102,7 @@ const Input = memo(
             name={name}
             className={className}
             InputProps={inpProps}
+            defaultValue={defaultValue ? defaultValue : ''}
             {...rest}
             {...register(name, rules)}
           />

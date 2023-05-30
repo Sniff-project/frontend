@@ -37,6 +37,7 @@ export default function UserData({ profileState }) {
     }
   }, [dispatch, user, token]);
 
+
   useEffect(() => {
     if (regions_Array?.length > 0 && cities_Array?.length > 0) {
       if (profileState.profile.city !== null) {
@@ -113,6 +114,7 @@ export default function UserData({ profileState }) {
                       name="firstname"
                       type="text"
                       label="Ім'я"
+                      defaultValue={profileState.profile.firstname}
                     />
                     <Input
                       validation={{
@@ -131,24 +133,26 @@ export default function UserData({ profileState }) {
                       name="lastname"
                       type="text"
                       label="Прізвище"
+                      defaultValue={profileState.profile.lastname}
                     />
                   </div>
 
                   <h3>Як з вами зв’язатись?</h3>
                   <div className="editProfile-form__section">
                     <Input
+                      tabIndex={5}
+                      name="phone2"
                       validation={{
                         required: "Поле обов'язкове до заповнення!",
                         pattern: {
                           value:
-                            /^\+38\s\((0\d{2})\)\s(\d{3})-(\d{2})-(\d{2})$/,
+                          /^(\+38)?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/,
                           message: "Неправильний номер телефону!",
                         },
                       }}
-                      tabIndex={5}
-                      name="phone2"
                       mask="+38 (999) 999-99-99"
                       label="Номер телефону"
+                      defaultValue={profileState.profile.phone}
                     />
 
                     <Input
@@ -207,7 +211,7 @@ export default function UserData({ profileState }) {
                     name="fullname"
                     type="text"
                     label="Як вас звати"
-                    value={
+                    defaultValue={
                       profileState.profile.firstname ||
                       profileState.profile.lastname
                         ? `${profileState.profile.firstname} ${profileState.profile.lastname}`
@@ -221,7 +225,8 @@ export default function UserData({ profileState }) {
                     type="tel"
                     name="phone"
                     label="Номер телефону"
-                    value={
+                    mask="+38 (099) 999-99-99"
+                    defaultValue={
                       profileState.profile.phone
                         ? profileState.profile.phone
                         : emptyFieldMessage
@@ -234,7 +239,7 @@ export default function UserData({ profileState }) {
                     type="text"
                     name="city"
                     label="Місто та Область"
-                    value={`${profileState.profile.city ? profileState.profile.city + ',' : ''} ${profileState.profile.region ? profileState.profile.region : ''}`}
+                    defaultValue={`${profileState.profile.city ? profileState.profile.city + ',' : ''} ${profileState.profile.region ? profileState.profile.region : ''}`}
                   />
 
                   <Input
@@ -243,7 +248,7 @@ export default function UserData({ profileState }) {
                     type="email"
                     name="email"
                     label="Електронна пошта"
-                    value={
+                    defaultValue={
                       profileState.profile.email
                         ? profileState.profile.email
                         : emptyFieldMessage
