@@ -37,12 +37,12 @@ export default function UserData({ profileState }) {
     }
   }, [dispatch, user, token]);
 
-
   useEffect(() => {
     if (regions_Array?.length > 0 && cities_Array?.length > 0) {
       if (profileState.profile.city !== null) {
         setCurrentCity(
-          cities_Array.find((city) => city.name === profileState.profile.city).id
+          cities_Array.find((city) => city.name === profileState.profile.city)
+            .id
         );
       }
       if (profileState.profile.region !== null) {
@@ -53,7 +53,12 @@ export default function UserData({ profileState }) {
         );
       }
     }
-  }, [cities_Array, regions_Array, profileState.profile.city, profileState.profile.region]);
+  }, [
+    cities_Array,
+    regions_Array,
+    profileState.profile.city,
+    profileState.profile.region,
+  ]);
 
   const onEditHandler = (e) => {
     setIsEditing(!isEditing);
@@ -105,8 +110,12 @@ export default function UserData({ profileState }) {
                           value: 2,
                           message: "Ім'я повинно містити не менше 2 символів!",
                         },
+                        maxLength: {
+                          value: 15,
+                          message: "Ім'я повинно містити не більше 15 символів!",
+                        },
                         pattern: {
-                          value: /^[^(\d)\W]+$/iu,
+                          value: /^([а-яіїє'\s-]{2,15})$/i,
                           message: "Неправильно введено Ім'я користувача!",
                         },
                       }}
@@ -124,9 +133,14 @@ export default function UserData({ profileState }) {
                           message:
                             "Прізвище повинно містити не менше 2 символів!",
                         },
+                        maxLength: {
+                          value: 15,
+                          message:
+                            "Прізвище повинно містити не більше 15 символів!",
+                        },
                         pattern: {
-                          value: /^[^(\d)\W]+$/iu,
-                          message: "Неправильно введено Фамілію користувача!",
+                          value: /^([а-яіїє'\s-]{2,15})$/i,
+                          message: "Неправильно введено Прізвище користувача!",
                         },
                       }}
                       tabIndex={4}
@@ -146,7 +160,7 @@ export default function UserData({ profileState }) {
                         required: "Поле обов'язкове до заповнення!",
                         pattern: {
                           value:
-                          /^(\+38)?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/,
+                            /^(\+38)?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/,
                           message: "Неправильний номер телефону!",
                         },
                       }}
@@ -239,7 +253,15 @@ export default function UserData({ profileState }) {
                     type="text"
                     name="city"
                     label="Місто та Область"
-                    defaultValue={`${profileState.profile.city ? profileState.profile.city + ',' : ''} ${profileState.profile.region ? profileState.profile.region : ''}`}
+                    defaultValue={`${
+                      profileState.profile.city
+                        ? profileState.profile.city + ","
+                        : ""
+                    } ${
+                      profileState.profile.region
+                        ? profileState.profile.region
+                        : ""
+                    }`}
                   />
 
                   <Input
