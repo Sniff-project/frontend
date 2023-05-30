@@ -12,7 +12,7 @@ export default function AnimalCard({
   return (
     <NavLink className="cardAnimal" to={`/pets/${id}`}>
       <div className={`cardAnimal__img ${className}`}>
-        <img src={imageSrc} />
+        <img alt="Pet" src={imageSrc} />
       </div>
       {hasPhoto && (
         <div
