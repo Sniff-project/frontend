@@ -3,7 +3,7 @@ import { Button } from "@components/ui";
 import { useDispatch } from "react-redux";
 import { AuthContext } from "@contexts";
 import deleteImg from "@assets/Icons/profile/delete.svg";
-import { deleteProfile } from "../../../Core/API/users/delete";
+import { deleteProfile } from "@core/API/users/delete";
 import { useAuth } from "@core/Hooks";
 import { logout as logoutUser } from "@core/Services";
 
