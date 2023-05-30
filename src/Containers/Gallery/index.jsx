@@ -62,7 +62,7 @@ export default function Gallery() {
   };
 
   return (
-    <div className="gallery">
+    <div className="gallery" style={{minHeight: '800px'}}>
       <div className="container2000">
         <div className="gallery-container">
           <Grid
@@ -131,7 +131,7 @@ export default function Gallery() {
           )}
         </div>
         {!error && !emptyGalleryState && (
-          <Pagination count={maxPages} onChange={handleSlide} />
+          <Pagination style={{margin: '30px'}} count={maxPages} onChange={handleSlide} />
         )}
       </div>
     </div>
