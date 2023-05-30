@@ -188,7 +188,7 @@ export default function UserData({ profileState }) {
                 <Button
                   className={methods.formState.isValid ? "green__btn" : ""}
                   type="submit"
-                  sx={{ marginTop: "50px" }}
+                  sx={{ margin: "50px 0px" }}
                   tabIndex={3}
                   disabled={!methods.formState.isValid}
                 >

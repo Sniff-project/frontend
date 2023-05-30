@@ -45,7 +45,7 @@ const Profile = () => {
     setTabNum(newValue);
   };
   return (
-    <div className="container2000">
+    <div className="container2000" style={{minHeight: '800px'}}>
       <Typography
         variant="h1"
         sx={{ margin: "3.125rem 0 4.625rem 3.125rem", color: "#2e2c34" }}
