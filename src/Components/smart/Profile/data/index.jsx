@@ -41,7 +41,8 @@ export default function UserData({ profileState }) {
     if (regions_Array?.length > 0 && cities_Array?.length > 0) {
       if (profileState.profile.city !== null) {
         setCurrentCity(
-          cities_Array.find((city) => city.name === profileState.profile.city).id
+          cities_Array.find((city) => city.name === profileState.profile.city)
+            .id
         );
       }
       if (profileState.profile.region !== null) {
@@ -52,7 +53,12 @@ export default function UserData({ profileState }) {
         );
       }
     }
-  }, [cities_Array, regions_Array, profileState.profile.city, profileState.profile.region]);
+  }, [
+    cities_Array,
+    regions_Array,
+    profileState.profile.city,
+    profileState.profile.region,
+  ]);
 
   const onEditHandler = (e) => {
     setIsEditing(!isEditing);
@@ -104,8 +110,12 @@ export default function UserData({ profileState }) {
                           value: 2,
                           message: "Ім'я повинно містити не менше 2 символів!",
                         },
+                        maxLength: {
+                          value: 15,
+                          message: "Ім'я повинно містити не більше 15 символів!",
+                        },
                         pattern: {
-                          value: /^[^(\d)\W]+$/iu,
+                          value: /^([а-яіїє'\s-]{2,15})$/i,
                           message: "Неправильно введено Ім'я користувача!",
                         },
                       }}
@@ -113,6 +123,7 @@ export default function UserData({ profileState }) {
                       name="firstname"
                       type="text"
                       label="Ім'я"
+                      defaultValue={profileState.profile.firstname}
                     />
                     <Input
                       validation={{
@@ -122,33 +133,40 @@ export default function UserData({ profileState }) {
                           message:
                             "Прізвище повинно містити не менше 2 символів!",
                         },
+                        maxLength: {
+                          value: 15,
+                          message:
+                            "Прізвище повинно містити не більше 15 символів!",
+                        },
                         pattern: {
-                          value: /^[^(\d)\W]+$/iu,
-                          message: "Неправильно введено Фамілію користувача!",
+                          value: /^([а-яіїє'\s-]{2,15})$/i,
+                          message: "Неправильно введено Прізвище користувача!",
                         },
                       }}
                       tabIndex={4}
                       name="lastname"
                       type="text"
                       label="Прізвище"
+                      defaultValue={profileState.profile.lastname}
                     />
                   </div>
 
                   <h3>Як з вами зв’язатись?</h3>
                   <div className="editProfile-form__section">
                     <Input
+                      tabIndex={5}
+                      name="phone2"
                       validation={{
                         required: "Поле обов'язкове до заповнення!",
                         pattern: {
                           value:
-                            /^\+38\s\((0\d{2})\)\s(\d{3})-(\d{2})-(\d{2})$/,
+                            /^(\+38)?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/,
                           message: "Неправильний номер телефону!",
                         },
                       }}
-                      tabIndex={5}
-                      name="phone2"
                       mask="+38 (999) 999-99-99"
                       label="Номер телефону"
+                      defaultValue={profileState.profile.phone}
                     />
 
                     <Input
@@ -184,7 +202,7 @@ export default function UserData({ profileState }) {
                 <Button
                   className={methods.formState.isValid ? "green__btn" : ""}
                   type="submit"
-                  sx={{ marginTop: "50px" }}
+                  sx={{ margin: "50px 0px" }}
                   tabIndex={3}
                   disabled={!methods.formState.isValid}
                 >
@@ -207,7 +225,7 @@ export default function UserData({ profileState }) {
                     name="fullname"
                     type="text"
                     label="Як вас звати"
-                    value={
+                    defaultValue={
                       profileState.profile.firstname ||
                       profileState.profile.lastname
                         ? `${profileState.profile.firstname} ${profileState.profile.lastname}`
@@ -221,7 +239,8 @@ export default function UserData({ profileState }) {
                     type="tel"
                     name="phone"
                     label="Номер телефону"
-                    value={
+                    mask="+38 (099) 999-99-99"
+                    defaultValue={
                       profileState.profile.phone
                         ? profileState.profile.phone
                         : emptyFieldMessage
@@ -234,7 +253,15 @@ export default function UserData({ profileState }) {
                     type="text"
                     name="city"
                     label="Місто та Область"
-                    value={`${profileState.profile.city ? profileState.profile.city + ',' : ''} ${profileState.profile.region ? profileState.profile.region : ''}`}
+                    defaultValue={`${
+                      profileState.profile.city
+                        ? profileState.profile.city + ","
+                        : ""
+                    } ${
+                      profileState.profile.region
+                        ? profileState.profile.region
+                        : ""
+                    }`}
                   />
 
                   <Input
@@ -243,7 +270,7 @@ export default function UserData({ profileState }) {
                     type="email"
                     name="email"
                     label="Електронна пошта"
-                    value={
+                    defaultValue={
                       profileState.profile.email
                         ? profileState.profile.email
                         : emptyFieldMessage

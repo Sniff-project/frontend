@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { Button } from "@components/ui";
-import { UserInfo, Password } from "@containers/Profile";
+import { UserInfo, Password, DeleteUser } from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
-import deleteImg from "@assets/Icons/profile/delete.svg";
 
 const tabs = [
   { label: "Особисті данні", content: <UserInfo /> },
@@ -20,20 +18,7 @@ const tabs = [
   {
     label: "Видалення профілю",
     content: (
-      <div style={{textAlign: 'center'}}>
-        <Button
-          sx={{
-            width: "250px",
-            marginTop: "50px",
-            backgroundColor: "#C90202 !important",
-            boxShadow: "0px 0px 25px rgba(201, 2, 2, 0.5)",
-          }}
-          tabIndex={3}
-        >
-          Видалити
-          <img style={{ marginLeft: "10px" }} src={deleteImg} alt="Edit" />
-        </Button>
-      </div>
+      <DeleteUser/>
     ),
   },
 ];
@@ -45,7 +30,7 @@ const Profile = () => {
     setTabNum(newValue);
   };
   return (
-    <div className="container2000">
+    <div className="container2000" style={{minHeight: '800px'}}>
       <Typography
         variant="h1"
         sx={{ margin: "3.125rem 0 4.625rem 3.125rem", color: "#2e2c34" }}

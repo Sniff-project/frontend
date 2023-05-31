@@ -11,10 +11,9 @@ export default function AnimalCard({
 }) {
   return (
     <NavLink className="cardAnimal" to={`/pets/${id}`}>
-      <div
-        className={`cardAnimal__img ${className}`}
-        style={{ backgroundImage: `url(${imageSrc})`, zIndex: 2 }}
-      />
+      <div className={`cardAnimal__img ${className}`}>
+        <img alt="Pet" src={imageSrc} />
+      </div>
       {hasPhoto && (
         <div
           className={`cardAnimal__img ${className}`}

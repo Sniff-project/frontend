@@ -6,6 +6,11 @@
     align-items: center;
     text-align: center;
     justify-content: flex-end;
+    
+    &:hover > *{
+        transform: scale(1.08);
+        transition: transform .2s ease;
+    }
 
     .cardAnimal__icon {
         height: 90px;

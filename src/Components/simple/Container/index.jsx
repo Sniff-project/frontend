@@ -8,6 +8,7 @@ const Container = ({ children, ...props }) => {
         margin: 0,
         padding: "0.625rem",
         maxWidth: "100%",
+        minHeight: "800px",
         "@media screen and (min-width: 600px)": {
           padding: "1.5rem",
           maxWidth: "100%",
