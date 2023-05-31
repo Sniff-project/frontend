@@ -1,13 +1,15 @@
 import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { profile as getProfile } from "@core/Services/users";
+import { useAuth } from "@core/Hooks";
+import { strangerProfile as getProfile } from "@core/Services/users";
 import { Box, Typography } from "@mui/material";
 import { UserInfo } from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
 
 const UserPage = () => {
   const [tabNum, setTabNum] = useState(0);
+  const { token } = useAuth();
   const { userId } = useParams();
   const dispatch = useDispatch();
   const strangerProfileState = useSelector((state) => state.strangerProfile);
@@ -15,7 +17,7 @@ const UserPage = () => {
   const tabs = useMemo(
     () => [
       {
-        label: "Особисті данні",
+        label: "Інформація",
         content: <UserInfo profileState={strangerProfileState} />,
       },
     ],
@@ -27,10 +29,11 @@ const UserPage = () => {
       dispatch(
         getProfile({
           userId: userId,
+          token: token || null,
         })
       );
     }
-  }, [dispatch, userId]);
+  }, [dispatch, userId, token]);
 
   const handleTabChange = (event, newValue) => {
     setTabNum(newValue);

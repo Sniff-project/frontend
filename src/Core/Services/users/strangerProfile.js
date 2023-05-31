@@ -1,7 +1,7 @@
 import {
-  profileRequest,
-  profileSuccess,
-  profileFailure,
+  strangerProfileRequest,
+  strangerProfileSuccess,
+  strangerProfileFailure,
 } from "@core/Store/actions/users";
 
 import { getProfile } from "@core/API/users";
@@ -13,21 +13,21 @@ const unknownError = "Щось пішло не так :(";
 export const strangerProfile = ({ userId }) => {
   return async (dispatch) => {
     try {
-      dispatch(profileRequest());
+      dispatch(strangerProfileRequest());
       const response = await getProfile({ userId });
       if (response.status === 200) {
         const result = {
           ...response.data,
           message: successMsg,
         };
-        dispatch(profileSuccess(result));
+        dispatch(strangerProfileSuccess(result));
       } else {
         // error 404 or others
         const result = {
           ...response.data,
           message: errorMsg,
         };
-        dispatch(profileFailure(result));
+        dispatch(strangerProfileFailure(result));
       }
     } catch (error) {
       // unexpected errors
@@ -35,7 +35,7 @@ export const strangerProfile = ({ userId }) => {
         ...error,
         message: unknownError,
       };
-      dispatch(profileFailure(result));
+      dispatch(strangerProfileFailure(result));
       throw error;
     }
   };

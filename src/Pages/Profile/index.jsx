@@ -37,7 +37,7 @@ const Profile = () => {
   );
 
   useEffect(() => {
-    if (user && token && !profileState.profile.id) {
+    if (user && token) {
       dispatch(
         getProfile({
           userId: user.sub,
@@ -45,7 +45,7 @@ const Profile = () => {
         })
       );
     }
-  }, [dispatch, user, token, profileState.profile]);
+  }, [dispatch, user, token]);
 
   const handleTabChange = (event, newValue) => {
     setTabNum(newValue);

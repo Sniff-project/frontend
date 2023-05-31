@@ -19,6 +19,17 @@ export {
 } from "./profile";
 
 export {
+  STRANGER_PROFILE_REQUEST,
+  STRANGER_PROFILE_SUCCESS,
+  STRANGER_PROFILE_FAILURE,
+  RESET_STRANGER_PROFILE,
+  strangerProfileRequest,
+  strangerProfileSuccess,
+  strangerProfileFailure,
+  resetStrangerProfile,
+} from "./strangerProfile";
+
+export {
   CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAILURE,
