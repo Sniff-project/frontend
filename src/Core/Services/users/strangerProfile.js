@@ -7,14 +7,14 @@ import {
 import { getProfile } from "@core/API/users";
 
 const successMsg = "Профіль завантажено!";
-const errorMsg = "Сесія вичерпана!";
+const errorMsg = "Користувач не знайдений!";
 const unknownError = "Щось пішло не так :(";
 
-export const profile = ({ userId, token }) => {
+export const strangerProfile = ({ userId }) => {
   return async (dispatch) => {
     try {
       dispatch(profileRequest());
-      const response = await getProfile({ userId, token });
+      const response = await getProfile({ userId });
       if (response.status === 200) {
         const result = {
           ...response.data,

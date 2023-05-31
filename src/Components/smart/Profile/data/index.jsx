@@ -91,14 +91,13 @@ export default function UserData({ profileState }) {
   };
 
   return (
-    <>
+    <React.Fragment>
       {isEditing ? (
         <div className="profile-holder">
           <FormProvider {...methods}>
             <form
               className="editProfile-form"
-              onSubmit={methods.handleSubmit(onEditHandler)}
-            >
+              onSubmit={methods.handleSubmit(onEditHandler)}>
               <div className="editProfile-form__inputs">
                 <div className="editProfile-form__holder">
                   <h3>Як вас звати?</h3>
@@ -112,7 +111,8 @@ export default function UserData({ profileState }) {
                         },
                         maxLength: {
                           value: 15,
-                          message: "Ім'я повинно містити не більше 15 символів!",
+                          message:
+                            "Ім'я повинно містити не більше 15 символів!",
                         },
                         pattern: {
                           value: /^([а-яіїє'\s-]{2,15})$/i,
@@ -204,8 +204,7 @@ export default function UserData({ profileState }) {
                   type="submit"
                   sx={{ margin: "50px 0px" }}
                   tabIndex={3}
-                  disabled={!methods.formState.isValid}
-                >
+                  disabled={!methods.formState.isValid}>
                   Підтвердити
                   <img src={confirmImg} alt="Edit" />
                 </Button>
@@ -216,7 +215,7 @@ export default function UserData({ profileState }) {
       ) : (
         <div className="profile-holder">
           <FormProvider {...methods}>
-            <form className="profile-form" onSubmit={onEditHandler}>
+            <form className="profile-form">
               <div className="profile-form__inputs">
                 <div className="profile-form__holder">
                   <Input
@@ -224,7 +223,11 @@ export default function UserData({ profileState }) {
                     tabIndex={1}
                     name="fullname"
                     type="text"
-                    label="Як вас звати"
+                    label={
+                      profileState.profile.phone
+                        ? "Як вас звати?"
+                        : "Ім'я користувача"
+                    }
                     defaultValue={
                       profileState.profile.firstname ||
                       profileState.profile.lastname
@@ -232,18 +235,14 @@ export default function UserData({ profileState }) {
                         : emptyFieldMessage
                     }
                   />
-
                   <Input
                     readOnly={true}
                     tabIndex={1}
                     type="tel"
                     name="phone"
                     label="Номер телефону"
-                    mask="+38 (099) 999-99-99"
                     defaultValue={
-                      profileState.profile.phone
-                        ? profileState.profile.phone
-                        : emptyFieldMessage
+                      profileState.profile.phone || "+380 (XX) XXX-XX-XX"
                     }
                   />
 
@@ -263,34 +262,31 @@ export default function UserData({ profileState }) {
                         : ""
                     }`}
                   />
-
                   <Input
                     readOnly={true}
                     tabIndex={1}
                     type="email"
                     name="email"
                     label="Електронна пошта"
-                    defaultValue={
-                      profileState.profile.email
-                        ? profileState.profile.email
-                        : emptyFieldMessage
-                    }
+                    defaultValue={profileState.profile.email || "XXXX@XXX.XX"}
                   />
                 </div>
 
                 <Avatar onlyRead={true} src={profileState.profile.avatar} />
               </div>
 
-              <div className="profile-form__btn">
-                <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
-                  Змінити
-                  <img src={editImg} alt="Edit" />
-                </Button>
-              </div>
+              {profileState.profile.phone && (
+                <div className="profile-form__btn">
+                  <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
+                    Змінити
+                    <img src={editImg} alt="Edit" />
+                  </Button>
+                </div>
+              )}
             </form>
           </FormProvider>
         </div>
       )}
-    </>
+    </React.Fragment>
   );
 }

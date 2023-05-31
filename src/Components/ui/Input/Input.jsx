@@ -89,7 +89,7 @@ const Input = memo(
           <Controller
             name={name}
             control={control}
-            defaultValue={defaultValue ? defaultValue : ''}
+            defaultValue={defaultValue ? defaultValue : ""}
             rules={rules}
             render={render}
           />
@@ -102,7 +102,7 @@ const Input = memo(
             name={name}
             className={className}
             InputProps={inpProps}
-            defaultValue={defaultValue ? defaultValue : ''}
+            defaultValue={defaultValue ? defaultValue : ""}
             {...rest}
             {...register(name, rules)}
           />

@@ -6,44 +6,41 @@ import { Spinner } from "@components/simple";
 import { Message } from "@components/ordinary";
 import { UserData } from "@components/smart/Profile";
 
-const Password = () => {
-  const { user, token } = useAuth();
-  const dispatch = useDispatch();
-  const profileState = useSelector((state) => state.profile);
+const Password = ({ profileState }) => {
+  const { profile, isLoading, error } = profileState;
+  // const { user, token } = useAuth();
+  // const dispatch = useDispatch();
+  // const profileState = useSelector((state) => state.profile);
 
-  useEffect(() => {
-    if (user && token && !profileState.profile.email) {
-      dispatch(
-        getProfile({
-          userId: user.sub,
-          token: token,
-        })
-      );
-    }
-  }, [dispatch, user, token, profileState.profile]);
+  // useEffect(() => {
+  //   if (user && token && !profileState.profile.email) {
+  //     dispatch(
+  //       getProfile({
+  //         userId: user.sub,
+  //         token: token,
+  //       })
+  //     );
+  //   }
+  // }, [dispatch, user, token, profileState.profile]);
 
-  const profile = profileState.profile.email && !profileState.isLoading && (
+  const profileElem = profile.id && !isLoading && (
     <UserData profileState={profileState} />
   );
-  const loading = (!profileState.profile.email || profileState.isLoading) && (
-    <Spinner size={100} />
-  );
-  const error = profileState.error && !profileState.isLoading && (
+  const loadingElem = (!profile.id || isLoading) && <Spinner size={100} />;
+  const errorElem = error && !isLoading && (
     <Message
-      message={profileState.error.message}
+      message={error.message}
       messageType="error"
       margin={{ bottom: 8 }}
     />
   );
 
   return (
-    <>
-      <div>
-        {profile}
-        {loading}
-        {error}
-      </div>
-    </>
+    <React.Fragment>
+      {profileElem}
+      {loadingElem}
+      {errorElem}
+    </React.Fragment>
   );
 };
 

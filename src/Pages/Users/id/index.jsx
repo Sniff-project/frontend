@@ -1,51 +1,36 @@
 import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useAuth } from "@core/Hooks";
+import { useParams } from "react-router-dom";
 import { profile as getProfile } from "@core/Services/users";
 import { Box, Typography } from "@mui/material";
-import { UserInfo, Password, DeleteUser } from "@containers/Profile";
+import { UserInfo } from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
 
-const Profile = () => {
+const UserPage = () => {
   const [tabNum, setTabNum] = useState(0);
-  const { user, token } = useAuth();
+  const { userId } = useParams();
   const dispatch = useDispatch();
-  const profileState = useSelector((state) => state.profile);
+  const strangerProfileState = useSelector((state) => state.strangerProfile);
 
   const tabs = useMemo(
     () => [
       {
         label: "Особисті данні",
-        content: <UserInfo profileState={profileState} />,
-      },
-      {
-        label: "Пароль",
-        content: (
-          <Box component="div" mt="38px">
-            <Password />
-          </Box>
-        ),
-      },
-      { label: "Загублені тваринки", content: "Content for Tab 3" },
-      { label: "Знайдені тваринки", content: "contents for Tab 4" },
-      {
-        label: "Видалення профілю",
-        content: <DeleteUser />,
+        content: <UserInfo profileState={strangerProfileState} />,
       },
     ],
-    [profileState]
+    [strangerProfileState]
   );
 
   useEffect(() => {
-    if (user && token && !profileState.profile.id) {
+    if (userId) {
       dispatch(
         getProfile({
-          userId: user.sub,
-          token: token,
+          userId: userId,
         })
       );
     }
-  }, [dispatch, user, token, profileState.profile]);
+  }, [dispatch, userId]);
 
   const handleTabChange = (event, newValue) => {
     setTabNum(newValue);
@@ -55,7 +40,7 @@ const Profile = () => {
       <Typography
         variant="h1"
         sx={{ margin: "3.125rem 0 4.625rem 3.125rem", color: "#2e2c34" }}>
-        Ваш профіль
+        Профіль
       </Typography>
       <Box component="div" px={{ xs: 2, sm: 4, md: 6, lg: 12 }}>
         <Tabs
@@ -74,4 +59,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserPage;

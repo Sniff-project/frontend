@@ -24,6 +24,7 @@ const reducer = combineReducers({
   // users
   uploadAvatar: uploadAvatarReducer,
   profile: profileReducer,
+  strangerProfile: profileReducer,
   changePassword: changePasswordReducer,
   cities: citiesReducer,
   regions: regionsReducer,

@@ -11,6 +11,7 @@ import ReplyRoundedIcon from "@mui/icons-material/ReplyRounded";
 
 const MAX_NAME_LENGTH = 20;
 const signInToViewText = "Увійти в аккаунт, щоб побачити";
+const viewProfile = "Побачити профіль";
 
 const Row = ({ children, columnSpacing = 0 }) => {
   return (
@@ -27,6 +28,7 @@ const Row = ({ children, columnSpacing = 0 }) => {
 
 const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
   const {
+    id: authorId,
     firstname,
     lastname,
     phone = "+380XXXXXXXXX",
@@ -51,16 +53,35 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
     : null;
 
   const avatarItem = !isLoading ? (
-    <Avatar
-      src={defaultProfileIcon}
-      sx={{ width: "3.125rem", height: "3.125rem" }}
-    />
+    <Tooltip title={viewProfile} placement="top">
+      <Link
+        href={`/users/${authorId}`}
+        sx={{
+          borderRadius: "100%",
+          padding: "0.5rem",
+          marginLeft: "-0.75rem",
+        }}>
+        <Avatar
+          src={defaultProfileIcon}
+          sx={{ width: "3.125rem", height: "3.125rem" }}
+        />
+      </Link>
+    </Tooltip>
   ) : (
     <Skeleton variant="circular" width="3.125rem" height="3.125rem" />
   );
 
   const nameItem = !isLoading ? (
-    <Typography variant="p">{fullName}</Typography>
+    <Tooltip title={viewProfile} placement="top">
+      <Link
+        href={`/users/${authorId}`}
+        sx={{
+          textDecoration: "none",
+          padding: "0.5rem 0.625rem",
+        }}>
+        <Typography variant="p">{fullName}</Typography>
+      </Link>
+    </Tooltip>
   ) : (
     <Skeleton variant="rounded" height="2rem" />
   );
@@ -94,9 +115,9 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
       className="pet-profile__infoBlock"
       margin={margin}
       padding="2.5rem">
-      <Grid container rowSpacing="3.125rem">
+      <Grid container rowSpacing="2.125rem">
         <Grid container item>
-          <Row columnSpacing="1.25rem">
+          <Row>
             <Grid item>{avatarItem}</Grid>
             <Grid item width="225px">
               {nameItem}
@@ -127,7 +148,7 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
         </Grid>
         <Grid container item justifyContent="center">
           <Grid item>
-            <Link href="/pets" sx={{ textDecoration: "none" }}>
+            <Link href={`/users/${authorId}`} sx={{ textDecoration: "none" }}>
               Побачити усі оголошення
               <ReplyRoundedIcon sx={{ transform: "scaleX(-1)" }} />
             </Link>

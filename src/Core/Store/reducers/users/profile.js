@@ -2,6 +2,7 @@ import {
   PROFILE_REQUEST,
   PROFILE_SUCCESS,
   PROFILE_FAILURE,
+  RESET_PROFILE,
 } from "@core/Store/actions/users";
 
 const initialState = {
@@ -31,6 +32,8 @@ export function profileReducer(state = initialState, action) {
       };
     case PROFILE_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error };
+    case RESET_PROFILE:
+      return { ...initialState };
     default:
       return state;
   }
