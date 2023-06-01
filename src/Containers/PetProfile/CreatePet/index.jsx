@@ -39,13 +39,11 @@ const CreatePet = ({ params }) => {
   const uploadedPetPhotos = useSelector((state) => state.uploadPetPhotos);
 
   useEffect(() => {
-    if (!petData?.status) {
-      setPetData((prev) => ({
-        ...prev,
-        status: params.status === "found" ? "Знайдено" : "Загублено",
-      }));
-    }
-  }, [petData?.status, params?.status]);
+    setPetData((prev) => ({
+      ...prev,
+      status: params?.status,
+    }));
+  }, [params?.status]);
 
   const updatePhotos = useCallback((photos) => {
     if (photos.length > 0) setPhotos(photos);

@@ -1,33 +1,33 @@
 import {
-  profileRequest,
-  profileSuccess,
-  profileFailure,
+  strangerProfileRequest,
+  strangerProfileSuccess,
+  strangerProfileFailure,
 } from "@core/Store/actions/users";
 
 import { getProfile } from "@core/API/users";
 
 const successMsg = "Профіль завантажено!";
-const errorMsg = "Сесія вичерпана!";
+const errorMsg = "Користувач не знайдений!";
 const unknownError = "Щось пішло не так :(";
 
-export const profile = ({ userId, token }) => {
+export const strangerProfile = ({ userId, token = null }) => {
   return async (dispatch) => {
     try {
-      dispatch(profileRequest());
+      dispatch(strangerProfileRequest());
       const response = await getProfile({ userId, token });
       if (response.status === 200) {
         const result = {
           ...response.data,
           message: successMsg,
         };
-        dispatch(profileSuccess(result));
+        dispatch(strangerProfileSuccess(result));
       } else {
         // error 404 or others
         const result = {
           ...response.data,
           message: errorMsg,
         };
-        dispatch(profileFailure(result));
+        dispatch(strangerProfileFailure(result));
       }
     } catch (error) {
       // unexpected errors
@@ -35,7 +35,7 @@ export const profile = ({ userId, token }) => {
         ...error,
         message: unknownError,
       };
-      dispatch(profileFailure(result));
+      dispatch(strangerProfileFailure(result));
       throw error;
     }
   };

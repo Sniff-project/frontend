@@ -2,7 +2,8 @@ import {
   editPetProfileRequest,
   editPetProfileSuccess,
   editPetProfileFailure,
-} from "@core/Store/actions/pets";
+  resetPetProfileEdit as resetPetEdit,
+} from "@core/Store/actions/pets/editProfile";
 
 import { editPetProfile as editPetProf } from "@core/API/pets";
 
@@ -52,5 +53,11 @@ export const editPetProfile = ({ petId, token, data }) => {
       dispatch(editPetProfileFailure(result));
       throw error;
     }
+  };
+};
+
+export const resetPetProfileEdit = () => {
+  return async (dispatch) => {
+    dispatch(resetPetEdit());
   };
 };

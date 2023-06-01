@@ -1,8 +1,8 @@
 import {
-  PROFILE_REQUEST,
-  PROFILE_SUCCESS,
-  PROFILE_FAILURE,
-  RESET_PROFILE,
+  STRANGER_PROFILE_REQUEST,
+  STRANGER_PROFILE_SUCCESS,
+  STRANGER_PROFILE_FAILURE,
+  RESET_STRANGER_PROFILE,
 } from "@core/Store/actions/users";
 
 const initialState = {
@@ -19,20 +19,20 @@ const initialState = {
   error: null,
 };
 
-export function profileReducer(state = initialState, action) {
+export function strangerProfileReducer(state = initialState, action) {
   switch (action.type) {
-    case PROFILE_REQUEST:
+    case STRANGER_PROFILE_REQUEST:
       return { ...state, isLoading: true, error: null };
-    case PROFILE_SUCCESS:
+    case STRANGER_PROFILE_SUCCESS:
       return {
         ...state,
         profile: action.payload.profile,
         isLoading: false,
         error: null,
       };
-    case PROFILE_FAILURE:
+    case STRANGER_PROFILE_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error };
-    case RESET_PROFILE:
+    case RESET_STRANGER_PROFILE:
       return { ...initialState };
     default:
       return state;

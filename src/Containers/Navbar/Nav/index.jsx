@@ -92,7 +92,9 @@ export default function Nav() {
                       </Link>
                     </li>
                     <li className="nav-list__item">
-                      <Link className="nav-list__addPet" href="/pets/create">
+                      <Link
+                        className="nav-list__addPet"
+                        href="/pets/create?status=lost">
                         Я загубив тваринку
                       </Link>
                     </li>

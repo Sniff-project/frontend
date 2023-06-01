@@ -8,6 +8,7 @@ import {
   PetProfile,
   PetsGallery,
   CreatePetProfilePage,
+  UserPage,
 } from "@pages";
 
 const routes = [
@@ -40,6 +41,12 @@ const routes = [
     component: Profile,
     exact: true,
     isPrivate: true,
+  },
+  {
+    path: "/users/:userId",
+    component: UserPage,
+    exact: true,
+    isPrivate: false,
   },
   {
     path: "/pets",

@@ -3,6 +3,7 @@ import { logoutReducer, signInReducer, signUpReducer } from "./auth";
 import {
   uploadAvatarReducer,
   profileReducer,
+  strangerProfileReducer,
   changePasswordReducer,
   citiesReducer,
   regionsReducer,
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   // users
   uploadAvatar: uploadAvatarReducer,
   profile: profileReducer,
+  strangerProfile: strangerProfileReducer,
   changePassword: changePasswordReducer,
   cities: citiesReducer,
   regions: regionsReducer,

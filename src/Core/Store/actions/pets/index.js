@@ -22,9 +22,11 @@ export {
   PET_PROFILE_REQUEST,
   PET_PROFILE_SUCCESS,
   PET_PROFILE_FAILURE,
+  RESET_PET_PROFILE,
   petProfileRequest,
   petProfileSuccess,
   petProfileFailure,
+  resetPetProfile,
 } from "./profile";
 
 export {

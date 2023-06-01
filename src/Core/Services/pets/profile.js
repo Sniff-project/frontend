@@ -2,7 +2,8 @@ import {
   petProfileRequest,
   petProfileSuccess,
   petProfileFailure,
-} from "@core/Store/actions/pets";
+  resetPetProfile as resetPet,
+} from "@core/Store/actions/pets/profile";
 
 import { getPetProfile as getPetProf } from "@core/API/pets";
 
@@ -45,5 +46,11 @@ export const getPetProfile = ({ petId, token }) => {
       dispatch(petProfileFailure(result));
       throw error;
     }
+  };
+};
+
+export const resetPetProfile = () => {
+  return async (dispatch) => {
+    dispatch(resetPet());
   };
 };

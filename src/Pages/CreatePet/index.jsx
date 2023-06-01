@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CreatePetContainer } from "@containers/PetProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { profile as getProfile } from "@core/Services/users";
@@ -21,6 +21,9 @@ const CreatePetProfilePage = () => {
 
   const dispatch = useDispatch();
   const profileState = useSelector((state) => state.profile);
+  const [status, setStatus] = useState(
+    statusParam === "found" ? "Знайдено" : "Загублено"
+  );
 
   useEffect(() => {
     if (!profileState.profile?.city && user && token) {
@@ -28,8 +31,23 @@ const CreatePetProfilePage = () => {
     }
   }, [dispatch, profileState.profile?.city, token, user]);
 
+  useEffect(() => {
+    if (!!location.search) {
+      setStatus(statusParam === "found" ? "Знайдено" : "Загублено");
+    }
+  }, [location.search, statusParam]);
+
   if (!isAuthenticated) {
     return <Navigate to="/signin" />;
+  }
+
+  if (!!location.search) {
+    return (
+      <Box sx={{ height: "300px", position: "relative" }}>
+        <Navigate to={location.pathname} />
+        <Spinner size={100} />
+      </Box>
+    );
   }
 
   const loading = profileState.loading && <Spinner />;
@@ -60,7 +78,7 @@ const CreatePetProfilePage = () => {
     </React.Fragment>
   );
   const content = !loading && !error && (
-    <CreatePetContainer params={{ status: statusParam }} />
+    <CreatePetContainer params={{ status: status }} />
   );
 
   return (

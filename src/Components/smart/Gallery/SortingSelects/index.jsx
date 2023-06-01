@@ -13,7 +13,12 @@ const CITY = "city";
 const REGION = "region";
 const filterState = "filterState";
 
-export default function SortingSelects({ handleIsChanged, currentSlideIndex }) {
+export default function SortingSelects({
+  handleIsChanged,
+  currentSlideIndex,
+  hideRegion = false,
+  hideCity = false,
+}) {
   const dispatch = useDispatch();
   const cities_Array = useSelector(({ cities }) => cities.cities.citiesArray);
   const regions_Array = useSelector(
@@ -73,26 +78,30 @@ export default function SortingSelects({ handleIsChanged, currentSlideIndex }) {
 
   return (
     <div className="gallery-selectors">
-      <div className="gallery-selectors__item">
-        <SelectComponent
-          handleChangeFilter={handleChangeFilter}
-          valueArray={regions_Array?.length ? regions_Array : []}
-          name={REGION}
-          title={"Область"}
-          setGlobalState={setGlobalState}
-          globalState={globalState}
-        />
-      </div>
-      <div className="gallery-selectors__item">
-        <SelectComponent
-          handleChangeFilter={handleChangeFilter}
-          valueArray={cities_Array?.length ? cities_Array : []}
-          name={CITY}
-          title={"Місто"}
-          setGlobalState={setGlobalState}
-          globalState={globalState}
-        />
-      </div>
+      {!hideRegion && (
+        <div className="gallery-selectors__item">
+          <SelectComponent
+            handleChangeFilter={handleChangeFilter}
+            valueArray={regions_Array?.length ? regions_Array : []}
+            name={REGION}
+            title={"Область"}
+            setGlobalState={setGlobalState}
+            globalState={globalState}
+          />
+        </div>
+      )}
+      {!hideCity && (
+        <div className="gallery-selectors__item">
+          <SelectComponent
+            handleChangeFilter={handleChangeFilter}
+            valueArray={cities_Array?.length ? cities_Array : []}
+            name={CITY}
+            title={"Місто"}
+            setGlobalState={setGlobalState}
+            globalState={globalState}
+          />
+        </div>
+      )}
       <div className="gallery-selectors__item">
         <SelectComponent
           handleChangeFilter={handleChangeFilter}
