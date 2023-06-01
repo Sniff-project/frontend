@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "@core/Hooks";
 import { strangerProfile as getProfile } from "@core/Services/users";
 import { Box, Typography } from "@mui/material";
-import { UserInfo } from "@containers/Profile";
+import { UserInfo, PetsGallery } from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
 
 const UserPage = () => {
@@ -19,6 +19,12 @@ const UserPage = () => {
       {
         label: "Інформація",
         content: <UserInfo profileState={strangerProfileState} />,
+      },
+      {
+        label: "Тваринки",
+        content: (
+          <PetsGallery gallery={strangerProfileState.profile.petCards} />
+        ),
       },
     ],
     [strangerProfileState]
