@@ -1,15 +1,23 @@
 import { useContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import { AuthContext } from "@contexts";
 import { login as loginUser } from "@core/Services";
 import { Link } from "@components/ui";
 import { Spinner } from "@components/simple";
 import { Message } from "@components/ordinary";
 import SignInForm from "@components/smart/SignInForm";
-import "./styles.scss";
+import { useTheme } from "@emotion/react";
+import {
+  SignInBlock as StyledBlock,
+  ContentBlock,
+  ContainerBlock,
+  FormBlock,
+} from "./styles";
 
 const SignInBlock = () => {
+  const theme = useTheme();
   const auth = useContext(AuthContext);
   const dispatch = useDispatch();
   const signInState = useSelector((state) => state.signIn);
@@ -29,14 +37,14 @@ const SignInBlock = () => {
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
   return (
-    <div id="SignInBlock">
-      <div className="block__container">
+    <StyledBlock theme={theme}>
+      <ContainerBlock>
         {signInState.isLoading && <Spinner size={100} />}
-        <div className="block__content">
+        <ContentBlock>
           <Grid container justifyContent="center" mb={6}>
-            <h3 className="block__title">Вхід</h3>
+            <Typography variant="h1">Вхід</Typography>
           </Grid>
-          <div className="block__form">
+          <FormBlock>
             {signInState.error && (
               <Message
                 message={signInState.error.message}
@@ -62,10 +70,10 @@ const SignInBlock = () => {
                 <Link href="/signup">Зареєструватись</Link>
               </Grid>
             </Grid>
-          </div>
-        </div>
-      </div>
-    </div>
+          </FormBlock>
+        </ContentBlock>
+      </ContainerBlock>
+    </StyledBlock>
   );
 };
 

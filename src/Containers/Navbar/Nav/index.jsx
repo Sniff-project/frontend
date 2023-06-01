@@ -150,7 +150,10 @@ export default function Nav() {
                   </div>
                 </div>
               ) : (
-                <Link className="nav-row_singUp" href="/signin">
+                <Link
+                  className="nav-row_singUp"
+                  onClick={isAuth.signInOpenHandler}
+                  component="button">
                   Вхід
                 </Link>
               )}

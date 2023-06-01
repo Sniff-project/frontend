@@ -14,7 +14,7 @@ import { Message } from "@components/ordinary";
 const CITY_ERROR = "Спочатку встановіть місто в профілі!";
 
 const CreatePetProfilePage = () => {
-  const { user, token, isAuthenticated } = useAuth();
+  const { user, token } = useAuth();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const statusParam = searchParams.get("status");
@@ -36,10 +36,6 @@ const CreatePetProfilePage = () => {
       setStatus(statusParam === "found" ? "Знайдено" : "Загублено");
     }
   }, [location.search, statusParam]);
-
-  if (!isAuthenticated) {
-    return <Navigate to="/signin" />;
-  }
 
   if (!!location.search) {
     return (

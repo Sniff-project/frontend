@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box";
 import { ThemeProvider } from "@mui/material/styles";
 import ScopedCssBaseline from "@mui/material/ScopedCssBaseline";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -14,9 +15,15 @@ function App() {
       <Router>
         <AuthProvider>
           <ScopedCssBaseline>
-            <Header />
-            <AppRoutes />
-            <Footer />
+            <Box
+              minHeight="100vh"
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between">
+              <Header />
+              <AppRoutes />
+              <Footer />
+            </Box>
           </ScopedCssBaseline>
         </AuthProvider>
       </Router>

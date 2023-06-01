@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import SignInPopup from "@containers/SignIn/SignInPopup";
 
 export const AuthContext = createContext();
 
@@ -9,8 +10,14 @@ export const AuthProvider = ({ children }) => {
   const isAuth = token ? true : false;
 
   const [isAuthenticated, setIsAuthenticated] = useState(isAuth);
+  const [signInIsOpen, setSignInIsOpen] = useState(false);
   const [user, setUser] = useState(null);
   const history = useNavigate();
+
+  const signInOpenHandler = () => {
+    if (!user) setSignInIsOpen(true);
+  };
+  const signInCloseHandler = () => setSignInIsOpen(false);
 
   const login = (jwtToken) => {
     setIsAuthenticated(true);
@@ -23,6 +30,12 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     sessionStorage.removeItem("jwtToken");
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      signInCloseHandler();
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -54,9 +67,15 @@ export const AuthProvider = ({ children }) => {
     token,
     isAuthenticated,
     user,
+    signInOpenHandler,
     login,
     logout,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+      <SignInPopup open={signInIsOpen} onClose={signInCloseHandler} />
+    </AuthContext.Provider>
+  );
 };

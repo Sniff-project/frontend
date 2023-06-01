@@ -58,7 +58,7 @@ const routes = [
     path: "/pets/create",
     component: CreatePetProfilePage,
     exact: true,
-    isPrivate: false,
+    isPrivate: true,
   },
   {
     path: "/pets/:petId",
