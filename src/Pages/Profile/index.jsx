@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "@core/Hooks";
 import { profile as getProfile } from "@core/Services/users";
 import { Box, Typography } from "@mui/material";
@@ -10,9 +11,12 @@ import {
   DeleteUser,
 } from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
+import { Spinner } from "@components/simple";
 
 const Profile = () => {
-  const [tabNum, setTabNum] = useState(0);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const tabParam = +searchParams.get("tab") || 0;
   const { user, token } = useAuth();
   const dispatch = useDispatch();
   const profileState = useSelector((state) => state.profile);
@@ -42,6 +46,9 @@ const Profile = () => {
     ],
     [profileState]
   );
+  const [tabNum, setTabNum] = useState(
+    (tabParam < tabs.length && tabParam > 0 && tabParam) || 0
+  );
 
   useEffect(() => {
     if (user && token) {
@@ -53,6 +60,15 @@ const Profile = () => {
       );
     }
   }, [dispatch, user, token]);
+
+  if (!!location.search) {
+    return (
+      <Box sx={{ height: "300px", position: "relative" }}>
+        <Navigate to={location.pathname} />
+        <Spinner size={100} />
+      </Box>
+    );
+  }
 
   const handleTabChange = (event, newValue) => {
     setTabNum(newValue);

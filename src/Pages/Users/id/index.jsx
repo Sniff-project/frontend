@@ -13,7 +13,7 @@ const UserPage = () => {
   const searchParams = new URLSearchParams(location.search);
   const tabParam = +searchParams.get("tab") || 0;
 
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const { userId } = useParams();
   const dispatch = useDispatch();
   const strangerProfileState = useSelector((state) => state.strangerProfile);
@@ -47,6 +47,10 @@ const UserPage = () => {
       );
     }
   }, [dispatch, userId, token]);
+
+  if (userId === user?.sub) {
+    return <Navigate to="/profile" />;
+  }
 
   if (!!location.search) {
     return (
