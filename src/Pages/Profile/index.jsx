@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "@core/Hooks";
 import { profile as getProfile } from "@core/Services/users";
 import { Box, Typography } from "@mui/material";
-import { UserInfo, Password, DeleteUser } from "@containers/Profile";
+import {
+  UserInfo,
+  Password,
+  PetsGallery,
+  DeleteUser,
+} from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
 
 const Profile = () => {
@@ -26,8 +31,10 @@ const Profile = () => {
           </Box>
         ),
       },
-      { label: "Загублені тваринки", content: "Content for Tab 3" },
-      { label: "Знайдені тваринки", content: "contents for Tab 4" },
+      {
+        label: "Мої тваринки",
+        content: <PetsGallery gallery={profileState.profile.petCards} />,
+      },
       {
         label: "Видалення профілю",
         content: <DeleteUser />,

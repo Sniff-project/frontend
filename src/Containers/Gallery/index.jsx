@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import AnimalCard from "@components/ordinary/Homepage/AnimalCard";
-import { SortingSelects } from "@components/smart/Gallery";
-import catImg from "@assets/Icons/petCards/iconCat.svg";
+import { GalleryBlock, SortingSelects } from "@components/smart/Gallery";
 import { Message } from "@components/ordinary";
-import { Spinner } from "@components/simple";
 import { useTheme } from "@mui/material/styles";
 import {
   Grid,
@@ -18,11 +15,7 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
 import "./styles.scss";
 
-const successMessage = "Галерея завантажена!";
-const emptyGalleryMessage = "Галерея поки порожня!";
-
 export default function Gallery() {
-  const [spinnerState, setSpinnerState] = useState(true);
   const [emptyGalleryState, setEmptyGalleryState] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const navigate = useNavigate();
@@ -40,15 +33,6 @@ export default function Gallery() {
     setGalleryArray(gallery?.content);
   }, [gallery?.content]);
 
-  useEffect(() => {
-    if ((!isLoading && gallery.message === successMessage) || error) {
-      setSpinnerState(false);
-    }
-    if (gallery?.content) {
-      setGalleryArray(gallery?.content);
-    }
-  }, [gallery, isLoading, error]);
-
   const handleSlide = (_, value) => {
     setCurrentSlideIndex(--value);
   };
@@ -62,14 +46,13 @@ export default function Gallery() {
   };
 
   return (
-    <div className="gallery" style={{minHeight: '800px'}}>
+    <div className="gallery" style={{ minHeight: "800px" }}>
       <div className="container2000">
         <div className="gallery-container">
           <Grid
             container
             alignItems="center"
-            sx={{ top: "3.125rem", left: "3.125rem", paddingTop: "40px" }}
-          >
+            sx={{ top: "3.125rem", left: "3.125rem", paddingTop: "40px" }}>
             <Tooltip title="На головну">
               <IconButton onClick={goToPetsGallery}>
                 <ArrowBackRoundedIcon color="black" />
@@ -77,13 +60,11 @@ export default function Gallery() {
             </Tooltip>
             <Typography
               variant="h1"
-              sx={{ color: theme.palette.black.secondary }}
-            >
+              sx={{ color: theme.palette.black.secondary }}>
               Галерея тваринок
             </Typography>
           </Grid>
 
-          {spinnerState && <Spinner size={100} />}
           {error && (
             <Message
               message={error.message}
@@ -99,39 +80,14 @@ export default function Gallery() {
             />
           )}
 
-          {emptyGalleryState && (
-            <p
-              style={{
-                fontSize: "25px",
-                textAlign: "center",
-                marginTop: "80px",
-              }}
-            >
-              {emptyGalleryMessage}
-            </p>
-          )}
-
-          {!spinnerState && !error && !emptyGalleryState && (
-            <div
-              className="gallery-slider"
-            >
-              <div className="gallery-page">
-                {galleryArray.map((animal) => (
-                  <AnimalCard
-                    className={!animal.photo ? "cardAnimal__imgCat" : ""}
-                    key={animal.id}
-                    name={animal.name}
-                    id={animal.id}
-                    hasPhoto={!animal.photo ? false : true}
-                    imageSrc={!animal.photo ? catImg : animal.photo}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+          <GalleryBlock gallery={gallery} isLoading={isLoading} error={error} />
         </div>
         {!error && !emptyGalleryState && (
-          <Pagination style={{margin: '30px'}} count={maxPages} onChange={handleSlide} />
+          <Pagination
+            style={{ margin: "30px" }}
+            count={maxPages}
+            onChange={handleSlide}
+          />
         )}
       </div>
     </div>
