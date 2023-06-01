@@ -173,7 +173,9 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
         </Grid>
         <Grid container item justifyContent="center">
           <Grid item>
-            <Link href={`/users/${authorId}`} sx={{ textDecoration: "none" }}>
+            <Link
+              href={`/users/${authorId}?tab=1`}
+              sx={{ textDecoration: "none" }}>
               Побачити усі оголошення
               <ReplyRoundedIcon sx={{ transform: "scaleX(-1)" }} />
             </Link>
