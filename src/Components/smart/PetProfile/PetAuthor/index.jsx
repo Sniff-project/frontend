@@ -1,8 +1,9 @@
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Avatar, Grid, Skeleton, Tooltip, Typography } from "@mui/material";
 import { Link, TButton } from "@components/ui";
 import { StyledBox } from "@components/simple";
+import { useAuth } from "@core/Hooks/useAuth";
 
 import defaultProfileIcon from "@assets/Icons/profile/profile50x50.png";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
@@ -36,78 +37,102 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
   } = author ?? {};
 
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const signIn = useCallback(() => {
     navigate("/signIn");
   }, [navigate]);
 
-  const fullName =
-    firstname?.length + lastname?.length <= MAX_NAME_LENGTH
-      ? `${firstname} ${lastname}`
-      : `${(firstname + " " + lastname).slice(0, MAX_NAME_LENGTH)}...`;
-  const maskedPhone = phone
-    ? `+${phone.slice(1, 4)} (${phone.slice(4, 6)}) ${phone.slice(
-        6,
-        9
-      )}-${phone.slice(9, 11)}-${phone.slice(11, 13)}`
-    : null;
-
-  const avatarItem = !isLoading ? (
-    <Tooltip title={viewProfile} placement="top">
-      <Link
-        href={`/users/${authorId}`}
-        sx={{
-          borderRadius: "100%",
-          padding: "0.5rem",
-          marginLeft: "-0.75rem",
-        }}>
-        <Avatar
-          src={defaultProfileIcon}
-          sx={{ width: "3.125rem", height: "3.125rem" }}
-        />
-      </Link>
-    </Tooltip>
-  ) : (
-    <Skeleton variant="circular" width="3.125rem" height="3.125rem" />
+  const fullName = useMemo(
+    () =>
+      firstname?.length + lastname?.length <= MAX_NAME_LENGTH
+        ? `${firstname} ${lastname}`
+        : `${(firstname + " " + lastname).slice(0, MAX_NAME_LENGTH)}...`,
+    [firstname, lastname]
+  );
+  const maskedPhone = useMemo(
+    () =>
+      phone
+        ? `+${phone.slice(1, 4)} (${phone.slice(4, 6)}) ${phone.slice(
+            6,
+            9
+          )}-${phone.slice(9, 11)}-${phone.slice(11, 13)}`
+        : null,
+    [phone]
   );
 
-  const nameItem = !isLoading ? (
-    <Tooltip title={viewProfile} placement="top">
-      <Link
-        href={`/users/${authorId}`}
-        sx={{
-          textDecoration: "none",
-          padding: "0.5rem 0.625rem",
-        }}>
-        <Typography variant="p">{fullName}</Typography>
-      </Link>
-    </Tooltip>
-  ) : (
-    <Skeleton variant="rounded" height="2rem" />
+  const avatarItem = useMemo(
+    () =>
+      !isLoading ? (
+        <Tooltip title={viewProfile} placement="top">
+          <Link
+            href={authorId === +user?.sub ? "/profile" : `/users/${authorId}`}
+            sx={{
+              borderRadius: "100%",
+              padding: "0.5rem",
+              marginLeft: "-0.75rem",
+            }}>
+            <Avatar
+              src={defaultProfileIcon}
+              sx={{ width: "3.125rem", height: "3.125rem" }}
+            />
+          </Link>
+        </Tooltip>
+      ) : (
+        <Skeleton variant="circular" width="3.125rem" height="3.125rem" />
+      ),
+    [authorId, isLoading, user?.sub]
   );
 
-  const phoneItem = !isLoading ? (
-    !phone.includes("X") ? (
-      <Typography variant="p">{maskedPhone}</Typography>
-    ) : (
-      <Tooltip title={signInToViewText} placement="top">
-        <TButton onClick={signIn}>{maskedPhone}</TButton>
-      </Tooltip>
-    )
-  ) : (
-    <Skeleton variant="rounded" height="2rem" />
+  const nameItem = useMemo(
+    () =>
+      !isLoading ? (
+        <Tooltip title={viewProfile} placement="top">
+          <Link
+            href={authorId === +user?.sub ? "/profile" : `/users/${authorId}`}
+            sx={{
+              textDecoration: "none",
+              padding: "0.5rem 0.625rem",
+            }}>
+            <Typography variant="p">{fullName}</Typography>
+          </Link>
+        </Tooltip>
+      ) : (
+        <Skeleton variant="rounded" height="2rem" />
+      ),
+    [authorId, fullName, isLoading, user?.sub]
   );
 
-  const emailItem = !isLoading ? (
-    !email.includes("X") ? (
-      <Typography variant="p">{email}</Typography>
-    ) : (
-      <Tooltip title={signInToViewText} placement="bottom">
-        <TButton onClick={signIn}>{email}</TButton>
-      </Tooltip>
-    )
-  ) : (
-    <Skeleton variant="rounded" height="2rem" />
+  const phoneItem = useMemo(
+    () =>
+      !isLoading ? (
+        !phone.includes("X") ? (
+          <Typography variant="p">{maskedPhone}</Typography>
+        ) : (
+          <Tooltip title={signInToViewText} placement="top">
+            <TButton onClick={signIn}>{maskedPhone}</TButton>
+          </Tooltip>
+        )
+      ) : (
+        <Skeleton variant="rounded" height="2rem" />
+      ),
+    [isLoading, maskedPhone, phone, signIn]
+  );
+
+  const emailItem = useMemo(
+    () =>
+      !isLoading ? (
+        !email.includes("X") ? (
+          <Typography variant="p">{email}</Typography>
+        ) : (
+          <Tooltip title={signInToViewText} placement="bottom">
+            <TButton onClick={signIn}>{email}</TButton>
+          </Tooltip>
+        )
+      ) : (
+        <Skeleton variant="rounded" height="2rem" />
+      ),
+    [email, isLoading, signIn]
   );
 
   return (
