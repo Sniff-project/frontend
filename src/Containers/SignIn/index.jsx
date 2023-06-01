@@ -16,7 +16,7 @@ import {
   FormBlock,
 } from "./styles";
 
-const SignInBlock = () => {
+const SignInBlock = ({ onRegisterClick }) => {
   const theme = useTheme();
   const auth = useContext(AuthContext);
   const dispatch = useDispatch();
@@ -67,7 +67,9 @@ const SignInBlock = () => {
               columnSpacing={2}>
               <Grid item>Ще не з нами?</Grid>
               <Grid item>
-                <Link href="/signup">Зареєструватись</Link>
+                <Link component="p" onClick={onRegisterClick}>
+                  Зареєструватись
+                </Link>
               </Grid>
             </Grid>
           </FormBlock>

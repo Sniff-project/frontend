@@ -1,8 +1,6 @@
 import {
   AboutUs,
   Home,
-  SignIn,
-  SignUp,
   NotFound,
   Profile,
   PetProfile,
@@ -21,18 +19,6 @@ const routes = [
   {
     path: "/about",
     component: AboutUs,
-    exact: true,
-    isPrivate: false,
-  },
-  {
-    path: "/signin",
-    component: SignIn,
-    exact: true,
-    isPrivate: false,
-  },
-  {
-    path: "/signup",
-    component: SignUp,
     exact: true,
     isPrivate: false,
   },

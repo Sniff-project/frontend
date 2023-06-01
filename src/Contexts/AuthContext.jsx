@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import SignInPopup from "@containers/SignIn/SignInPopup";
+import ModalContainer from "@containers/Modal";
+import SignInBlock from "@containers/SignIn";
+import SignUpBlock from "@containers/SignUp";
 
 export const AuthContext = createContext();
 
@@ -10,14 +12,17 @@ export const AuthProvider = ({ children }) => {
   const isAuth = token ? true : false;
 
   const [isAuthenticated, setIsAuthenticated] = useState(isAuth);
-  const [signInIsOpen, setSignInIsOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(null);
   const [user, setUser] = useState(null);
   const history = useNavigate();
 
   const signInOpenHandler = () => {
-    if (!user) setSignInIsOpen(true);
+    if (!user) setOpenModal("SignIn");
   };
-  const signInCloseHandler = () => setSignInIsOpen(false);
+  const signUpOpenHandler = () => {
+    if (!user) setOpenModal("SignUp");
+  };
+  const closeModalHandler = () => setOpenModal(null);
 
   const login = (jwtToken) => {
     setIsAuthenticated(true);
@@ -33,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      signInCloseHandler();
+      closeModalHandler();
     }
   }, [isAuthenticated]);
 
@@ -68,6 +73,7 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     user,
     signInOpenHandler,
+    signUpOpenHandler,
     login,
     logout,
   };
@@ -75,7 +81,13 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={value}>
       {children}
-      <SignInPopup open={signInIsOpen} onClose={signInCloseHandler} />
+      <ModalContainer open={!!openModal} onClose={closeModalHandler}>
+        {openModal === "SignIn" ? (
+          <SignInBlock onRegisterClick={signUpOpenHandler} />
+        ) : (
+          <SignUpBlock onLoginClick={signInOpenHandler} />
+        )}
+      </ModalContainer>
     </AuthContext.Provider>
   );
 };
