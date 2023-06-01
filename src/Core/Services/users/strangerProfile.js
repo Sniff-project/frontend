@@ -10,11 +10,11 @@ const successMsg = "Профіль завантажено!";
 const errorMsg = "Користувач не знайдений!";
 const unknownError = "Щось пішло не так :(";
 
-export const strangerProfile = ({ userId }) => {
+export const strangerProfile = ({ userId, token = null }) => {
   return async (dispatch) => {
     try {
       dispatch(strangerProfileRequest());
-      const response = await getProfile({ userId });
+      const response = await getProfile({ userId, token });
       if (response.status === 200) {
         const result = {
           ...response.data,
