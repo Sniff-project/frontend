@@ -1,5 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import jwt_decode from "jwt-decode";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ModalContainer from "@containers/Modal";
 import SignInBlock from "@containers/SignIn";
@@ -8,33 +9,46 @@ import SignUpBlock from "@containers/SignUp";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const token = sessionStorage.getItem("jwtToken");
+  const token = localStorage.getItem("jwtToken");
+  const name = localStorage.getItem("name");
   const isAuth = token ? true : false;
+
+  const { profile } = useSelector((state) => state.profile);
 
   const [isAuthenticated, setIsAuthenticated] = useState(isAuth);
   const [openModal, setOpenModal] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ name: name });
   const history = useNavigate();
 
   const signInOpenHandler = () => {
-    if (!user) setOpenModal("SignIn");
+    if (!isAuthenticated) setOpenModal("SignIn");
   };
   const signUpOpenHandler = () => {
-    if (!user) setOpenModal("SignUp");
+    if (!isAuthenticated) setOpenModal("SignUp");
   };
   const closeModalHandler = () => setOpenModal(null);
 
   const login = (jwtToken) => {
     setIsAuthenticated(true);
-    sessionStorage.setItem("jwtToken", jwtToken);
+    localStorage.setItem("jwtToken", jwtToken);
     history("/profile");
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
-    sessionStorage.removeItem("jwtToken");
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("name");
   };
+
+  const setUserName = useCallback((name) => {
+    setUser((prev) => ({ ...prev, name: name }));
+    localStorage.setItem("name", name);
+  }, []);
+
+  useEffect(() => {
+    if (profile?.firstname) setUserName(profile.firstname);
+  }, [profile?.firstname, setUserName]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -47,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const decoded = jwt_decode(token);
         const currentTime = Date.now() / 1000;
-        setUser(decoded);
+        setUser((prev) => ({ ...prev, ...decoded }));
 
         // Check if token has expired
         if (decoded.exp < currentTime) {
@@ -72,6 +86,7 @@ export const AuthProvider = ({ children }) => {
     token,
     isAuthenticated,
     user,
+    setUserName,
     signInOpenHandler,
     signUpOpenHandler,
     login,

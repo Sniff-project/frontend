@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout as logoutUser } from "@core/Services";
 import { useLocation } from "react-router-dom";
 import { Transition } from "react-transition-group";
@@ -24,8 +24,6 @@ export default function Nav() {
   if (pathname === "/") isHome = true;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const pageTitles = "Головна сторінка";
-  const profileState = useSelector((state) => state.profile);
-  const name = profileState?.profile.firstname;
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -102,14 +100,14 @@ export default function Nav() {
                 )}
               </div>
 
-              {name && isAuth.isAuthenticated ? (
+              {isAuth.user?.name && isAuth.isAuthenticated ? (
                 <div>
                   <Link
                     href="#"
                     onClick={showUserMenu}
                     className="nav-row__btn">
                     <img alt="#" src={userIcon} />
-                    <span>{name}</span>
+                    <span>{isAuth.user?.name}</span>
                     <img alt="#" src={imgArrow} />
                   </Link>
 
