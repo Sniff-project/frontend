@@ -224,7 +224,7 @@ export default function UserData({ profileState }) {
                     name="fullname"
                     type="text"
                     label={
-                      profileState.profile.id === +user.sub
+                      profileState.profile.id === +user?.sub
                         ? "Як вас звати?"
                         : "Ім'я користувача"
                     }
@@ -275,7 +275,7 @@ export default function UserData({ profileState }) {
                 <Avatar onlyRead={true} src={profileState.profile.avatar} />
               </div>
 
-              {profileState.profile.id === +user.sub && (
+              {profileState.profile.id === +user?.sub && (
                 <div className="profile-form__btn">
                   <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
                     Змінити
