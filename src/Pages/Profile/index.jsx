@@ -51,7 +51,7 @@ const Profile = () => {
   );
 
   useEffect(() => {
-    if (user && token) {
+    if (user?.sub && token) {
       dispatch(
         getProfile({
           userId: user.sub,
@@ -59,7 +59,7 @@ const Profile = () => {
         })
       );
     }
-  }, [dispatch, user, token]);
+  }, [dispatch, user?.sub, token]);
 
   if (!!location.search) {
     return (

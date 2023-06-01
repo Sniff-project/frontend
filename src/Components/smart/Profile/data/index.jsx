@@ -61,7 +61,7 @@ export default function UserData({ profileState }) {
   ]);
 
   const onEditHandler = (e) => {
-    setIsEditing(!isEditing);
+    setIsEditing((prev) => !prev);
     if (isEditing) {
       const { firstname, lastname, email, phone2 } = e;
       const correctedFirstname =
