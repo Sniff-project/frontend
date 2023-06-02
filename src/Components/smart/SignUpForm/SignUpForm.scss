@@ -5,18 +5,18 @@
     }
 
     &__form {
-        padding: 0 50px;
+        padding: 0 3.125rem;
         margin: 0 auto;
-        margin-top: 50px;
+        margin-top: 3.125rem;
         display: grid;
         justify-items: center;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
-        gap: 50px;
-        column-gap: 125px;
+        gap: 3.125rem;
+        column-gap: 7.8125rem;
 
         &-inputbox {
-            width: 300px;
+            width: 18.75rem;
             position: relative;
         }
     }
@@ -28,19 +28,19 @@
 
 @media (max-width: 992px) {
     .registration {
-        width: 700px;
-        padding: 30px;
+        width: 43.75rem;
+        padding: 1.875rem;
 
         &__text {
-            margin-top: 20px;
+            margin-top: 1.25rem;
         }
 
         &__form {
-            width: 500px;
-            column-gap: 70px;
+            width: 31.25rem;
+            column-gap: 4.375rem;
 
             &-inputbox {
-                width: 210px;
+                width: 13.125rem;
             }
         }
     }
@@ -48,15 +48,15 @@
 
 @media (max-width: 768px) {
     .registration {
-        width: 540px;
+        width: 33.75rem;
 
         &__title {
-            font-size: 27px;
+            font-size: 1.6875rem;
             text-align: center;
         }
 
         &__text {
-            margin-top: 5px;
+            margin-top: 0.3125rem;
 
             a {
                 &:hover {
@@ -67,15 +67,15 @@
         }
 
         &__form {
-            margin-top: 40px;
-            width: 470px;
+            margin-top: 2.5rem;
+            width: 29.375rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
 
             &-inputbox {
-                width: 450px;
+                width: 28.125rem;
             }
         }
     }
@@ -83,13 +83,13 @@
 
 @media (max-width: 576px) {
     .registration {
-        width: 370px;
+        width: 23.125rem;
 
         &__text {
-            font-size: 13px;
+            font-size: 0.8125rem;
 
             a {
-                font-size: 13px;
+                font-size: 0.8125rem;
             }
         }
 
@@ -106,12 +106,12 @@
 
 @media (max-width: 500px) {
     .registration {
-        width: 300px;
-        padding: 30px !important;
+        width: 18.75rem;
+        padding: 1.875rem !important;
 
         &__button {
             button {
-                padding: 10px 20px;
+                padding: 0.625rem 1.25rem;
             }
         }
     }

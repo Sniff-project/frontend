@@ -74,7 +74,7 @@ const Input = memo(
               variant={variant}
               label={inpLabel}
               error={!!errors?.[name]}
-              helperText={errors?.[name]?.message}
+              helperText={errors?.[name]?.message || " "}
               InputProps={inpProps}
             />
           )}
@@ -98,7 +98,7 @@ const Input = memo(
             variant={variant}
             label={inpLabel}
             error={!!errors?.[name]}
-            helperText={errors?.[name]?.message}
+            helperText={errors?.[name]?.message || " "}
             name={name}
             className={className}
             InputProps={inpProps}

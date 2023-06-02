@@ -36,7 +36,7 @@ const Link = forwardRef(
 
 const StyledLink = styled(MLink)(({ theme }) => ({
   fontWeight: 400,
-  fontSize: "1rem",
+  fontSize: "16px",
   lineHeight: "1.25rem",
   textTransform: "none",
   textDecoration: "underline",

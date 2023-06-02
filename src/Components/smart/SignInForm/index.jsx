@@ -44,12 +44,12 @@ const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
             maxLength: { value: 20, message: "Дуже довгий пароль!" },
           }}
           tabIndex={2}
-          sx={{ marginTop: "24px" }}
+          sx={{ marginTop: "1.5rem" }}
           endIcon={showPassword ? <Visibility /> : <VisibilityOff />}
           endIconOnClick={handleToggleShowPassword}
         />
         <div className="button__container">
-          <Button type="submit" sx={{ marginTop: "50px" }} tabIndex={3}>
+          <Button type="submit" sx={{ marginTop: "3.125rem" }} tabIndex={3}>
             Вхід
           </Button>
         </div>

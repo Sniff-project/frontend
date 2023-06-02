@@ -3,7 +3,7 @@ import { Spinner } from "@components/simple";
 import { Message } from "@components/ordinary";
 import { UserData } from "@components/smart/Profile";
 
-const Password = ({ profileState }) => {
+const UserInfo = ({ profileState }) => {
   const { profile, isLoading, error } = profileState;
 
   const profileElem = profile.id && !isLoading && (
@@ -27,4 +27,4 @@ const Password = ({ profileState }) => {
   );
 };
 
-export default Password;
+export default UserInfo;

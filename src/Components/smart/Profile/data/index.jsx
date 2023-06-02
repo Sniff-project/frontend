@@ -31,11 +31,11 @@ export default function UserData({ profileState }) {
   const [currentRegion, setCurrentRegion] = useState(null);
 
   useEffect(() => {
-    if (user && token) {
+    if (user && token && !cities_Array && !regions_Array) {
       dispatch(getCities({ token }));
       dispatch(getRegions({ token }));
     }
-  }, [dispatch, user, token]);
+  }, [dispatch, user, token, cities_Array, regions_Array]);
 
   useEffect(() => {
     if (regions_Array?.length > 0 && cities_Array?.length > 0) {
@@ -61,7 +61,7 @@ export default function UserData({ profileState }) {
   ]);
 
   const onEditHandler = (e) => {
-    setIsEditing(!isEditing);
+    setIsEditing((prev) => !prev);
     if (isEditing) {
       const { firstname, lastname, email, phone2 } = e;
       const correctedFirstname =
