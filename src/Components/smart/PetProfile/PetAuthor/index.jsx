@@ -37,7 +37,7 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
   } = author ?? {};
 
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, signInOpenHandler } = useAuth();
 
   const signIn = useCallback(() => {
     navigate("/signIn");
@@ -110,13 +110,13 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
           <Typography variant="p">{maskedPhone}</Typography>
         ) : (
           <Tooltip title={signInToViewText} placement="top">
-            <TButton onClick={signIn}>{maskedPhone}</TButton>
+            <TButton onClick={signInOpenHandler}>{maskedPhone}</TButton>
           </Tooltip>
         )
       ) : (
         <Skeleton variant="rounded" height="2rem" />
       ),
-    [isLoading, maskedPhone, phone, signIn]
+    [isLoading, maskedPhone, phone, signInOpenHandler]
   );
 
   const emailItem = useMemo(
@@ -126,13 +126,13 @@ const PetAuthorBlock = ({ author, isLoading, margin = 0 }) => {
           <Typography variant="p">{email}</Typography>
         ) : (
           <Tooltip title={signInToViewText} placement="bottom">
-            <TButton onClick={signIn}>{email}</TButton>
+            <TButton onClick={signInOpenHandler}>{email}</TButton>
           </Tooltip>
         )
       ) : (
         <Skeleton variant="rounded" height="2rem" />
       ),
-    [email, isLoading, signIn]
+    [email, isLoading, signInOpenHandler]
   );
 
   return (
