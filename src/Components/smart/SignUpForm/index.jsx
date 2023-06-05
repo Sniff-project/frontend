@@ -157,7 +157,7 @@ const SignUpForm = ({
             name="password"
             type={showPassword1 ? "text" : "password"}
             label="Пароль"
-            endIcon={showPassword1 ? <VisibilityOff /> : <Visibility />}
+            endIcon={showPassword1 ? <Visibility /> : <VisibilityOff />}
             endIconOnClick={handleToggleShowPassword1}
           />
         </div>
@@ -174,7 +174,7 @@ const SignUpForm = ({
             name="repPassword"
             type={showPassword2 ? "text" : "password"}
             label="Підтвердити пароль"
-            endIcon={showPassword2 ? <VisibilityOff /> : <Visibility />}
+            endIcon={showPassword2 ? <Visibility /> : <VisibilityOff />}
             endIconOnClick={handleToggleShowPassword2}
           />
         </div>
