@@ -2,6 +2,7 @@ import {
   profileRequest,
   profileSuccess,
   profileFailure,
+  resetProfile as reset,
 } from "@core/Store/actions/users";
 
 import { getProfile } from "@core/API/users";
@@ -38,5 +39,11 @@ export const profile = ({ userId, token }) => {
       dispatch(profileFailure(result));
       throw error;
     }
+  };
+};
+
+export const resetProfile = () => {
+  return async (dispatch) => {
+    dispatch(reset());
   };
 };
