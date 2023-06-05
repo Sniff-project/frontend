@@ -69,7 +69,7 @@ export default function Nav() {
                 className="nav-row__center"
                 style={!isHome ? { justifyContent: "flex-end" } : {}}>
                 {isHome && (
-                  <Link href="#" className="nav-row__btn" onClick={showMenu}>
+                  <Link href="" className="nav-row__btn" onClick={showMenu}>
                     <span>{pageTitles}</span>
                     <img alt="#" src={imgArrow} />
                   </Link>
@@ -103,7 +103,7 @@ export default function Nav() {
               {isAuth.user?.name && isAuth.isAuthenticated ? (
                 <div>
                   <Link
-                    href="#"
+                    href=""
                     onClick={showUserMenu}
                     className="nav-row__btn">
                     <img alt="#" src={userIcon} />
@@ -132,7 +132,7 @@ export default function Nav() {
                         </li>
                         <li className="nav-userMenu-list__item">
                           <Link
-                            href="#"
+                            href=""
                             onClick={logOut}
                             sx={{
                               width: "100%",
