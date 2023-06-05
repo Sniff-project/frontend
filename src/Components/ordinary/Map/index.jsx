@@ -16,6 +16,7 @@ const Map = ({
   position = defaultPos,
   draggable = false,
   onPosChange,
+  onLoad,
   scrollWheelZoom = false,
   text = "Мене знайшли тут",
   style,
@@ -43,12 +44,17 @@ const Map = ({
     [onPosChange, position]
   );
 
+  const handleOnLoad = () => {
+    onLoad && onLoad(position);
+  };
+
   return (
     <MapContainer
       center={position}
       zoom={13}
       attributionControl={false}
       scrollWheelZoom={scrollWheelZoom}
+      whenReady={handleOnLoad}
       style={style}
       {...rest}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
