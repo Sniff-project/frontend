@@ -16,6 +16,7 @@ import "./style.scss";
 
 export default function Nav() {
   const isAuth = useAuth();
+  const name = localStorage.getItem("name") ? localStorage.getItem("name") : isAuth.user?.name;
   const [navMenu, setNavMenu] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ export default function Nav() {
                 className="nav-row__center"
                 style={!isHome ? { justifyContent: "flex-end" } : {}}>
                 {isHome && (
-                  <Link href="#" className="nav-row__btn" onClick={showMenu}>
+                  <Link href="" className="nav-row__btn" onClick={showMenu}>
                     <span>{pageTitles}</span>
                     <img alt="#" src={imgArrow} />
                   </Link>
@@ -100,14 +101,14 @@ export default function Nav() {
                 )}
               </div>
 
-              {isAuth.user?.name && isAuth.isAuthenticated ? (
+              {name && isAuth.isAuthenticated ? (
                 <div>
                   <Link
-                    href="#"
+                    href=""
                     onClick={showUserMenu}
                     className="nav-row__btn">
                     <img alt="#" src={userIcon} />
-                    <span>{isAuth.user?.name}</span>
+                    <span>{name}</span>
                     <img alt="#" src={imgArrow} />
                   </Link>
 
@@ -132,7 +133,7 @@ export default function Nav() {
                         </li>
                         <li className="nav-userMenu-list__item">
                           <Link
-                            href="#"
+                            href=""
                             onClick={logOut}
                             sx={{
                               width: "100%",
