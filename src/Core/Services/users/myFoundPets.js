@@ -13,7 +13,6 @@ const unknownError = "Щось пішло не так :(";
 
 export const userFoundPets = ({
   userId,
-  token,
   page = 0,
   size = 3,
   status = null,
@@ -23,7 +22,6 @@ export const userFoundPets = ({
       dispatch(getUserFoundPetsRequest());
       const response = await getUserPets({
         userId,
-        token,
         page,
         size,
         status: "FOUND",

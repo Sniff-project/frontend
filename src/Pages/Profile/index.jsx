@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "@core/Hooks";
+import { profile as getProfile } from "@core/Services/users";
 import { Navigate, useLocation } from "react-router-dom";
 import {
   resetProfile,
@@ -16,39 +18,55 @@ import {
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
 import { Spinner } from "@components/simple";
 
-const tabs = [
-  {
-    label: "Особисті данні",
-    content: <UserInfo />,
-  },
-  {
-    label: "Пароль",
-    content: (
-      <Box component="div" mt="38px">
-        <Password />
-      </Box>
-    ),
-  },
-  {
-    label: "Загублені тваринки",
-    content: <PetsGallery status="LOST" />,
-  },
-  {
-    label: "Знайдені тваринки",
-    content: <PetsGallery status="FOUND" />,
-  },
-  {
-    label: "Видалення профілю",
-    content: <DeleteUser />,
-  },
-];
-
 const Profile = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const tabParam = +searchParams.get("tab") || 0;
 
+  const { user, token } = useAuth();
   const dispatch = useDispatch();
+  const profileState = useSelector((state) => state.profile);
+
+  const tabs = useMemo(
+    () => [
+      {
+        label: "Особисті данні",
+        content: <UserInfo profileState={profileState} />,
+      },
+      {
+        label: "Пароль",
+        content: (
+          <Box component="div" mt="38px">
+            <Password />
+          </Box>
+        ),
+      },
+      {
+        label: "Загублені тваринки",
+        content: <PetsGallery userId={user?.sub} status="LOST" />,
+      },
+      {
+        label: "Знайдені тваринки",
+        content: <PetsGallery userId={user?.sub} status="FOUND" />,
+      },
+      {
+        label: "Видалення профілю",
+        content: <DeleteUser />,
+      },
+    ],
+    [profileState, user?.sub]
+  );
+
+  useEffect(() => {
+    if (user?.sub && token) {
+      dispatch(
+        getProfile({
+          userId: user.sub,
+          token: token,
+        })
+      );
+    }
+  }, [dispatch, user?.sub, token]);
 
   useEffect(() => {
     dispatch(resetProfile());

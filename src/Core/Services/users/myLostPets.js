@@ -11,19 +11,12 @@ const successMsg = "Список тваринок отриманий!";
 const errorMsg = "Не вдалось отримати список!";
 const unknownError = "Щось пішло не так :(";
 
-export const userLostPets = ({
-  userId,
-  token,
-  page = 0,
-  size = 3,
-  status = null,
-}) => {
+export const userLostPets = ({ userId, page = 0, size = 3, status = null }) => {
   return async (dispatch) => {
     try {
       dispatch(getUserLostPetsRequest());
       const response = await getUserPets({
         userId,
-        token,
         page,
         size,
         status: "LOST",

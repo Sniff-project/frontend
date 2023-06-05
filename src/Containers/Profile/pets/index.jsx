@@ -4,15 +4,13 @@ import {
   userFoundPets as getUserFoundPets,
   userLostPets as getUserLostPets,
 } from "@core/Services/users";
-import { useAuth } from "@core/Hooks";
 import { GalleryBlock } from "@components/smart/Gallery";
 
 import Pagination from "@mui/material/Pagination";
 
-export default function PetsGallery({ status }) {
+export default function PetsGallery({ userId, status }) {
   const [prevPage, setPrevPage] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const { user, token } = useAuth();
   const dispatch = useDispatch();
   const { petsList, isLoading, error } = useSelector((state) =>
     status === "FOUND" ? state.userFoundPets : state.userLostPets
@@ -21,33 +19,30 @@ export default function PetsGallery({ status }) {
   useEffect(() => {
     if (
       prevPage !== currentSlideIndex ||
-      (!petsList?.content?.length && user?.sub && token)
+      (!petsList?.content?.length && userId)
     ) {
       if (status === "FOUND")
         dispatch(
           getUserFoundPets({
-            userId: user.sub,
-            token: token,
+            userId: userId,
             page: currentSlideIndex,
           })
         );
       else if (status === "LOST")
         dispatch(
           getUserLostPets({
-            userId: user.sub,
-            token: token,
+            userId: userId,
             page: currentSlideIndex,
           })
         );
     }
   }, [
+    currentSlideIndex,
     dispatch,
-    user.sub,
-    token,
     petsList?.content?.length,
     prevPage,
-    currentSlideIndex,
     status,
+    userId,
   ]);
 
   const handleSlide = (_, value) => {
