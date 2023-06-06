@@ -218,7 +218,7 @@
     }
 
     .nav-userMenu-list {
-        padding: 15px 20px;
+        padding: 0;
         list-style: none;
         position: absolute;
         z-index: 5;
@@ -227,12 +227,12 @@
         background-color: var(--bg-color);
         display: flex;
         flex-direction: column;
-        gap: 25px 0;
+        gap: 0;
 
         &__item {
             > a {
                 font-size: 1.25rem;
-                padding: 0;
+                padding: 0.9375rem 1.25rem;
             }
 
             img {
@@ -247,17 +247,9 @@
 
             button {
                 font-size: 1.25rem;
-                padding: 0;
+                padding: 0.9375rem 1.25rem;
                 border: 0;
-                background-color: inherit;
             }
-        }
-    }
-
-    @media (max-width: 1300px) {
-        .nav-userMenu-list {
-            padding: 8px 15px;
-            gap: 10px 0;
         }
     }
 
