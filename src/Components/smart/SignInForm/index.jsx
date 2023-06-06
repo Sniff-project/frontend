@@ -1,5 +1,6 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { Button, DefaultInput as Input } from "@components/ui";
+import { emailRegex } from "@core/Constants/regex";
 import "./styles.scss";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -27,8 +28,7 @@ const SignInForm = ({ onSubmit, toggleShowPassword, showPassword }) => {
           validation={{
             required: true,
             pattern: {
-              value:
-                /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
+              value: emailRegex,
               message: "Неправильно введено email адресу!",
             },
           }}

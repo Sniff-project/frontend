@@ -12,6 +12,14 @@ import {
   cities as getCities,
   regions as getRegions,
 } from "@core/Services/users";
+import {
+  firstNameRegex,
+  lastNameRegex,
+  phoneRegex,
+  phoneRegexForReplace,
+  emailRegex,
+} from "@core/Constants/regex";
+import { phoneMask } from "@core/Constants/masks";
 import "./styles.scss";
 import UserLocation from "../location";
 
@@ -115,7 +123,7 @@ export default function UserData({ profileState }) {
                             "Ім'я повинно містити не більше 15 символів!",
                         },
                         pattern: {
-                          value: /^([а-яіїє'\s-]{2,15})$/i,
+                          value: firstNameRegex,
                           message: "Неправильно введено Ім'я користувача!",
                         },
                       }}
@@ -139,7 +147,7 @@ export default function UserData({ profileState }) {
                             "Прізвище повинно містити не більше 15 символів!",
                         },
                         pattern: {
-                          value: /^([а-яіїє'\s-]{2,15})$/i,
+                          value: lastNameRegex,
                           message: "Неправильно введено Прізвище користувача!",
                         },
                       }}
@@ -159,22 +167,23 @@ export default function UserData({ profileState }) {
                       validation={{
                         required: "Поле обов'язкове до заповнення!",
                         pattern: {
-                          value:
-                            /^(\+38)?\s*\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/,
+                          value: phoneRegex,
                           message: "Неправильний номер телефону!",
                         },
                       }}
-                      mask="+38 (999) 999-99-99"
+                      mask={phoneMask}
                       label="Номер телефону"
-                      defaultValue={profileState.profile.phone}
+                      defaultValue={profileState.profile.phone.replace(
+                        phoneRegexForReplace[0],
+                        phoneRegexForReplace[1]
+                      )}
                     />
 
                     <Input
                       validation={{
                         required: "Поле обов'язкове до заповнення!",
                         pattern: {
-                          value:
-                            /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
+                          value: emailRegex,
                           message: "Неправильно введено email адресу!",
                         },
                       }}
@@ -240,6 +249,7 @@ export default function UserData({ profileState }) {
                     tabIndex={1}
                     type="tel"
                     name="phone"
+                    mask={phoneMask}
                     label="Номер телефону"
                     defaultValue={
                       profileState.profile.phone || "+380 (XX) XXX-XX-XX"
