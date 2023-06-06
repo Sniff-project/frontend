@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import { useForm, FormProvider } from "react-hook-form";
 import { SecondInput as Input, Button } from "@components/ui";
+import { passwordRegex } from "@core/Constants/regex";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
@@ -44,8 +45,7 @@ const ChangePasswordForm = ({ onSubmit, showPassword, toggleShowPassword }) => {
                 message: "Дуже довгий пароль!",
               },
               pattern: {
-                value:
-                  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-={[}\]:;"'<>,.?/|]).*$/,
+                value: passwordRegex,
                 message:
                   "Пароль повинен містити: A-z, 0-9, ! @ # $ % ^ & *() ?.",
               },
@@ -70,8 +70,7 @@ const ChangePasswordForm = ({ onSubmit, showPassword, toggleShowPassword }) => {
                 message: "Дуже довгий пароль!",
               },
               pattern: {
-                value:
-                  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-={[}\]:;"'<>,.?/|]).*$/,
+                value: passwordRegex,
                 message:
                   "Пароль повинен містити: A-z, 0-9, ! @ # $ % ^ & *() ?.",
               },

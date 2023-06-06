@@ -3,6 +3,14 @@ import { Button, DefaultInput as Input, Link } from "@components/ui";
 import "./SignUpForm.scss";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  firstNameRegex,
+  lastNameRegex,
+  emailRegex,
+  phoneRegex,
+  passwordRegex,
+} from "@core/Constants/regex";
+import { phoneMask } from "@core/Constants/masks";
 
 const SignUpForm = ({
   onSubmit,
@@ -66,7 +74,7 @@ const SignUpForm = ({
                 message: "Ім'я повинно містити не більше 15 символів!",
               },
               pattern: {
-                value: /^([а-яіїє'\s-]{2,15})$/i,
+                value: firstNameRegex,
                 message: "Неправильно введено Ім'я користувача!",
               },
             }}
@@ -90,7 +98,7 @@ const SignUpForm = ({
                 message: "Прізвище повинно містити не більше 15 символів!",
               },
               pattern: {
-                value: /^([а-яіїє'\s-]{2,15})$/i,
+                value: lastNameRegex,
                 message: "Неправильно введено Прізвище користувача!",
               },
             }}
@@ -106,8 +114,7 @@ const SignUpForm = ({
             validation={{
               required: "Поле обов'язкове до заповнення!",
               pattern: {
-                value:
-                  /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i,
+                value: emailRegex,
                 message: "Неправильно введено email адресу!",
               },
             }}
@@ -123,13 +130,13 @@ const SignUpForm = ({
             validation={{
               required: "Поле обов'язкове до заповнення!",
               pattern: {
-                value: /^\+38\s\((0\d{2})\)\s(\d{3})-(\d{2})-(\d{2})$/,
+                value: phoneRegex,
                 message: "Неправильний номер телефону!",
               },
             }}
             tabIndex={5}
             name="phone"
-            mask="+38 (999) 999-99-99"
+            mask={phoneMask}
             label="Номер телефону"
           />
         </div>
@@ -147,8 +154,7 @@ const SignUpForm = ({
                 message: "Дуже довгий пароль!",
               },
               pattern: {
-                value:
-                  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-={[}\]:;"'<>,.?/|]).*$/,
+                value: passwordRegex,
                 message:
                   "Пароль повинен містити: A-z, 0-9, ! @ # $ % ^ & *() ?.",
               },
