@@ -7,6 +7,8 @@ import {
   changePasswordReducer,
   citiesReducer,
   regionsReducer,
+  userFoundPetsReducer,
+  userLostPetsReducer,
 } from "./users";
 import {
   createPetProfileReducer,
@@ -29,6 +31,8 @@ const reducer = combineReducers({
   changePassword: changePasswordReducer,
   cities: citiesReducer,
   regions: regionsReducer,
+  userFoundPets: userFoundPetsReducer,
+  userLostPets: userLostPetsReducer,
 
   // pets
   createPetProfile: createPetProfileReducer,

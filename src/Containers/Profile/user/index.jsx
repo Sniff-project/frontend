@@ -6,10 +6,10 @@ import { UserData } from "@components/smart/Profile";
 const UserInfo = ({ profileState }) => {
   const { profile, isLoading, error } = profileState;
 
-  const profileElem = profile.id && !isLoading && (
+  const profileElem = profile?.id && !isLoading && (
     <UserData profileState={profileState} />
   );
-  const loadingElem = (!profile.id || isLoading) && <Spinner size={100} />;
+  const loadingElem = (!profile?.id || isLoading) && <Spinner size={100} />;
   const errorElem = error && !isLoading && (
     <Message
       message={error.message}

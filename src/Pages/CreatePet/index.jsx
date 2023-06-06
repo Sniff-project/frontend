@@ -11,7 +11,7 @@ import { Button } from "@components/ui";
 import { Spinner } from "@components/simple";
 import { Message } from "@components/ordinary";
 
-const CITY_ERROR = "Спочатку встановіть місто в профілі!";
+const CITY_ERROR = "Спочатку встановіть місто та область в профілі!";
 
 const CreatePetProfilePage = () => {
   const { user, token } = useAuth();
@@ -26,10 +26,10 @@ const CreatePetProfilePage = () => {
   );
 
   useEffect(() => {
-    if (!profileState.profile?.city && user && token) {
+    if (!profileState?.profile?.city && user && token) {
       dispatch(getProfile({ userId: user.sub, token: token }));
     }
-  }, [dispatch, profileState.profile?.city, token, user]);
+  }, [dispatch, profileState?.profile?.city, token, user]);
 
   useEffect(() => {
     if (!!location.search) {
@@ -47,32 +47,34 @@ const CreatePetProfilePage = () => {
   }
 
   const loading = profileState.loading && <Spinner />;
-  const error = !loading && profileState.error && (
-    <React.Fragment>
-      <Message
-        message={CITY_ERROR}
-        messageType="error"
-        mb={8}
-        sx={{
-          margin: "3.125rem auto",
-        }}
-      />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-        }}>
-        <Button
-          href="/profile"
+  const error = !loading &&
+    (!profileState?.profile?.city || !profileState?.profile?.region) && (
+      <React.Fragment>
+        <Message
+          message={CITY_ERROR}
+          messageType="error"
+          mb={8}
           sx={{
-            padding: "1rem 1.5rem",
-            fontSize: "1.5rem",
+            margin: "3.125rem auto",
+          }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
           }}>
-          Відкрити профіль
-        </Button>
-      </Box>
-    </React.Fragment>
-  );
+          <Button
+            href="/profile"
+            sx={{
+              padding: "1rem 1.5rem",
+              marginBottom: "2rem",
+              fontSize: "1.5rem",
+            }}>
+            Відкрити профіль
+          </Button>
+        </Box>
+      </React.Fragment>
+    );
   const content = !loading && !error && (
     <CreatePetContainer params={{ status: status }} />
   );

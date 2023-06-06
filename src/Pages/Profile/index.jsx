@@ -1,8 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "@core/Hooks";
 import { profile as getProfile } from "@core/Services/users";
+import { Navigate, useLocation } from "react-router-dom";
+import {
+  resetProfile,
+  resetUserFoundPets,
+  resetUserLostPets,
+} from "@core/Services/users";
 import { Box, Typography } from "@mui/material";
 import {
   UserInfo,
@@ -17,6 +22,7 @@ const Profile = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const tabParam = +searchParams.get("tab") || 0;
+
   const { user, token } = useAuth();
   const dispatch = useDispatch();
   const profileState = useSelector((state) => state.profile);
@@ -36,18 +42,19 @@ const Profile = () => {
         ),
       },
       {
-        label: "Мої тваринки",
-        content: <PetsGallery gallery={profileState.profile.petCards} />,
+        label: "Загублені тваринки",
+        content: <PetsGallery userId={user?.sub} status="LOST" />,
+      },
+      {
+        label: "Знайдені тваринки",
+        content: <PetsGallery userId={user?.sub} status="FOUND" />,
       },
       {
         label: "Видалення профілю",
         content: <DeleteUser />,
       },
     ],
-    [profileState]
-  );
-  const [tabNum, setTabNum] = useState(
-    (tabParam < tabs.length && tabParam > 0 && tabParam) || 0
+    [profileState, user?.sub]
   );
 
   useEffect(() => {
@@ -60,6 +67,16 @@ const Profile = () => {
       );
     }
   }, [dispatch, user?.sub, token]);
+
+  useEffect(() => {
+    dispatch(resetProfile());
+    dispatch(resetUserFoundPets());
+    dispatch(resetUserLostPets());
+  }, [dispatch]);
+
+  const [tabNum, setTabNum] = useState(
+    (tabParam < tabs.length && tabParam > 0 && tabParam) || 0
+  );
 
   if (!!location.search) {
     return (

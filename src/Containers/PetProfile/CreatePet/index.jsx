@@ -58,41 +58,42 @@ const CreatePet = ({ params }) => {
   }, []);
 
   const stepsContent = useMemo(() => {
-    if (petData)
-      return [
-        <Box sx={{ maxWidth: "600px", margin: "3.125rem auto" }}>
-          <InfoBlock
-            name={petData?.name}
-            gender={petData?.gender}
-            foundOrLostDate={petData?.foundOrLostDate}
-            status={petData?.status}
-          />
-          <DescriptionBlock
-            description={petData?.description}
-            sx={{ marginTop: "16px" }}
-          />
-        </Box>,
-        <Box sx={{ margin: "3.125rem auto" }}>
-          <UploadBox inpFiles={photos} onChange={updatePhotos} />
-        </Box>,
-        <Box sx={{ margin: "3.125rem auto" }}>
-          <Map
-            {...(petData?.longitude &&
-              petData?.latitude && {
-                position: {
-                  lat: petData.latitude,
-                  lng: petData.longitude,
-                },
-              })}
-            draggable={true}
-            onPosChange={onChangeMapMarker}
-            text={`Мене ${
-              petData?.status === "Знайдено" ? "знайшли" : "загубили"
-            } тут`}
-            style={{ height: "31.25rem", borderRadius: "10px" }}
-          />
-        </Box>,
-      ];
+    return [
+      <Box sx={{ maxWidth: "600px", margin: "3.125rem auto" }}>
+        <InfoBlock
+          name={petData?.name}
+          gender={petData?.gender}
+          foundOrLostDate={petData?.foundOrLostDate}
+          status={petData?.status}
+        />
+        <DescriptionBlock
+          description={petData?.description}
+          sx={{ marginTop: "16px" }}
+        />
+      </Box>,
+      <Box sx={{ margin: "3.125rem auto" }}>
+        <UploadBox inpFiles={photos} onChange={updatePhotos} />
+      </Box>,
+      <Box sx={{ margin: "3.125rem auto" }}>
+        <Map
+          {...(petData?.longitude &&
+            petData?.latitude && {
+              position: {
+                lat: petData.latitude,
+                lng: petData.longitude,
+              },
+            })}
+          draggable={true}
+          onPosChange={onChangeMapMarker}
+          onLoad={onChangeMapMarker}
+          scrollWheelZoom={true}
+          text={`Мене ${
+            petData?.status === "Знайдено" ? "знайшли" : "загубили"
+          } тут`}
+          style={{ height: "31.25rem", borderRadius: "10px" }}
+        />
+      </Box>,
+    ];
   }, [onChangeMapMarker, petData, photos, updatePhotos]);
 
   const isStepOptional = useCallback((step) => {
@@ -139,7 +140,7 @@ const CreatePet = ({ params }) => {
     dispatch(createPetProfileResetState());
     dispatch(uploadPetPhotosResetState());
     setSkipped(new Set());
-    setPetData(null);
+    setPetData({});
     setPhotos([]);
     methods.reset();
   }, [dispatch, methods]);

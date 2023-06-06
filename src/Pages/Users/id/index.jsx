@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useParams, useLocation } from "react-router-dom";
 import { useAuth } from "@core/Hooks";
 import { strangerProfile as getProfile } from "@core/Services/users";
+import {
+  resetProfile,
+  resetUserFoundPets,
+  resetUserLostPets,
+} from "@core/Services/users";
 import { Box, Typography } from "@mui/material";
 import { UserInfo, PetsGallery } from "@containers/Profile";
 import { Tabs, TabPanel, Tab } from "@components/ordinary";
@@ -25,13 +30,15 @@ const UserPage = () => {
         content: <UserInfo profileState={strangerProfileState} />,
       },
       {
-        label: "Тваринки",
-        content: (
-          <PetsGallery gallery={strangerProfileState.profile.petCards} />
-        ),
+        label: "Загублені тваринки",
+        content: <PetsGallery userId={userId} status="LOST" />,
+      },
+      {
+        label: "Знайдені тваринки",
+        content: <PetsGallery userId={userId} status="FOUND" />,
       },
     ],
-    [strangerProfileState]
+    [strangerProfileState, userId]
   );
   const [tabNum, setTabNum] = useState(
     (tabParam < tabs.length && tabParam > 0 && tabParam) || 0
@@ -48,6 +55,12 @@ const UserPage = () => {
     }
   }, [dispatch, userId, token]);
 
+  useEffect(() => {
+    dispatch(resetProfile());
+    dispatch(resetUserFoundPets());
+    dispatch(resetUserLostPets());
+  }, [dispatch]);
+
   if (userId === user?.sub) {
     return <Navigate to="/profile" />;
   }
@@ -61,7 +74,7 @@ const UserPage = () => {
     );
   }
 
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = (_, newValue) => {
     setTabNum(newValue);
   };
   return (
